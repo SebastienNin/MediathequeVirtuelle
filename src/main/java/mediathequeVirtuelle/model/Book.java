@@ -13,9 +13,9 @@ public class Book extends Media {
 	private BookTheme bookTheme;
 
 	public Book(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate, String author, String iSBN, int pageNb, int chapterNb,
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String author, String iSBN, int pageNb, int chapterNb,
 			BookType bookType, BookTheme bookTheme) {
-		super(name, publishingHouse, language, image, description, dematerialized, parutionDate);
+		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.author = author;
 		ISBN = iSBN;
 		this.pageNb = pageNb;

@@ -15,9 +15,9 @@ public class Music extends Media {
 	private MusicTheme musicType;
 
 	public Music(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate, String artist, int duration,
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String artist, int duration,
 			int trackNumber, MusicSupport musicSupport, MusicTheme musicType) {
-		super(name, publishingHouse, language, image, description, dematerialized, parutionDate);
+		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.artist = artist;
 		this.duration = duration;
 		this.trackNumber = trackNumber;

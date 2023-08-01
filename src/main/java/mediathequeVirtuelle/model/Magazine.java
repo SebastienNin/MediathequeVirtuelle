@@ -11,9 +11,9 @@ public class Magazine extends Media {
 	private MagazineTheme magazineTheme;
 
 	public Magazine(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate, String iSSN, int number,
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String iSSN, int number,
 			MagazinePeriodicity magazinePrediodicity, MagazineTheme magazineTheme) {
-		super(name, publishingHouse, language, image, description, dematerialized, parutionDate);
+		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		ISSN = iSSN;
 		this.number = number;
 		this.magazinePrediodicity = magazinePrediodicity;

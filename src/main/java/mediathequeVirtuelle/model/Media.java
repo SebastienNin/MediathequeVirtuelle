@@ -11,9 +11,10 @@ public class Media {
 	protected String description;
 	protected boolean dematerialized;
 	protected LocalDate parutionDate;
+	protected LocalDate addDate;
 
 	public Media(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate) {
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate) {
 		this.name = name;
 		this.publishingHouse = publishingHouse;
 		this.language = language;
@@ -21,6 +22,7 @@ public class Media {
 		this.description = description;
 		this.dematerialized = dematerialized;
 		this.parutionDate = parutionDate;
+		this.addDate = addDate;
 	}
 
 	public String getName() {
@@ -50,6 +52,10 @@ public class Media {
 	public LocalDate getParutionDate() {
 		return parutionDate;
 	}
+	
+	public LocalDate getAddDate() {
+		return addDate;
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -78,12 +84,16 @@ public class Media {
 	public void setParutionDate(LocalDate parutionDate) {
 		this.parutionDate = parutionDate;
 	}
+	
+	public void setAddDate(LocalDate addDate) {
+		this.addDate = addDate;
+	}
 
 	@Override
 	public String toString() {
 		return "Media [name=" + name + ", publishingHouse=" + publishingHouse + ", language=" + language + ", image="
 				+ image + ", description=" + description + ", dematerialized=" + dematerialized + ", parutionDate="
-				+ parutionDate + "]";
+				+ parutionDate + ", addDate=" + addDate + "]";
 	}
 
 }

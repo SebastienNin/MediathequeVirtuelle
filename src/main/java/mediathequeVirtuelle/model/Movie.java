@@ -14,9 +14,9 @@ public class Movie extends Media {
 	private MovieTheme movieTheme;
 
 	public Movie(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate, List<String> directors, List<String> actors, int duration,
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, List<String> directors, List<String> actors, int duration,
 			MovieSupport movieSupport, MovieTheme movieTheme) {
-		super(name, publishingHouse, language, image, description, dematerialized, parutionDate);
+		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.directors = directors;
 		this.actors = actors;
 		this.duration = duration;

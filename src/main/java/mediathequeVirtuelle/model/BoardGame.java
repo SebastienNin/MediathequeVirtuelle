@@ -13,9 +13,9 @@ public class BoardGame extends Media {
 	private GameTheme gameTheme;
 
 	public BoardGame(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate, String playerNumber, int recommendendAge, int duration,
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String playerNumber, int recommendendAge, int duration,
 			GameTheme gameTheme) {
-		super(name, publishingHouse, language, image, description, dematerialized, parutionDate);
+		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.playerNumber = playerNumber;
 		this.recommendendAge = recommendendAge;
 		this.duration = duration;

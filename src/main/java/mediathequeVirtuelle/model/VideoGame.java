@@ -27,8 +27,8 @@ public class VideoGame extends Media {
 //	}
 
 	public VideoGame(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate, int pegi, boolean multiPlayer, GameTheme gameTheme) {
-		super(name, publishingHouse, language, image, description, dematerialized, parutionDate);
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, int pegi, boolean multiPlayer, GameTheme gameTheme) {
+		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.pegi = pegi;
 		this.multiPlayer = multiPlayer;
 		this.gameTheme = gameTheme;

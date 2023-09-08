@@ -2,7 +2,17 @@ package mediatheque.model;
 
 import java.util.List;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+@Entity
 public class Account {
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Id
+private Integer id;
 
 	private String login;
 	private String password;
@@ -11,8 +21,23 @@ public class Account {
 	private String mail;
 	
 	private boolean isAdmin;
+	@Transient
 	private List<Media> mediaList;
+	@Transient
+	private List<PersonnalizedList> persoLists;
+	
+	public Account() {}
 
+	public Account(Integer id, String login, String password, String name, String firstName, String mail, boolean isAdmin) {
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.name = name;
+		this.firstName = firstName;
+		this.mail = mail;
+		this.isAdmin = isAdmin;
+	}
+	
 	public Account(String login, String password, String name, String firstName, String mail, boolean isAdmin) {
 		this.login = login;
 		this.password = password;
@@ -22,60 +47,69 @@ public class Account {
 		this.isAdmin = isAdmin;
 	}
 
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getLogin() {
 		return login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getNom() {
-		return name;
-	}
-
-	public String getPrenom() {
-		return firstName;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-	
-	public List<Media> getMediaList() {
-		return mediaList;
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
 	}
 
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public void setNom(String name) {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setPrenom(String firstName) {
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public String getMail() {
+		return mail;
 	}
 
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
 
-	public void setListeMedia(List<Media> mediaList) {
-		this.mediaList = mediaList;
+	public boolean isAdmin() {
+		return isAdmin;
 	}
-	
+
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public List<Media> getMediaList() {
+		return mediaList;
+	}
+
+	public void setMediaList(List<Media> mediaList) {
+		this.mediaList = mediaList;
 	}
 
 	@Override

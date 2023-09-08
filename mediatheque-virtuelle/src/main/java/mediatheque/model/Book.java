@@ -25,7 +25,6 @@ public class Book extends Media {
 	private int chapterNb;
 
 	@OneToOne
-	@Transient
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "book_type", nullable = false)
 	private BookType bookType;

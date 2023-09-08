@@ -26,7 +26,6 @@ public class Music extends Media {
 	private int trackNumber;
 
 	@OneToOne
-	@Transient
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "music_support", nullable = false)
 	private MusicSupport musicSupport;

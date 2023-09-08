@@ -10,28 +10,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
+
 @Entity
 public class Account {
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Id
-private Integer id;
-@Column(nullable = false,unique = true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	private Integer id;
+	@Version
+	private Integer version;
+	@Column(nullable = false, unique = true)
 	private String login;
-@Column(nullable = false,unique = true)
+	@Column(nullable = false, unique = true)
 	private String password;
 	private String name;
 	private String firstName;
 	private String mail;
-	
+
 	private boolean isAdmin;
 	@Transient
 	private List<Media> mediaList = new ArrayList<Media>();
 	@OneToMany(mappedBy = "account")
 	private List<PersonnalizedList> persoLists = new ArrayList<PersonnalizedList>();
-	
-	public Account() {}
 
-	public Account(Integer id, String login, String password, String name, String firstName, String mail, boolean isAdmin) {
+	public Account() {
+	}
+
+	public Account(Integer id, String login, String password, String name, String firstName, String mail,
+			boolean isAdmin) {
 		this.id = id;
 		this.login = login;
 		this.password = password;
@@ -40,7 +46,7 @@ private Integer id;
 		this.mail = mail;
 		this.isAdmin = isAdmin;
 	}
-	
+
 	public Account(String login, String password, String name, String firstName, String mail, boolean isAdmin) {
 		this.login = login;
 		this.password = password;
@@ -50,7 +56,6 @@ private Integer id;
 		this.isAdmin = isAdmin;
 	}
 
-	
 	public Integer getId() {
 		return id;
 	}
@@ -117,8 +122,16 @@ private Integer id;
 
 	@Override
 	public String toString() {
-		return "Account [login=" + login + ", password=" + password + ", name=" + name + ", firstName=" + firstName + ", mail="
-				+ mail + ", isAdmin=" + isAdmin + ", mediaList=" + mediaList + "]";
+		return "Account [login=" + login + ", password=" + password + ", name=" + name + ", firstName=" + firstName
+				+ ", mail=" + mail + ", isAdmin=" + isAdmin + ", mediaList=" + mediaList + "]";
 	}
-	
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
 }

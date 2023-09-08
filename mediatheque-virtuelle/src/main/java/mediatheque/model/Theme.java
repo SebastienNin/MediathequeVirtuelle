@@ -16,6 +16,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,6 +26,9 @@ public abstract class Theme {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	protected Integer id;
+	@Version
+	protected Integer version;
+
 	@Column(nullable = false)
 	protected String label;
 	@OneToOne
@@ -39,7 +43,7 @@ public abstract class Theme {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Theme(String label, Integer id, EnumTheme enumTheme) {
+	public Theme(String label, Integer id) {
 		this.label = label;
 		this.id = id;
 		this.enumTheme = enumTheme;

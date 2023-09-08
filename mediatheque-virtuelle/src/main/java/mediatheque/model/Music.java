@@ -9,9 +9,7 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
 
 public class Music extends Media {
 
@@ -27,15 +25,8 @@ public class Music extends Media {
 
 	@OneToOne
 	@Enumerated(EnumType.STRING)
-=======
-	@Enumerated(EnumType.ORDINAL)
->>>>>>> master
 	@Column(name = "music_support", nullable = false)
 	private MusicSupport musicSupport;
-	@ManyToOne
-	@Transient
-	@Column(name = "music_type", nullable = false)
-	private MusicTheme musicType;
 
 	public Music() {
 		// TODO Auto-generated constructor stub
@@ -43,25 +34,23 @@ public class Music extends Media {
 	
 	public Music(Integer id, Integer version, String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String artist, int duration,
-			int trackNumber, MusicSupport musicSupport, MusicTheme musicType) {
+			int trackNumber, MusicSupport musicSupport) {
 		super(id, version, name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.artist = artist;
 		this.duration = duration;
 		this.trackNumber = trackNumber;
 		this.musicSupport = musicSupport;
-		this.musicType = musicType;
 	}
 
 	
 	public Music(String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String artist, int duration,
-			int trackNumber, MusicSupport musicSupport, MusicTheme musicType) {
+			int trackNumber, MusicSupport musicSupport) {
 		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.artist = artist;
 		this.duration = duration;
 		this.trackNumber = trackNumber;
 		this.musicSupport = musicSupport;
-		this.musicType = musicType;
 	}
 
 	public List<String> getTracks() {
@@ -84,10 +73,6 @@ public class Music extends Media {
 		return musicSupport;
 	}
 
-	public MusicTheme getMusicType() {
-		return musicType;
-	}
-
 	public void setTracks(List<String> tracks) {
 		this.tracks = tracks;
 	}
@@ -108,14 +93,10 @@ public class Music extends Media {
 		this.musicSupport = musicSupport;
 	}
 
-	public void setMusicType(MusicTheme musicType) {
-		this.musicType = musicType;
-	}
-
 	@Override
 	public String toString() {
 		return "Music [tracks=" + tracks + ", artist=" + artist + ", duration=" + duration + ", trackNumber="
-				+ trackNumber + ", musicSupport=" + musicSupport + ", musicType=" + musicType + "]";
+				+ trackNumber + ", musicSupport=" + musicSupport + "]";
 	}
 
 }

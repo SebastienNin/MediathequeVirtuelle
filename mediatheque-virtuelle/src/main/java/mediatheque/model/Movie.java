@@ -11,9 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
 
 @Entity
 @DiscriminatorValue("movie")
@@ -32,15 +30,8 @@ public class Movie extends Media {
 
 	@OneToOne
 	@Enumerated(EnumType.STRING)
-=======
-	@Enumerated(EnumType.ORDINAL)
->>>>>>> master
 	@Column(name = "movie_support", nullable = false)
 	private MovieSupport movieSupport;
-	@ManyToOne
-	@Transient
-	@Column(name = "movie_theme", nullable = false)
-	private MovieTheme movieTheme;
 
 	public Movie() {
 		// TODO Auto-generated constructor stub
@@ -78,10 +69,6 @@ public class Movie extends Media {
 		return movieSupport;
 	}
 
-	public MovieTheme getMovieTheme() {
-		return movieTheme;
-	}
-
 	public void setDirectors(List<String> directors) {
 		this.directors = directors;
 	}
@@ -98,14 +85,10 @@ public class Movie extends Media {
 		this.movieSupport = movieSupport;
 	}
 
-	public void setMovieTheme(MovieTheme movieTheme) {
-		this.movieTheme = movieTheme;
-	}
-
 	@Override
 	public String toString() {
 		return "Movie [directors=" + directors + ", actors=" + actors + ", duration=" + duration + ", movieSupport="
-				+ movieSupport + ", movieTheme=" + movieTheme + "]";
+				+ movieSupport + "]";
 	}
 
 }

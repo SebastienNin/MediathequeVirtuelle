@@ -16,10 +16,6 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Transient;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
 
 @Entity
@@ -43,17 +39,11 @@ public abstract class Theme {
 	@OneToMany
 	protected List<Media> mediaList = new ArrayList<Media>();
 
-	@Column(nullable = false)
-	protected String label;
-	@Transient
-	@ManyToMany
-	protected List<Media> mediaList = new ArrayList<Media>();
-	
 	public Theme() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Theme(String label, Integer id) {
+	public Theme(String label, Integer id, EnumTheme enumTheme) {
 		this.label = label;
 		this.id = id;
 		this.enumTheme = enumTheme;

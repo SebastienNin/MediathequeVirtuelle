@@ -6,8 +6,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Transient;
 
 @DiscriminatorValue(value = "magazine")
 public class Magazine extends Media {
@@ -18,11 +16,6 @@ public class Magazine extends Media {
 	
 	@Enumerated(EnumType.STRING)
 	private MagazinePeriodicity magazinePrediodicity;
-	
-	@Transient
-	@OneToMany
-	private MagazineTheme magazineTheme;
-
 
 	public Magazine() {
 		super();
@@ -30,22 +23,20 @@ public class Magazine extends Media {
 
 	public Magazine(Integer id, Integer version, String name, String publishingHouse, String language, String image,
 			String description, boolean dematerialized, LocalDate parutionDate, LocalDate addDate, 
-			String iSSN, int number, MagazinePeriodicity magazinePrediodicity, MagazineTheme magazineTheme) {
+			String iSSN, int number, MagazinePeriodicity magazinePrediodicity) {
 		super(id, version, name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.ISSN = iSSN;
 		this.number = number;
 		this.magazinePrediodicity = magazinePrediodicity;
-		this.magazineTheme = magazineTheme;
 	}
 
 	public Magazine(String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, 
-			String iSSN, int number, MagazinePeriodicity magazinePrediodicity, MagazineTheme magazineTheme) {
+			String iSSN, int number, MagazinePeriodicity magazinePrediodicity) {
 		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.ISSN = iSSN;
 		this.number = number;
 		this.magazinePrediodicity = magazinePrediodicity;
-		this.magazineTheme = magazineTheme;
 	}
 
 	public String getISSN() {
@@ -60,10 +51,6 @@ public class Magazine extends Media {
 		return magazinePrediodicity;
 	}
 
-	public MagazineTheme getMagazineTheme() {
-		return magazineTheme;
-	}
-
 	public void setISSN(String iSSN) {
 		ISSN = iSSN;
 	}
@@ -76,14 +63,10 @@ public class Magazine extends Media {
 		this.magazinePrediodicity = magazinePrediodicity;
 	}
 
-	public void setMagazineTheme(MagazineTheme magazineTheme) {
-		this.magazineTheme = magazineTheme;
-	}
-
 	@Override
 	public String toString() {
 		return "Magazine [ISSN=" + ISSN + ", number=" + number + ", magazinePrediodicity=" + magazinePrediodicity
-				+ ", magazineTheme=" + magazineTheme + "]";
+				+ "]";
 	}
 
 }

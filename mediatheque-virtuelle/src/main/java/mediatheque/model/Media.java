@@ -29,15 +29,12 @@ public class Media {
 	protected Integer version;
 	@Column(nullable = false)
 	protected String name;
-	@Column(name = "publishing_house", nullable = false)
 	protected String publishingHouse;
-	@Column(nullable = false)
 	protected String language;
 	protected String image;
 	@Column(columnDefinition = "TEXT")
 	protected String description;
 	protected boolean dematerialized;
-	@Column(name = "parution_date", nullable = false)
 	protected LocalDate parutionDate;
 	@Column(name = "add_date", nullable = false)
 	protected LocalDate addDate;

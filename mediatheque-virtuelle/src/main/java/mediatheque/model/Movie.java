@@ -31,7 +31,6 @@ public class Movie extends Media {
 	private int duration;
 
 	@OneToOne
-	@Transient
 	@Enumerated(EnumType.STRING)
 	@Column(name = "movie_support", nullable = false)
 	private MovieSupport movieSupport;
@@ -44,16 +43,21 @@ public class Movie extends Media {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Movie(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, List<String> directors, List<String> actors, int duration,
-			MovieSupport movieSupport, MovieTheme movieTheme) {
-		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
-		this.directors = directors;
-		this.actors = actors;
+	public Movie(Integer id, Integer version, String name, String publishingHouse, String language, String image,
+			String description, boolean dematerialized, LocalDate parutionDate, LocalDate addDate, int duration, MovieSupport movieSupport) {
+		super(id, version, name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.duration = duration;
 		this.movieSupport = movieSupport;
-		this.movieTheme = movieTheme;
-	}
+		}
+
+	public Movie(String name, String publishingHouse, String language, String image, String description,
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, int duration, MovieSupport movieSupport) {
+		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
+		this.duration = duration;
+		this.movieSupport = movieSupport;	
+		}
+
+
 
 	public List<String> getDirectors() {
 		return directors;

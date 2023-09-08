@@ -26,7 +26,6 @@ public class Music extends Media {
 	private int trackNumber;
 
 	@OneToOne
-	@Transient
 	@Enumerated(EnumType.STRING)
 	@Column(name = "music_support", nullable = false)
 	private MusicSupport musicSupport;
@@ -38,6 +37,18 @@ public class Music extends Media {
 	public Music() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Music(Integer id, Integer version, String name, String publishingHouse, String language, String image, String description,
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String artist, int duration,
+			int trackNumber, MusicSupport musicSupport, MusicTheme musicType) {
+		super(id, version, name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
+		this.artist = artist;
+		this.duration = duration;
+		this.trackNumber = trackNumber;
+		this.musicSupport = musicSupport;
+		this.musicType = musicType;
+	}
+
 	
 	public Music(String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String artist, int duration,

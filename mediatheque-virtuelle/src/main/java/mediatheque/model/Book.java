@@ -25,7 +25,6 @@ public class Book extends Media {
 	private int chapterNb;
 
 	@OneToOne
-	@Transient
 	@Enumerated(EnumType.STRING)
 	@Column(name = "book_type", nullable = false)
 	private BookType bookType;
@@ -38,6 +37,18 @@ public class Book extends Media {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Book(Integer id, Integer version, String name, String publishingHouse, String language, String image, String description,
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String author, String iSBN, int pageNb,
+			int chapterNb, BookType bookType, BookTheme bookTheme) {
+		super(id, version, name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
+		this.author = author;
+		ISBN = iSBN;
+		this.pageNb = pageNb;
+		this.chapterNb = chapterNb;
+		this.bookType = bookType;
+		this.bookTheme = bookTheme;
+	}
+	
 	public Book(String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String author, String iSBN, int pageNb,
 			int chapterNb, BookType bookType, BookTheme bookTheme) {

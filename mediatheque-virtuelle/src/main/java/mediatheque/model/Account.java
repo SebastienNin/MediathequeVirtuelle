@@ -1,20 +1,23 @@
 package mediatheque.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 @Entity
 public class Account {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Id
 private Integer id;
-
+@Column(nullable = false,unique = true)
 	private String login;
+@Column(nullable = false,unique = true)
 	private String password;
 	private String name;
 	private String firstName;
@@ -22,9 +25,9 @@ private Integer id;
 	
 	private boolean isAdmin;
 	@Transient
-	private List<Media> mediaList;
-	@Transient
-	private List<PersonnalizedList> persoLists;
+	private List<Media> mediaList = new ArrayList<Media>();
+	@OneToMany(mappedBy = "account")
+	private List<PersonnalizedList> persoLists = new ArrayList<PersonnalizedList>();
 	
 	public Account() {}
 

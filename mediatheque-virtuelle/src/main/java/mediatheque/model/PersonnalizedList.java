@@ -1,11 +1,15 @@
 package mediatheque.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Transient;
 
 @Entity
@@ -14,11 +18,13 @@ public class PersonnalizedList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Integer id;
+	@Column(nullable = false)
 	private String name;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="account")
 	private Account account;
 	@Transient
-	List<Media> mediaList;
+	private List<Media> mediaList = new ArrayList<Media>();
 	
 	public PersonnalizedList() {
 		// TODO Auto-generated constructor stub

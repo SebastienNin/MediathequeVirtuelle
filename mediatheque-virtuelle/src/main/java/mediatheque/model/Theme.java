@@ -1,5 +1,9 @@
 package mediatheque.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Transient;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -17,8 +23,11 @@ public abstract class Theme {
 	@Id
 	protected Integer id;
 
-
+	@Column(nullable = false)
 	protected String label;
+	@Transient
+	@ManyToMany
+	protected List<Media> mediaList = new ArrayList<Media>();
 	
 	public Theme() {
 		// TODO Auto-generated constructor stub

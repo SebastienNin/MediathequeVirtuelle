@@ -32,6 +32,9 @@ public class Movie extends Media {
 
 	@OneToOne
 	@Enumerated(EnumType.STRING)
+=======
+	@Enumerated(EnumType.ORDINAL)
+>>>>>>> master
 	@Column(name = "movie_support", nullable = false)
 	private MovieSupport movieSupport;
 	@ManyToOne

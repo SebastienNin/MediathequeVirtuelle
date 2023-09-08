@@ -26,6 +26,9 @@ public class Book extends Media {
 
 	@OneToOne
 	@Enumerated(EnumType.STRING)
+=======
+	@Enumerated(EnumType.ORDINAL)
+>>>>>>> master
 	@Column(name = "book_type", nullable = false)
 	private BookType bookType;
 	@ManyToOne

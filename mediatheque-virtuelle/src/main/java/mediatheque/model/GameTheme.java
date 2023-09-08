@@ -1,11 +1,25 @@
 package mediatheque.model;
 
-public class GameTheme extends Theme{
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
-	public GameTheme(String label, int id) {
-		super(label, id);
-		// TODO Auto-generated constructor stub
-	}
+@Entity
+@DiscriminatorValue("game")
+public class GameTheme extends Theme{
+public GameTheme() {
+	// TODO Auto-generated constructor stub
+}
+
+public GameTheme(String label, Integer id) {
+	super(label, id);
+	// TODO Auto-generated constructor stub
+}
+
+public GameTheme(String label) {
+	super(label);
+	// TODO Auto-generated constructor stub
+}
+
 	
 	
 

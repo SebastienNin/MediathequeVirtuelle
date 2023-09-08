@@ -18,6 +18,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Transient;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

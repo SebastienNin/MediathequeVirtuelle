@@ -3,16 +3,47 @@ package mediatheque.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
+
+@Entity
+@DiscriminatorValue("movie")
 public class Movie extends Media {
 
+    @ElementCollection
+    @CollectionTable(name = "movie_directors", joinColumns = @JoinColumn(name = "movie_id"))
+    @Column(name = "director")	
 	private List<String> directors;
+    @ElementCollection
+    @CollectionTable(name = "movie_actors", joinColumns = @JoinColumn(name = "movie_id"))
+    @Column(name = "actor")
 	private List<String> actors;
 
 	private int duration;
 
+	@OneToOne
+	@Transient
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "movie_support", nullable = false)
 	private MovieSupport movieSupport;
+	@ManyToOne
+	@Transient
+	@Column(name = "movie_theme", nullable = false)
 	private MovieTheme movieTheme;
 
+	public Movie() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Movie(String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, List<String> directors, List<String> actors, int duration,
 			MovieSupport movieSupport, MovieTheme movieTheme) {

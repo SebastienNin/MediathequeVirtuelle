@@ -2,19 +2,45 @@ package mediatheque.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
+
+@Entity
+@DiscriminatorValue("book")
 public class Book extends Media {
 
+	@Column(nullable = false)
 	private String author;
+	@Column(nullable = false)
 	private String ISBN;
+	@Column(name = "pane_nb")
 	private int pageNb;
+	@Column(name = "chapter_nb")
 	private int chapterNb;
 
+	@OneToOne
+	@Transient
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "book_type", nullable = false)
 	private BookType bookType;
+	@ManyToOne
+	@Transient
+	@Column(name = "book_theme", nullable = false)
 	private BookTheme bookTheme;
 
+	public Book() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Book(String name, String publishingHouse, String language, String image, String description,
-			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String author, String iSBN, int pageNb, int chapterNb,
-			BookType bookType, BookTheme bookTheme) {
+			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String author, String iSBN, int pageNb,
+			int chapterNb, BookType bookType, BookTheme bookTheme) {
 		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.author = author;
 		ISBN = iSBN;

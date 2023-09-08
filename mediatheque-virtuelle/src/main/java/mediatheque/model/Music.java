@@ -3,17 +3,42 @@ package mediatheque.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
+
 public class Music extends Media {
 
+    @ElementCollection
+    @CollectionTable(name = "track_list", joinColumns = @JoinColumn(name = "music_id"))
+    @Column(name = "track")	
 	private List<String> tracks;
+    @Column(nullable = false)
 	private String artist;
 
 	private int duration;
 	private int trackNumber;
 
+	@OneToOne
+	@Transient
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "music_support", nullable = false)
 	private MusicSupport musicSupport;
+	@ManyToOne
+	@Transient
+	@Column(name = "music_type", nullable = false)
 	private MusicTheme musicType;
 
+	public Music() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Music(String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, String artist, int duration,
 			int trackNumber, MusicSupport musicSupport, MusicTheme musicType) {

@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
 
 @Entity
@@ -28,8 +27,10 @@ public class Account {
 	private String mail;
 
 	private boolean isAdmin;
-	@Transient
-	private List<Media> mediaList = new ArrayList<Media>();
+	
+	@OneToMany(mappedBy = "account")
+	private List<AccountMedia> accountMediaList = new ArrayList<AccountMedia>();
+	
 	@OneToMany(mappedBy = "account")
 	private List<PersonnalizedList> persoLists = new ArrayList<PersonnalizedList>();
 
@@ -112,20 +113,6 @@ public class Account {
 		this.isAdmin = isAdmin;
 	}
 
-	public List<Media> getMediaList() {
-		return mediaList;
-	}
-
-	public void setMediaList(List<Media> mediaList) {
-		this.mediaList = mediaList;
-	}
-
-	@Override
-	public String toString() {
-		return "Account [login=" + login + ", password=" + password + ", name=" + name + ", firstName=" + firstName
-				+ ", mail=" + mail + ", isAdmin=" + isAdmin + ", mediaList=" + mediaList + "]";
-	}
-
 	public Integer getVersion() {
 		return version;
 	}
@@ -133,5 +120,29 @@ public class Account {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
+
+	public List<AccountMedia> getAccountMediaList() {
+		return accountMediaList;
+	}
+
+	public void setAccountMediaList(List<AccountMedia> accountMediaList) {
+		this.accountMediaList = accountMediaList;
+	}
+
+	public List<PersonnalizedList> getPersoLists() {
+		return persoLists;
+	}
+
+	public void setPersoLists(List<PersonnalizedList> persoLists) {
+		this.persoLists = persoLists;
+	}
+
+	@Override
+	public String toString() {
+		return "Account [login=" + login + ", password=" + password + ", name=" + name + ", firstName=" + firstName
+				+ ", mail=" + mail + ", isAdmin=" + isAdmin + "]";
+	}
+
+
 
 }

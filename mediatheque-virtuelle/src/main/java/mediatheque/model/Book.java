@@ -17,12 +17,11 @@ public class Book extends Media {
 	private String author;
 	@Column(nullable = false)
 	private String ISBN;
-	@Column(name = "pane_nb")
+	@Column(name = "page_nb")
 	private int pageNb;
 	@Column(name = "chapter_nb")
 	private int chapterNb;
 
-	@OneToOne
 	@Enumerated(EnumType.STRING)
 	@Column(name = "book_type", nullable = false)
 	private BookType bookType;

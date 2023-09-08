@@ -1,6 +1,7 @@
 package mediatheque.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CollectionTable;
@@ -9,21 +10,20 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
 public class Music extends Media {
 
     @ElementCollection
     @CollectionTable(name = "track_list", joinColumns = @JoinColumn(name = "music_id"))
     @Column(name = "track")	
-	private List<String> tracks;
+	private List<String> tracks = new ArrayList<String>();
     @Column(nullable = false)
 	private String artist;
 
 	private int duration;
+	@Column(name="track_number")
 	private int trackNumber;
 
-	@OneToOne
 	@Enumerated(EnumType.STRING)
 	@Column(name = "music_support", nullable = false)
 	private MusicSupport musicSupport;

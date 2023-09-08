@@ -1,6 +1,7 @@
 package mediatheque.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CollectionTable;
@@ -11,7 +12,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("movie")
@@ -20,15 +20,14 @@ public class Movie extends Media {
     @ElementCollection
     @CollectionTable(name = "movie_directors", joinColumns = @JoinColumn(name = "movie_id"))
     @Column(name = "director")	
-	private List<String> directors;
+	private List<String> directors = new ArrayList<String>();
     @ElementCollection
     @CollectionTable(name = "movie_actors", joinColumns = @JoinColumn(name = "movie_id"))
     @Column(name = "actor")
-	private List<String> actors;
+	private List<String> actors = new ArrayList<String>();
 
 	private int duration;
 
-	@OneToOne
 	@Enumerated(EnumType.STRING)
 	@Column(name = "movie_support", nullable = false)
 	private MovieSupport movieSupport;

@@ -1,6 +1,7 @@
 package mediatheque.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
@@ -38,9 +40,15 @@ public class Media {
 	protected LocalDate parutionDate;
 	@Column(name = "add_date", nullable = false)
 	protected LocalDate addDate;
-	@Transient
-	@ManyToMany
-	protected List<Account> accountList;
+	
+	@OneToMany(mappedBy = "media")
+	protected List<AccountMedia> accountMediaList = new ArrayList<AccountMedia>();
+	
+	@OneToMany(mappedBy = "media")
+	protected List<MediaTheme> mediaThemeList = new ArrayList<MediaTheme>();
+	
+	@OneToMany(mappedBy = "media")
+	protected List<PersoListJoinMedia> persoList = new ArrayList<PersoListJoinMedia>();
 
 	public Media() {
 		// TODO Auto-generated constructor stub
@@ -154,12 +162,31 @@ public class Media {
 		this.addDate = addDate;
 	}
 
-	public List<Account> getAccountList() {
-		return accountList;
+
+	public List<AccountMedia> getAccountMediaList() {
+		return accountMediaList;
 	}
 
-	public void setAccountList(List<Account> accountList) {
-		this.accountList = accountList;
+	public void setAccountMediaList(List<AccountMedia> accountMediaList) {
+		this.accountMediaList = accountMediaList;
+	}
+	
+
+	public List<MediaTheme> getMediaThemeList() {
+		return mediaThemeList;
+	}
+
+	public void setMediaThemeList(List<MediaTheme> mediaThemeList) {
+		this.mediaThemeList = mediaThemeList;
+	}
+
+	
+	public List<PersoListJoinMedia> getPersoList() {
+		return persoList;
+	}
+
+	public void setPersoList(List<PersoListJoinMedia> persoList) {
+		this.persoList = persoList;
 	}
 
 	@Override

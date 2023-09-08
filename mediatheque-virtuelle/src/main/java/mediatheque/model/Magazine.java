@@ -9,13 +9,15 @@ import jakarta.persistence.Enumerated;
 
 @DiscriminatorValue(value = "magazine")
 public class Magazine extends Media {
+	
 	@Column(nullable = false)
 	private String ISSN;
 	@Column(nullable = false)
 	private int number;
 	
 	@Enumerated(EnumType.STRING)
-	private MagazinePeriodicity magazinePrediodicity;
+	@Column(name="magazine_periodicity")
+	private MagazinePeriodicity magazinePeriodicity;
 
 	public Magazine() {
 		super();
@@ -27,7 +29,7 @@ public class Magazine extends Media {
 		super(id, version, name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.ISSN = iSSN;
 		this.number = number;
-		this.magazinePrediodicity = magazinePrediodicity;
+		this.magazinePeriodicity = magazinePrediodicity;
 	}
 
 	public Magazine(String name, String publishingHouse, String language, String image, String description,
@@ -36,7 +38,7 @@ public class Magazine extends Media {
 		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.ISSN = iSSN;
 		this.number = number;
-		this.magazinePrediodicity = magazinePrediodicity;
+		this.magazinePeriodicity = magazinePrediodicity;
 	}
 
 	public String getISSN() {
@@ -47,8 +49,8 @@ public class Magazine extends Media {
 		return number;
 	}
 
-	public MagazinePeriodicity getMagazinePrediodicity() {
-		return magazinePrediodicity;
+	public MagazinePeriodicity getMagazinePeriodicity() {
+		return magazinePeriodicity;
 	}
 
 	public void setISSN(String iSSN) {
@@ -59,13 +61,13 @@ public class Magazine extends Media {
 		this.number = number;
 	}
 
-	public void setMagazinePrediodicity(MagazinePeriodicity magazinePrediodicity) {
-		this.magazinePrediodicity = magazinePrediodicity;
+	public void setMagazinePeriodicity(MagazinePeriodicity magazinePrediodicity) {
+		this.magazinePeriodicity = magazinePrediodicity;
 	}
 
 	@Override
 	public String toString() {
-		return "Magazine [ISSN=" + ISSN + ", number=" + number + ", magazinePrediodicity=" + magazinePrediodicity
+		return "Magazine [ISSN=" + ISSN + ", number=" + number + ", magazinePeriodicity=" + magazinePeriodicity
 				+ "]";
 	}
 

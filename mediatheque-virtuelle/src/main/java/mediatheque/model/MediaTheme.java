@@ -1,17 +1,25 @@
 package mediatheque.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Transient;
 
 @Entity
 public class MediaTheme {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
 	@ManyToOne
-	@Transient
+	@JoinColumn(name="media")
 	private Media media;
 	@ManyToOne
-	@Transient
+	@JoinColumn(name="theme")
 	private Theme theme;
 	
 	public MediaTheme() {

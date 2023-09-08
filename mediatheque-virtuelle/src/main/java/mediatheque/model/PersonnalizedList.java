@@ -10,7 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Transient;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class PersonnalizedList {
@@ -23,8 +23,9 @@ public class PersonnalizedList {
 	@ManyToOne
 	@JoinColumn(name="account")
 	private Account account;
-	@Transient
-	private List<Media> mediaList = new ArrayList<Media>();
+	
+	@OneToMany(mappedBy = "persoList")
+	private List<PersoListJoinMedia> mediaList = new ArrayList<PersoListJoinMedia>();
 	
 	public PersonnalizedList() {
 		// TODO Auto-generated constructor stub
@@ -59,12 +60,12 @@ public class PersonnalizedList {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	public List<Media> getMediaList() {
+	public List<PersoListJoinMedia> getMediaList() {
 		return mediaList;
 	}
-	public void setMediaList(List<Media> mediaList) {
+	public void setMediaList(List<PersoListJoinMedia> mediaList) {
 		this.mediaList = mediaList;
 	}
-	
+
 	
 }

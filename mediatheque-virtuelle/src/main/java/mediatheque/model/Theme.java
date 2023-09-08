@@ -31,13 +31,14 @@ public abstract class Theme {
 
 	@Column(nullable = false)
 	protected String label;
-	@OneToOne
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "enum_theme", nullable = false)
 	private EnumTheme enumTheme;
-	@Transient
-	@OneToMany
-	protected List<Media> mediaList = new ArrayList<Media>();
+	
+	
+	@OneToMany(mappedBy = "theme")
+	protected List<MediaTheme> mediaThemeList = new ArrayList<MediaTheme>();
 
 	public Theme() {
 		// TODO Auto-generated constructor stub
@@ -77,12 +78,20 @@ public abstract class Theme {
 		this.enumTheme = enumTheme;
 	}
 
-	public List<Media> getMediaList() {
-		return mediaList;
+	public Integer getVersion() {
+		return version;
 	}
 
-	public void setMediaList(List<Media> mediaList) {
-		this.mediaList = mediaList;
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public List<MediaTheme> getMediaThemeList() {
+		return mediaThemeList;
+	}
+
+	public void setMediaThemeList(List<MediaTheme> mediaThemeList) {
+		this.mediaThemeList = mediaThemeList;
 	}
 
 	@Override

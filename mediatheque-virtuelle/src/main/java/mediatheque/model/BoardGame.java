@@ -10,24 +10,11 @@ public class BoardGame extends Media {
 
 	@Column(name = "player_number", nullable = false)
 	private String playerNumber;
-//	private String type;
+
 	@Column(name = "recommend_age", nullable = false)
 	private int recommendendAge;
 	@Column(nullable = false)
 	private int duration;
-
-	
-
-//	public BoardGame(String name, String publishingHouse, String language, String image, String description,
-//			boolean dematerialized, LocalDate parutionDate, String playerNumber, String type, int recommendendAge,
-//			int duration, GameTheme gameTheme) {
-//		super(name, publishingHouse, language, image, description, dematerialized, parutionDate);
-//		this.playerNumber = playerNumber;
-//		this.type = type;
-//		this.recommendendAge = recommendendAge;
-//		this.duration = duration;
-//		this.gameTheme = gameTheme;
-//	}
 
 	public BoardGame() {
 		super();
@@ -55,9 +42,6 @@ public class BoardGame extends Media {
 		return playerNumber;
 	}
 
-//	public String getType() {
-//		return type;
-//	}
 
 	public int getRecommendendAge() {
 		return recommendendAge;
@@ -70,10 +54,6 @@ public class BoardGame extends Media {
 	public void setPlayerNumber(String playerNumber) {
 		this.playerNumber = playerNumber;
 	}
-
-//	public void setType(String type) {
-//		this.type = type;
-//	}
 
 	public void setRecommendendAge(int recommendendAge) {
 		this.recommendendAge = recommendendAge;
@@ -89,10 +69,5 @@ public class BoardGame extends Media {
 				+ duration + "]";
 	}
 
-//	@Override
-//	public String toString() {
-//		return "BoardGame [playerNumber=" + playerNumber + ", type=" + type + ", recommendendAge=" + recommendendAge
-//				+ ", duration=" + duration + ", gameTheme=" + gameTheme + "]";
-//	}
 
 }

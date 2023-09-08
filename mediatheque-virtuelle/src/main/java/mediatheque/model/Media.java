@@ -1,17 +1,49 @@
 package mediatheque.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
+
+@Entity
+@Table(name = "media")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_media")
 public class Media {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected Integer id;
+	@Version
+	protected Integer version;
+	@Column(nullable=false)
 	protected String name;
+	@Column(nullable=false)
 	protected String publishingHouse;
+	@Column(nullable=false)
 	protected String language;
 	protected String image;
+	@Column(columnDefinition = "TEXT")
 	protected String description;
 	protected boolean dematerialized;
+	@Column(nullable=false)
 	protected LocalDate parutionDate;
+	@Column(nullable=false)
 	protected LocalDate addDate;
+	@Transient
+	@ManyToMany
+	protected List<Account> accountList;
 
 	public Media(String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate) {

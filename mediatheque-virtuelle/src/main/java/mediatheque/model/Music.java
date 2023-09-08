@@ -27,7 +27,7 @@ public class Music extends Media {
 
 	@OneToOne
 	@Transient
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	@Column(name = "music_support", nullable = false)
 	private MusicSupport musicSupport;
 	@ManyToOne

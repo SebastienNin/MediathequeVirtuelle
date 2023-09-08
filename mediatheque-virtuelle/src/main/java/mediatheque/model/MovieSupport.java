@@ -1,5 +1,5 @@
 package mediatheque.model;
 
 public enum MovieSupport {
-	VHS, BlueRay, DVD, NoSupport;
+	VHS, BLUERAY, DVD, NOSUPPORT;
 }

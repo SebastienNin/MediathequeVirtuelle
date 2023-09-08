@@ -32,7 +32,7 @@ public class Movie extends Media {
 
 	@OneToOne
 	@Transient
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	@Column(name = "movie_support", nullable = false)
 	private MovieSupport movieSupport;
 	@ManyToOne

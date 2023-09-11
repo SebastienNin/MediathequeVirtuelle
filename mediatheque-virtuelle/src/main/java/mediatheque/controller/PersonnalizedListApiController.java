@@ -40,7 +40,7 @@ public class PersonnalizedListApiController {
 		return daoPersoList.findAll();
 	}
 	
-	@GetMapping("/{accountId}")
+	@GetMapping("/account/{accountId}")
 	@JsonView(Views.PersoList.class)
 	public List<PersonnalizedList> findListByAccount(@PathVariable Integer accountId) {
 		Account account = daoAccount.findById(accountId).get();

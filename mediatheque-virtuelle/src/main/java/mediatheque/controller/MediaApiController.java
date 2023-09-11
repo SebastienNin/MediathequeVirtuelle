@@ -19,12 +19,12 @@ import mediatheque.dao.IDAOMedia;
 import mediatheque.model.Media;
 
 @RestController
-@RequestMapping("/media")
-public class MediaController {
+@RequestMapping("/api/media")
+public class MediaApiController {
 	
 	private IDAOMedia daoMedia;
 
-	public MediaController(IDAOMedia daoMedia) {
+	public MediaApiController(IDAOMedia daoMedia) {
 		this.daoMedia = daoMedia;
 	}
 

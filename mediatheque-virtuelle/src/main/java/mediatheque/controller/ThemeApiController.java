@@ -19,12 +19,12 @@ import mediatheque.dao.IDAOTheme;
 import mediatheque.model.Theme;
 
 @RestController
-@RequestMapping("/theme")
-public class ThemeController {
+@RequestMapping("/api/theme")
+public class ThemeApiController {
 
 		private IDAOTheme daoTheme;
 
-		public ThemeController(IDAOTheme daoTheme) {
+		public ThemeApiController(IDAOTheme daoTheme) {
 			this.daoTheme = daoTheme;
 		}
 		@GetMapping("/")

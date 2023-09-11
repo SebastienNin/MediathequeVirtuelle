@@ -1,4 +1,4 @@
-package madiateque.controller;
+package mediateque.controller;
 
 import java.lang.reflect.Field;
 import java.util.List;

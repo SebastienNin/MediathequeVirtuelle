@@ -3,6 +3,9 @@ package mediatheque.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
+@JsonView(Views.Common.class)
 public class PersonnalizedList {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +26,11 @@ public class PersonnalizedList {
 	private String name;
 	@ManyToOne
 	@JoinColumn(name="account")
+	@JsonView(Views.PersoList.class)
 	private Account account;
 	
 	@OneToMany(mappedBy = "persoList")
+	@JsonIgnore //pour le moment après @JsonView(Views.PersoListWithMedia.class) probablement 
 	private List<PersoListJoinMedia> mediaList = new ArrayList<PersoListJoinMedia>();
 	
 	public PersonnalizedList() {

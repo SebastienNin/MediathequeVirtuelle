@@ -21,7 +21,7 @@ import jakarta.persistence.Version;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
-public abstract class Theme {
+public class Theme {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
@@ -50,6 +50,12 @@ public abstract class Theme {
 		this.enumTheme = enumTheme;
 	}
 
+	public Theme(String label, EnumTheme enumTheme) {
+		this.label = label;
+		this.enumTheme = enumTheme;
+	}
+
+	
 	public Theme(String label) {
 		this.label = label;
 	}

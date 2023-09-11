@@ -2,15 +2,14 @@ package mediatheque.model;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
+@Entity
 @DiscriminatorValue(value = "video_game")
 public class VideoGame extends Media {
 	
-	@Column(nullable = false)
 	private int pegi;
-	@Column(nullable = false)
 	private boolean multiPlayer;
 
 	public VideoGame() {

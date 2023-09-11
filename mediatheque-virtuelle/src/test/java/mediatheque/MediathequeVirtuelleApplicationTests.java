@@ -6,8 +6,17 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
+import mediatheque.dao.IDAOAccount;
+import mediatheque.dao.IDAOAccountMedia;
+import mediatheque.dao.IDAOMedia;
+import mediatheque.dao.IDAOMediaTheme;
+import mediatheque.dao.IDAOPersoListJoinMedia;
+import mediatheque.dao.IDAOPersonnalizedList;
+import mediatheque.dao.IDAOTheme;
 import mediatheque.model.Account;
 import mediatheque.model.AccountMedia;
 import mediatheque.model.BoardGame;
@@ -27,22 +36,23 @@ import mediatheque.model.Theme;
 import mediatheque.model.VideoGame;
 
 @SpringBootTest
+@Rollback
 class MediathequeVirtuelleApplicationTests {
-//
-//	@Autowired
-//	IDAOAccount daoAccount;
-//	@Autowired
-//	IDAOAccountMedia daoAccountMedia;
-//	@Autowired
-//	IDAOMedia daoMedia;
-//	@Autowired
-//	IDAOMediaTheme daoMediaTheme;
-//	@Autowired
-//	IDAOPersoListJoinMedia daoPersoListJoinMedia;
-//	@Autowired
-//	IDAOPersonnalizedList daoPersonnalizedList;
-//	@Autowired
-//	IDAOTheme daoTheme;
+
+	@Autowired
+	IDAOAccount daoAccount;
+	@Autowired
+	IDAOAccountMedia daoAccountMedia;
+	@Autowired
+	IDAOMedia daoMedia;
+	@Autowired
+	IDAOMediaTheme daoMediaTheme;
+	@Autowired
+	IDAOPersoListJoinMedia daoPersoListJoinMedia;
+	@Autowired
+	IDAOPersonnalizedList daoPersonnalizedList;
+	@Autowired
+	IDAOTheme daoTheme;
 
 	@Test
 	void contextLoads() {
@@ -82,90 +92,127 @@ class MediathequeVirtuelleApplicationTests {
 		// Create some objects | Stop
 
 		// Try to insert in database
-//		daoAccount.save(user1);
-//		daoAccount.save(user2);
-//		daoMedia.save(bg1);
-//		daoMedia.save(vg1);
-//		daoMedia.save(book1);
-//		daoMedia.save(magazine1);
-//		daoMedia.save(music1);
-//		daoMedia.save(movie1);
-		
+		user1 = daoAccount.save(user1);
+		user2 = daoAccount.save(user2);
+		bg1 = daoMedia.save(bg1);
+		vg1 = daoMedia.save(vg1);
+		book1 = daoMedia.save(book1);
+		magazine1 = daoMedia.save(magazine1);
+		movie1 = daoMedia.save(movie1);
+		music1 = daoMedia.save(music1);
+
 		// Create some Themes for each kind of Media | Start
 		// BoardGame
 		Theme bg1Theme1 = new Theme("Stratégie", EnumTheme.BOARDGAME);
 		Theme bg1Theme2 = new Theme("Gestion", EnumTheme.BOARDGAME);
+		bg1Theme1 = daoTheme.save(bg1Theme1);
+		bg1Theme2 = daoTheme.save(bg1Theme2);
 		MediaTheme bg1MediaTheme1 = new MediaTheme(bg1, bg1Theme1);
 		MediaTheme bg1MediaTheme2 = new MediaTheme(bg1, bg1Theme2);
+		bg1MediaTheme1 = daoMediaTheme.save(bg1MediaTheme1);
+		bg1MediaTheme2 = daoMediaTheme.save(bg1MediaTheme2);
 		Collections.addAll(bg1.getMediaThemeList(), bg1MediaTheme1, bg1MediaTheme2);
 		bg1Theme1.getMediaThemeList().add(bg1MediaTheme1);
 		bg1Theme2.getMediaThemeList().add(bg1MediaTheme2);
+		bg1 = daoMedia.save(bg1);
 		// VideoGame
 		Theme vg1Theme1 = new Theme("Action", EnumTheme.VIDEOGAME);
 		Theme vg1Theme2 = new Theme("Aventure", EnumTheme.VIDEOGAME);
+		vg1Theme1 = daoTheme.save(vg1Theme1);
+		vg1Theme2 = daoTheme.save(vg1Theme2);
 		MediaTheme vg1MediaTheme1 = new MediaTheme(vg1, vg1Theme1);
 		MediaTheme vg1MediaTheme2 = new MediaTheme(vg1, vg1Theme2);
+		vg1MediaTheme1 = daoMediaTheme.save(vg1MediaTheme1);
+		vg1MediaTheme2 = daoMediaTheme.save(vg1MediaTheme2);
 		Collections.addAll(vg1.getMediaThemeList(), vg1MediaTheme1, vg1MediaTheme2);
 		vg1Theme1.getMediaThemeList().add(vg1MediaTheme1);
 		vg1Theme2.getMediaThemeList().add(vg1MediaTheme2);
+		vg1 = daoMedia.save(vg1);
 		// Book
 		Theme book1Theme1 = new Theme("Exploration", EnumTheme.BOOK);
 		Theme book1Theme2 = new Theme("Aventure", EnumTheme.BOOK);
+		book1Theme1 = daoTheme.save(book1Theme1);
+		book1Theme2 = daoTheme.save(book1Theme2);
 		MediaTheme book1MediaTheme1 = new MediaTheme(book1, book1Theme1);
 		MediaTheme book1MediaTheme2 = new MediaTheme(book1, book1Theme2);
+		book1MediaTheme1 = daoMediaTheme.save(book1MediaTheme1);
+		book1MediaTheme2 = daoMediaTheme.save(book1MediaTheme2);
 		Collections.addAll(book1.getMediaThemeList(), book1MediaTheme1, book1MediaTheme2);
 		book1Theme1.getMediaThemeList().add(book1MediaTheme1);
 		book1Theme2.getMediaThemeList().add(book1MediaTheme2);
+		book1 = daoMedia.save(book1);
 		// Magazine
 		Theme magazine1Theme1 = new Theme("Mode", EnumTheme.MAGAZINE);
+		magazine1Theme1 = daoTheme.save(magazine1Theme1);
 		MediaTheme magazine1MediaTheme1 = new MediaTheme(magazine1, magazine1Theme1);
-		Collections.addAll(book1.getMediaThemeList(), magazine1MediaTheme1);
+		magazine1MediaTheme1 = daoMediaTheme.save(magazine1MediaTheme1);
+		Collections.addAll(magazine1.getMediaThemeList(), magazine1MediaTheme1);
 		magazine1Theme1.getMediaThemeList().add(magazine1MediaTheme1);
+		magazine1 = daoMedia.save(magazine1);
 		// Movie
 		Theme movie1Theme1 = new Theme("Comédie", EnumTheme.MOVIE);
 		Theme movie1Theme2 = new Theme("Famille", EnumTheme.MOVIE);
+		movie1Theme1 = daoTheme.save(movie1Theme1);
+		movie1Theme2 = daoTheme.save(movie1Theme2);
 		MediaTheme movie1MediaTheme1 = new MediaTheme(movie1, movie1Theme1);
 		MediaTheme movie1MediaTheme2 = new MediaTheme(movie1, movie1Theme2);
+		movie1MediaTheme1 = daoMediaTheme.save(movie1MediaTheme1);
+		movie1MediaTheme2 = daoMediaTheme.save(movie1MediaTheme2);
 		Collections.addAll(movie1.getMediaThemeList(), movie1MediaTheme1, movie1MediaTheme2);
 		movie1Theme1.getMediaThemeList().add(movie1MediaTheme1);
 		movie1Theme2.getMediaThemeList().add(movie1MediaTheme2);
+		movie1 = daoMedia.save(movie1);
 		// Music
 		Theme music1Theme1 = new Theme("Pop", EnumTheme.MUSIC);
+		music1Theme1 = daoTheme.save(music1Theme1);
 		MediaTheme music1MediaTheme1 = new MediaTheme(music1, music1Theme1);
+		music1MediaTheme1 = daoMediaTheme.save(music1MediaTheme1);
 		Collections.addAll(music1.getMediaThemeList(), music1MediaTheme1);
 		music1Theme1.getMediaThemeList().add(music1MediaTheme1);
+		music1 = daoMedia.save(music1);
 		// Create some Themes for each kind of Media | End
 
 		// Create some AccountMedia to link Account and Media | Start
 		AccountMedia am1 = new AccountMedia(user1, bg1);
+		am1 = daoAccountMedia.save(am1);
 		AccountMedia am2 = new AccountMedia(user1, vg1);
+		am2 = daoAccountMedia.save(am2);
 		AccountMedia am3 = new AccountMedia(user2, bg1);
+		am3 = daoAccountMedia.save(am3);
 		// Add the AccountMedia to the Media bg1
-		Collections.addAll(bg1.getAccountMediaList(), am1, am3);
-		vg1.getAccountMediaList().add(am2);
+//		Collections.addAll(bg1.getAccountMediaList(), am1, am3);
+//		vg1.getAccountMediaList().add(am2);
 		// Create some AccountMedia to link Account and Media | Stop
 
 		// Create PersonnalizedList linked to an Account | Start
 		PersonnalizedList pl1 = new PersonnalizedList("Liste user1", user1);
+		pl1 = daoPersonnalizedList.save(pl1);
 		// Create some PersoListJoinMedia to link a PersonnalizedList to a Media
 		PersoListJoinMedia pljm1 = new PersoListJoinMedia(pl1, music1);
 		PersoListJoinMedia pljm2 = new PersoListJoinMedia(pl1, vg1);
 		PersoListJoinMedia pljm3 = new PersoListJoinMedia(pl1, bg1);
-		Collections.addAll(pl1.getMediaList(), pljm1, pljm2, pljm3);
+		pljm1 = daoPersoListJoinMedia.save(pljm1);
+		pljm2 = daoPersoListJoinMedia.save(pljm2);
+		pljm3 = daoPersoListJoinMedia.save(pljm3);
+//		Collections.addAll(pl1.getMediaList(), pljm1, pljm2, pljm3);
 
 		PersonnalizedList pl2 = new PersonnalizedList("Liste user2", user2);
+		pl2 = daoPersonnalizedList.save(pl2);
 		PersoListJoinMedia pljm4 = new PersoListJoinMedia(pl2, book1);
 		PersoListJoinMedia pljm5 = new PersoListJoinMedia(pl2, movie1);
 		PersoListJoinMedia pljm6 = new PersoListJoinMedia(pl2, magazine1);
-		Collections.addAll(pl2.getMediaList(), pljm4, pljm5, pljm6);
+		pljm4 = daoPersoListJoinMedia.save(pljm4);
+		pljm5 = daoPersoListJoinMedia.save(pljm5);
+		pljm6 = daoPersoListJoinMedia.save(pljm6);
+//		Collections.addAll(pl2.getMediaList(), pljm4, pljm5, pljm6);
 		// Create PersonnalizedList linked to an Account | Start
 		
 
-		Collections.addAll(user1.getAccountMediaList(), am1, am2);
-		Collections.addAll(user2.getAccountMediaList(), am3);
-
-		user1.getPersoLists().add(pl1);
-		user2.getPersoLists().add(pl2);
+//		Collections.addAll(user1.getAccountMediaList(), am1, am2);
+//		Collections.addAll(user2.getAccountMediaList(), am3);
+//
+//		user1.getPersoLists().add(pl1);
+//		user2.getPersoLists().add(pl2);
 	}
 
 }

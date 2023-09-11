@@ -6,18 +6,21 @@ import java.util.List;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 
+@Entity
+@DiscriminatorValue("music")
 public class Music extends Media {
 
     @ElementCollection
     @CollectionTable(name = "track_list", joinColumns = @JoinColumn(name = "music_id"))
     @Column(name = "track")	
 	private List<String> tracks = new ArrayList<String>();
-    @Column(nullable = false)
 	private String artist;
 
 	private int duration;
@@ -25,7 +28,7 @@ public class Music extends Media {
 	private int trackNumber;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "music_support", nullable = false)
+	@Column(name = "music_support")
 	private MusicSupport musicSupport;
 
 	public Music() {

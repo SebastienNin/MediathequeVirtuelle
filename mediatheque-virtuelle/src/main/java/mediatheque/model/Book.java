@@ -13,9 +13,7 @@ import jakarta.persistence.OneToOne;
 @DiscriminatorValue("book")
 public class Book extends Media {
 
-	@Column(nullable = false)
 	private String author;
-	@Column(nullable = false)
 	private String ISBN;
 	@Column(name = "page_nb")
 	private int pageNb;
@@ -23,7 +21,7 @@ public class Book extends Media {
 	private int chapterNb;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "book_type", nullable = false)
+	@Column(name = "book_type")
 	private BookType bookType;
 
 

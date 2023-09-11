@@ -4,16 +4,17 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
+@Entity
 @DiscriminatorValue(value = "board_game")
 public class BoardGame extends Media {
 
-	@Column(name = "player_number", nullable = false)
+	@Column(name = "player_number")
 	private String playerNumber;
 
-	@Column(name = "recommend_age", nullable = false)
+	@Column(name = "recommend_age")
 	private int recommendendAge;
-	@Column(nullable = false)
 	private int duration;
 
 	public BoardGame() {

@@ -29,7 +29,7 @@ public class Movie extends Media {
 	private int duration;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "movie_support", nullable = false)
+	@Column(name = "movie_support")
 	private MovieSupport movieSupport;
 
 	public Movie() {

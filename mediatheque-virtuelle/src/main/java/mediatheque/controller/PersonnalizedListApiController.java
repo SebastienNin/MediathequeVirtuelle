@@ -1,4 +1,4 @@
-package mediateque.controller;
+package mediatheque.controller;
 
 import java.util.List;
 

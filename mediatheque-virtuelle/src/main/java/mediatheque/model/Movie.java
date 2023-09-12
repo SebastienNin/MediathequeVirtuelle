@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.CollectionTable;
@@ -18,6 +19,7 @@ import jakarta.persistence.JoinColumn;
 @Entity
 @DiscriminatorValue("movie")
 @JsonView(Views.MovieView.class)
+@JsonTypeName("movie")
 public class Movie extends Media {
 
     @ElementCollection

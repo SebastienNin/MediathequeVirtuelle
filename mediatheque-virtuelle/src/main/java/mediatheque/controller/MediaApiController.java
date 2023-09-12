@@ -2,7 +2,6 @@ package mediatheque.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,33 +17,49 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
+import mediatheque.dao.IDAOBook;
 import mediatheque.dao.IDAOMedia;
-import mediatheque.model.BoardGame;
+import mediatheque.model.Book;
 import mediatheque.model.Media;
 import mediatheque.model.Views;
 
 @RestController
 @RequestMapping("/api/media")
 public class MediaApiController {
-	
+
 	private IDAOMedia daoMedia;
 
-	public MediaApiController(IDAOMedia daoMedia) {
+	private IDAOBook daoBook;
+
+	public MediaApiController(IDAOMedia daoMedia, IDAOBook daoBook) {
+		super();
 		this.daoMedia = daoMedia;
+		this.daoBook = daoBook;
 	}
 
 	@GetMapping("/")
-	@JsonView(Views.Media.class)
+	//@JsonView(Views.Media.class)
 	public List<Media> findAllMedia() {
 		return daoMedia.findAll();
 	}
+
+	@GetMapping("/book")
+	@JsonView(Views.Media.class)
+	public List<Book> findAllBook() {
+		return daoMedia.findAllBook();
+	}
 	
+	@GetMapping("/bookBis")
+	@JsonView(Views.Media.class)
+	public List<Book> findAllBookBis() {
+		return daoBook.findAll();
+	}
+
 	@GetMapping("/name/{name}")
 	@JsonView(Views.Media.class)
 	public List<Media> findByName(@PathVariable String name) {
 		return daoMedia.findByName(name);
 	}
-	
 
 	@GetMapping("/{id}")
 	@JsonView(Views.Media.class)
@@ -69,10 +84,9 @@ public class MediaApiController {
 		return media;
 	}
 
-
 	@DeleteMapping("/{id}")
 	public void removeMedia(@PathVariable Integer id) {
-		if(!daoMedia.existsById(id)) {
+		if (!daoMedia.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 		daoMedia.deleteById(id);

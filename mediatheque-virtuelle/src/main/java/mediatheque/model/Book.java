@@ -2,6 +2,7 @@ package mediatheque.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
@@ -9,11 +10,11 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("book")
 @JsonView(Views.Book.class)
+@JsonTypeName("book")
 public class Book extends Media {
 
 	private String author;

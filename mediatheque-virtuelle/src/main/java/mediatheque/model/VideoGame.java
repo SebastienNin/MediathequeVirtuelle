@@ -2,6 +2,7 @@ package mediatheque.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.DiscriminatorValue;
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity;
 @Entity
 @DiscriminatorValue(value = "video_game")
 @JsonView(Views.VideoGameView.class)
+@JsonTypeName("videoGame")
 public class VideoGame extends Media {
 	
 	private int pegi;

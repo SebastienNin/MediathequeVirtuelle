@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
@@ -25,7 +28,19 @@ import jakarta.persistence.Version;
 @Table(name = "media")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "media_type")
-@JsonView(Views.Media.class)
+@JsonTypeInfo(
+	      use = JsonTypeInfo.Id.NAME, 
+	      include = As.PROPERTY, 
+	      property = "type")
+	    @JsonSubTypes({
+	        @JsonSubTypes.Type(value = BoardGame.class, name = "boardGame"),
+	        @JsonSubTypes.Type(value = Book.class, name = "book"),
+	        @JsonSubTypes.Type(value = Magazine.class, name = "magazine"),
+	        @JsonSubTypes.Type(value = Movie.class, name = "movie"),
+	        @JsonSubTypes.Type(value = Music.class, name = "music"),
+	        @JsonSubTypes.Type(value = VideoGame.class, name = "videoGame")
+	    })
+
 public class Media {
 
 	@Id

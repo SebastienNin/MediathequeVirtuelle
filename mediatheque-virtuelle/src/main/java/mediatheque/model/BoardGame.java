@@ -2,6 +2,7 @@ package mediatheque.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 @Entity
 @DiscriminatorValue(value = "board_game")
 @JsonView(Views.BoardGame.class)
+@JsonTypeName("boardGame")
 public class BoardGame extends Media {
 
 	@Column(name = "player_number")

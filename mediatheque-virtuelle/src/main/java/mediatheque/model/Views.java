@@ -25,5 +25,9 @@ public interface Views {
 	public interface BoardGame extends Media {}
 	
 	public interface Magazine extends Media {}
+	
+	public interface Theme extends Common {}
+
+    public interface MediaTheme extends Common {}
 
 }

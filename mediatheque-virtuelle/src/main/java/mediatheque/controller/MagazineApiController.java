@@ -18,62 +18,52 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
-import mediatheque.dao.IDAOMedia;
-import mediatheque.model.Media;
+import mediatheque.dao.IDAOMagazine;
+import mediatheque.model.Magazine;
 import mediatheque.model.Views;
 
 @RestController
-@RequestMapping("/api/media")
-public class MediaApiController {
+@RequestMapping("/api/magazine")
+public class MagazineApiController {
 	
-	private IDAOMedia daoMedia;
-
-	public MediaApiController(IDAOMedia daoMedia) {
-		this.daoMedia = daoMedia;
-	}
+	@Autowired
+	private IDAOMagazine daoMagazine;
 
 	@GetMapping("/")
-	@JsonView(Views.Common.class)
-	public List<Media> findAllMedia() {
-		return daoMedia.findAll();
+	@JsonView(Views.Magazine.class)
+	public List<Magazine> findAllMagazine() {
+		return daoMagazine.findAll();
 	}
-	
-//	@GetMapping("/AllMovie")
-//	@JsonView(Views.Common.class)
-//	public List<Movie> findAllMovie() {
-//		return daoMedia.findAllMovie();
-//	}
-	
 
 	@GetMapping("/{id}")
-	@JsonView(Views.Common.class)
-	public Media findMediaById(@PathVariable Integer id) {
-		return daoMedia.findById(id).get();
+	@JsonView(Views.Magazine.class)
+	public Magazine findMagazineById(@PathVariable Integer id) {
+		return daoMagazine.findById(id).get();
 	}
 
 	@PostMapping("/")
-	@JsonView(Views.Common.class)
-	public Media createMedia(@Valid @RequestBody Media media, BindingResult result) {
+	@JsonView(Views.Magazine.class)
+	public Magazine createMagazine(@Valid @RequestBody Magazine magazine, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Media invalide");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Magazine invalide");
 		}
-		media = daoMedia.save(media);
-		return media;
+		magazine = daoMagazine.save(magazine);
+		return magazine;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.Common.class)
-	public Media updateMedia(@RequestBody Media media, @PathVariable Integer id) {
-		media = daoMedia.save(media);
-		return media;
+	@JsonView(Views.Magazine.class)
+	public Magazine updateMagazine(@RequestBody Magazine magazine, @PathVariable Integer id) {
+		magazine = daoMagazine.save(magazine);
+		return magazine;
 	}
 
 
 	@DeleteMapping("/{id}")
-	public void removeMedia(@PathVariable Integer id) {
-		if(!daoMedia.existsById(id)) {
+	public void removeMagazine(@PathVariable Integer id) {
+		if(!daoMagazine.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		daoMedia.deleteById(id);
+		daoMagazine.deleteById(id);
 	}
 }

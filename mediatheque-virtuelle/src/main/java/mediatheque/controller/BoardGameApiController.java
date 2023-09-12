@@ -18,62 +18,54 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
-import mediatheque.dao.IDAOMedia;
-import mediatheque.model.Media;
+import mediatheque.dao.IDAOBoardGame;
+import mediatheque.model.BoardGame;
 import mediatheque.model.Views;
 
 @RestController
-@RequestMapping("/api/media")
-public class MediaApiController {
+@RequestMapping("/api/boardgame")
+public class BoardGameApiController {
 	
-	private IDAOMedia daoMedia;
+	@Autowired
+	private IDAOBoardGame daoBoardGame;
 
-	public MediaApiController(IDAOMedia daoMedia) {
-		this.daoMedia = daoMedia;
-	}
 
 	@GetMapping("/")
-	@JsonView(Views.Common.class)
-	public List<Media> findAllMedia() {
-		return daoMedia.findAll();
+	@JsonView(Views.BoardGame.class)
+	public List<BoardGame> findAllBoardGame() {
+		return daoBoardGame.findAll();
 	}
-	
-//	@GetMapping("/AllMovie")
-//	@JsonView(Views.Common.class)
-//	public List<Movie> findAllMovie() {
-//		return daoMedia.findAllMovie();
-//	}
-	
 
 	@GetMapping("/{id}")
-	@JsonView(Views.Common.class)
-	public Media findMediaById(@PathVariable Integer id) {
-		return daoMedia.findById(id).get();
+	@JsonView(Views.BoardGame.class)
+	public BoardGame findBoardGameById(@PathVariable Integer id) {
+		return daoBoardGame.findById(id).get();
 	}
 
 	@PostMapping("/")
-	@JsonView(Views.Common.class)
-	public Media createMedia(@Valid @RequestBody Media media, BindingResult result) {
+	@JsonView(Views.BoardGame.class)
+	public BoardGame createBoardGame(@Valid @RequestBody BoardGame boardGame, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Media invalide");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "BoardGame invalide");
 		}
-		media = daoMedia.save(media);
-		return media;
+		boardGame = daoBoardGame.save(boardGame);
+		return boardGame;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.Common.class)
-	public Media updateMedia(@RequestBody Media media, @PathVariable Integer id) {
-		media = daoMedia.save(media);
-		return media;
+	@JsonView(Views.BoardGame.class)
+	public BoardGame updateBoardGame(@RequestBody BoardGame boardGame, @PathVariable Integer id) {
+		boardGame = daoBoardGame.save(boardGame);
+		return boardGame;
 	}
 
 
 	@DeleteMapping("/{id}")
-	public void removeMedia(@PathVariable Integer id) {
-		if(!daoMedia.existsById(id)) {
+	public void removeBoardGame(@PathVariable Integer id) {
+		if(!daoBoardGame.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		daoMedia.deleteById(id);
+		daoBoardGame.deleteById(id);
 	}
+
 }

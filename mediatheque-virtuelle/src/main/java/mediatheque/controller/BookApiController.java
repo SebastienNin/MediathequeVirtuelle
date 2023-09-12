@@ -18,62 +18,52 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
-import mediatheque.dao.IDAOMedia;
-import mediatheque.model.Media;
+import mediatheque.dao.IDAOBook;
+import mediatheque.model.Book;
 import mediatheque.model.Views;
 
 @RestController
-@RequestMapping("/api/media")
-public class MediaApiController {
+@RequestMapping("/api/book")
+public class BookApiController {
+
+	@Autowired
+	private IDAOBook daoBook;
 	
-	private IDAOMedia daoMedia;
-
-	public MediaApiController(IDAOMedia daoMedia) {
-		this.daoMedia = daoMedia;
-	}
-
 	@GetMapping("/")
-	@JsonView(Views.Common.class)
-	public List<Media> findAllMedia() {
-		return daoMedia.findAll();
+	@JsonView(Views.Book.class)
+	public List<Book> findAllBook() {
+		return daoBook.findAll();
 	}
-	
-//	@GetMapping("/AllMovie")
-//	@JsonView(Views.Common.class)
-//	public List<Movie> findAllMovie() {
-//		return daoMedia.findAllMovie();
-//	}
-	
 
 	@GetMapping("/{id}")
-	@JsonView(Views.Common.class)
-	public Media findMediaById(@PathVariable Integer id) {
-		return daoMedia.findById(id).get();
+	@JsonView(Views.Book.class)
+	public Book findBookById(@PathVariable Integer id) {
+		return daoBook.findById(id).get();
 	}
 
 	@PostMapping("/")
-	@JsonView(Views.Common.class)
-	public Media createMedia(@Valid @RequestBody Media media, BindingResult result) {
+	@JsonView(Views.Book.class)
+	public Book createBook(@Valid @RequestBody Book book, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Media invalide");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book invalide");
 		}
-		media = daoMedia.save(media);
-		return media;
+		book = daoBook.save(book);
+		return book;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.Common.class)
-	public Media updateMedia(@RequestBody Media media, @PathVariable Integer id) {
-		media = daoMedia.save(media);
-		return media;
+	@JsonView(Views.Book.class)
+	public Book updateBook(@RequestBody Book book, @PathVariable Integer id) {
+		book = daoBook.save(book);
+		return book;
 	}
 
 
 	@DeleteMapping("/{id}")
-	public void removeMedia(@PathVariable Integer id) {
-		if(!daoMedia.existsById(id)) {
+	public void removeBook(@PathVariable Integer id) {
+		if(!daoBook.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		daoMedia.deleteById(id);
+		daoBook.deleteById(id);
 	}
 }

@@ -2,6 +2,8 @@ package mediatheque.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -10,6 +12,7 @@ import jakarta.persistence.Enumerated;
 
 @Entity
 @DiscriminatorValue(value = "magazine")
+@JsonView(Views.Magazine.class)
 public class Magazine extends Media {
 	
 	private String ISSN;

@@ -11,5 +11,11 @@ public interface Views {
 	public interface MusicView extends Common {}
 	
 	public interface VideoGameView extends Common {}
+	
+	public interface Book extends Common {}
+	
+	public interface BoardGame extends Common {}
+	
+	public interface Magazine extends Common {}
 
 }

@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
 import mediatheque.dao.IDAOMedia;
+import mediatheque.model.BoardGame;
 import mediatheque.model.Media;
 import mediatheque.model.Views;
 
@@ -33,26 +34,26 @@ public class MediaApiController {
 	}
 
 	@GetMapping("/")
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Media.class)
 	public List<Media> findAllMedia() {
 		return daoMedia.findAll();
 	}
 	
-//	@GetMapping("/AllMovie")
-//	@JsonView(Views.Common.class)
-//	public List<Movie> findAllMovie() {
-//		return daoMedia.findAllMovie();
-//	}
+	@GetMapping("/name/{name}")
+	@JsonView(Views.Media.class)
+	public List<Media> findByName(@PathVariable String name) {
+		return daoMedia.findByName(name);
+	}
 	
 
 	@GetMapping("/{id}")
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Media.class)
 	public Media findMediaById(@PathVariable Integer id) {
 		return daoMedia.findById(id).get();
 	}
 
 	@PostMapping("/")
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Media.class)
 	public Media createMedia(@Valid @RequestBody Media media, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Media invalide");
@@ -62,7 +63,7 @@ public class MediaApiController {
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Media.class)
 	public Media updateMedia(@RequestBody Media media, @PathVariable Integer id) {
 		media = daoMedia.save(media);
 		return media;

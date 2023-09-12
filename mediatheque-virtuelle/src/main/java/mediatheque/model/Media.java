@@ -25,7 +25,7 @@ import jakarta.persistence.Version;
 @Table(name = "media")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "media_type")
-@JsonView(Views.Common.class)
+@JsonView(Views.Media.class)
 public class Media {
 
 	@Id

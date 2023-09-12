@@ -30,7 +30,7 @@ public class BoardGameApiController {
 	private IDAOBoardGame daoBoardGame;
 
 
-	@GetMapping("/")
+	@GetMapping("")
 	@JsonView(Views.BoardGame.class)
 	public List<BoardGame> findAllBoardGame() {
 		return daoBoardGame.findAll();
@@ -41,8 +41,14 @@ public class BoardGameApiController {
 	public BoardGame findBoardGameById(@PathVariable Integer id) {
 		return daoBoardGame.findById(id).get();
 	}
+	
+	@GetMapping("/name/{name}")
+	@JsonView(Views.BoardGame.class)
+	public List<BoardGame> findByName(@PathVariable String name) {
+		return daoBoardGame.findByName(name);
+	}
 
-	@PostMapping("/")
+	@PostMapping("")
 	@JsonView(Views.BoardGame.class)
 	public BoardGame createBoardGame(@Valid @RequestBody BoardGame boardGame, BindingResult result) {
 		if (result.hasErrors()) {

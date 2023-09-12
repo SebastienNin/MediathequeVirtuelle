@@ -6,16 +6,18 @@ public interface Views {
 	
 	public interface PersoList extends Common {}
 	
-	public interface MovieView extends Common {}
+	public interface Media extends Common {}
 	
-	public interface MusicView extends Common {}
+	public interface MovieView extends Media {}
 	
-	public interface VideoGameView extends Common {}
+	public interface MusicView extends Media {}
 	
-	public interface Book extends Common {}
+	public interface VideoGameView extends Media {}
 	
-	public interface BoardGame extends Common {}
+	public interface Book extends Media {}
 	
-	public interface Magazine extends Common {}
+	public interface BoardGame extends Media {}
+	
+	public interface Magazine extends Media {}
 
 }

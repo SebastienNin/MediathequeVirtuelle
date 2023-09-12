@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -22,6 +25,7 @@ import jakarta.persistence.Version;
 @Table(name = "media")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "media_type")
+@JsonView(Views.Common.class)
 public class Media {
 
 	@Id
@@ -42,12 +46,15 @@ public class Media {
 	protected LocalDate addDate;
 	
 	@OneToMany(mappedBy = "media")
+	@JsonIgnore
 	protected List<AccountMedia> accountMediaList = new ArrayList<AccountMedia>();
 	
 	@OneToMany(mappedBy = "media")
+	@JsonIgnore
 	protected List<MediaTheme> mediaThemeList = new ArrayList<MediaTheme>();
 	
 	@OneToMany(mappedBy = "media")
+	@JsonIgnore
 	protected List<PersoListJoinMedia> persoList = new ArrayList<PersoListJoinMedia>();
 
 	public Media() {

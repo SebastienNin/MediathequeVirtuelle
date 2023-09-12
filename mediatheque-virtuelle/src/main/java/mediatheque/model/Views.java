@@ -4,6 +4,12 @@ public interface Views {
 	
 	public interface Common {}
 	
+	public interface Theme extends Common {}
+	
+	public interface Account extends Common {}
+	
+	public interface MediaTheme extends Common{}
+	
 	public interface PersoList extends Common {}
 	
 	public interface Media extends Common {}

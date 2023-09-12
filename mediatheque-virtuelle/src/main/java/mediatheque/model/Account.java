@@ -3,6 +3,9 @@ package mediatheque.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +15,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 
 @Entity
+@JsonView(Views.Common.class)
 public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
@@ -29,9 +33,11 @@ public class Account {
 	private boolean isAdmin;
 	
 	@OneToMany(mappedBy = "account")
+	@JsonIgnore
 	private List<AccountMedia> accountMediaList = new ArrayList<AccountMedia>();
 	
 	@OneToMany(mappedBy = "account")
+	@JsonIgnore
 	private List<PersonnalizedList> persoLists = new ArrayList<PersonnalizedList>();
 
 	public Account() {

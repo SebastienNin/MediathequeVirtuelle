@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
@@ -19,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.validation.Valid;
 import mediatheque.dao.IDAOAccount;
 import mediatheque.model.Account;
+import mediatheque.model.Views;
 
 @RestController
 @RequestMapping("/api/account")
@@ -35,16 +39,20 @@ public class AccountApiController {
 	}
 
 	@GetMapping("")
+	@JsonView(Views.Common.class)
 	public List<Account> findAll() {
 		return daoAccount.findAll();
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Views.Common.class)
 	public Account findById(@PathVariable Integer id) {
 		return daoAccount.findById(id).get();
 	}
 
+
 	@PostMapping("")
+	@JsonView(Views.Common.class)
 	public Account create(@Valid @RequestBody Account account, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Account invalide");
@@ -56,6 +64,7 @@ public class AccountApiController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.Account.class)
 	public Account update(@RequestBody Account account, @PathVariable Integer id) {
 		account = daoAccount.save(account);
 
@@ -85,5 +94,20 @@ public class AccountApiController {
 		
 		daoAccount.deleteById(id);
 	}
+	
+	@GetMapping("/count")
+	public long countAccounts() {
+	    long count = daoAccount.count();
+	    return count;
+	}
+	
+	@GetMapping("/find-by-name")
+	@JsonView(Views.Common.class)
+	public List<Account> findByName(@Param("name") String name) {
+	    // Implémentez la logique pour rechercher les comptes par nom.
+	    List<Account> accounts = daoAccount.findByName(name);
+	    return accounts;
+	}
+
 }
 

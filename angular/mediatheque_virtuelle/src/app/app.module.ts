@@ -10,6 +10,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccueilComponent } from './accueil/accueil/accueil.component';
 import { MatchPasswordDirective } from './match-password.directive';
 import { AccountComponent } from './account/account.component';
+import { AddMediaComponent } from './add-media/add-media.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AccountComponent } from './account/account.component';
     ConnectionComponent,
     AccueilComponent,
     MatchPasswordDirective,
-    AccountComponent
+    AccountComponent,
+    AddMediaComponent
   ],
   imports: [
     BrowserModule,

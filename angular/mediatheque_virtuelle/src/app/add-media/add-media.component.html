@@ -1,0 +1,117 @@
+<div class="card mt-3">
+  <form #inscriptionForm="ngForm" (ngSubmit)="addNewMedia()">
+    <div class="card-header bg-primary text-white display-6">
+      Ajout d'un nouveau média
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="name">Nom:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          [(ngModel)]="mediaForm.name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="typeMedia">Type de média:</label>
+        <select
+          class="form-control"
+          id="typeMedia"
+          name="typeMedia"
+          [(ngModel)]="typeMedia"
+        >
+          <option *ngFor="let type of typesMedia" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="pHouse">Editeur:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="pHouse"
+          name="pHouse"
+          [(ngModel)]="mediaForm.publishingHouse"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="language">Langue:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="language"
+          name="language"
+          [(ngModel)]="mediaForm.language"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image(à changer dans un second temps):</label>
+        <input
+          type="text"
+          class="form-control"
+          id="image"
+          name="image"
+          [(ngModel)]="mediaForm.image"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Résumé (ou description):</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          name="description"
+          [(ngModel)]="mediaForm.description"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="dematerialized"
+          name="dematerialized"
+          [(ngModel)]="mediaForm.dematerialized"
+        />
+        <label for="dematerialized"> Dématérialisé ?</label>
+      </div>
+
+      <div class="form-group">
+        <label for="parutionDate">Date de parution:</label>
+        <input
+          type="date"
+          class="form-control"
+          id="parutionDate"
+          name="parutionDate"
+          [(ngModel)]="mediaForm.parutionDate"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="addDate">Date d'ajout:</label>
+        <input
+          type="date"
+          class="form-control"
+          id="addDate"
+          name="addDate"
+          [(ngModel)]="mediaForm.addDate"
+        />
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="btn-group btn-group-lg float-right">
+        <button type="submit" class="btn btn-success">
+          <i class="bi bi-check-square-fill"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

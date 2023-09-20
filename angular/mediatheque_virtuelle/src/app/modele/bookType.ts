@@ -1,5 +1,6 @@
 export enum BookType {
-    Novel = "Novel",
+    ShortStory = "Nouvelle",
+    Novel = "Roman",
     Manga = "Manga",
-    Comic = "Comic"
+    Comic = "BD"
 }

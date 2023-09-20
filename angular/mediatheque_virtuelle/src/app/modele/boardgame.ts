@@ -26,4 +26,5 @@ export class BoardGame extends Media {
 
     }
 
+
 }

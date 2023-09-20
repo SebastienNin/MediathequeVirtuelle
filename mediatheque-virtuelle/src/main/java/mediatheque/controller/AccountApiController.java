@@ -104,7 +104,6 @@ public class AccountApiController {
 	@GetMapping("/find-by-name")
 	@JsonView(Views.Common.class)
 	public List<Account> findByName(@Param("name") String name) {
-	    // Implémentez la logique pour rechercher les comptes par nom.
 	    List<Account> accounts = daoAccount.findByName(name);
 	    return accounts;
 	}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../user/user.service';
+import { AccountService } from '../account/account.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,11 +15,11 @@ export class SigninComponent {
   firstName: string;
   mail: string;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private accountService: AccountService, private router: Router) {
 
   }
 
   valider() {
-    this.userService.inscription(this.login, this.password, this.passwordVerif, this.name, this.firstName, this.mail);
+    this.accountService.inscription(this.login, this.password, this.passwordVerif, this.name, this.firstName, this.mail);
   }
 }

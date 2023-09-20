@@ -13,6 +13,7 @@ import { MatchPasswordDirective } from './match-password.directive';
 import { AccountComponent } from './account/account.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { AccountHttpService } from './account/account-http.service';
+import { PersoListComponent } from './perso-list/perso-list.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AccountHttpService } from './account/account-http.service';
     AccountComponent,
     AddMediaComponent,
     PersoListComponent
+
   ],
   imports: [
     BrowserModule,

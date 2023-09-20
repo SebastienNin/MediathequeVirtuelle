@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MediaService } from './media.service';
 import { Media } from '../modele/media';
+import { TypeMedia } from '../modele/typeMedia';
 
 @Component({
   selector: 'app-add-media',
@@ -10,17 +11,21 @@ import { Media } from '../modele/media';
 export class AddMediaComponent {
 
   mediaForm : Media = new Media();
-  typesMedia: Array<string>;
-  typeMedia : string;
+
+  //un peu dégueu, à changer si je trouve une solution pour boucler sur l'énum... Diane
+  typesMedia : TypeMedia[]= [TypeMedia.BoardGame, TypeMedia.Book, TypeMedia.Magazine, TypeMedia.Movie, TypeMedia.Music, TypeMedia.VideoGame];
 
   constructor(private mediaService : MediaService) {
-    this.typesMedia=mediaService.typesMedia;
   }
 
   addNewMedia() {
-    this.mediaService.addNewMedia(this.mediaForm, this.typeMedia);
+    console.log(this.mediaService.medias);
+    
+    this.mediaService.addNewMedia(this.mediaForm);
     this.mediaForm = new Media();
-    this.typeMedia = null;
+    console.log(this.mediaService.medias);
   }
+
+
 
 }

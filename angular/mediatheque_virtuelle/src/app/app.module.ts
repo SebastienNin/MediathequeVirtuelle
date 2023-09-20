@@ -24,7 +24,8 @@ import { AccountHttpService } from './account/account-http.service';
     AccueilComponent,
     MatchPasswordDirective,
     AccountComponent,
-    AddMediaComponent
+    AddMediaComponent,
+    PersoListComponent
   ],
   imports: [
     BrowserModule,

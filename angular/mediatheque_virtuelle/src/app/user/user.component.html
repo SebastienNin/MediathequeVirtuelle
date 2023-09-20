@@ -1,14 +1,16 @@
-<div>
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Liste des utilisateurs</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+             <tr>
                 <th>Identifiant</th>
                 <th>Login</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Disabled</th>
-                <th>Roles</th>
+                <th>Mail</th>
+                <th>Est admin?</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,47 +24,10 @@
                 <td>{{user.mail}}</td>
                 <td>{{user.isAdmin}}</td>
                 <td>
-                    <div class="btn-group btn-group-sm">
-                        <!-- <a class="btn btn-primary" (click)="edit(user.id)"><i class="bi bi-pencil-square"></i></a>
-                        <a class="btn btn-danger" (click)="remove(user.id)"><i class="bi bi-trash"></i></a> -->
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-
-    </table>
-
-</div>
-
-<!-- <div class="card mt-3">
-    <div class="card-header bg-primary text-white display-6">Liste des utilisateurs</div>
-    <div class="card-body">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Identifiant</th>
-                    <th>Login</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Disabled</th>
-                    <th>Roles</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr *ngFor="let user of users">
-                    <td>{{user.id}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.nom}}</td>
-                    <td>{{user.prenom}}</td>
-                    <td>{{user.disabled}}</td>
-                    <td>{{user.roles}}</td>
-                    <td>
                         <div class="btn-group btn-group-sm">
-                            <a class="btn btn-primary" (click)="edit(user.id)"><i
-                                    class="bi bi-pencil-square"></i></a>
-                            <a class="btn btn-danger" (click)="remove(user.id)"><i class="bi bi-trash"></i></a>
+                            <!-- <a class="btn btn-primary" (click)="edit(user.id)"><i -->
+                                    <!-- class="bi bi-pencil-square"></i></a> -->
+                            <!-- <a class="btn btn-danger" (click)="remove(user.id)"><i class="bi bi-trash"></i></a> -->
                         </div>
                     </td>
                 </tr>
@@ -71,12 +36,12 @@
         </table>
     </div>
     <div class="card-footer">
-        <a class="btn btn-success btn-lg" (click)="add()"><i
-            class="bi bi-plus-square"></i></a>
+        <!-- <a class="btn btn-success btn-lg" (click)="add()"><i -->
+            <!-- class="bi bi-plus-square"></i></a> -->
     </div>
 </div>
 
-<div class="card mt-3" *ngIf="utilisateurForm">
+<!-- <div class="card mt-3" *ngIf="utilisateurForm">
     <div class="card-header bg-primary text-white display-6">Edition d'un utilisateur</div>
     <div class="card-body">
         <div class="form-group">
@@ -99,11 +64,11 @@
                 </label>
               </div>
         </div>
-    </div>
+    </div> -->
     <div class="card-footer">
         <div class="btn-group btn-group-lg float-right">
-            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
-            <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+            <!-- <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a> -->
         </div>
     </div>
-</div> -->
+<!-- </div> -->

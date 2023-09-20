@@ -46,9 +46,7 @@ export class UserService {
   }
 
   inscription(login: string, password: string, passwordCheck: string, name: string, firstName: string, mail: string) {
-    let id = this.users.length + 1;
-    let utilisateur: Account = new Account(id, 0, login, password, name, firstName, mail, false);
-
+    let utilisateur: Account = new Account(null, 0, login, password, name, firstName, mail, false);
     this.save(utilisateur);
   }
 

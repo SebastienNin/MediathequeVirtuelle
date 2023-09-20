@@ -17,10 +17,7 @@ import { AddMediaComponent } from './add-media/add-media.component';
     AppComponent,
     NavBarComponent,
     SigninComponent,
-<<<<<<< Updated upstream
-=======
     AccountComponent,
->>>>>>> Stashed changes
     ConnectionComponent,
     AccueilComponent,
     MatchPasswordDirective,

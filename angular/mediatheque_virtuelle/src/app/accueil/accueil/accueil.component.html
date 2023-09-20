@@ -1,52 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barre de Recherche</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
 
-        .search-container {
-            text-align: center;
-        }
-
-        .search-input {
-            width: 300px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            outline: none;
-        }
-
-        .search-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .search-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="search-container">
-        <h1>Recherchez un document dans la médiatèque</h1>
-        <br>
-        <form action="#" method="get">
-            <input type="text" class="search-input" placeholder="Entrez votre recherche..." name="q">
-            <button type="submit" class="search-button">Rechercher</button>
-        </form>
-    </div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+                <div class="card-body">
+                        <h1 class="text-center">Recherchez un document dans la médiathèque</h1>
+                        <br>
+                        <form action="#" method="get">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Entrez votre recherche..." name="q">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Rechercher</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
 </body>
+</html>

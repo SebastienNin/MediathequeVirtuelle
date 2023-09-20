@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnectionComponent } from './connection/connection.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccueilComponent } from './accueil/accueil/accueil.component';
+import { MatchPasswordDirective } from './match-password.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AccueilComponent } from './accueil/accueil/accueil.component';
     SigninComponent,
     UserComponent,
     ConnectionComponent,
-    AccueilComponent
+    AccueilComponent,
+    MatchPasswordDirective
   ],
   imports: [
     BrowserModule,

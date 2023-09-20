@@ -9,8 +9,8 @@ export class UserService {
 
   constructor() { 
     this.users.push(new Account(1, 0, "user1", "123456", "utilisateur1", "user", "user@gmail.com", false));
-    this.users.push(new Account(1, 0, "user2", "123456", "utilisateur2", "user", "user@gmail.com", false));
-    this.users.push(new Account(1, 0, "admin1", "123456", "administrateur1", "admin", "admin@gmail.com", true));
+    this.users.push(new Account(2, 0, "user2", "123456", "utilisateur2", "user", "user@gmail.com", false));
+    this.users.push(new Account(3, 0, "admin1", "123456", "administrateur1", "admin", "admin@gmail.com", true));
   }
 
   findAll() : Array<Account> {

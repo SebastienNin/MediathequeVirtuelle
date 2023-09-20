@@ -1,0 +1,42 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+angular/mediatheque_virtuelle/dist
+angular/mediatheque_virtuelle/tmp
+angular/mediatheque_virtuelle/out-tsc
+angular/mediatheque_virtuelle/bazel-out
+
+# Node
+angular/mediatheque_virtuelle/node_modules
+angular/mediatheque_virtuelle/npm-debug.log
+angular/mediatheque_virtuelle/yarn-error.log
+
+# IDEs and editors
+angular/mediatheque_virtuelle/.idea/
+angular/mediatheque_virtuelle/.project
+angular/mediatheque_virtuelle/.classpath
+angular/mediatheque_virtuelle/.c9/
+angular/mediatheque_virtuelle/*.launch
+angular/mediatheque_virtuelle/.settings/
+angular/mediatheque_virtuelle/*.sublime-workspace
+
+# Visual Studio Code
+angular/mediatheque_virtuelle/.vscode/*
+angular/mediatheque_virtuelle/!.vscode/settings.json
+angular/mediatheque_virtuelle/!.vscode/tasks.json
+angular/mediatheque_virtuelle/!.vscode/launch.json
+angular/mediatheque_virtuelle/!.vscode/extensions.json
+angular/mediatheque_virtuelle/.history/*
+
+# Miscellaneous
+angular/mediatheque_virtuelle/.angular/cache
+angular/mediatheque_virtuelle/.sass-cache/
+angular/mediatheque_virtuelle/connect.lock
+angular/mediatheque_virtuelle/coverage
+angular/mediatheque_virtuelle/libpeerconnection.log
+angular/mediatheque_virtuelle/testem.log
+angular/mediatheque_virtuelle/typings
+
+# System files
+angular/mediatheque_virtuelle/.DS_Store
+angular/mediatheque_virtuelle/Thumbs.db

@@ -1,9 +1,8 @@
 import {Media} from "./media"
 
-export class BoardGame extends Media {
-    playerNumber: string;
-    recommendedAge: number;
-    duration : number;
+export class VideoGame extends Media {
+    multiPlayer: boolean;
+    pegi: number;
 
     constructor(id?: number,
         name?: string,
@@ -14,14 +13,12 @@ export class BoardGame extends Media {
         dematerialized?: boolean,
         parutionDate?: string, 
         addDate?: string, 
-        playerNumber?: string, 
-        recommendedAge? : number, 
-        duration? : number) {
+        multiPlayer? : boolean, 
+        pegi?: number) {
             
         super(id, name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate)
-        this.playerNumber = playerNumber;
-        this.recommendedAge = recommendedAge;
-        this.duration = duration;
+        this.multiPlayer = multiPlayer;
+        this.pegi = pegi;
 
 
     }

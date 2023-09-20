@@ -6,7 +6,8 @@ export class Media {
     image: string;
     description: string;
     dematerialized: boolean;
-    parutionDate: number;
+    parutionDate: string; // 2023-09-20 {{parutionDate | date:''}}
+    addDate: string;
 
     constructor(
         id?: number,
@@ -16,7 +17,8 @@ export class Media {
         image?: string,
         description?: string,
         dematerialized?: boolean,
-        parutionDate?: number
+        parutionDate?: string,
+        addDate?: string
     ){
         this.id = id
         this.name = name
@@ -26,6 +28,7 @@ export class Media {
         this.description = description
         this.dematerialized = dematerialized
         this.parutionDate = parutionDate
+        this.addDate = addDate
     }
 
 

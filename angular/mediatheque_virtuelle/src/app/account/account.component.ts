@@ -8,6 +8,7 @@ import { AccountService } from './account.service';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent {
+  
   users: Array<Account> = new Array<Account>();
   userForm: Account = null;
 

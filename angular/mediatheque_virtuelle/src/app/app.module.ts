@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { MatchPasswordDirective } from './match-password.directive';
 import { AccountComponent } from './account/account.component';
 import { AddMediaComponent } from './add-media/add-media.component';
+import { AccountHttpService } from './account/account-http.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { AddMediaComponent } from './add-media/add-media.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AccountHttpService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

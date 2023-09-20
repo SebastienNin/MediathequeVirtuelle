@@ -8,6 +8,7 @@ import { UserComponent } from './user/user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnectionComponent } from './connection/connection.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MatchPasswordDirective } from './match-password.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     NavBarComponent,
     SigninComponent,
     UserComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    MatchPasswordDirective
   ],
   imports: [
     BrowserModule,

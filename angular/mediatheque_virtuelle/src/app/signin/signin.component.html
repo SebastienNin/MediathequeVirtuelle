@@ -1,1 +1,60 @@
-<p>signin works!</p>
+<div class="card mt-3">
+    <form #inscriptionForm="ngForm" (ngSubmit)="inscriptionForm.form.valid && valider()" novalidate autocomplete="off" [appMatchPassword]="['password', 'passwordVerif']">
+        <div class="card-header bg-primary text-white display-6">Inscription</div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="username">Identifiant:</label> <input type="text" required class="form-control"
+                    id="username" name="username" [(ngModel)]="login" #usernameB="ngModel" />
+                <span class="text-danger"
+                    *ngIf="(usernameB.touched || inscriptionForm.submitted) && usernameB.errors?.['required']">
+                    Le nom d'utilisateur est obligatoire.
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe:</label> <input type="password" class="form-control" id="password"
+                    name="password" [(ngModel)]="password" #passwordA="ngModel" required minlength="4" />
+                <span class="text-danger"
+                    *ngIf="(passwordA.touched || inscriptionForm.submitted) && passwordA.errors?.['required']">
+                    Le mot de passe est obligatoire.
+                </span>
+                <span class="text-danger"
+                    *ngIf="(passwordA.touched || inscriptionForm.submitted) && passwordA.errors?.['minlength']">
+                    Le mot de passe doit comporter au moins 4 caractères
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="passwordVerif">Confirmation de mot de passe:</label> <input type="password"
+                    class="form-control" id="passwordVerif" name="passwordVerif" [(ngModel)]="passwordVerif"
+                    #passwordB="ngModel" required />
+                <span class="text-danger"
+                    *ngIf="(passwordB.touched || inscriptionForm.submitted) && passwordB.errors?.['required']">
+                    Veuillez confirmer votre mot de passe
+                </span>
+                <span class="text-danger" *ngIf="passwordB.touched && passwordB.errors?.['passwordMismatch']">
+                    Mot de passe incorrect
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="name">Nom:</label> <input type="text" class="form-control" id="name" name="name"
+                    [(ngModel)]="name" #nameA="ngModel" required />
+                <span class="text-danger"
+                    *ngIf="(nameA.touched || inscriptionForm.submitted) && nameA.errors?.['required']">
+                    Veuillez entrer un nom
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="firstName">Prenom:</label> <input type="text" class="form-control" id="firstName" firstName="name"
+                    [(ngModel)]="firstName" #firstNameA="ngModel" required />
+                <span class="text-danger"
+                    *ngIf="(firstNameA.touched || inscriptionForm.submitted) && firstNameA.errors?.['required']">
+                    Veuillez entrer un prénom
+                </span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="btn-group btn-group-lg float-right">
+                <button type="submit" class="btn btn-success"><i class="bi bi-check-square-fill"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -2,26 +2,27 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-connexion',
-  templateUrl: './connexion.component.html',
-  styleUrls: ['./connexion.component.scss']
+  selector: 'app-connection',
+  templateUrl: './connection.component.html',
+  styleUrls: ['./connection.component.scss']
 })
-export class ConnexionComponent {
+export class ConnectionComponent {
 
-  connexionForm: FormGroup;
+  connectionForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder){
 
   }
 
   ngOnInit(): void {
-    this.connexionForm = this.formBuilder.group({
+    this.connectionForm = this.formBuilder.group({
       identifiant: this.formBuilder.control(''),
       password: this.formBuilder.control('')
     })
   }
 
-  connexion() {
-
+  connection() {
+    
   }
+
 }

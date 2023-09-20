@@ -5,15 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
 import { UserComponent } from './user/user.component';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConnectionComponent } from './connection/connection.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavBarComponent,
     SigninComponent,
     UserComponent,
-    ConnexionComponent
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,

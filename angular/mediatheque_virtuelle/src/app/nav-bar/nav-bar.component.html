@@ -1,0 +1,18 @@
+<ul class="nav nav-pills m-5">
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i class="bi bi-house"></i></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/user']" routerLinkActive="active">User</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/signin']" routerLinkActive="active">Signin</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/connection']" routerLinkActive="active">Connection</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" (click)="disconnection()" routerLinkActive="active">Disconnection</a>
+    </li>
+</ul>
+

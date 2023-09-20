@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
@@ -111,6 +112,7 @@ public class Account {
 		this.mail = mail;
 	}
 
+	@JsonProperty("isAdmin")
 	public boolean isAdmin() {
 		return isAdmin;
 	}

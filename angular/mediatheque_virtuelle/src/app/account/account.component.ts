@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Account } from '../modele/account';
 import { AccountService } from './account.service';
+import { AccountHttpService } from './account-http.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account',
@@ -9,31 +11,40 @@ import { AccountService } from './account.service';
 })
 export class AccountComponent {
   
+  accounts$: Observable<Account[]>;
   users: Array<Account> = new Array<Account>();
-  userForm: Account = null;
+  accountForm: Account = null;
 
-  constructor(private accountService: AccountService) {
-    this.users = accountService.findAll()
+  constructor(private accountHttpService: AccountHttpService) {
   }
 
-  add() {
-    this.userForm = new Account();
+  ngOnInit(): void {
+    this.accounts$ = this.accountHttpService.findAll();
   }
+
+  // add() {
+  //   this.accountForm = new Account();
+  // }
 
   edit(id: number) {
-    this.userForm = this.accountService.findById(id);
+    this.accountHttpService.findById(id).subscribe(resp => {
+      this.accountForm = resp;
+    });
   }
 
   save() {
-    this.accountService.save(this.userForm);
+    this.accountHttpService.save(this.accountForm).subscribe(resp => {
+      this.accounts$ = this.accountHttpService.findAll();
+    });
   }
 
   cancel() {
-    this.userForm = null;
+    this.accountForm = null;
   }
 
   remove(id: number) {
-    this.accountService.deleteById(id);
+    this.accountHttpService.deleteById(id).subscribe(resp => {
+      this.accounts$ = this.accountHttpService.findAll();
+    });
   }
-
 }

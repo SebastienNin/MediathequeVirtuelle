@@ -50,7 +50,7 @@ export class AccountService {
     this.save(user);
   }
 
-  connexion(login: string, password: string): Account {
+  connection(login: string, password: string): Account {
     return this.accounts.find(a => a.login == login && a.password == password);
   }
 }

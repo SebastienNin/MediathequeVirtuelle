@@ -10,11 +10,30 @@ import { UserService } from './user.service';
 export class UserComponent {
 
   users: Array<Account> = new Array<Account>();
-  utilisateurForm: Account = null;
+  userForm: Account = null;
 
   constructor(private userService: UserService) {
     this.users = userService.findAll()
   }
 
+  add() {
+    this.userForm = new Account();
+  }
+
+  edit(id: number) {
+    this.userForm = this.userService.findById(id);
+  }
+
+  save() {
+    this.userService.save(this.userForm);
+  }
+
+  cancel() {
+    this.userForm = null;
+  }
+
+  remove(id: number) {
+    this.userService.deleteById(id);
+  }
 
 }

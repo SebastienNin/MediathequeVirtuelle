@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { MediaService } from './media.service';
 import { Media } from '../modele/media';
 import { TypeMedia } from '../modele/typeMedia';
+import { BookType } from '../modele/bookType';
+import { MagazinePeriodicity } from '../modele/magazinePeriodicity';
+import { MovieSupport } from '../modele/movieSupport';
+import { MusicSupport } from '../modele/musicSupport';
 
 @Component({
   selector: 'app-add-media',
@@ -10,13 +14,63 @@ import { TypeMedia } from '../modele/typeMedia';
 })
 export class AddMediaComponent {
 
+  //variable associée au ngModel
   mediaForm : Media = new Media();
+  currentDate : string ;
 
-  //un peu dégueu, à changer si je trouve une solution pour boucler sur l'énum... Diane
-  typesMedia : TypeMedia[]= [TypeMedia.BoardGame, TypeMedia.Book, TypeMedia.Magazine, TypeMedia.Movie, TypeMedia.Music, TypeMedia.VideoGame];
+  //boolean pour l'affichage des différents formulaires
+  showFirstForm : boolean = true;
+  showBoardGameForm : boolean = false;
+  showBookForm : boolean = false;
+  showMagazineForm : boolean = false;
+  showMovieForm: boolean = false;
+  showMusicForm: boolean = false;
+  showVideoGameForm: boolean = false
+
+  //enums
+  bookTypes : string[]=Object.values(BookType)
+  typesMedia : TypeMedia[]= Object.values(TypeMedia);
+  magPeriodicities : MagazinePeriodicity[]=Object.values(MagazinePeriodicity);
+  movieSupports : MovieSupport[]= Object.values(MovieSupport);
+  musicSupports : MusicSupport[]= Object.values(MusicSupport);
+
 
   constructor(private mediaService : MediaService) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+    const day = String(today.getDate()).padStart(2, '0');
+    this.currentDate = `${year}-${month}-${day}`;
+    this.mediaForm.addDate=this.currentDate;
+    
   }
+
+  showSecondPartOfForm() {
+    this.showFirstForm=false;
+    switch(this.mediaForm.typeMedia) {
+      case (TypeMedia.BoardGame) :
+        this.showBoardGameForm = true;
+        break;
+      case (TypeMedia.Book) :
+        this.showBookForm = true;
+        break;
+      case (TypeMedia.Magazine) :
+        this.showMagazineForm = true;
+        break;
+      case (TypeMedia.Movie) :
+        this.showMovieForm = true;
+        break;
+      case (TypeMedia.Music) :
+        this.showMusicForm = true;
+        break;
+      case (TypeMedia.VideoGame) :
+        this.showVideoGameForm = true;
+        break;
+      case(null) :
+        console.log("Erreur sur typeMedia");
+        break;
+      }
+    }
 
   addNewMedia() {
     console.log(this.mediaService.medias);
@@ -24,7 +78,17 @@ export class AddMediaComponent {
     this.mediaService.addNewMedia(this.mediaForm);
     this.mediaForm = new Media();
     console.log(this.mediaService.medias);
+    this.showFirstForm=true;
+    this.showBoardGameForm=false;
+    this.showBookForm=false;
+    this.showMagazineForm=false;
+    this.showMovieForm=false;
+    this.showMusicForm=false;
+    this.showVideoGameForm=false;
+
   }
+
+
 
 
 

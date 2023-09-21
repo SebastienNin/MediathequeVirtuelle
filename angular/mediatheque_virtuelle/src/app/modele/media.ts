@@ -24,32 +24,32 @@ export class Media {
     //attributs de BoardGame
     playerNumber: string;
     recommendedAge: number;
-    durationBoardGame : number;
+    duration : number;
 
     //attributs de Book
     author: string;
     ISBN: string;
     pagesNb: number;
     chaptersNb: number;
-    type: BookType;
+    booktype: BookType;
 
     //attributs de Magazine
     ISSN: string;
     number: number;
-    periodicity: MagazinePeriodicity;
+    magazinePeriodicity: MagazinePeriodicity;
 
     //attributs de Movie
-    directors: string[];
-    actors: string[];
-    durationMovie: number;
-    supportMovie: MovieSupport;
+    directors: string[] =new Array<string>;
+    actors: string[] =new Array<string>;
+    //duration -> voir BoardGame
+    movieSupport: MovieSupport;
 
     //attribut de Music
-    tracks: string[];
+    tracks: string[] =new Array<string>;
     artist: string;
-    durationMusic: number;
-    tracksNumber: number;
-    supportMusic: MusicSupport;
+    //duration -> voir BoardGame
+    trackNumber: number;
+    musicSupport: MusicSupport;
 
     //attributs de VideoGame
     multiPlayer: boolean;
@@ -71,28 +71,23 @@ export class Media {
         //BoarGame
         playerNumber?: string, 
         recommendedAge? : number, 
-        durationBoardGame? : number,
+        duration?: number,
         //Book
         author?: string, 
         ISBN?: string, 
         pagesNb?: number, 
         chaptersNb?: number, 
-        type?: BookType,
+        booktype?: BookType,
         //Magazine
         ISSN?: string, 
         number?: number, 
-        periodicity?: MagazinePeriodicity,
+        magazinePeriodicity?: MagazinePeriodicity,
         //Movie
-        directors?: string[], 
-        actors?: string[], 
-        durationMovie?: number, 
-        supportMovie?: MovieSupport,
+        movieSupport?: MovieSupport,
         //Music
-        tracks?: string[], 
         artist?: string,
-        durationMusic?: number, 
-        tracksNumber?: number, 
-        supportMusic?: MusicSupport,
+        trackNumber?: number, 
+        musicSupport?: MusicSupport,
         //VideoGame
         multiPlayer? : boolean, 
         pegi?: number
@@ -112,28 +107,23 @@ export class Media {
         //BoardGame
         this.playerNumber = playerNumber;
         this.recommendedAge = recommendedAge;
-        this.durationBoardGame = durationBoardGame;
+        this.duration = duration;
         //Book
         this.author = author;
         this.ISBN = ISBN;
         this.pagesNb = pagesNb;
         this.chaptersNb = chaptersNb;
-        this.type = type;
+        this.booktype = booktype;
         //Magazine
         this.ISSN = ISSN;
         this.number = number;
-        this.periodicity = periodicity;
-        //Movie
-        this.directors = directors;
-        this.actors = actors;
-        this.durationMovie = durationMovie;
-        this.supportMovie = supportMovie;
+        this.magazinePeriodicity = magazinePeriodicity;
+        //Movie;
+        this.movieSupport = movieSupport;
         //Music
-        this.tracks = tracks;
         this.artist = artist;
-        this.durationMusic = durationMusic;
-        this.tracksNumber = tracksNumber;
-        this.supportMusic = supportMusic;
+        this.trackNumber = trackNumber;
+        this.musicSupport = musicSupport;
         //VideoGame
         this.multiPlayer = multiPlayer;
         this.pegi = pegi;

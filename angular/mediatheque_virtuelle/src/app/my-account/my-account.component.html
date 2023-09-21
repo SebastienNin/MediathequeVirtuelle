@@ -28,12 +28,12 @@
                                 class="form-control" placeholder="Identifiant">{{user.login}}</span></div>
                     </div>
                     <div class="row mt-1">
-                        <div class="col-md-12"><label class="labels">Nom</label><input type="text" class="form-control"
-                                placeholder="Identifiant" [(ngModel)]="user.name"></div>
+                        <div class="col-md-12"><label class="labels">Nom</label><span type="text" class="form-control"
+                                placeholder="Identifiant">{{user.name}}</span></div>
                     </div>
                     <div class="row mt-1">
-                        <div class="col-md-12"><label class="labels">Prénom</label><input type="text"
-                                class="form-control" placeholder="Nom" [(ngModel)]="user.firstName"></div>
+                        <div class="col-md-12"><label class="labels">Prénom</label><span type="text"
+                                class="form-control" placeholder="Nom">{{user.firstName}}</span></div>
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-12"><label class="labels">Adresse Mail</label><span type="text"
@@ -83,7 +83,7 @@
                             <h4 class="text-right">Modifier mon mot de passe</h4>
                         </div>
                         <div class="row mt-1">
-                            <label class="labels">Mot de passe actuel</label>
+                            <div class="col-md-12"><label class="labels">Mot de passe actuel</label>
                             <input type="password" class="form-control" placeholder="Mot de passe actuel"
                                 formControlName="currentPassword" name="currentPassword" id="currentPassword" />
                             <span class="text-danger"
@@ -95,6 +95,7 @@
                                 Le mot de passe saisi ne correspond pas à votre mot de passe actuel
                             </span>
                         </div>
+                    </div>
                         <div class="row mt-1">
                             <div class="col-md-12"><label class="labels">Nouveau mot de passe</label>
                                 <input type="password" class="form-control" placeholder="Nouveau mot de passe"

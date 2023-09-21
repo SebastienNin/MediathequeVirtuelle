@@ -14,10 +14,15 @@ export class AuthService {
     let user = this.accountService.connection(username, password);
 
     sessionStorage.setItem("user", JSON.stringify(user));
+
+    if(user){
+      this.router.navigate([ '/' ]);
+    }
   }
 
   disconnection() {
     sessionStorage.removeItem("user");
+    this.router.navigate([ '/' ]);
   }
 
   getUser(): Account {

@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
-import { AccountService } from './account/account.service';
 import { Router } from '@angular/router';
 import { Account } from './modele/account';
+import { AccountHttpService } from './account/account-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  showErrorConnection: boolean;
+
+  constructor(private accountHttpService: AccountHttpService, private router: Router) { }
 
   authentication(username: string, password: string) {
-    let user = this.accountService.connection(username, password);
-
-    if(user){
-      sessionStorage.setItem("user", JSON.stringify(user));
-      this.router.navigate([ '/' ]);
-    }
-    else{
-      alert("Ton identifiant ou mot de passe est incorrect");
-    }
+    this.accountHttpService.connection(username, password).subscribe(
+      {next: resp => {
+      sessionStorage.setItem("user", JSON.stringify(resp));
+      this.router.navigate(["/"]);
+      this.showErrorConnection = false;
+    },
+    error: error => {
+      if (error.status ==404){
+        this.showErrorConnection = true;
+      }
+    }})
   }
 
   disconnection() {

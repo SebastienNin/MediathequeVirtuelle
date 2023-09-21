@@ -13,11 +13,18 @@ export class AuthService {
   authentication(username: string, password: string) {
     let user = this.accountService.connection(username, password);
 
-    sessionStorage.setItem("user", JSON.stringify(user));
+    if(user){
+      sessionStorage.setItem("user", JSON.stringify(user));
+      this.router.navigate([ '/' ]);
+    }
+    else{
+      alert("Ton identifiant ou mot de passe est incorrect");
+    }
   }
 
   disconnection() {
     sessionStorage.removeItem("user");
+    this.router.navigate([ '/' ]);
   }
 
   getUser(): Account {
@@ -25,10 +32,8 @@ export class AuthService {
 
     if(strUser) {
       let user: Account = JSON.parse(strUser);
-
       return user;
     }
-
     return null;
   }
 

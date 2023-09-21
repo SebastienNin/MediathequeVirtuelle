@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: "signin", component: SigninComponent, canActivate: [forceToDisconnectGuard]},
   {path: "media/add", component: AddMediaComponent, canActivate: [authGuard]},
   {path: "perso-list", component: PersoListComponent, canActivate: [authGuard]},
-  {path: "myAccount", component: MyAccountComponent, canActivate: [authGuard]}
+  {path: "myAccount", component: MyAccountComponent, canActivate: [authGuard]},
   {path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard]}
 ];
 

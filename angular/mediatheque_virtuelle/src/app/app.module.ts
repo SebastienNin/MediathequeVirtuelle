@@ -29,7 +29,7 @@ import { PersonnalizedListComponent } from './personnalizedList/personnalizedLis
     AccountComponent,
     AddMediaComponent,
     PersoListComponent,
-    MyAccountComponent
+    MyAccountComponent,
     PersonnalizedListComponent
 
   ],

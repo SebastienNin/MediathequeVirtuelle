@@ -20,11 +20,11 @@ export class AccountHttpService {
     return this.http.get<Account>(environment.apiUrl + "/account/" + id);
   }
 
-  save(user: Account): Observable<Account> {
-    if (user.id) { // mise à jour
-      return this.http.put<Account>(environment.apiUrl + "/account/" + user.id, user);
+  save(account: Account): Observable<Account> {
+    if (account.id) { // mise à jour
+      return this.http.put<Account>(environment.apiUrl + "/account/" + account.id, account);
     } else { // création
-      return this.http.post<Account>(environment.apiUrl + "/account", user);
+      return this.http.post<Account>(environment.apiUrl + "/account", account);
     }
   }
 
@@ -32,15 +32,18 @@ export class AccountHttpService {
     return this.http.delete<void>(environment.apiUrl + "/account/" + id);
   }
 
-  inscription(login: string, password: string, passwordVerif: string): Observable<any> {
+  signin(login: string, password: string, passwordVerif: string, name: string, firstName: string, mail: string): Observable<any> {
     return this.http.post<any>(environment.apiUrl + "/account", {
-      "usernloginame": login,
+      "login": login,
       "password": password,
-      "passwordVerif": passwordVerif
+      "passwordVerif": passwordVerif,
+      "name": name,
+      "firstName": firstName,
+      "mail": mail
     });
   }
 
-  connexion(login: string, password: string): Observable<Account> {
+  connection(login: string, password: string): Observable<Account> {
     return this.http.post<Account>(environment.apiUrl + "/account/authentification", {
       "login": login,
       "password": password

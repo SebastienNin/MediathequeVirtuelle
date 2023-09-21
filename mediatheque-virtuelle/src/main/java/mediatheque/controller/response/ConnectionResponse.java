@@ -1,6 +1,6 @@
 package mediatheque.controller.response;
 
-public class ConnexionResponse {
+public class ConnectionResponse {
 	private boolean success;
 	private String token;
 

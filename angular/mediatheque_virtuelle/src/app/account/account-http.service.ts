@@ -20,11 +20,11 @@ export class AccountHttpService {
     return this.http.get<Account>(environment.apiUrl + "/account/" + id);
   }
 
-  save(user: Account): Observable<Account> {
-    if (user.id) { // mise à jour
-      return this.http.put<Account>(environment.apiUrl + "/account/" + user.id, user);
+  save(account: Account): Observable<Account> {
+    if (account.id) { // mise à jour
+      return this.http.put<Account>(environment.apiUrl + "/account/" + account.id, account);
     } else { // création
-      return this.http.post<Account>(environment.apiUrl + "/account", user);
+      return this.http.post<Account>(environment.apiUrl + "/account", account);
     }
   }
 

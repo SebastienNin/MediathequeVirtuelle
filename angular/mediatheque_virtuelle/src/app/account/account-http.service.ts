@@ -32,15 +32,18 @@ export class AccountHttpService {
     return this.http.delete<void>(environment.apiUrl + "/account/" + id);
   }
 
-  inscription(login: string, password: string, passwordVerif: string): Observable<any> {
+  signin(login: string, password: string, passwordVerif: string, name: string, firstName: string, mail: string): Observable<any> {
     return this.http.post<any>(environment.apiUrl + "/account", {
-      "usernloginame": login,
+      "login": login,
       "password": password,
-      "passwordVerif": passwordVerif
+      "passwordVerif": passwordVerif,
+      "name": name,
+      "firstName": firstName,
+      "mail": mail
     });
   }
 
-  connexion(login: string, password: string): Observable<Account> {
+  connection(login: string, password: string): Observable<Account> {
     return this.http.post<Account>(environment.apiUrl + "/account/authentification", {
       "login": login,
       "password": password

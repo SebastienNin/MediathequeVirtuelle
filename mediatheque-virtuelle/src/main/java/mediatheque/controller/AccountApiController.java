@@ -24,7 +24,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
+import mediatheque.controller.request.ConnexionRequest;
 import mediatheque.dao.IDAOAccount;
+import mediatheque.exception.AccountNotFoundException;
 import mediatheque.model.Account;
 import mediatheque.model.Views;
 
@@ -108,6 +110,11 @@ public class AccountApiController {
 	public List<Account> findByName(@Param("name") String name) {
 	    List<Account> accounts = daoAccount.findByName(name);
 	    return accounts;
+	}
+
+	@PostMapping("/authentification")
+	public Account authentification(@RequestBody ConnexionRequest connexionRequest) {
+		return this.daoAccount.findByLoginAndPassword(connexionRequest.getLogin(), connexionRequest.getPassword()).orElseThrow(AccountNotFoundException::new);
 	}
 
 }

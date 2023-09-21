@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AccountService } from '../account/account.service';
 import { Router } from '@angular/router';
+import { AccountHttpService } from '../account/account-http.service';
 
 @Component({
   selector: 'app-signin',
@@ -15,11 +15,13 @@ export class SigninComponent {
   firstName: string;
   mail: string;
 
-  constructor(private accountService: AccountService, private router: Router) {
+  constructor(private accountHttpService: AccountHttpService, private router: Router) {
 
   }
 
   valider() {
-    this.accountService.inscription(this.login, this.password, this.passwordVerif, this.name, this.firstName, this.mail);
+    this.accountHttpService.signin(this.login, this.password, this.passwordVerif, this.name, this.firstName, this.mail).subscribe(resp => {
+      this.router.navigate(["/connection"]);
+    });
   }
 }

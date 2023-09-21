@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-    
+
         <a class="navbar-brand" [routerLink]="['']">
             <img src="assets\logoMediaHub_V1_sansFleche.png" alt="Logo" height="70">
         </a>
 
         <ul class="nav nav-pills m-5">
-            
+
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" [routerLink]="['/account']" routerLinkActive="active">Utilisateurs</a>
             </li>
@@ -23,6 +23,9 @@
                 <a class="nav-link" [routerLink]="['/perso-list']" routerLinkActive="active">Listes personnalisées</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
+                <a class="nav-link" [routerLink]="['/myAccount']" routerLinkActive="active">Mon compte</a>
+            </li>
+            <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" (click)="disconnection()" routerLinkActive="active">Deconnexion</a>
             </li>
         </ul>
@@ -30,6 +33,3 @@
 
     </div>
 </nav>
-
-
-

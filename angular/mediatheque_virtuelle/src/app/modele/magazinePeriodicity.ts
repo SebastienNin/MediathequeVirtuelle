@@ -1,6 +1,6 @@
 export enum MagazinePeriodicity {
-    Daily = "Daily",
-    Weekly = "Weekly",
-    Monthly = "Monthly",
-    Annual = "Annual"
+    Daily = "Quotidien",
+    Weekly = "Hebdomadaire",
+    Monthly = "Mensuel",
+    Annual = "Annuel"
 }

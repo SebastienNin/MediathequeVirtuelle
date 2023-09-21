@@ -26,8 +26,4 @@ public interface Views {
 	
 	public interface Magazine extends Media {}
 	
-	public interface Theme extends Common {}
-
-    public interface MediaTheme extends Common {}
-
 }

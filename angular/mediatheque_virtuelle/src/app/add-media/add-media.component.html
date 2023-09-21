@@ -128,7 +128,7 @@
           class="form-control"
           id="durationBG"
           name="durationBG"
-          [(ngModel)]="mediaForm.durationBoardGame"
+          [(ngModel)]="mediaForm.duration"
         />
       </div>
     </div>
@@ -184,7 +184,7 @@
           class="form-control"
           id="typeBook"
           name="typeBook"
-          [(ngModel)]="mediaForm.type"
+          [(ngModel)]="mediaForm.booktype"
         >
           <!-- <option selected>Choisir un type de livre</option> -->
           <option *ngFor="let type of bookTypes" [value]="type">
@@ -223,7 +223,7 @@
           class="form-select"
           id="periodicity"
           name="periodicity"
-          [(ngModel)]="mediaForm.periodicity"
+          [(ngModel)]="mediaForm.magazinePeriodicity"
         >
           <!-- <option selected>Choisir une périodicité</option> -->
           <option *ngFor="let type of magPeriodicities" [value]="type">
@@ -235,26 +235,41 @@
 
     <div class="card-body" *ngIf="showMovieForm">
       <div class="form-group">
-        <label for="directors">Réalisateur(s):</label>
+        <label for="director">Réalisateur(s):</label>
         <input
+          *ngFor="
+            let e of [].constructor(mediaForm.directors.length);
+            index as idx
+          "
           type="text"
           class="form-control"
-          id="directors"
-          name="directors"
-          [(ngModel)]="mediaForm.directors"
+          id="director{{ idx }}"
+          name="director{{ idx }}"
+          [(ngModel)]="mediaForm.directors[idx]"
         />
+        <button type="button" class="btn btn-primary" (click)="addDirector()">
+          <i class="bi bi-plus-square"></i>
+        </button>
       </div>
 
       <div class="form-group">
         <label for="actors">Acteur(s):</label>
         <input
+          *ngFor="
+            let e of [].constructor(mediaForm.actors.length);
+            index as idx
+          "
           type="text"
           class="form-control"
-          id="actors"
-          name="actors"
-          [(ngModel)]="mediaForm.actors"
+          id="actors{{ idx }}"
+          name="actors{{ idx }}"
+          [(ngModel)]="mediaForm.actors[idx]"
         />
+        <button type="button" class="btn btn-primary" (click)="addActor()">
+          <i class="bi bi-plus-square"></i>
+        </button>
       </div>
+
       <!-- Ces deux champs sont des tableaux donc il faudrait soit avoir un bouton ajouter un acteur, soit séparer chaque acteur en fonction d'un caractère type ',' -->
 
       <div class="form-group">
@@ -264,7 +279,7 @@
           class="form-control"
           id="durationMovie"
           name="durationMovie"
-          [(ngModel)]="mediaForm.durationMovie"
+          [(ngModel)]="mediaForm.duration"
         />
       </div>
 
@@ -274,7 +289,7 @@
           class="form-select"
           id="supportMovie"
           name="supportMovie"
-          [(ngModel)]="mediaForm.supportMovie"
+          [(ngModel)]="mediaForm.movieSupport"
         >
           <!-- <option selected>Choisir un support</option> -->
           <option *ngFor="let type of movieSupports" [value]="type">
@@ -288,12 +303,19 @@
       <div class="form-group">
         <label for="tracks">Piste(s):</label>
         <input
+          *ngFor="
+            let e of [].constructor(mediaForm.tracks.length);
+            index as idx
+          "
           type="text"
           class="form-control"
-          id="tracks"
-          name="tracks"
-          [(ngModel)]="mediaForm.tracks"
+          id="tracks{{ idx }}"
+          name="tracks{{ idx }}"
+          [(ngModel)]="mediaForm.tracks[idx]"
         />
+        <button type="button" class="btn btn-primary" (click)="addTrack()">
+          <i class="bi bi-plus-square"></i>
+        </button>
       </div>
       <!-- idem acteurs et réal -->
 
@@ -315,7 +337,7 @@
           class="form-control"
           id="durationMusic"
           name="durationMusic"
-          [(ngModel)]="mediaForm.durationMusic"
+          [(ngModel)]="mediaForm.duration"
         />
       </div>
 
@@ -326,7 +348,7 @@
           class="form-control"
           id="trackNumber"
           name="trackNumber"
-          [(ngModel)]="mediaForm.tracksNumber"
+          [(ngModel)]="mediaForm.trackNumber"
         />
       </div>
 
@@ -336,7 +358,7 @@
           class="form-select"
           id="supportMusic"
           name="supportMusic"
-          [(ngModel)]="mediaForm.supportMusic"
+          [(ngModel)]="mediaForm.musicSupport"
         >
           <!-- <option selected>Choisir un support</option> -->
           <option *ngFor="let type of musicSupports" [value]="type">

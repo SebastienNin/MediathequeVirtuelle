@@ -6,6 +6,7 @@ import { BookType } from '../modele/bookType';
 import { MagazinePeriodicity } from '../modele/magazinePeriodicity';
 import { MovieSupport } from '../modele/movieSupport';
 import { MusicSupport } from '../modele/musicSupport';
+import { HttpMediaService } from './http-media.service';
 
 @Component({
   selector: 'app-add-media',
@@ -35,17 +36,20 @@ export class AddMediaComponent {
   musicSupports : MusicSupport[]= Object.values(MusicSupport);
 
 
-  constructor(private mediaService : MediaService) {
+  constructor(private mediaService : MediaService, private mediaServiceHttp: HttpMediaService) {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
     const day = String(today.getDate()).padStart(2, '0');
     this.currentDate = `${year}-${month}-${day}`;
     this.mediaForm.addDate=this.currentDate;
+    console.log(this.musicSupports);
+    
     
   }
 
   showSecondPartOfForm() {
+    
     this.showFirstForm=false;
     switch(this.mediaForm.typeMedia) {
       case (TypeMedia.BoardGame) :
@@ -58,9 +62,12 @@ export class AddMediaComponent {
         this.showMagazineForm = true;
         break;
       case (TypeMedia.Movie) :
+        this.mediaForm.directors.push("");
+        this.mediaForm.actors.push("");
         this.showMovieForm = true;
         break;
       case (TypeMedia.Music) :
+        this.mediaForm.tracks.push("");
         this.showMusicForm = true;
         break;
       case (TypeMedia.VideoGame) :
@@ -71,13 +78,32 @@ export class AddMediaComponent {
         break;
       }
     }
+    addDirector() {
+      this.mediaForm.directors.push("");
+    }
 
-  addNewMedia() {
-    console.log(this.mediaService.medias);
-    
-    this.mediaService.addNewMedia(this.mediaForm);
+    addActor() {
+      this.mediaForm.actors.push("");
+    }
+
+    addTrack() {
+      this.mediaForm.tracks.push("");
+    }
+
+    counter(nb: number): Array<number> {
+      return Array(nb);
+    }
+  
+  addNewMedia() {   
+
+    this.mediaServiceHttp.save(this.mediaForm);
+    //console.log(this.mediaServiceHttp.load());
+
+    //Vide les variables pour pouvoir ajouter un nouveau média
     this.mediaForm = new Media();
-    console.log(this.mediaService.medias);
+    this.mediaForm.addDate=this.currentDate;
+
+    //Rétablit le premier formulaire
     this.showFirstForm=true;
     this.showBoardGameForm=false;
     this.showBookForm=false;
@@ -87,8 +113,6 @@ export class AddMediaComponent {
     this.showVideoGameForm=false;
 
   }
-
-
 
 
 

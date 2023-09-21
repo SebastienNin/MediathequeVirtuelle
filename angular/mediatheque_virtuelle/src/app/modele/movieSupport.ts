@@ -1,5 +1,6 @@
 export enum MovieSupport {
     VHS = "VHS",
-    BlueRay = "BlueRay",
-    DVD = "DVD"
+    BlueRay = "BLUERAY",
+    DVD = "DVD",
+    NoSupport= "NOSUPPORT"
 }

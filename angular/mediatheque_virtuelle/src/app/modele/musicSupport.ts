@@ -1,5 +1,6 @@
 export enum MusicSupport {
     CD = "CD",
-    Vinyle = "Vinyle",
-    Cassette = "Cassette"
+    Vinyle = "VINYL",
+    Cassette = "CASSETTETAPE",
+    NoSupport = "NOSUPPORT"
 }

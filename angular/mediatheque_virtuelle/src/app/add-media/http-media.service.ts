@@ -9,28 +9,30 @@ import { environment } from 'src/environments/environments';
 })
 export class HttpMediaService {
 
-  //medias: Array<Media> = new Array<Media>;
-
   constructor(private http: HttpClient) {
-    //this.load();
-   }
-
-//Peut-être pas à garder partout, à voir, en attendant
-// load() {
-//   this.http.get<Media[]>(environment.apiUrl + "/media").subscribe(resp => this.medias =resp);
-// }
-
-save(media : Media) {
-  if (media.id) { // Mise à jour
-    this.http.put<Media>(environment.apiUrl+"/media/"+media.id, media);
-  } else { //Création
-    console.log(media);
-    this.http.post<Media>(environment.apiUrl+"/media/", media);
   }
-}
 
-deleteById(id: number) {
+  //subscribe à faire côté component
+  findAll(): Observable<Media[]> {
+    return this.http.get<Media[]>(environment.apiUrl + "/media/");
+  }
 
-}
+  //subscribe à faire côté component
+  findById(id: number): Observable<Media> {
+    return this.http.get<Media>(environment.apiUrl + "/media/" + id);
+  }
+
+  save(media: Media) {
+    if (media.id) { // Mise à jour
+      this.http.put<Media>(environment.apiUrl + "/media/" + media.id, media).subscribe();
+    } else { //Création
+      console.log(media);
+      this.http.post<Media>(environment.apiUrl + "/media/", media).subscribe();
+    }
+  }
+
+  deleteById(id: number) {
+    this.http.delete(environment.apiUrl + "/media/" + id).subscribe();
+  }
 
 }

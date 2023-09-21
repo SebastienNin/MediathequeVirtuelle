@@ -83,14 +83,9 @@ export class Media {
         number?: number, 
         magazinePeriodicity?: MagazinePeriodicity,
         //Movie
-        directors?: string[], 
-        actors?: string[], 
-        //duration -> voir BoardGame 
         movieSupport?: MovieSupport,
         //Music
-        tracks?: string[], 
         artist?: string,
-        //duration -> voir BoardGame
         trackNumber?: number, 
         musicSupport?: MusicSupport,
         //VideoGame
@@ -123,12 +118,9 @@ export class Media {
         this.ISSN = ISSN;
         this.number = number;
         this.magazinePeriodicity = magazinePeriodicity;
-        //Movie
-        //this.directors = directors;
-        //this.actors = actors;
+        //Movie;
         this.movieSupport = movieSupport;
         //Music
-        this.tracks = tracks;
         this.artist = artist;
         this.trackNumber = trackNumber;
         this.musicSupport = musicSupport;

@@ -40,11 +40,11 @@ export class MyAccountComponent {
 
   updateUserInfo() {
     const updatedUserInfo = this.editInfoFormGroup.value;
-    this.accountHttpService.save(updatedUserInfo).subscribe(
-      (response) => {
-        this.user = { ...this.user, ...updatedUserInfo };
-        console.log(this.user);
+    let user = { ...this.user, ...updatedUserInfo };
+    this.accountHttpService.save(user).subscribe(
+      (resp) => {
         alert("Informations mises à jour avec succès.");
+        this.user = resp;
       }
     );
   }
@@ -60,7 +60,10 @@ export class MyAccountComponent {
 
   updatePassword() {
     this.user.password = this.changePasswordFormGroup.value.newPassword;
-    this.accountHttpService.save(this.user);
-    alert("Mot de passe mis à jour avec succès.");
+    this.accountHttpService.save(this.user).subscribe(resp => {
+      alert("Mot de passe mis à jour avec succès.");
+      this.changePasswordFormGroup.reset();
+      this.user = resp;
+    });
   }
 }

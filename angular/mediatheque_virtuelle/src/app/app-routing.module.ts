@@ -7,6 +7,8 @@ import { authGuard } from './auth.guard';
 import { AccountComponent } from './account/account.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { forceToDisconnectGuard } from './force-to-disconnect.guard';
+import { MyAccountComponent } from './my-account/my-account.component';
+import { PersoListComponent } from './perso-list/perso-list.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   {path: "connection", component: ConnectionComponent, canActivate: [forceToDisconnectGuard]},
   {path: "signin", component: SigninComponent, canActivate: [forceToDisconnectGuard]},
   {path: "media/add", component: AddMediaComponent, canActivate: [authGuard]},
+  {path: "perso-list", component: PersoListComponent, canActivate: [authGuard]},
+  {path: "myAccount", component: MyAccountComponent, canActivate: [authGuard]},
   {path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard]}
 ];
 

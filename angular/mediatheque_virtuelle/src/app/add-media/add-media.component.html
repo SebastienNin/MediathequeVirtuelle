@@ -6,28 +6,14 @@
     <div class="card-body" *ngIf="showFirstForm">
       <div class="form-group">
         <label for="name">Nom:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          name="name"
-          [(ngModel)]="mediaForm.name"
-        />
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="mediaForm.name"/>
       </div>
 
       <div class="form-group">
         <label for="typeMedia">Type de média:</label>
-        <select
-          class="form-select"
-          aria-label="Default select example"
-          id="typeMedia"
-          name="typeMedia"
-          [(ngModel)]="mediaForm.typeMedia"
-        >
+        <select class="form-select" id="typeMedia" name="typeMedia" [(ngModel)]="mediaForm.typeMedia">
           <!-- <option selected>Choisir un type de média</option> NE FONCTIONNE PAS POUR LE MOMENT A CAUSE DU NGMODEL, A VOIR SI ON PEUT FAIRE MARCHER CA-->
-          <option *ngFor="let type of typesMedia" [value]="type">
-            {{ type }}
-          </option>
+          <option *ngFor="let type of typesMedia" [value]="type">{{ type }}</option>
         </select>
       </div>
 
@@ -44,152 +30,73 @@
 
       <div class="form-group">
         <label for="language">Langue:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="language"
-          name="language"
-          [(ngModel)]="mediaForm.language"
-        />
+        <input type="text" class="form-control" id="language" name="language" [(ngModel)]="mediaForm.language"/>
       </div>
 
       <div class="form-group">
         <label for="image">Image(à changer dans un second temps):</label>
-        <input
-          type="text"
-          class="form-control"
-          id="image"
-          name="image"
-          [(ngModel)]="mediaForm.image"
-        />
+        <input type="text" class="form-control" id="image" name="image" [(ngModel)]="mediaForm.image"/>
       </div>
 
       <div class="form-group">
         <label for="description">Résumé (ou description):</label>
-        <input
-          type="text"
-          class="form-control"
-          id="description"
-          name="description"
-          [(ngModel)]="mediaForm.description"
-        />
+        <input type="text" class="form-control" id="description" name="description" [(ngModel)]="mediaForm.description"/>
       </div>
 
       <div class="form-group">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          id="dematerialized"
-          name="dematerialized"
-          [(ngModel)]="mediaForm.dematerialized"
-        />
+        <input type="checkbox" class="form-check-input" id="dematerialized" name="dematerialized" [(ngModel)]="mediaForm.dematerialized"/>
         <label for="dematerialized"> Dématérialisé ?</label>
       </div>
 
       <div class="form-group">
         <label for="parutionDate">Date de parution:</label>
-        <input
-          type="date"
-          class="form-control"
-          id="parutionDate"
-          name="parutionDate"
-          [(ngModel)]="mediaForm.parutionDate"
-        />
+        <input type="date" class="form-control" id="parutionDate" name="parutionDate" [(ngModel)]="mediaForm.parutionDate"/>
       </div>
     </div>
 
     <div class="card-body" *ngIf="showBoardGameForm">
       <div class="form-group">
         <label for="playerNumber">Nombre de joueurs:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="playerNumber"
-          name="playerNumber"
-          [(ngModel)]="mediaForm.playerNumber"
-        />
+        <input type="text" class="form-control" id="playerNumber" name="playerNumber" [(ngModel)]="mediaForm.playerNumber"/>
       </div>
 
       <div class="form-group">
         <label for="recoAge">Age recommandé:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="recoAge"
-          name="recoAge"
-          [(ngModel)]="mediaForm.recommendedAge"
-        />
+        <input type="number" class="form-control" id="recoAge" name="recoAge" [(ngModel)]="mediaForm.recommendedAge"/>
       </div>
 
       <div class="form-group">
         <label for="durationBG">Durée de la partie (en min):</label>
-        <input
-          type="number"
-          class="form-control"
-          id="durationBG"
-          name="durationBG"
-          [(ngModel)]="mediaForm.durationBoardGame"
-        />
+        <input type="number" class="form-control" id="durationBG" name="durationBG" [(ngModel)]="mediaForm.duration"/>
       </div>
     </div>
 
     <div class="card-body" *ngIf="showBookForm">
       <div class="form-group">
         <label for="author">Auteur:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="author"
-          name="author"
-          [(ngModel)]="mediaForm.author"
-        />
+        <input type="text" class="form-control" id="author" name="author" [(ngModel)]="mediaForm.author"/>
       </div>
 
       <div class="form-group">
         <label for="isbn">ISBN:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="isbn"
-          name="isbn"
-          [(ngModel)]="mediaForm.ISBN"
-        />
+        <input type="text" class="form-control" id="isbn" name="isbn" [(ngModel)]="mediaForm.ISBN"/>
       </div>
 
       <div class="form-group">
         <label for="pagesNb">Nombre de pages:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="pagesNb"
-          name="pagesNb"
-          [(ngModel)]="mediaForm.pagesNb"
-        />
+        <input type="number" class="form-control" id="pagesNb" name="pagesNb" [(ngModel)]="mediaForm.pagesNb"/>
       </div>
 
       <div class="form-group">
         <label for="chaptersNb">Nombre de chapitres:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="chaptersNb"
-          name="chaptersNb"
-          [(ngModel)]="mediaForm.chaptersNb"
-        />
+        <input type="number" class="form-control" id="chaptersNb" name="chaptersNb" [(ngModel)]="mediaForm.chaptersNb"/>
       </div>
 
       <div class="form-group">
         <label for="typeBook">Type de livre:</label>
-        <select
-          class="form-control"
-          id="typeBook"
-          name="typeBook"
-          [(ngModel)]="mediaForm.type"
-        >
+        <select class="form-control" id="typeBook" name="typeBook" [(ngModel)]="mediaForm.booktype">
           <!-- <option selected>Choisir un type de livre</option> -->
-          <option *ngFor="let type of bookTypes" [value]="type">
-            {{ type }}
-          </option>
+          <option *ngFor="let type of bookTypes" [value]="type">{{ type }}</option>
         </select>
       </div>
     </div>
@@ -197,89 +104,52 @@
     <div class="card-body" *ngIf="showMagazineForm">
       <div class="form-group">
         <label for="issn">ISSN:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="issn"
-          name="issn"
-          [(ngModel)]="mediaForm.ISSN"
-        />
+        <input type="text" class="form-control" id="issn" name="issn" [(ngModel)]="mediaForm.ISSN"/>
       </div>
 
       <div class="form-group">
         <label for="numberMag">Numéro:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="numberMag"
-          name="numberMag"
-          [(ngModel)]="mediaForm.number"
-        />
+        <input type="number" class="form-control" id="numberMag" name="numberMag" [(ngModel)]="mediaForm.number"/>
       </div>
 
       <div class="form-group">
         <label for="periodicity">Périodicité:</label>
-        <select
-          class="form-select"
-          id="periodicity"
-          name="periodicity"
-          [(ngModel)]="mediaForm.periodicity"
-        >
+        <select class="form-select" id="periodicity" name="periodicity" [(ngModel)]="mediaForm.magazinePeriodicity">
           <!-- <option selected>Choisir une périodicité</option> -->
-          <option *ngFor="let type of magPeriodicities" [value]="type">
-            {{ type }}
-          </option>
+          <option *ngFor="let type of magPeriodicities" [value]="type">{{ type }}</option>
         </select>
       </div>
     </div>
 
     <div class="card-body" *ngIf="showMovieForm">
       <div class="form-group">
-        <label for="directors">Réalisateur(s):</label>
-        <input
-          type="text"
-          class="form-control"
-          id="directors"
-          name="directors"
-          [(ngModel)]="mediaForm.directors"
-        />
+        <label for="director">Réalisateur(s):</label>
+        <input *ngFor="let e of [].constructor(mediaForm.directors.length); index as idx"
+          type="text" class="form-control" id="director{{ idx }}" name="director{{ idx }}" [(ngModel)]="mediaForm.directors[idx]"/>
+        <button type="button" class="btn btn-primary" (click)="addDirector()">
+          <i class="bi bi-plus-square"></i>
+        </button>
       </div>
 
       <div class="form-group">
         <label for="actors">Acteur(s):</label>
-        <input
-          type="text"
-          class="form-control"
-          id="actors"
-          name="actors"
-          [(ngModel)]="mediaForm.actors"
-        />
+        <input *ngFor="let e of [].constructor(mediaForm.actors.length); index as idx"
+          type="text" class="form-control" id="actors{{ idx }}" name="actors{{ idx }}"[(ngModel)]="mediaForm.actors[idx]"/>
+        <button type="button" class="btn btn-primary" (click)="addActor()">
+          <i class="bi bi-plus-square"></i>
+        </button>
       </div>
-      <!-- Ces deux champs sont des tableaux donc il faudrait soit avoir un bouton ajouter un acteur, soit séparer chaque acteur en fonction d'un caractère type ',' -->
 
       <div class="form-group">
         <label for="durationMovie">Durée du film (en min):</label>
-        <input
-          type="number"
-          class="form-control"
-          id="durationMovie"
-          name="durationMovie"
-          [(ngModel)]="mediaForm.durationMovie"
-        />
+        <input type="number" class="form-control" id="durationMovie" name="durationMovie" [(ngModel)]="mediaForm.duration"/>
       </div>
 
       <div class="form-group">
         <label for="supportMovie">Support du film:</label>
-        <select
-          class="form-select"
-          id="supportMovie"
-          name="supportMovie"
-          [(ngModel)]="mediaForm.supportMovie"
-        >
+        <select class="form-select" id="supportMovie" name="supportMovie" [(ngModel)]="mediaForm.movieSupport">
           <!-- <option selected>Choisir un support</option> -->
-          <option *ngFor="let type of movieSupports" [value]="type">
-            {{ type }}
-          </option>
+          <option *ngFor="let type of movieSupports" [value]="type">{{ type }}</option>
         </select>
       </div>
     </div>
@@ -287,61 +157,33 @@
     <div class="card-body" *ngIf="showMusicForm">
       <div class="form-group">
         <label for="tracks">Piste(s):</label>
-        <input
-          type="text"
-          class="form-control"
-          id="tracks"
-          name="tracks"
-          [(ngModel)]="mediaForm.tracks"
-        />
+        <input *ngFor=" let e of [].constructor(mediaForm.tracks.length); index as idx" 
+        type="text" class="form-control" id="tracks{{ idx }}" name="tracks{{ idx }}" [(ngModel)]="mediaForm.tracks[idx]"/>
+        <button type="button" class="btn btn-primary" (click)="addTrack()">
+          <i class="bi bi-plus-square"></i>
+        </button>
       </div>
-      <!-- idem acteurs et réal -->
 
       <div class="form-group">
         <label for="artist">Artiste:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="artist"
-          name="artist"
-          [(ngModel)]="mediaForm.artist"
-        />
+        <input type="text" class="form-control" id="artist" name="artist" [(ngModel)]="mediaForm.artist"/>
       </div>
 
       <div class="form-group">
         <label for="durationMusic">Durée (en min):</label>
-        <input
-          type="number"
-          class="form-control"
-          id="durationMusic"
-          name="durationMusic"
-          [(ngModel)]="mediaForm.durationMusic"
-        />
+        <input type="number" class="form-control" id="durationMusic" name="durationMusic" [(ngModel)]="mediaForm.duration"/>
       </div>
 
       <div class="form-group">
         <label for="trackNumber">Nombre de pistes:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="trackNumber"
-          name="trackNumber"
-          [(ngModel)]="mediaForm.tracksNumber"
-        />
+        <input type="number" class="form-control" id="trackNumber" name="trackNumber" [(ngModel)]="mediaForm.trackNumber"/>
       </div>
 
       <div class="form-group">
         <label for="supportMusic">Support :</label>
-        <select
-          class="form-select"
-          id="supportMusic"
-          name="supportMusic"
-          [(ngModel)]="mediaForm.supportMusic"
-        >
+        <select class="form-select" id="supportMusic" name="supportMusic" [(ngModel)]="mediaForm.musicSupport">
           <!-- <option selected>Choisir un support</option> -->
-          <option *ngFor="let type of musicSupports" [value]="type">
-            {{ type }}
-          </option>
+          <option *ngFor="let type of musicSupports" [value]="type">{{ type }}</option>
         </select>
       </div>
     </div>
@@ -349,35 +191,18 @@
     <div class="card-body" *ngIf="showVideoGameForm">
       <div class="form-group">
         <label for="pegi">PEGI:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="pegi"
-          name="pegi"
-          [(ngModel)]="mediaForm.pegi"
-        />
+        <input type="number" class="form-control" id="pegi" name="pegi" [(ngModel)]="mediaForm.pegi"/>
       </div>
 
       <div class="form-group">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          id="multiplayer"
-          name="multiplayer"
-          [(ngModel)]="mediaForm.multiPlayer"
-        />
+        <input type="checkbox" class="form-check-input" id="multiplayer" name="multiplayer" [(ngModel)]="mediaForm.multiPlayer"/>
         <label for="multiplayer"> Multijoueur ?</label>
       </div>
     </div>
 
     <div class="card-footer">
       <div class="btn-group btn-group-lg float-right">
-        <!--attention faire un bouton quand shoFirstForm=true qui permet d'afficher la seconde partie du form et quand il est à false ça submit-->
-        <a
-          class="btn btn-success"
-          *ngIf="showFirstForm"
-          (click)="showSecondPartOfForm()"
-        >
+        <a class="btn btn-success" *ngIf="showFirstForm" (click)="showSecondPartOfForm()">
           <i class="bi bi-check-square-fill"></i>
         </a>
         <button type="submit" class="btn btn-success" *ngIf="!showFirstForm">

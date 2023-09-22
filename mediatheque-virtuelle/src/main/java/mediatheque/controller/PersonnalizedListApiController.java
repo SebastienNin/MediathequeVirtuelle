@@ -3,6 +3,7 @@ package mediatheque.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,29 +23,32 @@ import mediatheque.model.PersonnalizedList;
 import mediatheque.model.Views;
 
 @RestController
-@RequestMapping("/api/persolist")
+@CrossOrigin(origins = "http://localhost:4200") 
+@RequestMapping("/api/personnalizedList")
 public class PersonnalizedListApiController {
 	
 	@Autowired
-	private IDAOPersonnalizedList daoPersoList;
-	
-	@Autowired
-	private IDAOPersoListJoinMedia daoPersoListJoinMedia;
+	private IDAOPersonnalizedList daoPersonnalizedList;
 	
 	@Autowired
 	private IDAOAccount daoAccount;
 	
-	@GetMapping
-	@JsonView(Views.PersoList.class)
+	public PersonnalizedListApiController(IDAOPersonnalizedList daoPersonnalizedList) {
+		super();
+		this.daoPersonnalizedList = daoPersonnalizedList;
+	}
+	
+	@GetMapping("")
+	@JsonView(Views.Common.class)
 	public List<PersonnalizedList> findAll() {
-		return daoPersoList.findAll();
+		return daoPersonnalizedList.findAll();
 	}
 	
 	@GetMapping("/account/{accountId}")
 	@JsonView(Views.PersoList.class)
 	public List<PersonnalizedList> findListByAccount(@PathVariable Integer accountId) {
 		Account account = daoAccount.findById(accountId).get();
-		return daoPersoList.findByAccount(account);
+		return daoPersonnalizedList.findByAccount(account);
 	}
 	
 	@GetMapping("/{accountId}/{name}")
@@ -52,19 +56,19 @@ public class PersonnalizedListApiController {
 	public List<PersonnalizedList> findListByNameAndAccount(@PathVariable Integer accountId, @PathVariable String name) {
 		Account account = daoAccount.findById(accountId).get();
 		
-		return daoPersoList.findByNameAndAccount(name, account);
+		return daoPersonnalizedList.findByNameAndAccount(name, account);
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(Views.PersoList.class)
+	@JsonView(Views.Common.class)
 	public PersonnalizedList findById(@PathVariable Integer id) {
-		return daoPersoList.findById(id).get();
+		return daoPersonnalizedList.findById(id).get();
 	}
 	
 	@PostMapping
 	@JsonView(Views.PersoList.class)
 	public PersonnalizedList add(@RequestBody PersonnalizedList persoList) {
-		return daoPersoList.save(persoList);
+		return daoPersonnalizedList.save(persoList);
 	}
 	
 	@PutMapping("/{id}")
@@ -76,6 +80,6 @@ public class PersonnalizedListApiController {
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		this.daoPersoList.deleteById(id);
+		this.daoPersonnalizedList.deleteById(id);
 	}
 }

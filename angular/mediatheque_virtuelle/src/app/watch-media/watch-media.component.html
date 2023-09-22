@@ -1,0 +1,29 @@
+<h4><button (click)="showAllMedia()">Ma collection</button>   <button (click)="showMovieList()">Films</button>      <button (click)="showBoardGameList()">Jeux de Plateau</button>        <button (click)="showVideoGameList()">Jeux Vidéos</button>     <button (click)="showBookList()">Livres</button>     <button (click)="showMagazineList()">Magazines</button>      <button (click)="showMusicList()">Musique</button></h4>
+
+<table *ngIf="showAllMediaForm">
+    <thead>Liste de tous vos Médias</thead>
+</table>
+
+<table *ngIf="showBoardGameForm">
+    <thead>Liste des Jeux de plateaux</thead>
+</table>
+
+<table *ngIf="showBookForm">
+    <thead>Liste des Livres</thead>
+</table>
+
+<table *ngIf="showMagazineForm">
+    <thead>Liste des Magazines</thead>
+</table>
+
+<table *ngIf="showMovieForm">
+    <thead>Liste des Films</thead>
+</table>
+
+<table *ngIf="showMusicForm">
+    <thead>Liste des Musiques</thead>
+</table>
+
+<table *ngIf="showVideoGameForm">
+    <thead>Liste des Jeux Vidéos</thead>
+</table>

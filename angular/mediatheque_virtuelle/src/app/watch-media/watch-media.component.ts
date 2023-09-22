@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Media } from '../modele/media';
+import { WatchMediaService } from './watch-media.service';
 
 @Component({
   selector: 'app-watch-media',
@@ -15,6 +18,19 @@ export class WatchMediaComponent {
   showMovieForm: boolean = false;
   showMusicForm: boolean = false;
   showVideoGameForm: boolean = false;
+
+  constructor(private watchMediaService: WatchMediaService, private router: Router) {}
+
+  list(): Array<Media> {
+    return this.watchMediaService.findAll();
+  }
+
+  //Ajout d'un média, avec redirection vers la page d'ajout d'un média
+  addMedia() {
+    this.router.navigate(["/media/add"]);
+  }
+
+  addToMyMedia() {}
 
   //Afficher les listes des Médias correspondant
   showAllMedia() {

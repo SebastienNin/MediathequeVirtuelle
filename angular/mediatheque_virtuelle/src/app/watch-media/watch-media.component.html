@@ -1,29 +1,259 @@
-<h4><button (click)="showAllMedia()">Ma collection</button>   <button (click)="showMovieList()">Films</button>      <button (click)="showBoardGameList()">Jeux de Plateau</button>        <button (click)="showVideoGameList()">Jeux Vidéos</button>     <button (click)="showBookList()">Livres</button>     <button (click)="showMagazineList()">Magazines</button>      <button (click)="showMusicList()">Musique</button></h4>
+<nav class="nav nav-pills m-5">
+    <div class="card-header">
+        <h4>
+            <button type="button" class="btn btn-primary" (click)="showAllMedia()">Médias</button>   
+            <button type="button" class="btn btn-primary" (click)="showMovieList()">Films</button>      
+            <button type="button" class="btn btn-primary" (click)="showBoardGameList()">Jeux de Plateau</button>        
+            <button type="button" class="btn btn-primary" (click)="showVideoGameList()">Jeux Vidéos</button>     
+            <button type="button" class="btn btn-primary" (click)="showBookList()">Livres</button>     
+            <button type="button" class="btn btn-primary" (click)="showMagazineList()">Magazines</button>      
+            <button type="button" class="btn btn-primary" (click)="showMusicList()">Musique</button>
+        </h4>
+    </div>
 
-<table *ngIf="showAllMediaForm">
-    <thead>Liste de tous vos Médias</thead>
-</table>
+    <div class="card-body">
 
-<table *ngIf="showBoardGameForm">
-    <thead>Liste des Jeux de plateaux</thead>
-</table>
+        <div *ngIf="showAllMediaForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="6">Liste de tous les Médias</th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Type de Média</th>
+                        <th>Maison d'edition</th>
+                        <th>Langue d'origine</th>
+                        <th>Date de parution</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let med of list()">
+                        <td>{{med.name}}</td>
+                        <td>{{med.typeMedia}}</td>
+                        <td>{{med.publishingHouse}}</td>
+                        <td>{{med.language}}</td>
+                        <td>{{med.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                                class="bi bi-plus-square"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <td><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
+                </tfoot>
+            </table>
+            <div class="card-footer">
+                <a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a>
+            </div>
+        </div>
 
-<table *ngIf="showBookForm">
-    <thead>Liste des Livres</thead>
-</table>
+        <div *ngIf="showBoardGameForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="8">Liste des Jeux de plateaux</th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Maison d'edition</th>
+                        <th>Nombre de joueur(s)</th>
+                        <th>Age de recoomendation</th>
+                        <th>Durée du jeu (en minutes)</th>
+                        <th>Langue d'origine</th>
+                        <th>Date de parution</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let med of list()">
+                    <tr *ngIf="med.typeMedia=='BoardGame'">
+                        <td>{{med.name}}</td>
+                        <td>{{med.publishingHouse}}</td>
+                        <td>{{med.playerNumber}}</td>
+                        <td>{{med.recommendedAge}}</td>
+                        <td>{{med.duration}}</td>
+                        <td>{{med.language}}</td>
+                        <td>{{med.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                                class="bi bi-plus-square"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-<table *ngIf="showMagazineForm">
-    <thead>Liste des Magazines</thead>
-</table>
+        <div *ngIf="showBookForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="7">Liste des Livres</th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Auteur</th>
+                        <th>Type de Livre</th>
+                        <th>Maison d'edition</th>
+                        <th>Langue d'origine</th>
+                        <th>Date de parution</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let med of list()">
+                    <tr *ngIf="med.typeMedia=='Book'">
+                        <td>{{med.name}}</td>
+                        <td>{{med.author}}</td>
+                        <td>{{med.booktype}}</td>
+                        <td>{{med.publishingHouse}}</td>
+                        <td>{{med.language}}</td>
+                        <td>{{med.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                                class="bi bi-plus-square"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-<table *ngIf="showMovieForm">
-    <thead>Liste des Films</thead>
-</table>
+        <div *ngIf="showMagazineForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="6">Liste des Magazines</th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Périodicité</th>
+                        <th>Maison d'edition</th>
+                        <th>Langue d'origine</th>
+                        <th>Date de parution</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let med of list()">
+                    <tr *ngIf="med.typeMedia=='Magazine'">
+                        <td>{{med.name}}</td>
+                        <td>{{med.magazinePeriodicity}}</td>
+                        <td>{{med.publishingHouse}}</td>
+                        <td>{{med.language}}</td>
+                        <td>{{med.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                                class="bi bi-plus-square"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-<table *ngIf="showMusicForm">
-    <thead>Liste des Musiques</thead>
-</table>
+        <div *ngIf="showMovieForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="8">Liste des Films</th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Réalisateur(s)</th>
+                        <th>Acteurs</th>
+                        <th>Durée du film</th>
+                        <th>Maison d'edition</th>
+                        <th>Langue d'origine</th>
+                        <th>Date de parution</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let med of list()">
+                    <tr *ngIf="med.typeMedia=='Movie'">
+                        <td>{{med.name}}</td>
+                        <td>{{med.directors}}</td>
+                        <td>{{med.actors}}</td>
+                        <td>{{med.duration}}</td>
+                        <td>{{med.publishingHouse}}</td>
+                        <td>{{med.language}}</td>
+                        <td>{{med.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                                class="bi bi-plus-square"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-<table *ngIf="showVideoGameForm">
-    <thead>Liste des Jeux Vidéos</thead>
-</table>
+        <div *ngIf="showMusicForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="9">Liste des Musiques</th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Artiste</th>
+                        <th>Nombre de chansons</th>
+                        <th>Titres des chansons</th>
+                        <th>Durée totale de l'Album</th>
+                        <th>Maison d'edition</th>
+                        <th>Langue d'origine</th>
+                        <th>Date de parution</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let med of list()">
+                    <tr *ngIf="med.typeMedia=='Music'">
+                        <td>{{med.name}}</td>
+                        <td>{{med.artist}}</td>
+                        <td>{{med.trackNumber}}</td>
+                        <td>{{med.tracks}}</td>
+                        <td>{{med.duration}}</td>
+                        <td>{{med.publishingHouse}}</td>
+                        <td>{{med.language}}</td>
+                        <td>{{med.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                                class="bi bi-plus-square"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="showVideoGameForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Liste des Jeux Vidéos</th>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Multijoueur</th>
+                        <th>Pegi</th>
+                        <th>Maison d'edition</th>
+                        <th>Langue d'origine</th>
+                        <th>Date de parution</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let med of list()">
+                    <tr *ngIf="med.typeMedia=='VideoGame'">
+                        <td>{{med.name}}</td>
+                        <td *ngIf="med.multiPlayer">Oui</td>
+                        <td *ngIf="!med.multiPlayer">Non</td>
+                        <td>{{med.pegi}}</td>
+                        <td>{{med.publishingHouse}}</td>
+                        <td>{{med.language}}</td>
+                        <td>{{med.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                                class="bi bi-plus-square"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</nav>

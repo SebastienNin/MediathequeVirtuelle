@@ -17,6 +17,7 @@ import { PersoListComponent } from './perso-list/perso-list.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
 import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
+import { WatchMediaComponent } from './watch-media/watch-media.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.
     MyAccountComponent,
     PersonnalizedListComponent,
     SeeMediaDetailsComponent
+    WatchMediaComponent
 
   ],
   imports: [

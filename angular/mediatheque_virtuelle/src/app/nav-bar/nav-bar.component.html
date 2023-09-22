@@ -22,6 +22,9 @@
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" [routerLink]="['/personnalizedList']" routerLinkActive="active">Listes personnalisées</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/watchMedia']" routerLinkActive="active">Listes des Médias</a>
+            </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" [routerLink]="['/myAccount']" routerLinkActive="active">Mon compte</a>
             </li>

@@ -18,17 +18,19 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import mediatheque.controller.request.MediaRequest;
+import mediatheque.controller.response.MediaResponse;
 import mediatheque.dao.IDAOBook;
 import mediatheque.dao.IDAOMedia;
+import mediatheque.exception.MediaNotFoundException;
 import mediatheque.model.BoardGame;
 import mediatheque.model.Book;
 import mediatheque.model.Magazine;
 import mediatheque.model.Media;
 import mediatheque.model.Movie;
 import mediatheque.model.Music;
-import mediatheque.model.TypeMedia;
 import mediatheque.model.VideoGame;
 import mediatheque.model.Views;
 
@@ -71,10 +73,25 @@ public class MediaApiController {
 		return daoMedia.findByName(name);
 	}
 
+//	@GetMapping("/{id}")
+//	@JsonView(Views.Media.class)
+//	public Media findMediaById(@PathVariable Integer id) {
+//		return daoMedia.findById(id).get();
+//	}
+	
 	@GetMapping("/{id}")
-	@JsonView(Views.Media.class)
-	public Media findMediaById(@PathVariable Integer id) {
-		return daoMedia.findById(id).get();
+	@Transactional
+	public MediaResponse findMediaById(@PathVariable Integer id) {
+		Media media = this.daoMedia.findById(id).orElseThrow(MediaNotFoundException::new);
+		MediaResponse response = new MediaResponse();
+		
+		BeanUtils.copyProperties(media, response);
+		
+		//A changer et adapter
+		//response.setNbProduits(fournisseur.getProduits().size());
+		response.setNbAccountMedia(media.getAccountMediaList().size());
+		
+		return response;
 	}
 
 	@PostMapping("/")

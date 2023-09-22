@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let med of list()">
+                    <tr *ngFor="let med of media$ | async">
                         <td>{{med.name}}</td>
                         <td>{{med.typeMedia}}</td>
                         <td>{{med.publishingHouse}}</td>
@@ -67,7 +67,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of list()">
+                <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='BoardGame'">
                         <td>{{med.name}}</td>
                         <td>{{med.publishingHouse}}</td>
@@ -101,7 +101,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of list()">
+                <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Book'">
                         <td>{{med.name}}</td>
                         <td>{{med.author}}</td>
@@ -133,7 +133,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of list()">
+                <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Magazine'">
                         <td>{{med.name}}</td>
                         <td>{{med.magazinePeriodicity}}</td>
@@ -166,7 +166,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of list()">
+                <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Movie'">
                         <td>{{med.name}}</td>
                         <td>{{med.directors}}</td>
@@ -202,7 +202,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of list()">
+                <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Music'">
                         <td>{{med.name}}</td>
                         <td>{{med.artist}}</td>
@@ -237,7 +237,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of list()">
+                <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='VideoGame'">
                         <td>{{med.name}}</td>
                         <td *ngIf="med.multiPlayer">Oui</td>

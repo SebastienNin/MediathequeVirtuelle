@@ -6,7 +6,7 @@ import { BookType } from '../modele/bookType';
 import { MagazinePeriodicity } from '../modele/magazinePeriodicity';
 import { MovieSupport } from '../modele/movieSupport';
 import { MusicSupport } from '../modele/musicSupport';
-import { HttpMediaService } from './http-media.service';
+import { HttpMediaService } from '../http-media.service';
 
 @Component({
   selector: 'app-add-media',

@@ -16,6 +16,7 @@ import { AccountHttpService } from './account/account-http.service';
 import { PersoListComponent } from './perso-list/perso-list.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
+import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PersonnalizedListComponent } from './personnalizedList/personnalizedLis
     AddMediaComponent,
     PersoListComponent,
     MyAccountComponent,
-    PersonnalizedListComponent
+    PersonnalizedListComponent,
+    SeeMediaDetailsComponent
 
   ],
   imports: [

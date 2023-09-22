@@ -3,6 +3,7 @@ package mediatheque.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,19 +82,17 @@ public class ThemeApiController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Type de thème invalide");
 		}
 	}
-	
-	@GetMapping("/mediaByLabel/{label}")
-	@JsonView(Views.Media.class)
-	public List<Media> findMediaByLabel(@PathVariable String label) {
-	    try {
-	    	List<Theme> themeList = daoTheme.findByLabel(label);
-	        return daoTheme.findMediaByThemeLabel(label);
-	    } catch (IllegalArgumentException e) {
-	        // Gérer le cas où le label n'est pas valide
-	        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Label de thème invalide");
-	    }
-	}
 
+	@GetMapping("/mediaByLabel/{label}")
+	public ResponseEntity<List<Media>> findMediaByLabel(@PathVariable String label) {
+		try {
+			List<Media> mediaList = daoTheme.findMediaByThemeLabel(label);
+			return ResponseEntity.ok(mediaList);
+		} catch (IllegalArgumentException e) {
+			// Gérer le cas où le label n'est pas valide
+			return ResponseEntity.badRequest().body(null);
+		}
+	}
 
 	@PostMapping("/")
 	@JsonView(Views.Theme.class)

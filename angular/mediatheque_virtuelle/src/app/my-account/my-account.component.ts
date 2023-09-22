@@ -45,6 +45,7 @@ export class MyAccountComponent {
       (resp) => {
         alert("Informations mises à jour avec succès.");
         this.user = resp;
+        this.authService.updateUser(this.user);
       }
     );
   }
@@ -64,6 +65,7 @@ export class MyAccountComponent {
       alert("Mot de passe mis à jour avec succès.");
       this.changePasswordFormGroup.reset();
       this.user = resp;
+      this.authService.updateUser(this.user);
     });
   }
 }

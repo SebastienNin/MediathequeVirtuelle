@@ -44,4 +44,10 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.getUser() != null;
   }
+
+    // Ajoutez cette méthode pour mettre à jour l'utilisateur en session
+  updateUser(updatedUser: Account): void {
+      let strUser = JSON.stringify(updatedUser);
+      sessionStorage.setItem("user", strUser);
+  }
 }

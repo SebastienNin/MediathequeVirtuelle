@@ -29,9 +29,6 @@
                 <a class="nav-link" [routerLink]="['/myAccount']" routerLinkActive="active">Mon compte</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
-                <a class="nav-link" [routerLink]="['/myAccount']" routerLinkActive="active">Mon compte</a>
-            </li>
-            <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" (click)="disconnection()" routerLinkActive="active">Deconnexion</a>
             </li>
         </ul>

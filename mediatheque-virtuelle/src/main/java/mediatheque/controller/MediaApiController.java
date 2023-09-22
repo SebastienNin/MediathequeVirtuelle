@@ -71,6 +71,13 @@ public class MediaApiController {
 		return daoMedia.findByName(name);
 	}
 
+	@GetMapping("/nameContaining/{name}")
+	// To set back if needed | Seb
+	// @JsonView(Views.Media.class)
+	public List<Media> findByNameContaining(@PathVariable String name) {
+		return daoMedia.findByNameContaining(name);
+	}
+
 	@GetMapping("/{id}")
 	@JsonView(Views.Media.class)
 	public Media findMediaById(@PathVariable Integer id) {

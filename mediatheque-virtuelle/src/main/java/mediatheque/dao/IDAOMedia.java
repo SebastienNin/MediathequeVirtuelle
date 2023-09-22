@@ -15,4 +15,6 @@ public interface IDAOMedia extends JpaRepository<Media,Integer> {
 	
 	@Query("select b from Book b")
 	List<Book> findAllBook();
+
+	List<Media> findByNameContaining(String name);
 }

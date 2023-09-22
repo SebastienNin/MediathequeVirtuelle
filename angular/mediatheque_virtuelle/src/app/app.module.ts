@@ -14,6 +14,7 @@ import { AccountComponent } from './account/account.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { AccountHttpService } from './account/account-http.service';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
+import { WatchMediaComponent } from './watch-media/watch-media.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import { PersonnalizedListComponent } from './personnalizedList/personnalizedLis
     MatchPasswordDirective,
     AccountComponent,
     AddMediaComponent,
-    PersonnalizedListComponent
+    PersoListComponent,
+    MyAccountComponent,
+    PersonnalizedListComponent,
+    WatchMediaComponent
 
   ],
   imports: [

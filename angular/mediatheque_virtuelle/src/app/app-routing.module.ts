@@ -8,6 +8,7 @@ import { AccountComponent } from './account/account.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { forceToDisconnectGuard } from './force-to-disconnect.guard';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
+import { WatchMediaComponent } from './watch-media/watch-media.component';
 
 const routes: Routes = [
   {path: "", component: AccueilComponent, pathMatch: 'full'},
@@ -15,7 +16,10 @@ const routes: Routes = [
   {path: "connection", component: ConnectionComponent, canActivate: [forceToDisconnectGuard]},
   {path: "signin", component: SigninComponent, canActivate: [forceToDisconnectGuard]},
   {path: "media/add", component: AddMediaComponent, canActivate: [authGuard]},
-  {path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard]}
+  {path: "perso-list", component: PersoListComponent, canActivate: [authGuard]},
+  {path: "myAccount", component: MyAccountComponent, canActivate: [authGuard]},
+  {path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard]},
+  {path: "watchMedia", component: WatchMediaComponent}
 ];
 
 @NgModule({

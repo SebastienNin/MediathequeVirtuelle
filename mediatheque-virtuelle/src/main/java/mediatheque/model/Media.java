@@ -30,7 +30,7 @@ import jakarta.persistence.Version;
 @DiscriminatorColumn(name = "media_type")
 @JsonTypeInfo(
 	      use = JsonTypeInfo.Id.NAME, 
-	      include = As.PROPERTY, 
+	      include = JsonTypeInfo.As.PROPERTY, 
 	      property = "type")
 	    @JsonSubTypes({
 	        @JsonSubTypes.Type(value = BoardGame.class, name = "boardGame"),
@@ -40,7 +40,6 @@ import jakarta.persistence.Version;
 	        @JsonSubTypes.Type(value = Music.class, name = "music"),
 	        @JsonSubTypes.Type(value = VideoGame.class, name = "videoGame")
 	    })
-
 public class Media {
 
 	@Id
@@ -59,7 +58,11 @@ public class Media {
 	protected LocalDate parutionDate;
 	@Column(name = "add_date", nullable = false)
 	protected LocalDate addDate;
-	
+
+	// Il serait intéressant d'ajouter un attribut mediaType qui correspondait 
+	@Column(name = "media_type", insertable = false, updatable = false)
+	private String mediaType;
+
 	@OneToMany(mappedBy = "media")
 	@JsonIgnore
 	protected List<AccountMedia> accountMediaList = new ArrayList<AccountMedia>();

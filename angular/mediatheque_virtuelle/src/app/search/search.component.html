@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center">Recherchez un document dans Media Hub</h2>
+            <form action="#" method="get" (ngSubmit)="search()">
+                <div class="input-group mb-3">
+                    <input type="text" [(ngModel)]="query" name="query" class="form-control"
+                        placeholder="Rechercher...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Rechercher</button>
+                    </div>
+                </div>
+                <!-- <div class="form-floating mb-3">
+                    <select id="mediaType" name="mediaType" [(ngModel)]="selectedMediaType" class="form-control half-width-select">
+                      <option selected value="">Tous</option>
+                      <option value="video_game">Jeu Vidéo</option>
+                      <option value="board_game">Jeu de société</option>
+                      <option value="movie">Film</option>
+                      <option value="book">Livre</option>
+                      <option value="music">Musique</option>
+                      <option value="magazin">Journal</option>
+                    </select>
+                    <label for="floatingSelect">Type de Média :</label>
+                  </div> -->
+            </form>
+
+            <div *ngIf="results">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th colspan="5" class="text-center">Résultats de la recherche</th>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Type de Média</th>
+                            <th>Maison d'édition</th>
+                            <th>Langue d'origine</th>
+                            <th>Date de parution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let med of results">
+                            <td>{{med.name}}</td>
+                            <td>{{med.type}}</td>
+                            <td>{{med.publishingHouse}}</td>
+                            <td>{{med.language}}</td>
+                            <td>{{med.parutionDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

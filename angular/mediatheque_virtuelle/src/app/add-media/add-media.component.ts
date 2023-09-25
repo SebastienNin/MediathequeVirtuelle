@@ -91,6 +91,7 @@ export class AddMediaComponent {
 
   addNewMedia() {
 
+    console.log(this.mediaForm);
     this.mediaServiceHttp.save(this.mediaForm);
 
     //Vide les variables pour pouvoir ajouter un nouveau média

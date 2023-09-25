@@ -1,15 +1,10 @@
 package mediatheque.controller;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
-import java.nio.file.Path;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,10 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -33,13 +25,18 @@ import mediatheque.controller.request.MediaRequest;
 import mediatheque.controller.response.MediaResponse;
 import mediatheque.dao.IDAOBook;
 import mediatheque.dao.IDAOMedia;
+import mediatheque.dao.IDAOMediaTheme;
+import mediatheque.dao.IDAOTheme;
 import mediatheque.exception.MediaNotFoundException;
 import mediatheque.model.BoardGame;
 import mediatheque.model.Book;
+import mediatheque.model.EnumTheme;
 import mediatheque.model.Magazine;
 import mediatheque.model.Media;
+import mediatheque.model.MediaTheme;
 import mediatheque.model.Movie;
 import mediatheque.model.Music;
+import mediatheque.model.Theme;
 import mediatheque.model.TypeMedia;
 import mediatheque.model.VideoGame;
 import mediatheque.model.Views;
@@ -52,11 +49,17 @@ public class MediaApiController {
 	private IDAOMedia daoMedia;
 
 	private IDAOBook daoBook;
+	
+	private IDAOTheme daoTheme;
+	
+	private IDAOMediaTheme daoMediaTheme;
 
-	public MediaApiController(IDAOMedia daoMedia, IDAOBook daoBook) {
+	public MediaApiController(IDAOMedia daoMedia, IDAOBook daoBook, IDAOTheme daoTheme, IDAOMediaTheme daoMediaTheme) {
 		super();
 		this.daoMedia = daoMedia;
 		this.daoBook = daoBook;
+		this.daoTheme = daoTheme;
+		this.daoMediaTheme = daoMediaTheme;
 	}
 
 	@GetMapping("/")
@@ -153,44 +156,86 @@ public class MediaApiController {
 		// en fonction, on récupre les propriétés spécifiques au type de média concerné
 
 		// Étape 1 : Téléchargez l'image et générez un chemin temporaire
-		String temporaryImagePath = "/temp_media_pictures/" + UUID.randomUUID().toString() + ".jpg";
+//		String temporaryImagePath = "/temp_media_pictures/" + UUID.randomUUID().toString() + ".jpg";
 
 		Media media;
 		switch (mediaRequest.getTypeMedia()) {
 		case BoardGame: {
 			BoardGame boardGame = new BoardGame();
 			BeanUtils.copyProperties(mediaRequest, boardGame);
-			media = daoMedia.save(boardGame);
+			media = daoMedia.save(boardGame);	
+			for(String themeString : mediaRequest.getThemes()) {
+				System.out.println(themeString);
+				Theme theme = new Theme(themeString, EnumTheme.BOARDGAME);
+				theme = daoTheme.save(theme);
+				MediaTheme mediaTheme = new MediaTheme(media, theme);
+				mediaTheme = daoMediaTheme.save(mediaTheme);
+			}
 			break;
 		}
 		case Book: {
 			Book book = new Book();
 			BeanUtils.copyProperties(mediaRequest, book);
 			media = daoMedia.save(book);
+			for(String themeString : mediaRequest.getThemes()) {
+				System.out.println(themeString);
+				Theme theme = new Theme(themeString, EnumTheme.BOOK);
+				theme = daoTheme.save(theme);
+				MediaTheme mediaTheme = new MediaTheme(media, theme);
+				mediaTheme = daoMediaTheme.save(mediaTheme);
+			}
 			break;
 		}
 		case Magazine: {
 			Magazine magazine = new Magazine();
 			BeanUtils.copyProperties(mediaRequest, magazine);
 			media = daoMedia.save(magazine);
+			for(String themeString : mediaRequest.getThemes()) {
+				System.out.println(themeString);
+				Theme theme = new Theme(themeString, EnumTheme.MAGAZINE);
+				theme = daoTheme.save(theme);
+				MediaTheme mediaTheme = new MediaTheme(media, theme);
+				mediaTheme = daoMediaTheme.save(mediaTheme);
+			}
 			break;
 		}
 		case Movie: {
 			Movie movie = new Movie();
 			BeanUtils.copyProperties(mediaRequest, movie);
 			media = daoMedia.save(movie);
+			for(String themeString : mediaRequest.getThemes()) {
+				System.out.println(themeString);
+				Theme theme = new Theme(themeString, EnumTheme.MOVIE);
+				theme = daoTheme.save(theme);
+				MediaTheme mediaTheme = new MediaTheme(media, theme);
+				mediaTheme = daoMediaTheme.save(mediaTheme);
+			}
 			break;
 		}
 		case Music: {
 			Music music = new Music();
 			BeanUtils.copyProperties(mediaRequest, music);
 			media = daoMedia.save(music);
+			for(String themeString : mediaRequest.getThemes()) {
+				System.out.println(themeString);
+				Theme theme = new Theme(themeString, EnumTheme.MUSIC);
+				theme = daoTheme.save(theme);
+				MediaTheme mediaTheme = new MediaTheme(media, theme);
+				mediaTheme = daoMediaTheme.save(mediaTheme);
+			}
 			break;
 		}
 		case VideoGame: {
 			VideoGame videoGame = new VideoGame();
 			BeanUtils.copyProperties(mediaRequest, videoGame);
 			media = daoMedia.save(videoGame);
+			for(String themeString : mediaRequest.getThemes()) {
+				System.out.println(themeString);
+				Theme theme = new Theme(themeString, EnumTheme.VIDEOGAME);
+				theme = daoTheme.save(theme);
+				MediaTheme mediaTheme = new MediaTheme(media, theme);
+				mediaTheme = daoMediaTheme.save(mediaTheme);
+			}
 			break;
 		}
 		default:

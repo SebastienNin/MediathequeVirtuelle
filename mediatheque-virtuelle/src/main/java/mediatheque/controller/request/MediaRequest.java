@@ -22,6 +22,9 @@ public class MediaRequest {
 	private LocalDate parutionDate;
 	private LocalDate addDate;
 	
+	// Attribut pour récupérer les labels des thèmes
+	private List<String> themes;
+	
 	//Attribut supplémentaire pour disntinguer le type de média
 	private TypeMedia typeMedia;
 	
@@ -218,6 +221,9 @@ public class MediaRequest {
 	public void setTracksNumber(int tracksNumber) {
 		this.trackNumber = tracksNumber;
 	}
+	public void setTrackNumber(int trackNumber) {
+		this.trackNumber = trackNumber;
+	}
 	public MusicSupport getMusicSupport() {
 		return musicSupport;
 	}
@@ -236,7 +242,18 @@ public class MediaRequest {
 	public void setMultiPlayer(boolean multiPlayer) {
 		this.multiPlayer = multiPlayer;
 	}
-
+	public List<String> getThemes() {
+		return themes;
+	}
+	public void setThemes(List<String> themes) {
+		this.themes = themes;
+	}
+//	public MagazinePeriodicity getMagazinePeriodicity() {
+//		return magazinePeriodicity;
+//	}
+//	public void setMagazinePeriodicity(MagazinePeriodicity magazinePeriodicity) {
+//		this.magazinePeriodicity = magazinePeriodicity;
+//	}
 }
 
 

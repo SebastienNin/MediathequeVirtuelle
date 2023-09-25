@@ -43,6 +43,7 @@ export class PersonnalizedListComponent implements OnInit {
   }
 
   saveEdit() {
+    console.log(this.editForm)
     this.personnalizedListHttpService.save(this.editForm).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
       this.cancel();
@@ -50,6 +51,7 @@ export class PersonnalizedListComponent implements OnInit {
   }
 
   saveAdd() {
+    console.log(this.addForm)
     this.personnalizedListHttpService.save(this.addForm).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
       this.cancel();

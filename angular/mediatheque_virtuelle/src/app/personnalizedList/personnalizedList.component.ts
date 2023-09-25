@@ -15,9 +15,10 @@ export class PersonnalizedListComponent implements OnInit {
 
   personnalizedLists$: Observable<PersonnalizedList[]>;
   accounts$: Observable<Account[]>;
-  personnalizedListForm: PersonnalizedList = null;
-  personnalizedListFormVide: PersonnalizedList = null;
-  showEditForm: boolean = false;
+  editForm: PersonnalizedList = null;
+  addForm: PersonnalizedList = null;
+
+
 
   constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) {}
 
@@ -26,40 +27,42 @@ export class PersonnalizedListComponent implements OnInit {
     this.accounts$ = this.accountHttpService.findAll();
   }
   add() {
-    this.personnalizedListFormVide = new PersonnalizedList();
-    this.showEditForm = true;
+    this.addForm = new PersonnalizedList();
+    this.addForm.account = new Account();
+
   }
 
-  edit(id: number) {
+ edit(id: number) {
     this.personnalizedListHttpService.findById(id).subscribe(resp => {
-      this.personnalizedListForm = resp;
-      this.showEditForm = true;
+      this.editForm = resp;
+   
+      if(!this.editForm.account) {
+        this.editForm.account = new Account();
+      }
     });
   }
 
-  save() {
-    this.personnalizedListHttpService.save(this.personnalizedListForm).subscribe(() => {
+  saveEdit() {
+    this.personnalizedListHttpService.save(this.editForm).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
       this.cancel();
     });
   }
 
-  save2() {
-    this.personnalizedListHttpService.save(this.personnalizedListFormVide).subscribe(() => {
+  saveAdd() {
+    this.personnalizedListHttpService.save(this.addForm).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
       this.cancel();
     });
   }
 
   cancel() {
-    this.personnalizedListForm = null;
-    this.showEditForm = false;
+    this.editForm = null;
+    this.addForm = null;
+
   }
 
-  erase(){
-    this.personnalizedListForm = null;
-  }
-
+  
   delete(id: number) {
     this.personnalizedListHttpService.deleteById(id).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();

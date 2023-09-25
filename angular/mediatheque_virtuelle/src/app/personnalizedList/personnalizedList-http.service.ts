@@ -21,9 +21,9 @@ export class PersonnalizedListHttpService {
   }
 
   save(personnalizedList: PersonnalizedList): Observable<PersonnalizedList> {
-    if (personnalizedList.id) { // mise à jour
+    if (personnalizedList.id) { 
       return this.http.put<PersonnalizedList>(environment.apiUrl + "/personnalizedList/" + personnalizedList.id, personnalizedList);
-    } else { // création
+    } else { 
       return this.http.post<PersonnalizedList>(environment.apiUrl + "/personnalizedList", personnalizedList);
     }
   }

@@ -40,6 +40,7 @@ import mediatheque.model.Magazine;
 import mediatheque.model.Media;
 import mediatheque.model.Movie;
 import mediatheque.model.Music;
+import mediatheque.model.TypeMedia;
 import mediatheque.model.VideoGame;
 import mediatheque.model.Views;
 
@@ -115,6 +116,23 @@ public class MediaApiController {
 		MediaResponse response = new MediaResponse();
 
 		BeanUtils.copyProperties(media, response);
+		
+		if (media instanceof BoardGame) {
+			response.setTypeMedia(TypeMedia.BoardGame);
+		} else if (media instanceof Book) {
+			response.setTypeMedia(TypeMedia.Book);
+		} else if (media instanceof Magazine) {
+			response.setTypeMedia(TypeMedia.Magazine);
+		} else if (media instanceof Movie) {
+			response.setTypeMedia(TypeMedia.Movie);
+		} else if (media instanceof Music) {
+			response.setTypeMedia(TypeMedia.Music);
+		}else if (media instanceof VideoGame) {
+			response.setTypeMedia(TypeMedia.VideoGame);
+		} else {
+			
+		}
+		
 
 		// A changer et adapter
 		// response.setNbProduits(fournisseur.getProduits().size());

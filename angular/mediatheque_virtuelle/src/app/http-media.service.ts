@@ -17,9 +17,10 @@ export class HttpMediaService {
     return this.http.get<Media[]>(environment.apiUrl + "/media/");
   }
 
-  //subscribe à faire côté component
-  findById(id: number): Observable<Media> {
-    return this.http.get<Media>(environment.apiUrl + "/media/" + id);
+  findById(id: number): Media {
+    let media: Media;
+    this.http.get<Media>(environment.apiUrl + "/media/" + id).subscribe(resp => media = resp);
+    return media;
   }
 
   save(media: Media) {

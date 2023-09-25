@@ -1,54 +1,104 @@
 <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-4">
-                <!-- Carte pour l'image -->
-                <div class="card">
-                    <img src="chemin_vers_l_image_.jpg" alt="Image" class="card-img-top">
-                </div>
-            </div>
-            <div class="col-md-8">
-                <!-- Carte pour les informations sur le jeu de plateau -->
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="card-title">Nom du jeu</h1>
-                        <p class="card-text">Nombre de joueur : </p>
-                        <p class="card-text">Age recommandé : </p>
-                        <p class="card-text">Durée de la partie :  minutes</p>
-                        <p class="card-text">Thème(s) : </p>
-                        <p class="card-text">Année de sortie : </p>
-                        <p class="card-text">Editeur : </p>
-                        <p class="card-text">Langue : </p>
-                        <p class="card-text">Dématérialisé ?</p>
-                    </div>
-                </div>
-
-                <!-- Carte pour les informations sur le livre -->
-                <div class="card">
-                    <div class="card-body">
-                        <h1 class="card-title">Titre du livre</h1>
-                        <p class="card-text">Auteur : </p>
-                        <p class="card-text">Type : </p>
-                        <p class="card-text">Genre(s) : </p>
-                        <p class="card-text">Maison d'édition : </p>
-                        <p class="card-text">Année de publication : </p>
-                        <p class="card-text">ISBN : </p>
-                        <p class="card-text">Nombre de pages : </p>
-                        <p class="card-text">Nombre de chapitres : </p>
-                        <p class="card-text">Dématérialisé ?</p>  
-                    </div>
-                </div>
-
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Carte pour l'image -->
+            <div class="card">
+                <img src="chemin_vers_l_image_.jpg" alt="Image" class="card-img-top">
             </div>
         </div>
-        <!-- Carte pour le résumé-->
-        <div class="row mt-3">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">Résumé</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac justo vel erat aliquam efficitur. Maecenas eu tristique lorem, eget euismod lorem. Sed euismod est eu justo lacinia, a suscipit libero congue. Duis tempus non ex id sodales. Nulla facilisi. Proin ut scelerisque purus, in scelerisque neque. Sed id felis eu arcu lacinia laoreet nec ac arcu. Integer at semper nulla. Nulla facilisi. Donec at congue neque. Nunc hendrerit odio eget dictum aliquam.</p>
+        <div class="col-md-8">
+             <!-- Carte pour les informations sur le jeu de plateau -->
+            <div class="card" *ngIf="showBoardGameCard">
+                <div class="card-body">
+                    <h1 class="card-title">{{media.name}}</h1>
+                    <p class="card-text">Nombre de joueur : {{media.playerNumber}}</p>
+                    <p class="card-text">Age recommandé : {{media.recommendedAge}}</p>
+                    <p class="card-text">Durée de la partie : {{media.duration}} minutes</p>
+                    <p class="card-text">Thème(s) : </p>
+                    <p class="card-text">Année de sortie : {{media.parutionDate}}</p>
+                    <p class="card-text">Editeur : {{media.publishingHouse}}</p>
+                    <p class="card-text">Langue : {{media.language}}</p>
+                    <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>
+                </div>
+            </div>
+
+            <!-- Carte pour les informations sur le livre -->
+            <div class="card" *ngIf="showBookCard">
+                <div class="card-body">
+                    <h1 class="card-title">{{media.name}}</h1>
+                    <p class="card-text">Auteur : {{media.author}}</p>
+                    <p class="card-text">Type : {{media.booktype}}</p>
+                    <p class="card-text">Genre(s) :  </p>
+                    <p class="card-text">Maison d'édition : {{media.publishingHouse}} </p>
+                    <p class="card-text">Année de publication : {{media.parutionDate}}</p>
+                    <p class="card-text">ISBN : {{media.ISBN}}</p>
+                    <p class="card-text">Nombre de pages : {{media.pagesNb}}</p>
+                    <p class="card-text">Nombre de chapitres : {{media.chaptersNb}}</p>
+                    <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>  
+                </div>
+            </div>
+
+            <!-- Carte pour les informations sur le magazine -->
+            <div class="card" *ngIf="showMagazineCard">
+                <div class="card-body">
+                    <h1 class="card-title">{{media.name}}</h1>
+                    <p class="card-text">Numéro : {{media.number}}</p>
+                    <p class="card-text">ISSN : {{media.ISSN}}</p>
+                    <p class="card-text">Périodicité : {{media.magazinePeriodicity}}</p>
+                    <p class="card-text">Date de publication : {{media.parutionDate}}</p>
+                    <p class="card-text">Thème(s) : </p>
+                    <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>  
+                </div>
+            </div>
+
+            <!-- Carte pour les informations sur le film -->
+            <div class="card" *ngIf="showMovieCard">
+                <div class="card-body">
+                    <h1 class="card-title">{{media.name}}</h1>
+                    <p class="card-text">Réalisateur(s) : {{media.directors}}</p>
+                    <p class="card-text">Acteur(s) : {{media.actors}}</p>
+                    <p class="card-text">Année de sortie : {{media.parutionDate}}</p>
+                    <p class="card-text">Durée : {{media.duration}}</p>
+                    <p class="card-text">Genre(s) : </p>                      
+                    <p class="card-text">Support : {{media.movieSupport}}</p>
+                </div>
+            </div>
+
+            <!-- Carte pour les informations sur la musique -->
+            <div class="card" *ngIf="showMusicCard">
+                <div class="card-body">
+                    <h1 class="card-title">{{media.name}}</h1>
+                    <p class="card-text">Artiste : {{media.artist}}</p>
+                    <p class="card-text">Nombre de piste(s) : {{media.trackNumber}}</p>
+                    <p class="card-text">Piste(s) : {{media.tracks}}</p>
+                        <p class="card-text">Durée : {{media.duration}}</p>
+                        <p class="card-text">Genre : </p>
+                        <p class="card-text">Date de sortie : {{media.parutionDate}}</p>
+                        <p class="card-text">Support : {{media.musicSupport}}</p>
                     </div>
+                </div>
+
+                <!-- Carte pour les informations sur le jeu vidéo -->
+                <div class="card" *ngIf="showVideoGameCard">
+                    <div class="card-body">
+                        <h1 class="card-title">{{media.name}}</h1>
+                        <p class="card-text">Thème(s) : </p>
+                        <p class="card-text">Multi-joueur ? : {{media.multiPlayer}}</p>
+                        <p class="card-text">PEGI : {{media.pegi}}</p>
+                        <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Carte pour le résumé-->
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Résumé</h2>
+                    <p class="card-text">{{media.description}}</p>
                 </div>
             </div>
         </div>
     </div>
+</div>

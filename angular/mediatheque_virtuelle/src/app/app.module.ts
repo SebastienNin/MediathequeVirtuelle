@@ -35,7 +35,7 @@ import { SearchComponent } from './search/search.component';
     MyAccountComponent,
     PersonnalizedListComponent,
     SeeMediaDetailsComponent,
-    WatchMediaComponent
+    WatchMediaComponent,
     SearchComponent
 
   ],

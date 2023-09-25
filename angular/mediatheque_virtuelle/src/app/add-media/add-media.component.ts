@@ -18,6 +18,7 @@ export class AddMediaComponent {
   //variable associée au ngModel
   mediaForm: Media = new Media();
   currentDate: string;
+  mediaTest: Media;
 
   //boolean pour l'affichage des différents formulaires
   showFirstForm: boolean = true;
@@ -36,7 +37,7 @@ export class AddMediaComponent {
   musicSupports: MusicSupport[] = Object.values(MusicSupport);
 
 
-  constructor(private mediaService: MediaService, private mediaServiceHttp: HttpMediaService) {
+  constructor(private mediaServiceHttp: HttpMediaService) {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based

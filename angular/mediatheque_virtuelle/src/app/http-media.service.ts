@@ -17,10 +17,11 @@ export class HttpMediaService {
     return this.http.get<Media[]>(environment.apiUrl + "/media/");
   }
 
-  findById(id: number): Media {
+  findById(id: number): Observable<Media> {
     let media: Media;
-    this.http.get<Media>(environment.apiUrl + "/media/" + id).subscribe(resp => media = resp);
-    return media;
+    //this.http.get<Media>(environment.apiUrl + "/media/" + id);
+
+    return this.http.get<Media>(environment.apiUrl + "/media/" + id);
   }
 
   save(media: Media) {

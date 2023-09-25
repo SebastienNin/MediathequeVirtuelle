@@ -13,7 +13,7 @@ import { TypeMedia } from '../modele/typeMedia';
 export class SeeMediaDetailsComponent {
 
   id: number;
-  media: Media;
+  media: Media = new Media();
 
   showBoardGameCard: boolean = false;
   showBookCard: boolean = false;
@@ -25,7 +25,12 @@ export class SeeMediaDetailsComponent {
 
   constructor(private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute) {
     this.route.params.subscribe(param => this.id = param['id']);
-    this.media = this.mediaServiceHttp.findById(this.id);
+    this.mediaServiceHttp.findById(this.id).subscribe(resp => {
+      console.log(resp);
+      this.media = resp
+    });
+    console.log(this.media.description);
+
     this.load();
   }
 

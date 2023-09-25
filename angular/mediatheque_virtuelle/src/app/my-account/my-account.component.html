@@ -1,6 +1,6 @@
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row --bs-primary-border-subtle">
-        <div class="col-md-3 border-right">
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-end">
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link" [class.active]="selectedMenu === 'info'" (click)="selectMenu('info')">Mes
@@ -17,131 +17,131 @@
             </ul>
         </div>
 
-        <div class="col-md-5 border-right ">
-            <div class="p-3 py-5">
+        <div class="col-md-9">
+            <div class="p-3">
                 <div *ngIf="selectedMenu === 'info'">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Mes informations</h4>
+                    <h4 class="mb-4">Mes informations</h4>
+                    <div class="mb-3">
+                        <label class="labels">Identifiant:</label>
+                        <span class="form-control-plaintext">{{ user.login }}</span>
                     </div>
-                    <div class="row mt-1">
-                        <div class="col-md-12"><label class="labels">Identifiant</label><span type="text"
-                                class="form-control" placeholder="Identifiant">{{user.login}}</span></div>
+                    <div class="mb-3">
+                        <label class="labels">Nom:</label>
+                        <span class="form-control-plaintext">{{ user.name }}</span>
                     </div>
-                    <div class="row mt-1">
-                        <div class="col-md-12"><label class="labels">Nom</label><span type="text" class="form-control"
-                                placeholder="Identifiant">{{user.name}}</span></div>
+                    <div class="mb-3">
+                        <label class="labels">Prénom:</label>
+                        <span class="form-control-plaintext">{{ user.firstName }}</span>
                     </div>
-                    <div class="row mt-1">
-                        <div class="col-md-12"><label class="labels">Prénom</label><span type="text"
-                                class="form-control" placeholder="Nom">{{user.firstName}}</span></div>
-                    </div>
-                    <div class="row mt-1">
-                        <div class="col-md-12"><label class="labels">Adresse Mail</label><span type="text"
-                                class="form-control" placeholder="Adresse mail">{{user.mail}}</span></div>
+                    <div class="mb-3">
+                        <label class="labels">Adresse Mail:</label>
+                        <span class="form-control-plaintext">{{ user.mail }}</span>
                     </div>
                 </div>
                 <div *ngIf="selectedMenu === 'editInfo'">
-                    <form [formGroup]="editInfoFormGroup" (ngSubmit)="editInfoFormGroup.valid && updateUserInfo()"
-                        novalidate autocomplete="off">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Modifier mes informations</h4>
-                        </div>
-                        <div class="row mt-1">
-                            <div class="col-md-12"><label class="labels">Identifiant</label>
-                                <input type="text" required formControlName="login" class="form-control" id="login"
-                                    name="login" placeholder="Identifiant">
+                    <h4 class="mb-4">Modifier mes informations</h4>
+                    <form [formGroup]="editInfoFormGroup" (ngSubmit)="updateUserInfo()" novalidate autocomplete="off">
+                        <div class="mb-3">
+                            <label for="login" class="labels">Identifiant:</label>
+                            <input type="text" required formControlName="login" class="form-control" id="login"
+                                name="login" placeholder="Identifiant">
+                            <div *ngIf="editInfoFormGroup.get('login').invalid && editInfoFormGroup.get('login').touched"
+                                class="text-danger">
+                                <span *ngIf="editInfoFormGroup.get('login').hasError('required')">Ce champ est
+                                    requis.</span>
                             </div>
                         </div>
-                        <div class="row mt-1">
-                            <div class="col-md-12"><label class="labels">Nom</label>
-                                <input type="text" required formControlName="name" class="form-control" id="name"
-                                    name="name" placeholder="Nom">
+                        <div class="mb-3">
+                            <label for="name" class="labels">Nom:</label>
+                            <input type="text" required formControlName="name" class="form-control" id="name"
+                                name="name" placeholder="Nom">
+                            <div *ngIf="editInfoFormGroup.get('name').invalid && editInfoFormGroup.get('name').touched"
+                                class="text-danger">
+                                <span *ngIf="editInfoFormGroup.get('name').hasError('required')">Ce champ est
+                                    requis.</span>
                             </div>
                         </div>
-                        <div class="row mt-1">
-                            <div class="col-md-12"><label class="labels">Prénom</label>
-                                <input type="text" formControlName="firstName" class="form-control"
-                                    placeholder="Prénom">
+                        <div class="mb-3">
+                            <label for="firstName" class="labels">Prénom:</label>
+                            <input type="text" formControlName="firstName" class="form-control" id="firstName"
+                                name="firstName" placeholder="Prénom">
+                            <div *ngIf="editInfoFormGroup.get('firstName').invalid && editInfoFormGroup.get('firstName').touched"
+                                class="text-danger">
+                                <span *ngIf="editInfoFormGroup.get('firstName').hasError('required')">Ce champ est
+                                    requis.</span>
                             </div>
                         </div>
-                        <div class="row mt-1">
-                            <div class="col-md-12"><label class="labels">Adresse Mail</label>
-                                <input type="email" formControlName="mail" class="form-control"
-                                    placeholder="Adresse mail">
-                            </div>
+                        <div class="mb-3">
+                            <label for="mail" class="labels">Adresse Mail:</label>
+                            <input type="email" formControlName="mail" class="form-control" id="mail" name="mail"
+                                placeholder="Adresse mail">
+                            <span class="text-danger"
+                                *ngIf="editInfoFormGroup.get('mail')?.touched && editInfoFormGroup.get('mail')?.hasError('required')">
+                                Veuillez entrer une adresse mail
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="editInfoFormGroup.get('mail')?.touched && editInfoFormGroup.get('mail')?.hasError('email')">
+                                L'adresse Email est invalide
+                            </span>
                         </div>
-                        <div class="py-2 mt-1 text-center">
-                            <button class="btn btn-primary profile-button" type="button"
-                                (click)="updateUserInfo()">Enregistrer les modifications</button>
+                        <div class="text-center">
+                            <button class="btn btn-primary" type="submit"
+                                [disabled]="editInfoFormGroup.invalid">Enregistrer les modifications</button>
                         </div>
                     </form>
                 </div>
+
                 <div *ngIf="selectedMenu === 'changePassword'">
-                    <form [formGroup]="changePasswordFormGroup" [appMatchPassword]="['newPassword', 'confirmNewPassword']"
+                    <h4 class="mb-4">Modifier mon mot de passe</h4>
+                    <form [formGroup]="changePasswordFormGroup"
+                        [appMatchPassword]="['newPassword', 'confirmNewPassword']"
                         (ngSubmit)="changePasswordFormGroup.valid && updatePassword()" novalidate autocomplete="off">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Modifier mon mot de passe</h4>
-                        </div>
-                        <div class="row mt-1">
-                            <div class="col-md-12"><label class="labels">Mot de passe actuel</label>
+                        <div class="mb-3">
+                            <label class="labels">Mot de passe actuel:</label>
                             <input type="password" class="form-control" placeholder="Mot de passe actuel"
                                 formControlName="currentPassword" name="currentPassword" id="currentPassword" />
-                            <span class="text-danger"
-                                *ngIf="changePasswordFormGroup.get('currentPassword')?.hasError('required') && changePasswordFormGroup.get('currentPassword')?.touched">
-                                Ce champ est requis.
-                            </span>
-                            <span class="text-danger"
-                                *ngIf="changePasswordFormGroup.get('currentPassword')?.hasError('invalidFormPassword') && changePasswordFormGroup.get('currentPassword')?.touched">
-                                Le mot de passe saisi ne correspond pas à votre mot de passe actuel
-                            </span>
-                        </div>
-                    </div>
-                        <div class="row mt-1">
-                            <div class="col-md-12"><label class="labels">Nouveau mot de passe</label>
-                                <input type="password" class="form-control" placeholder="Nouveau mot de passe"
-                                    formControlName="newPassword" name="newPassword" id="newPassword" required
-                                    minlength="4">
-                                <span class="text-danger"
-                                    *ngIf="changePasswordFormGroup.get('newPassword')?.hasError('required') && changePasswordFormGroup.get('newPassword')?.touched">
-                                    Ce champ est requis.
-                                </span>
-                                <span class="text-danger"
-                                    *ngIf="changePasswordFormGroup.get('newPassword')?.hasError('minlength') && changePasswordFormGroup.get('newPassword')?.touched">
-                                    Le mot de passe doit comporter au moins 4 caractères
-                                </span>
+                            <div *ngIf="changePasswordFormGroup.get('currentPassword')?.invalid && changePasswordFormGroup.get('currentPassword')?.touched"
+                                class="text-danger">
+                                <span *ngIf="changePasswordFormGroup.get('currentPassword')?.hasError('required')">Ce
+                                    champ est requis.</span>
+                                <span
+                                    *ngIf="changePasswordFormGroup.get('currentPassword')?.hasError('invalidFormPassword')">Le
+                                    mot de passe saisi ne correspond pas à votre mot de passe actuel</span>
                             </div>
                         </div>
-                        <div class="row mt-1">
-                            <div class="col-md-12"><label class="labels">Confirmer le nouveau mot de passe</label>
-                                <input type="password" class="form-control"
-                                    placeholder="Confirmer le nouveau mot de passe" formControlName="confirmNewPassword"
-                                    name="confirmNewPassword" id="confirmNewPassword" required>
-                                <span class="text-danger"
-                                    *ngIf="changePasswordFormGroup.get('confirmNewPassword')?.hasError('required') && changePasswordFormGroup.get('confirmNewPassword')?.touched">
-                                    Ce champ est requis.
-                                </span>
-                                <span class="text-danger"
-                                    *ngIf="changePasswordFormGroup.get('confirmNewPassword')?.hasError('passwordMismatch') && changePasswordFormGroup.get('confirmNewPassword')?.touched">
-                                    Les mots de passe ne correspondent pas
-                                </span>
+                        <div class="mb-3">
+                            <label class="labels">Nouveau mot de passe:</label>
+                            <input type="password" class="form-control" placeholder="Nouveau mot de passe"
+                                formControlName="newPassword" name="newPassword" id="newPassword" required
+                                minlength="4">
+                            <div *ngIf="changePasswordFormGroup.get('newPassword')?.invalid && changePasswordFormGroup.get('newPassword')?.touched"
+                                class="text-danger">
+                                <span *ngIf="changePasswordFormGroup.get('newPassword')?.hasError('required')">Ce champ
+                                    est requis.</span>
+                                <span *ngIf="changePasswordFormGroup.get('newPassword')?.hasError('minlength')">Le mot
+                                    de passe doit comporter au moins 4 caractères</span>
                             </div>
                         </div>
-                        <div class="py-2 mt-1 text-center">
-                            <button class="btn btn-primary profile-button" type="button"
-                                (click)="updatePassword()">Enregistrer le mot de passe</button>
+                        <div class="mb-3">
+                            <label class="labels">Confirmer le nouveau mot de passe:</label>
+                            <input type="password" class="form-control" placeholder="Confirmer le nouveau mot de passe"
+                                formControlName="confirmNewPassword" name="confirmNewPassword" id="confirmNewPassword"
+                                required>
+                            <div *ngIf="changePasswordFormGroup.get('confirmNewPassword')?.invalid && changePasswordFormGroup.get('confirmNewPassword')?.touched"
+                                class="text-danger">
+                                <span *ngIf="changePasswordFormGroup.get('confirmNewPassword')?.hasError('required')">Ce
+                                    champ est requis.</span>
+                                <span
+                                    *ngIf="changePasswordFormGroup.get('confirmNewPassword')?.hasError('passwordMismatch')">Les
+                                    mots de passe ne correspondent pas</span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary" type="button" (click)="updatePassword()">Enregistrer le mot
+                                de passe</button>
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-5 border-right">
-        <div class="p-3 py-5">
-
-        </div>
-        <div class="col-md-4">
-            <div class="p-3 py-5">
             </div>
         </div>
     </div>

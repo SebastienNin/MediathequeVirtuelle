@@ -16,7 +16,9 @@ import { AccountHttpService } from './account/account-http.service';
 import { PersoListComponent } from './perso-list/perso-list.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
+import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
 import { WatchMediaComponent } from './watch-media/watch-media.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { WatchMediaComponent } from './watch-media/watch-media.component';
     PersoListComponent,
     MyAccountComponent,
     PersonnalizedListComponent,
-    WatchMediaComponent
+    SeeMediaDetailsComponent,
+    WatchMediaComponent,
+    SearchComponent
 
   ],
   imports: [
@@ -42,7 +46,7 @@ import { WatchMediaComponent } from './watch-media/watch-media.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AccountHttpService ],
+  providers: [AccountHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

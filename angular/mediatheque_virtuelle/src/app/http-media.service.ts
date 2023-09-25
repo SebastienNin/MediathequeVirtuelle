@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Media } from '../modele/media';
+import { Media } from './modele/media';
 import { environment } from 'src/environments/environments';
 
 @Injectable({
@@ -17,8 +17,10 @@ export class HttpMediaService {
     return this.http.get<Media[]>(environment.apiUrl + "/media/");
   }
 
-  //subscribe à faire côté component
   findById(id: number): Observable<Media> {
+    let media: Media;
+    //this.http.get<Media>(environment.apiUrl + "/media/" + id);
+
     return this.http.get<Media>(environment.apiUrl + "/media/" + id);
   }
 

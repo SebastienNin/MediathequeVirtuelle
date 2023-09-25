@@ -26,12 +26,9 @@ export class SeeMediaDetailsComponent {
   constructor(private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute) {
     this.route.params.subscribe(param => this.id = param['id']);
     this.mediaServiceHttp.findById(this.id).subscribe(resp => {
-      console.log(resp);
-      this.media = resp
+      this.media = resp;
+      this.load();
     });
-    console.log(this.media.description);
-
-    this.load();
   }
 
   load() {

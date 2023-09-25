@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: "myAccount", component: MyAccountComponent, canActivate: [authGuard] },
   { path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard] },
   { path: "watchMedia", component: WatchMediaComponent },
-  { path: "media/details/:id", component: SeeMediaDetailsComponent },
+  { path: "media/details/:id", component: SeeMediaDetailsComponent, canActivate: [authGuard] },
   { path: 'search', component: SearchComponent }
 ];
 

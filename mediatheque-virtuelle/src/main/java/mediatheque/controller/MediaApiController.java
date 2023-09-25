@@ -126,8 +126,7 @@ public class MediaApiController {
 	// Version avec insertion d'un chemin d'image
 	@PostMapping("/")
 	@JsonView(Views.Media.class)
-	public Media createMedia(@Valid @RequestBody MediaRequest mediaRequest, BindingResult result,
-			@RequestPart("imageFile") MultipartFile imageFile) {
+	public Media createMedia(@Valid @RequestBody MediaRequest mediaRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Media invalide");
 		}
@@ -140,55 +139,55 @@ public class MediaApiController {
 
 		Media media;
 		switch (mediaRequest.getTypeMedia()) {
-			case BoardGame: {
-				BoardGame boardGame = new BoardGame();
-				BeanUtils.copyProperties(mediaRequest, boardGame);
-				media = daoMedia.save(boardGame);
-				break;
-			}
-			case Book: {
-				Book book = new Book();
-				BeanUtils.copyProperties(mediaRequest, book);
-				media = daoMedia.save(book);
-				break;
-			}
-			case Magazine: {
-				Magazine magazine = new Magazine();
-				BeanUtils.copyProperties(mediaRequest, magazine);
-				media = daoMedia.save(magazine);
-				break;
-			}
-			case Movie: {
-				Movie movie = new Movie();
-				BeanUtils.copyProperties(mediaRequest, movie);
-				media = daoMedia.save(movie);
-				break;
-			}
-			case Music: {
-				Music music = new Music();
-				BeanUtils.copyProperties(mediaRequest, music);
-				media = daoMedia.save(music);
-				break;
-			}
-			case VideoGame: {
-				VideoGame videoGame = new VideoGame();
-				BeanUtils.copyProperties(mediaRequest, videoGame);
-				media = daoMedia.save(videoGame);
-				break;
-			}
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + mediaRequest.getTypeMedia());
+		case BoardGame: {
+			BoardGame boardGame = new BoardGame();
+			BeanUtils.copyProperties(mediaRequest, boardGame);
+			media = daoMedia.save(boardGame);
+			break;
+		}
+		case Book: {
+			Book book = new Book();
+			BeanUtils.copyProperties(mediaRequest, book);
+			media = daoMedia.save(book);
+			break;
+		}
+		case Magazine: {
+			Magazine magazine = new Magazine();
+			BeanUtils.copyProperties(mediaRequest, magazine);
+			media = daoMedia.save(magazine);
+			break;
+		}
+		case Movie: {
+			Movie movie = new Movie();
+			BeanUtils.copyProperties(mediaRequest, movie);
+			media = daoMedia.save(movie);
+			break;
+		}
+		case Music: {
+			Music music = new Music();
+			BeanUtils.copyProperties(mediaRequest, music);
+			media = daoMedia.save(music);
+			break;
+		}
+		case VideoGame: {
+			VideoGame videoGame = new VideoGame();
+			BeanUtils.copyProperties(mediaRequest, videoGame);
+			media = daoMedia.save(videoGame);
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + mediaRequest.getTypeMedia());
 		}
 
 		// Étape 3 : Maintenant que l'objet Media a été enregistré, obtenez son ID
-		Integer mediaId = media.getId();
+//		Integer mediaId = media.getId();
 		// Créez le chemin final de l'image basé sur l'ID
-		String baseImagePath = "/assets/media_pictures/";
-		String imagePath = baseImagePath + mediaId + ".jpg";
+//		String baseImagePath = "/assets/media_pictures/";
+//		String imagePath = baseImagePath + mediaId + ".jpg";
 
 		// Étape 4 : Mettez à jour la propriété d'image de l'objet Media avec le chemin
 		// final
-		media.setImage(imagePath);
+//		media.setImage(imagePath);
 		// Enregistrez à nouveau l'objet Media pour mettre à jour la propriété d'image
 		daoMedia.save(media);
 

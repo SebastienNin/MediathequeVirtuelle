@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="text-center">Recherchez un document dans Media Hub</h2>
-            <form action="#" method="get" (ngSubmit)="searchByTitleAndType()">
+            <form action="#" method="get" (ngSubmit)="search()">
                 <div class="input-group mb-3">
                     <input type="text" [(ngModel)]="query" name="query" class="form-control"
                         placeholder="Rechercher...">
@@ -10,7 +10,7 @@
                         <button class="btn btn-primary" type="submit">Rechercher</button>
                     </div>
                 </div>
-                <div class="form-floating mb-3">
+                <!-- <div class="form-floating mb-3">
                     <select id="mediaType" name="mediaType" [(ngModel)]="selectedMediaType" class="form-control half-width-select">
                       <option selected value="">Tous</option>
                       <option value="video_game">Jeu Vidéo</option>
@@ -21,7 +21,7 @@
                       <option value="magazin">Journal</option>
                     </select>
                     <label for="floatingSelect">Type de Média :</label>
-                  </div>
+                  </div> -->
             </form>
 
             <div *ngIf="results">

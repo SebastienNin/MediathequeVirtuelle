@@ -9,20 +9,21 @@ import { environment } from 'src/environments/environments';
 export class SearchHttpService {
   constructor(private http: HttpClient) { }
 
-  // search(query: string): Observable<any> {
-  //   // Envoyez la requête de recherche au backend
-  //   return this.http.get<any[]>(environment.apiUrl + "/media/" + query);
-  // }
+  listAll(): Observable<any> {
+    return this.http.get<any>(environment.apiUrl + '/media/');
+  }
 
-  // searchByTitle(query: string): Observable<any> {
-  //   if (!query) {
-  //     return this.http.get<any[]>(environment.apiUrl + "/media/");
-  //   } else {
-  //     return this.http.get<any[]>(environment.apiUrl + "/media/nameContaining/" + query);
-  //   }
-  // }
+  search(query: string): Observable<any> {
+    // Envoyez la requête de recherche au backend
+    return this.http.get<any[]>(environment.apiUrl + "/media/" + query);
+  }
 
-  searchByTitleAndType(query: string, mediaType: string): Observable<any> {
+  searchByMediaType(query: string): Observable<any> {
+    // Envoyez la requête de recherche au backend
+    return this.http.get<any[]>(environment.apiUrl + "/media/type/" + query);
+  }
+
+  searchByTitle(query: string): Observable<any> {
     // return this.http.get<any[]>(environment.apiUrl + "/media/nameContaining/" + query + "/mediaType/" + mediaType);
     return this.http.get<any[]>(environment.apiUrl + "/media/nameContaining/" + query);
   }

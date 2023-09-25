@@ -33,7 +33,7 @@ import { WatchMediaComponent } from './watch-media/watch-media.component';
     PersoListComponent,
     MyAccountComponent,
     PersonnalizedListComponent,
-    SeeMediaDetailsComponent
+    SeeMediaDetailsComponent,
     WatchMediaComponent
 
   ],
@@ -44,7 +44,7 @@ import { WatchMediaComponent } from './watch-media/watch-media.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AccountHttpService ],
+  providers: [AccountHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

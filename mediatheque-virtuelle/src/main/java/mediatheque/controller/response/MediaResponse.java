@@ -23,6 +23,8 @@ public class MediaResponse {
 	private LocalDate parutionDate;
 	private LocalDate addDate;
 	
+	private int nbAccountMedia;
+	
 	//Attribut supplémentaire pour disntinguer le type de média
 	private TypeMedia typeMedia;
 	
@@ -115,6 +117,12 @@ public class MediaResponse {
 	}
 	public void setAddDate(LocalDate addDate) {
 		this.addDate = addDate;
+	}
+	public int getNbAccountMedia() {
+		return nbAccountMedia;
+	}
+	public void setNbAccountMedia(int nbAccountMedia) {
+		this.nbAccountMedia = nbAccountMedia;
 	}
 	public TypeMedia getTypeMedia() {
 		return typeMedia;

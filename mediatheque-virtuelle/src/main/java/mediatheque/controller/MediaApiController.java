@@ -1,7 +1,6 @@
 package mediatheque.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -30,7 +29,6 @@ import mediatheque.dao.IDAOTheme;
 import mediatheque.exception.MediaNotFoundException;
 import mediatheque.model.BoardGame;
 import mediatheque.model.Book;
-import mediatheque.model.EnumTheme;
 import mediatheque.model.Magazine;
 import mediatheque.model.Media;
 import mediatheque.model.MediaTheme;
@@ -153,108 +151,80 @@ public class MediaApiController {
 		}
 		// Le mediaRequest récupéré est un type général qui possède un attribut
 		// typeMedia qui permet de faire la distinction sur le type réel du média,
-		// en fonction, on récupre les propriétés spécifiques au type de média concerné
+		// en fonction, on récupère les propriétés spécifiques au type de média concerné
 
 		// Étape 1 : Téléchargez l'image et générez un chemin temporaire
 //		String temporaryImagePath = "/temp_media_pictures/" + UUID.randomUUID().toString() + ".jpg";
 
+		//Etape 2 : On enregistre le média selon son type
+		
 		Media media;
 		switch (mediaRequest.getTypeMedia()) {
 		case BoardGame: {
 			BoardGame boardGame = new BoardGame();
 			BeanUtils.copyProperties(mediaRequest, boardGame);
 			media = daoMedia.save(boardGame);	
-			for(String themeString : mediaRequest.getThemes()) {
-				System.out.println(themeString);
-				Theme theme = new Theme(themeString, EnumTheme.BOARDGAME);
-				theme = daoTheme.save(theme);
-				MediaTheme mediaTheme = new MediaTheme(media, theme);
-				mediaTheme = daoMediaTheme.save(mediaTheme);
-			}
 			break;
 		}
 		case Book: {
 			Book book = new Book();
 			BeanUtils.copyProperties(mediaRequest, book);
 			media = daoMedia.save(book);
-			for(String themeString : mediaRequest.getThemes()) {
-				System.out.println(themeString);
-				Theme theme = new Theme(themeString, EnumTheme.BOOK);
-				theme = daoTheme.save(theme);
-				MediaTheme mediaTheme = new MediaTheme(media, theme);
-				mediaTheme = daoMediaTheme.save(mediaTheme);
-			}
 			break;
 		}
 		case Magazine: {
 			Magazine magazine = new Magazine();
 			BeanUtils.copyProperties(mediaRequest, magazine);
 			media = daoMedia.save(magazine);
-			for(String themeString : mediaRequest.getThemes()) {
-				System.out.println(themeString);
-				Theme theme = new Theme(themeString, EnumTheme.MAGAZINE);
-				theme = daoTheme.save(theme);
-				MediaTheme mediaTheme = new MediaTheme(media, theme);
-				mediaTheme = daoMediaTheme.save(mediaTheme);
-			}
 			break;
 		}
 		case Movie: {
 			Movie movie = new Movie();
 			BeanUtils.copyProperties(mediaRequest, movie);
 			media = daoMedia.save(movie);
-			for(String themeString : mediaRequest.getThemes()) {
-				System.out.println(themeString);
-				Theme theme = new Theme(themeString, EnumTheme.MOVIE);
-				theme = daoTheme.save(theme);
-				MediaTheme mediaTheme = new MediaTheme(media, theme);
-				mediaTheme = daoMediaTheme.save(mediaTheme);
-			}
 			break;
 		}
 		case Music: {
 			Music music = new Music();
 			BeanUtils.copyProperties(mediaRequest, music);
 			media = daoMedia.save(music);
-			for(String themeString : mediaRequest.getThemes()) {
-				System.out.println(themeString);
-				Theme theme = new Theme(themeString, EnumTheme.MUSIC);
-				theme = daoTheme.save(theme);
-				MediaTheme mediaTheme = new MediaTheme(media, theme);
-				mediaTheme = daoMediaTheme.save(mediaTheme);
-			}
 			break;
 		}
 		case VideoGame: {
 			VideoGame videoGame = new VideoGame();
 			BeanUtils.copyProperties(mediaRequest, videoGame);
 			media = daoMedia.save(videoGame);
-			for(String themeString : mediaRequest.getThemes()) {
-				System.out.println(themeString);
-				Theme theme = new Theme(themeString, EnumTheme.VIDEOGAME);
-				theme = daoTheme.save(theme);
-				MediaTheme mediaTheme = new MediaTheme(media, theme);
-				mediaTheme = daoMediaTheme.save(mediaTheme);
-			}
 			break;
 		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + mediaRequest.getTypeMedia());
 		}
+		
+		//Etape 3 : On enregistre les thèmes et le lien média-thème
+		for(Theme theme : mediaRequest.getThemes()) {
+			if (theme.getId()!=null) {
+				MediaTheme mediaTheme = new MediaTheme(media, theme);
+				mediaTheme = daoMediaTheme.save(mediaTheme);
+			} else {
+				theme = daoTheme.save(theme);
+			}
+		}
 
-		// Étape 3 : Maintenant que l'objet Media a été enregistré, obtenez son ID
+		// Étape 4 : Maintenant que l'objet Media a été enregistré, obtenez son ID
 //		Integer mediaId = media.getId();
 		// Créez le chemin final de l'image basé sur l'ID
 //		String baseImagePath = "/assets/media_pictures/";
 //		String imagePath = baseImagePath + mediaId + ".jpg";
 
-		// Étape 4 : Mettez à jour la propriété d'image de l'objet Media avec le chemin
+		// Étape 5 : Mettez à jour la propriété d'image de l'objet Media avec le chemin
 		// final
 //		media.setImage(imagePath);
 		// Enregistrez à nouveau l'objet Media pour mettre à jour la propriété d'image
 		daoMedia.save(media);
+		
+		
 
-		// Étape 5 : Stockage de l'image depuis le chemin temporaire vers le chemin
+		// Étape 6 : Stockage de l'image depuis le chemin temporaire vers le chemin
 		// final
 		// moveImageToFinalPath(imageFile, temporaryImagePath, imagePath);
 

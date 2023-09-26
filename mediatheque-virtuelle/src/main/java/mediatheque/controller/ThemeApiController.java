@@ -21,7 +21,6 @@ import jakarta.validation.Valid;
 import mediatheque.dao.IDAOTheme;
 import mediatheque.model.EnumTheme;
 import mediatheque.model.Media;
-import mediatheque.model.MediaTheme;
 import mediatheque.model.Theme;
 import mediatheque.model.Views;
 

@@ -80,9 +80,9 @@ class MediathequeVirtuelleApplicationTests {
 				"jaquette_truthIsABeautifulThing", "", true, LocalDate.parse("2017-01-01"), LocalDate.now(),
 				"London Grammar", 79, 18, MusicSupport.NOSUPPORT);
 
-		List<String> movieDirectors = new ArrayList();
+		List<String> movieDirectors = new ArrayList<String>();
 		Collections.addAll(movieDirectors, "Greta Gerwig");
-		List<String> movieActors = new ArrayList();
+		List<String> movieActors = new ArrayList<String>();
 		Collections.addAll(movieActors, "Margot Robbie, Ryan Gosling");
 		Movie movie1 = new Movie("Barbie", "Warner Bros. Pictures", "Français", "logo_film_barbie",
 				"A Barbie Land, vous êtes un être parfait dans un monde parfait. Sauf si vous êtes en crise existentielle, ou si vous êtes Ken.",

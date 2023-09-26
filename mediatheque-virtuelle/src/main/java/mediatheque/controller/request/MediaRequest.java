@@ -8,6 +8,7 @@ import mediatheque.model.BookType;
 import mediatheque.model.MagazinePeriodicity;
 import mediatheque.model.MovieSupport;
 import mediatheque.model.MusicSupport;
+import mediatheque.model.Theme;
 import mediatheque.model.TypeMedia;
 
 public class MediaRequest {
@@ -22,8 +23,8 @@ public class MediaRequest {
 	private LocalDate parutionDate;
 	private LocalDate addDate;
 	
-	// Attribut pour récupérer les labels des thèmes
-	private List<String> themes;
+	// Attribut pour récupérer les thèmes
+	private List<Theme> themes;
 	
 	//Attribut supplémentaire pour disntinguer le type de média
 	private TypeMedia typeMedia;
@@ -242,18 +243,12 @@ public class MediaRequest {
 	public void setMultiPlayer(boolean multiPlayer) {
 		this.multiPlayer = multiPlayer;
 	}
-	public List<String> getThemes() {
+	public List<Theme> getThemes() {
 		return themes;
 	}
-	public void setThemes(List<String> themes) {
+	public void setThemes(List<Theme> themes) {
 		this.themes = themes;
 	}
-//	public MagazinePeriodicity getMagazinePeriodicity() {
-//		return magazinePeriodicity;
-//	}
-//	public void setMagazinePeriodicity(MagazinePeriodicity magazinePeriodicity) {
-//		this.magazinePeriodicity = magazinePeriodicity;
-//	}
 }
 
 

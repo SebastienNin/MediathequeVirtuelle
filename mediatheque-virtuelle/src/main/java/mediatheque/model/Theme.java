@@ -42,7 +42,8 @@ public class Theme {
 	
 	
 	@OneToMany(mappedBy = "theme")
-	@JsonView(Views.MediaTheme.class)
+//	@JsonView(Views.MediaTheme.class)
+	@JsonIgnore
 	protected List<MediaTheme> mediaThemeList = new ArrayList<MediaTheme>();
 
 	public Theme() {

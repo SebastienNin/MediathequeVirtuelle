@@ -14,6 +14,7 @@ export class SeeMediaDetailsComponent {
 
   id: number;
   media: Media = new Media();
+  themes: string = "";
 
   showBoardGameCard: boolean = false;
   showBookCard: boolean = false;
@@ -32,12 +33,22 @@ export class SeeMediaDetailsComponent {
   }
 
   load() {
+    let i : number = 0;
+    for(let theme of this.media.themes){
+      if(i == this.media.themes.length - 1){
+        this.themes = this.themes + theme.label;
+      }else{
+        this.themes = this.themes + theme.label + ", ";
+      }
+      i ++;
+    }
     switch (this.media.typeMedia) {
       case (TypeMedia.BoardGame):
         this.showBoardGameCard = true;
         break;
       case (TypeMedia.Book):
         this.showBookCard = true;
+        console.log(this.media);
         break;
       case (TypeMedia.Magazine):
         this.showMagazineCard = true;

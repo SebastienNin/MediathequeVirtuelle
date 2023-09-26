@@ -8,6 +8,7 @@ import mediatheque.model.BookType;
 import mediatheque.model.MagazinePeriodicity;
 import mediatheque.model.MovieSupport;
 import mediatheque.model.MusicSupport;
+import mediatheque.model.Theme;
 import mediatheque.model.TypeMedia;
 
 public class MediaResponse {
@@ -24,6 +25,9 @@ public class MediaResponse {
 	private LocalDate addDate;
 	
 	private int nbAccountMedia;
+	
+	// Attribut pour récupérer les thèmes
+	private List<Theme> themes;
 	
 	//Attribut supplémentaire pour disntinguer le type de média
 	private TypeMedia typeMedia;
@@ -249,6 +253,12 @@ public class MediaResponse {
 	}
 	public void setMultiPlayer(boolean multiPlayer) {
 		this.multiPlayer = multiPlayer;
+	}
+	public List<Theme> getThemes() {
+		return themes;
+	}
+	public void setThemes(List<Theme> themes) {
+		this.themes = themes;
 	}
 	
 	

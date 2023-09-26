@@ -35,7 +35,7 @@ export class Media {
     ISBN: string;
     pagesNb: number;
     chaptersNb: number;
-    booktype: BookType;
+    bookType: BookType;
 
     //attributs de Magazine
     ISSN: string;
@@ -81,7 +81,7 @@ export class Media {
         ISBN?: string,
         pagesNb?: number,
         chaptersNb?: number,
-        booktype?: BookType,
+        bookType?: BookType,
         //Magazine
         ISSN?: string,
         number?: number,
@@ -117,7 +117,7 @@ export class Media {
         this.ISBN = ISBN;
         this.pagesNb = pagesNb;
         this.chaptersNb = chaptersNb;
-        this.booktype = booktype;
+        this.bookType = bookType;
         //Magazine
         this.ISSN = ISSN;
         this.number = number;

@@ -1,5 +1,6 @@
 package mediatheque.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -114,6 +115,8 @@ public class MediaApiController {
 	@Transactional
 	public MediaResponse findMediaById(@PathVariable Integer id) {
 		Media media = this.daoMedia.findById(id).orElseThrow(MediaNotFoundException::new);
+		List<MediaTheme> mediaThemes = this.daoMediaTheme.findByMedia(media);
+		List<Theme> themes = new ArrayList<Theme>();
 		MediaResponse response = new MediaResponse();
 
 		BeanUtils.copyProperties(media, response);
@@ -133,8 +136,12 @@ public class MediaApiController {
 		} else {
 			
 		}
+		// Récupération des thèmes du média
+		for(MediaTheme mediaTheme : mediaThemes) {
+			themes.add(mediaTheme.getTheme());
+		}
+		response.setThemes(themes);
 		
-
 		// A changer et adapter
 		// response.setNbProduits(fournisseur.getProduits().size());
 		response.setNbAccountMedia(media.getAccountMediaList().size());

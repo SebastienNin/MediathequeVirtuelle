@@ -101,7 +101,7 @@
 
       <div class="form-group">
         <label for="typeBook">Type de livre:</label>
-        <select class="form-control" id="typeBook" name="typeBook" [(ngModel)]="mediaForm.booktype">
+        <select class="form-control" id="typeBook" name="typeBook" [(ngModel)]="mediaForm.bookType">
           <!-- <option selected>Choisir un type de livre</option> -->
           <option *ngFor="let type of bookTypes" [value]="type">{{ type }}</option>
         </select>

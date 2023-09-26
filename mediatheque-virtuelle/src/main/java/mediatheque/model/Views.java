@@ -10,7 +10,7 @@ public interface Views {
 	
 	public interface MediaTheme extends Common{}
 	
-	public interface PersoList extends Common {}
+	public interface PersonnalizedList extends Common {}
 	
 	public interface Media extends Common {}
 	

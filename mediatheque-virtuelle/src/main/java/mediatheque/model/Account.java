@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Version;
 
 @Entity
@@ -40,7 +41,12 @@ public class Account {
 	@OneToMany(mappedBy = "account")
 	@JsonIgnore
 	private List<PersonnalizedList> persoLists = new ArrayList<PersonnalizedList>();
-
+	 @PrePersist
+	    public void prePersist() {
+	        if (version == null) {
+	            version = 0; // Vous pouvez initialiser avec n'importe quelle valeur non nulle que vous préférez.
+	        }
+	    }
 	public Account() {
 	}
 

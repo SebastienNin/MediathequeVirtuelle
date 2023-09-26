@@ -44,10 +44,6 @@ export class WatchMyMediaComponent implements OnInit{
     this.watchMediaHttpService.deleteById(id);
   }
 
-  findAccount() {
-    console.log(this.user.id);
-    // this.watchMyMediaHttpService.findByAccount(this.user.id);
-  }
   deleteToMyMedia(id: number) {
     this.watchMyMediaHttpService.deleteById(id);
   }

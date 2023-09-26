@@ -202,6 +202,7 @@ public class MediaApiController {
 		
 		//Etape 3 : On enregistre les thèmes et le lien média-thème
 		for(Theme theme : mediaRequest.getThemes()) {
+			System.out.println(theme);
 			if (theme.getId()!=null) {
 				MediaTheme mediaTheme = new MediaTheme(media, theme);
 				mediaTheme = daoMediaTheme.save(mediaTheme);

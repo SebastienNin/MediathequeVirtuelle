@@ -29,4 +29,8 @@ export class ThemeService {
   findByLabelAndEnumTheme(label: string, enumTheme: EnumTheme): Observable<Theme> {
     return this.http.get<Theme>(environment.apiUrl + "/theme/labelAndEnumTheme/" + label + "/" + enumTheme);
   }
+
+  findById(themeId: number): Observable<Theme> {
+    return this.http.get<Theme>(environment.apiUrl + "/theme/" + themeId);
+  }
 }

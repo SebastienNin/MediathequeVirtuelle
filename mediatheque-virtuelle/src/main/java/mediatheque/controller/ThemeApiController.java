@@ -71,10 +71,10 @@ public class ThemeApiController {
 		}
 	}
 
-	// Exemple : localhost:8080/api/theme/labelAndType/Action/VIDEOGAME
+	// Exemple : http://localhost:8080/mediatheque-virtuelle/api/theme/labelAndEnumTheme/Action-Aventure/VIDEOGAME
 	@GetMapping("/labelAndEnumTheme/{label}/{enumTheme}")
 	@JsonView(Views.Theme.class)
-	public List<Theme> findThemesByLabelAndEnumTheme(@PathVariable String label, @PathVariable String enumTheme) {
+	public Theme findThemesByLabelAndEnumTheme(@PathVariable String label, @PathVariable String enumTheme) {
 		try {
 			EnumTheme enumType = EnumTheme.valueOf(enumTheme); // Convertir la chaîne en Enum
 			return daoTheme.findByLabelAndEnumTheme(label, enumType);

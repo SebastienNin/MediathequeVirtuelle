@@ -22,6 +22,7 @@ export class AddMediaComponent {
   mediaForm: Media = new Media();
   currentDate: string;
   mediaTest: Media;
+  themeId: number;
 
   //boolean pour l'affichage des différents formulaires
   showFirstForm: boolean = true;
@@ -57,25 +58,30 @@ export class AddMediaComponent {
     this.showFirstForm = false;
     switch (this.mediaForm.typeMedia) {
       case (TypeMedia.BoardGame):
-        this.showBoardGameForm = true;
         this.themeService.findByEnumTheme(EnumTheme.BOARDGAME).subscribe(resp => this.listTheme = resp);
+        this.showBoardGameForm = true;
         break;
       case (TypeMedia.Book):
+        this.themeService.findByEnumTheme(EnumTheme.BOOK).subscribe(resp => this.listTheme = resp);
         this.showBookForm = true;
         break;
       case (TypeMedia.Magazine):
+        this.themeService.findByEnumTheme(EnumTheme.MAGAZINE).subscribe(resp => this.listTheme = resp);
         this.showMagazineForm = true;
         break;
       case (TypeMedia.Movie):
         this.mediaForm.directors.push("");
         this.mediaForm.actors.push("");
+        this.themeService.findByEnumTheme(EnumTheme.MOVIE).subscribe(resp => this.listTheme = resp);
         this.showMovieForm = true;
         break;
       case (TypeMedia.Music):
         this.mediaForm.tracks.push("");
+        this.themeService.findByEnumTheme(EnumTheme.MUSIC).subscribe(resp => this.listTheme = resp);
         this.showMusicForm = true;
         break;
       case (TypeMedia.VideoGame):
+        this.themeService.findByEnumTheme(EnumTheme.VIDEOGAME).subscribe(resp => this.listTheme = resp);
         this.showVideoGameForm = true;
         break;
       case (null):
@@ -96,24 +102,30 @@ export class AddMediaComponent {
     this.mediaForm.tracks.push("");
   }
 
+  addTheme(){
+    this.mediaForm.themes.push(new Theme());
+  }
+
   addNewMedia() {
+    // Récupérer les thèmes et les ajouter au mediaForm
+    this.themeService.findById(this.themeId).subscribe(resp => {
+      this.mediaForm.themes.push(resp);
+      this.mediaServiceHttp.save(this.mediaForm);
 
-    console.log(this.mediaForm);
-    this.mediaServiceHttp.save(this.mediaForm);
+      //Vide les variables pour pouvoir ajouter un nouveau média
+      this.mediaForm = new Media();
+      this.mediaForm.addDate = this.currentDate;
+      this.themeId = null;
 
-    //Vide les variables pour pouvoir ajouter un nouveau média
-    this.mediaForm = new Media();
-    this.mediaForm.addDate = this.currentDate;
-
-    //Rétablit le premier formulaire
-    this.showFirstForm = true;
-    this.showBoardGameForm = false;
-    this.showBookForm = false;
-    this.showMagazineForm = false;
-    this.showMovieForm = false;
-    this.showMusicForm = false;
-    this.showVideoGameForm = false;
-
+      //Rétablit le premier formulaire
+      this.showFirstForm = true;
+      this.showBoardGameForm = false;
+      this.showBookForm = false;
+      this.showMagazineForm = false;
+      this.showMovieForm = false;
+      this.showMusicForm = false;
+      this.showVideoGameForm = false;
+    });
   }
 
 }

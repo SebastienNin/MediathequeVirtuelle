@@ -4,6 +4,7 @@ import { PersonnalizedListHttpService } from './personnalizedList-http.service';
 import { Observable } from 'rxjs';
 import { Account } from '../modele/account';
 import { AccountHttpService } from '../account/account-http.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-perso-list',
@@ -16,8 +17,6 @@ export class PersonnalizedListComponent implements OnInit {
   personnalizedLists$: Observable<PersonnalizedList[]>;
   accounts$: Observable<Account[]>;
   editForm: PersonnalizedList = null;
-  addForm: PersonnalizedList = null;
-
 
 
   constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) {}
@@ -26,13 +25,15 @@ export class PersonnalizedListComponent implements OnInit {
     this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
     this.accounts$ = this.accountHttpService.findAll();
   }
+
+
   add() {
-    this.addForm = new PersonnalizedList();
-    this.addForm.account = new Account();
+    this.editForm = new PersonnalizedList();
+    this.editForm.account = new Account();
 
   }
 
- edit(id: number) {
+  edit(id: number) {
     this.personnalizedListHttpService.findById(id).subscribe(resp => {
       this.editForm = resp;
    
@@ -42,17 +43,13 @@ export class PersonnalizedListComponent implements OnInit {
     });
   }
 
-  saveEdit() {
-    console.log(this.editForm)
-    this.personnalizedListHttpService.save(this.editForm).subscribe(() => {
-      this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
-      this.cancel();
-    });
+  remove(id: number) {
+    this.personnalizedListHttpService.deleteById(id);
   }
 
-  saveAdd() {
-    console.log(this.addForm)
-    this.personnalizedListHttpService.save(this.addForm).subscribe(() => {
+  save() {
+
+    this.personnalizedListHttpService.save(this.editForm).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
       this.cancel();
     });
@@ -60,14 +57,13 @@ export class PersonnalizedListComponent implements OnInit {
 
   cancel() {
     this.editForm = null;
-    this.addForm = null;
+  
 
   }
-
-  
   delete(id: number) {
     this.personnalizedListHttpService.deleteById(id).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
     });
   }
+
 }

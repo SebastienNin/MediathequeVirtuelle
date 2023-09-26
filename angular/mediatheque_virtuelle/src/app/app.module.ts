@@ -18,6 +18,7 @@ import { PersonnalizedListComponent } from './personnalizedList/personnalizedLis
 import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
 import { WatchMediaComponent } from './watch-media/watch-media.component';
 import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component
     MyAccountComponent,
     PersonnalizedListComponent,
     WatchMediaComponent,
-    WatchMyMediaComponent
+    WatchMyMediaComponent,
+    SeeMediaDetailsComponent,
+    SearchComponent
 
   ],
   imports: [

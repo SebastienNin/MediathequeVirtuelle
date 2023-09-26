@@ -10,7 +10,7 @@ import { AccountMedia } from '../modele/accountMedia';
 export class WatchMyMediaHttpService {
 
   accountMedias: Array<AccountMedia> = new Array <AccountMedia>();
-  apiAccountMediaUrl: string = environment.apiUrl + "/accountmedia";
+  apiAccountMediaUrl: string = environment.apiUrl + "/accountmedia/";
 
   constructor(private http: HttpClient) {
     this.load();

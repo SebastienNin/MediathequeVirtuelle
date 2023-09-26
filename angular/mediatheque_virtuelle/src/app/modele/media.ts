@@ -71,8 +71,7 @@ export class Media {
         parutionDate?: string,
         addDate?: string,
         //attribut supplémentaire
-        // typeMedia?: TypeMedia,
-        typeMedia?:string,
+        typeMedia?: TypeMedia,
 
         //BoarGame
         playerNumber?: string,

@@ -1,6 +1,6 @@
 <nav class="nav nav-pills m-5">
     <div class="card-header">
-        <!-- <h4>
+        <h4>
             <button type="button" class="btn btn-primary" (click)="showAllMedia()">Médias</button>   
             <button type="button" class="btn btn-primary" (click)="showMovieList()">Films</button>      
             <button type="button" class="btn btn-primary" (click)="showBoardGameList()">Jeux de Plateau</button>        
@@ -8,12 +8,12 @@
             <button type="button" class="btn btn-primary" (click)="showBookList()">Livres</button>     
             <button type="button" class="btn btn-primary" (click)="showMagazineList()">Magazines</button>      
             <button type="button" class="btn btn-primary" (click)="showMusicList()">Musique</button>
-        </h4> -->
+        </h4>
     </div>
 
     <div class="card-body">
 
-        <!-- <div *ngIf="showAllMediaForm"> -->
+        <div *ngIf="showAllMediaForm">
             <table>
                 <thead>
                     <tr>
@@ -38,19 +38,19 @@
                         <td>
                             <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
                                 class="bi bi-plus-square"></i></a>
-                        </td> -->
+                        </td>
                     </tr>
                 </tbody>
-                <!-- <tfoot>
+                <tfoot>
                     <td><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
-                </tfoot> -->
+                </tfoot>
             </table>
-            <!-- <div class="card-footer">
+            <div class="card-footer">
                 <a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a>
-            </div> -->
+            </div>
         </div>
 
-        <!-- <div *ngIf="showBoardGameForm">
+        <div *ngIf="showBoardGameForm">
             <table>
                 <thead>
                     <tr>
@@ -253,7 +253,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div> -->
+        </div>
 
-    <!-- </div> -->
+    </div>
 </nav>

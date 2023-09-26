@@ -22,6 +22,8 @@ export class WatchMediaHttpService {
   findById(id: number): Observable<Media> {
     let obs: Observable<Media> = this.http.get<Media>(this.apiMediaUrl +id);
 
+    return obs;
+  }
   
 
   deleteById(id: number): Observable<void> {

@@ -18,9 +18,7 @@ export class PersonnalizedListComponent implements OnInit {
   accounts$: Observable<Account[]>;
   idAccountForm: number;
   editForm: PersonnalizedList = null;
-
-  constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) { }
-
+  addForm: PersonnalizedList = null;
 
   constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) {}
 

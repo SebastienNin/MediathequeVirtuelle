@@ -13,7 +13,6 @@ import { MatchPasswordDirective } from './match-password.directive';
 import { AccountComponent } from './account/account.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { AccountHttpService } from './account/account-http.service';
-import { PersoListComponent } from './perso-list/perso-list.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
 import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
@@ -31,7 +30,6 @@ import { SearchComponent } from './search/search.component';
     MatchPasswordDirective,
     AccountComponent,
     AddMediaComponent,
-    PersoListComponent,
     MyAccountComponent,
     PersonnalizedListComponent,
     SeeMediaDetailsComponent,

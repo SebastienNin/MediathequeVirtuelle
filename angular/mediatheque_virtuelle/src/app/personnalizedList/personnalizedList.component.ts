@@ -18,13 +18,13 @@ export class PersonnalizedListComponent implements OnInit {
   editForm: PersonnalizedList = null;
   addForm: PersonnalizedList = null;
 
-
-
-  constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) {}
+  constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) { }
 
   ngOnInit(): void {
     this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
     this.accounts$ = this.accountHttpService.findAll();
+    this.accountHttpService.findAll().subscribe(resp => console.log(resp));
+
   }
   add() {
     this.addForm = new PersonnalizedList();

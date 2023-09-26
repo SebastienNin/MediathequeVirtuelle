@@ -12,6 +12,7 @@ import { PersonnalizedListComponent } from './personnalizedList/personnalizedLis
 import { WatchMediaComponent } from './watch-media/watch-media.component';
 import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
 import { SearchComponent } from './search/search.component';
+import { MyPersoListComponent } from './my-perso-list/my-perso-list.component';
 
 const routes: Routes = [
   { path: "", component: AccueilComponent, pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard] },
   { path: "watchMedia", component: WatchMediaComponent },
   { path: "media/details/:id", component: SeeMediaDetailsComponent, canActivate: [authGuard] },
-  { path: 'search', component: SearchComponent }
+  { path: 'search', component: SearchComponent },
+  { path: "myPersoLists", component: MyPersoListComponent, canActivate: [authGuard] }
 ];
 
 @NgModule({

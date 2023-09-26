@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonnalizedList } from '../modele/personnalizedList';
-import { PersonnalizedListHttpService } from './personnalizedList-http.service';
+import { PersonnalizedListHttpService } from '../personnalizedList-http.service';
 import { Observable } from 'rxjs';
 import { Account } from '../modele/account';
-import { AccountHttpService } from '../account/account-http.service';
+import { AccountHttpService } from '../account-http.service';
 
 @Component({
   selector: 'app-perso-list',
@@ -55,7 +55,7 @@ export class PersonnalizedListComponent implements OnInit {
   saveAdd() {
     this.accountHttpService.findById(this.idAccountForm).subscribe(resp => {
       this.addForm.account = resp;
-    
+
       this.personnalizedListHttpService.save(this.addForm).subscribe(() => {
         this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
         this.cancel();

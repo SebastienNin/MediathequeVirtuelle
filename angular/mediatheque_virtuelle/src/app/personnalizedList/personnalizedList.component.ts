@@ -28,12 +28,13 @@ export class PersonnalizedListComponent implements OnInit {
 
   }
   add() {
+    this.editForm = null;
     this.addForm = new PersonnalizedList();
     this.addForm.account = new Account();
-
   }
 
   edit(id: number) {
+    this.addForm = null;
     this.personnalizedListHttpService.findById(id).subscribe(resp => {
       this.editForm = resp;
 
@@ -52,23 +53,20 @@ export class PersonnalizedListComponent implements OnInit {
   }
 
   saveAdd() {
-
     this.accountHttpService.findById(this.idAccountForm).subscribe(resp => {
-      this.addForm.account = resp; console.log(this.addForm); this.personnalizedListHttpService.save(this.addForm).subscribe;
-    });
-
-
-
-    this.personnalizedListHttpService.save(this.addForm).subscribe(() => {
-      this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
-      this.cancel();
+      this.addForm.account = resp;
+    
+      this.personnalizedListHttpService.save(this.addForm).subscribe(() => {
+        this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
+        this.cancel();
+      });
     });
   }
 
   cancel() {
     this.editForm = null;
     this.addForm = null;
-
+    this.idAccountForm = null;
   }
 
 

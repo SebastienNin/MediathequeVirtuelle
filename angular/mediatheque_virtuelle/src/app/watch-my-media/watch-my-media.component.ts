@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { WatchMediaHttpService } from '../watch-media/watch-media-http.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Media } from '../modele/media';
 import { WatchMyMediaHttpService } from './watch-my-media-http.service';
 import { AuthService } from '../auth.service';
 import { Account } from '../modele/account';
 import { AccountMedia } from '../modele/accountMedia';
-import { TypeMedia } from '../modele/typeMedia';
 
 @Component({
   selector: 'app-watch-my-media',
@@ -16,8 +14,7 @@ import { TypeMedia } from '../modele/typeMedia';
 })
 export class WatchMyMediaComponent implements OnInit{
 
-  media$: Observable<Media[]>;
-  accountMedia$: Observable<AccountMedia>;
+  accountMedia$: Observable<AccountMedia[]>;
 
   user: Account;
 
@@ -30,46 +27,23 @@ export class WatchMyMediaComponent implements OnInit{
   showMusicForm: boolean = false;
   showVideoGameForm: boolean = false;
 
-  constructor(private authService: AuthService, private watchMyMediaHttpService: WatchMyMediaHttpService, private watchMediaHttpSevice: WatchMediaHttpService, private router: Router) {
+  constructor(private authService: AuthService, private watchMyMediaHttpService: WatchMyMediaHttpService, private watchMediaHttpService: WatchMediaHttpService, private router: Router) {
     this.user = this.authService.getUser();
   }
   
   ngOnInit(): void {
-    this.media$ = this.watchMediaHttpSevice.findAll();
-    this.media$.subscribe(resp=> console.log(resp));
+    this.accountMedia$ = this.watchMyMediaHttpService.findAll()
   }
 
-  getTypeMediaLabel(typeMedia: TypeMedia): string {
-    switch (typeMedia) {
-      case TypeMedia.BoardGame:
-        return 'Jeux de Plateau';
-      case TypeMedia.Book:
-        return 'Livres';
-      case TypeMedia.Magazine:
-        return 'Magazines';
-      case TypeMedia.Movie:
-        return 'Films';
-      case TypeMedia.Music:
-        return 'Musique';
-      case TypeMedia.VideoGame:
-        return 'Jeux Vidéos';
-      default:
-        return 'Type de Média Inconnu';
-    }
+  remove(id: number) {
+    this.watchMediaHttpService.deleteById(id);
+  }
 
-  // list(): Array<Media> {
-  //   return this.watchMediaHttpSevice.findAll();
-  // }
-
-  // remove(id: number) {
-  //   this.watchMediaHttpSevice.deleteById(id);
-  // }
-
-  // findAccount() {
-  //   console.log(this.user.id);
-  //   // this.watchMyMediaHttpService.findByAccount(this.user.id);
-  // }
-  // deleteToMyMedia() {}
+  deleteToMyMedia(id: number) {
+    this.watchMyMediaHttpService.deleteById(id).subscribe(resp => {
+      this.accountMedia$ = this.watchMyMediaHttpService.findAll();
+    });
+  }
 
   // //Afficher les listes des Médias correspondant
   // showAllMedia() {

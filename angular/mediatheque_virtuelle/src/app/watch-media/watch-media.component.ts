@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { Media } from '../modele/media';
 import { WatchMediaHttpService } from './watch-media-http.service';
 import { Observable } from 'rxjs';
+import { WatchMyMediaHttpService } from '../watch-my-media/watch-my-media-http.service';
+import { AccountMedia } from '../modele/accountMedia';
+import { Account } from '../modele/account';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-watch-media',
@@ -13,6 +17,9 @@ export class WatchMediaComponent implements OnInit{
 
   media$: Observable<Media[]>;
 
+  user: Account;
+  accountMedia: AccountMedia;
+
   //boolean pour l'affichage des différents formulaires
   // showAllMediaForm : boolean = true;
   // showBoardGameForm : boolean = false;
@@ -22,37 +29,43 @@ export class WatchMediaComponent implements OnInit{
   // showMusicForm: boolean = false;
   // showVideoGameForm: boolean = false;
 
-  constructor(private watchMediaHttpSevice: WatchMediaHttpService, private router: Router) {}
+  constructor(private authService: AuthService, private watchMyMediaHttpService: WatchMyMediaHttpService, private watchMediaHttpService: WatchMediaHttpService, private router: Router) {
+    this.user = this.authService.getUser();
+  }
   
   ngOnInit(): void {
-    this.media$ = this.watchMediaHttpSevice.findAll();
+    this.media$ = this.watchMediaHttpService.findAll();
   }
 
   // list(): Array<Media> {
   //   return this.watchMediaHttpSevice.findAll();
   // }
 
-//   remove(id: number) {
-//     this.watchMediaHttpSevice.deleteById(id);
-//   }
+  remove(id: number) {
+    this.watchMediaHttpService.deleteById(id);
+  }
 
 //   //Ajout d'un média, avec redirection vers la page d'ajout d'un média
 //   addMedia() {
 //     this.router.navigate(["/media/add"]);
 //   }
 
-//   addToMyMedia() {}
+  addToMyMedia(media: Media) {
+    this.accountMedia = new AccountMedia(null, this.user, media);
 
-//   //Afficher les listes des Médias correspondant
-//   showAllMedia() {
-//     this.showAllMediaForm = true;
-//     this.showBoardGameForm = false;
-//     this.showBookForm = false;
-//     this.showMagazineForm = false;
-//     this.showMovieForm = false;
-//     this.showMusicForm = false;
-//     this.showVideoGameForm = false;
-//   }
+    this.watchMyMediaHttpService.save(this.accountMedia).subscribe();
+  }
+
+  //Afficher les listes des Médias correspondant
+  showAllMedia() {
+    this.showAllMediaForm = true;
+    this.showBoardGameForm = false;
+    this.showBookForm = false;
+    this.showMagazineForm = false;
+    this.showMovieForm = false;
+    this.showMusicForm = false;
+    this.showVideoGameForm = false;
+  }
 
 //   showBoardGameList() {
 //     this.showAllMediaForm = false;

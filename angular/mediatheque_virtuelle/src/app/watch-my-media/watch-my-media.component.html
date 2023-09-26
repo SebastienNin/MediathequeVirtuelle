@@ -29,18 +29,15 @@
                         <th>User</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let med of media$ | async">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
-                        <td>{{ med.typeMedia }}</td>
-                        <td>{{med.publishingHouse}}</td>
-                        <td>{{med.language}}</td>
-                        <td>{{med.parutionDate}}</td>
-                    <!-- <tr *ngFor="let med of accountMedia$ | async">
-                        <td [routerLink]="['/accountmedia/',med.id]">{{med.}}</td>
-                         <td>
-                            <a type="button" (click)="findAccount()">account</a>
-                            <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
+                <tbody *ngFor="let med of accountMedia$ | async">
+                    <tr *ngIf="med.account.id == user.id">
+                        <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
+                        <td>{{med.media.typeMedia}}</td>
+                        <td>{{med.media.publishingHouse}}</td>
+                        <td>{{med.media.language}}</td>
+                        <td>{{med.media.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteToMyMedia(med.id)"><i
                                 class="bi bi-trash"></i></a>
                         </td> -->
                     <!-- </tr> -->
@@ -66,17 +63,17 @@
                         <th>Supprimer de mes médias</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of media$ | async">
-                    <tr *ngIf="med.typeMedia=='BoardGame'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
-                        <td>{{med.publishingHouse}}</td>
-                        <td>{{med.playerNumber}}</td>
-                        <td>{{med.recommendedAge}}</td>
-                        <td>{{med.duration}}</td>
-                        <td>{{med.language}}</td>
-                        <td>{{med.parutionDate}}</td>
-                        <!-- <td>
-                            <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
+                <tbody *ngFor="let med of accountMedia$ | async">
+                    <tr *ngIf="med.media.typeMedia=='BoardGame' || med.account.id == user.id">
+                        <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
+                        <td>{{med.media.publishingHouse}}</td>
+                        <td>{{med.media.playerNumber}}</td>
+                        <td>{{med.media.recommendedAge}}</td>
+                        <td>{{med.media.duration}}</td>
+                        <td>{{med.media.language}}</td>
+                        <td>{{med.media.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteToMyMedia(med.id)"><i
                                 class="bi bi-trash"></i></a>
                         </td> -->
                     </tr>
@@ -100,16 +97,16 @@
                         <th>Supprimer de mes médias</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of media$ | async">
-                    <tr *ngIf="med.typeMedia=='Book'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
-                        <td>{{med.author}}</td>
-                        <td>{{med.booktype}}</td>
-                        <td>{{med.publishingHouse}}</td>
-                        <td>{{med.language}}</td>
-                        <td>{{med.parutionDate}}</td>
-                        <!-- <td>
-                            <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
+                <tbody *ngFor="let med of accountMedia$ | async">
+                    <tr *ngIf="med.media.typeMedia=='Book' || med.account.id == user.id">
+                        <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
+                        <td>{{med.media.author}}</td>
+                        <td>{{med.media.booktype}}</td>
+                        <td>{{med.media.publishingHouse}}</td>
+                        <td>{{med.media.language}}</td>
+                        <td>{{med.media.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteToMyMedia(med.id)"><i
                                 class="bi bi-trash"></i></a>
                         </td> -->
                     </tr>
@@ -132,15 +129,15 @@
                         <th>Supprimer de mes médias</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of media$ | async">
-                    <tr *ngIf="med.typeMedia=='Magazine'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
-                        <td>{{med.magazinePeriodicity}}</td>
-                        <td>{{med.publishingHouse}}</td>
-                        <td>{{med.language}}</td>
-                        <td>{{med.parutionDate}}</td>
-                        <!-- <td>
-                            <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
+                <tbody *ngFor="let med of accountMedia$ | async">
+                    <tr *ngIf="med.media.typeMedia=='Magazine' || med.account.id == user.id">
+                        <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
+                        <td>{{med.media.magazinePeriodicity}}</td>
+                        <td>{{med.media.publishingHouse}}</td>
+                        <td>{{med.media.language}}</td>
+                        <td>{{med.media.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteToMyMedia(med.id)"><i
                                 class="bi bi-trash"></i></a>
                         </td> -->
                     </tr>
@@ -165,17 +162,17 @@
                         <th>Supprimer de mes médias</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of media$ | async">
-                    <tr *ngIf="med.typeMedia=='Movie'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
-                        <td>{{med.directors}}</td>
-                        <td>{{med.actors}}</td>
-                        <td>{{med.duration}}</td>
-                        <td>{{med.publishingHouse}}</td>
-                        <td>{{med.language}}</td>
-                        <td>{{med.parutionDate}}</td>
-                        <!-- <td>
-                            <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
+                <tbody *ngFor="let med of accountMedia$ | async">
+                    <tr *ngIf="med.media.typeMedia=='Movie' || med.account.id == user.id">
+                        <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
+                        <td>{{med.media.directors}}</td>
+                        <td>{{med.media.actors}}</td>
+                        <td>{{med.media.duration}}</td>
+                        <td>{{med.media.publishingHouse}}</td>
+                        <td>{{med.media.language}}</td>
+                        <td>{{med.media.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteToMyMedia(med.id)"><i
                                 class="bi bi-trash"></i></a>
                         </td> -->
                     </tr>
@@ -201,18 +198,18 @@
                         <th>Supprimer de mes médias</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of media$ | async">
-                    <tr *ngIf="med.typeMedia=='Music'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
-                        <td>{{med.artist}}</td>
-                        <td>{{med.trackNumber}}</td>
-                        <td>{{med.tracks}}</td>
-                        <td>{{med.duration}}</td>
-                        <td>{{med.publishingHouse}}</td>
-                        <td>{{med.language}}</td>
-                        <td>{{med.parutionDate}}</td>
-                        <!-- <td>
-                            <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
+                <tbody *ngFor="let med of accountMedia$ | async">
+                    <tr *ngIf="med.media.typeMedia=='Music' || med.account.id == user.id">
+                        <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
+                        <td>{{med.media.artist}}</td>
+                        <td>{{med.media.trackNumber}}</td>
+                        <td>{{med.media.tracks}}</td>
+                        <td>{{med.media.duration}}</td>
+                        <td>{{med.media.publishingHouse}}</td>
+                        <td>{{med.media.language}}</td>
+                        <td>{{med.media.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteToMyMedia(med.id)"><i
                                 class="bi bi-trash"></i></a>
                         </td> -->
                     </tr>
@@ -236,17 +233,17 @@
                         <th>Supprimer de mes médias</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let med of media$ | async">
-                    <tr *ngIf="med.typeMedia=='VideoGame'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
-                        <td *ngIf="med.multiPlayer">Oui</td>
-                        <td *ngIf="!med.multiPlayer">Non</td>
-                        <td>{{med.pegi}}</td>
-                        <td>{{med.publishingHouse}}</td>
-                        <td>{{med.language}}</td>
-                        <td>{{med.parutionDate}}</td>
-                        <!-- <td>
-                            <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
+                <tbody *ngFor="let med of accountMedia$ | async">
+                    <tr *ngIf="med.media.typeMedia=='VideoGame' || med.account.id == user.id">
+                        <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
+                        <td *ngIf="med.media.multiPlayer">Oui</td>
+                        <td *ngIf="!med.media.multiPlayer">Non</td>
+                        <td>{{med.media.pegi}}</td>
+                        <td>{{med.media.publishingHouse}}</td>
+                        <td>{{med.media.language}}</td>
+                        <td>{{med.media.parutionDate}}</td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteToMyMedia(med.id)"><i
                                 class="bi bi-trash"></i></a>
                         </td> -->
                     </tr>

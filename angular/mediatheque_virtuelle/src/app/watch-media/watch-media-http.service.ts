@@ -19,27 +19,12 @@ export class WatchMediaHttpService {
     return this.http.get<Media[]>(this.apiMediaUrl)
   }
 
-//   findAllForAsync(): Observable<Media[]> {
-//     return this.http.get<Media[]>(this.apiMediaUrl);
-//   }
-  
-//   save(media: Media): Observable<Media> {
-//     if (media.id) {
-//       return this.http.put<Media>(this.apiMediaUrl + "/" + media.id, media);
-//     } else {
-//       return this.http.post<Media>(this.apiMediaUrl, media);
-//     }
-//   }
-
-//   deleteById(id: number): Observable<void> {
-//     return this.http.delete<void>(this.apiMediaUrl + "/" + id);
-//   }
+  findById(id: number): Observable<Media> {
+    let obs: Observable<Media> = this.http.get<Media>(this.apiMediaUrl +id);
 
   
 
-//   findById(id: number): Observable<Media> {
-//     return this.http.get<Media>(this.apiMediaUrl + "/" + id);
-//   }
-
-
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(this.apiMediaUrl +id);
+  }
 }

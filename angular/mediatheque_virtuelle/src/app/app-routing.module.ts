@@ -22,8 +22,8 @@ const routes: Routes = [
   {path: "perso-list", component: PersoListComponent, canActivate: [authGuard]},
   {path: "myAccount", component: MyAccountComponent, canActivate: [authGuard]},
   {path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard]},
-  {path: "watchMedia", component: WatchMediaComponent},
-  {path: "watchMyMedia", component: WatchMyMediaComponent}
+  {path: "watchMedia", component: WatchMediaComponent, canActivate: [authGuard]},
+  {path: "watchMyMedia", component: WatchMyMediaComponent, canActivate: [authGuard]}
 ];
 
 @NgModule({

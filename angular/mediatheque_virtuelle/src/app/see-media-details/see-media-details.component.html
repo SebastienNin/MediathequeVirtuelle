@@ -14,7 +14,7 @@
                     <p class="card-text">Nombre de joueur : {{media.playerNumber}}</p>
                     <p class="card-text">Age recommandé : {{media.recommendedAge}}</p>
                     <p class="card-text">Durée de la partie : {{media.duration}} minutes</p>
-                    <p class="card-text">Thème(s) : </p>
+                    <p class="card-text">Thème(s) : {{themes}}</p>
                     <p class="card-text">Année de sortie : {{media.parutionDate}}</p>
                     <p class="card-text">Editeur : {{media.publishingHouse}}</p>
                     <p class="card-text">Langue : {{media.language}}</p>
@@ -27,8 +27,8 @@
                 <div class="card-body">
                     <h1 class="card-title">{{media.name}}</h1>
                     <p class="card-text">Auteur : {{media.author}}</p>
-                    <p class="card-text">Type : {{media.booktype}}</p>
-                    <p class="card-text">Genre(s) :  </p>
+                    <p class="card-text">Type : {{media.bookType}}</p>
+                    <p class="card-text">Genre(s) : {{themes}}</p>
                     <p class="card-text">Maison d'édition : {{media.publishingHouse}} </p>
                     <p class="card-text">Année de publication : {{media.parutionDate}}</p>
                     <p class="card-text">ISBN : {{media.ISBN}}</p>
@@ -46,7 +46,7 @@
                     <p class="card-text">ISSN : {{media.ISSN}}</p>
                     <p class="card-text">Périodicité : {{media.magazinePeriodicity}}</p>
                     <p class="card-text">Date de publication : {{media.parutionDate}}</p>
-                    <p class="card-text">Thème(s) : </p>
+                    <p class="card-text">Thème(s) : {{themes}}</p>
                     <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>  
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     <p class="card-text">Acteur(s) : {{media.actors}}</p>
                     <p class="card-text">Année de sortie : {{media.parutionDate}}</p>
                     <p class="card-text">Durée : {{media.duration}}</p>
-                    <p class="card-text">Genre(s) : </p>                      
+                    <p class="card-text">Genre(s) : {{themes}}</p>                      
                     <p class="card-text">Support : {{media.movieSupport}}</p>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                     <p class="card-text">Nombre de piste(s) : {{media.trackNumber}}</p>
                     <p class="card-text">Piste(s) : {{media.tracks}}</p>
                     <p class="card-text">Durée : {{media.duration}}</p>
-                    <p class="card-text">Genre : </p>
+                    <p class="card-text">Genre : {{themes}}</p>
                     <p class="card-text">Date de sortie : {{media.parutionDate}}</p>
                     <p class="card-text">Support : {{media.musicSupport}}</p>
                     </div>
@@ -82,7 +82,7 @@
                 <div class="card" *ngIf="showVideoGameCard">
                     <div class="card-body">
                         <h1 class="card-title">{{media.name}}</h1>
-                        <p class="card-text">Thème(s) : </p>
+                        <p class="card-text">Thème(s) : {{themes}}</p>
                         <p class="card-text">Multi-joueur ? : {{media.multiPlayer}}</p>
                         <p class="card-text">PEGI : {{media.pegi}}</p>
                         <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>  

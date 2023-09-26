@@ -16,6 +16,7 @@ import { AccountHttpService } from './account/account-http.service';
 import { PersoListComponent } from './perso-list/perso-list.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
+import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
 import { WatchMediaComponent } from './watch-media/watch-media.component';
 import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component';
 
@@ -44,7 +45,7 @@ import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AccountHttpService ],
+  providers: [AccountHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

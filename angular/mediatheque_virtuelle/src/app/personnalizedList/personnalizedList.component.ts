@@ -4,6 +4,7 @@ import { PersonnalizedListHttpService } from './personnalizedList-http.service';
 import { Observable } from 'rxjs';
 import { Account } from '../modele/account';
 import { AccountHttpService } from '../account/account-http.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-perso-list',
@@ -15,9 +16,8 @@ export class PersonnalizedListComponent implements OnInit {
 
   personnalizedLists$: Observable<PersonnalizedList[]>;
   accounts$: Observable<Account[]>;
-  personnalizedListForm: PersonnalizedList = null;
-  personnalizedListFormVide: PersonnalizedList = null;
-  showEditForm: boolean = false;
+  editForm: PersonnalizedList = null;
+
 
   constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) {}
 
@@ -25,44 +25,45 @@ export class PersonnalizedListComponent implements OnInit {
     this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
     this.accounts$ = this.accountHttpService.findAll();
   }
+
+
   add() {
-    this.personnalizedListFormVide = new PersonnalizedList();
-    this.showEditForm = true;
+    this.editForm = new PersonnalizedList();
+    this.editForm.account = new Account();
+
   }
 
   edit(id: number) {
     this.personnalizedListHttpService.findById(id).subscribe(resp => {
-      this.personnalizedListForm = resp;
-      this.showEditForm = true;
+      this.editForm = resp;
+   
+      if(!this.editForm.account) {
+        this.editForm.account = new Account();
+      }
     });
+  }
+
+  remove(id: number) {
+    this.personnalizedListHttpService.deleteById(id);
   }
 
   save() {
-    this.personnalizedListHttpService.save(this.personnalizedListForm).subscribe(() => {
-      this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
-      this.cancel();
-    });
-  }
 
-  save2() {
-    this.personnalizedListHttpService.save(this.personnalizedListFormVide).subscribe(() => {
+    this.personnalizedListHttpService.save(this.editForm).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
       this.cancel();
     });
   }
 
   cancel() {
-    this.personnalizedListForm = null;
-    this.showEditForm = false;
-  }
+    this.editForm = null;
+  
 
-  erase(){
-    this.personnalizedListForm = null;
   }
-
   delete(id: number) {
     this.personnalizedListHttpService.deleteById(id).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
     });
   }
+
 }

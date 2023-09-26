@@ -2,12 +2,14 @@ package mediatheque.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,9 +26,9 @@ public class PersonnalizedList {
 	private Integer id;
 	@Column(nullable = false)
 	private String name;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="account")
-	@JsonView(Views.PersoList.class)
+	@JsonView(Views.PersonnalizedList.class)
 	private Account account;
 	
 	@OneToMany(mappedBy = "persoList")
@@ -71,6 +73,10 @@ public class PersonnalizedList {
 	}
 	public void setMediaList(List<PersoListJoinMedia> mediaList) {
 		this.mediaList = mediaList;
+	}
+	public void setAccount(Optional<Account> account2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

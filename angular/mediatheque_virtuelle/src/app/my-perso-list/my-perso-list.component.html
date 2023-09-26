@@ -1,0 +1,46 @@
+<!-- Tableau des listes personnalisées -->
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Mes Listes personnalisées</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let persoList of myPersoLists$ | async">
+                    <td>{{ persoList.name }}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-primary" (click)="edit(persoList.id)"><i
+                                    class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-danger" (click)="delete(persoList.id)"><i
+                                    class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    <div><button class="btn btn-success" (click)="add()">Ajouter</button>
+    </div>
+    </div>
+</div>
+
+<!-- Formulaire -->
+<div class="card mt-3" *ngIf="persoListForm">
+    <div class="card-header bg-primary text-white display-6">Édition d'une liste personnalisée</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="name">Nom:</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="persoListForm.name" />
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-danger" (click)="cancel()"><i class="bi bi-x-square-fill"></i></a>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Account } from '../modele/account';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { AccountHttpService } from '../account/account-http.service';
+import { AccountHttpService } from '../account-http.service';
 
 @Component({
   selector: 'app-my-account',

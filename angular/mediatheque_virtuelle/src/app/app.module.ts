@@ -12,12 +12,13 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { MatchPasswordDirective } from './match-password.directive';
 import { AccountComponent } from './account/account.component';
 import { AddMediaComponent } from './add-media/add-media.component';
-import { AccountHttpService } from './account/account-http.service';
+import { AccountHttpService } from './account-http.service';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
 import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
 import { WatchMediaComponent } from './watch-media/watch-media.component';
 import { SearchComponent } from './search/search.component';
+import { MyPersoListComponent } from './my-perso-list/my-perso-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SearchComponent } from './search/search.component';
     PersonnalizedListComponent,
     SeeMediaDetailsComponent,
     WatchMediaComponent,
-    SearchComponent
+    SearchComponent,
+    MyPersoListComponent
 
   ],
   imports: [

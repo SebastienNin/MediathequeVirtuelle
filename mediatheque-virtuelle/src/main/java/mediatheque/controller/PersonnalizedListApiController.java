@@ -2,7 +2,6 @@ package mediatheque.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -22,9 +21,11 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import mediatheque.controller.request.PersonnalizedListRequest;
 import mediatheque.controller.response.PersonnalizedListDetailResponse;
+import mediatheque.dao.IDAOAccount;
 import mediatheque.dao.IDAOPersonnalizedList;
 import mediatheque.exception.PersonnalizedListNotFoundException;
 import mediatheque.exception.PersonnalizedListNotValidException;
+import mediatheque.model.Account;
 import mediatheque.model.PersonnalizedList;
 import mediatheque.model.Views;
 
@@ -35,6 +36,9 @@ public class PersonnalizedListApiController {
 	
 	@Autowired
 	private IDAOPersonnalizedList daoPersonnalizedList;
+	
+	@Autowired
+	private IDAOAccount daoAccount;
 	
 	
 	@GetMapping("")
@@ -56,6 +60,13 @@ public class PersonnalizedListApiController {
 		System.out.println(response);
 
 		return response;
+	}
+	
+	@GetMapping("/account/{accountId}")
+	@Transactional 
+	public List<PersonnalizedList> findByAccountId(@PathVariable Integer accountId) {
+		Account account = this.daoAccount.findById(accountId).get();
+		return this.daoPersonnalizedList.findByAccount(account);
 	}
 	
 	@PostMapping("")

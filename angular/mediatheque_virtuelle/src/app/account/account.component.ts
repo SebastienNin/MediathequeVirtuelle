@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Account } from '../modele/account';
 import { AccountService } from './account.service';
-import { AccountHttpService } from './account-http.service';
+import { AccountHttpService } from '../account-http.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent {
-  
+
   accounts$: Observable<Account[]>;
   users: Array<Account> = new Array<Account>();
   accountForm: Account = null;

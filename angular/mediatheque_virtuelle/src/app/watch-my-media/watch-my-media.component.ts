@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { WatchMediaHttpService } from '../watch-media/watch-media-http.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Media } from '../modele/media';
 import { WatchMyMediaHttpService } from './watch-my-media-http.service';
 import { AuthService } from '../auth.service';
 import { Account } from '../modele/account';
@@ -41,7 +40,9 @@ export class WatchMyMediaComponent implements OnInit{
   }
 
   deleteToMyMedia(id: number) {
-    this.watchMyMediaHttpService.deleteById(id);
+    this.watchMyMediaHttpService.deleteById(id).subscribe(resp => {
+      this.accountMedia$ = this.watchMyMediaHttpService.findAll();
+    });
   }
 
   //Afficher les listes des Médias correspondant

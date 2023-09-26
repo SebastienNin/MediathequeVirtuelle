@@ -24,13 +24,6 @@ export class WatchMyMediaHttpService {
     });
   }
 
-  // findByAccount(id: number): Observable<AccountMedia[]> {
-  //   // console.log(this.findByAccount(id));
-  //   // return this.findByAccount(id);
-  //   let obs: Observable<AccountMedia> = this.http.get<AccountMedia>(this.apiAccountMediaUrl + "/findAccount/" + id);
-  //   return obs;
-  // }
-
   findAll(): Observable<AccountMedia[]> {
     return this.http.get<AccountMedia[]>(this.apiAccountMediaUrl);
   }
@@ -41,22 +34,16 @@ export class WatchMyMediaHttpService {
     return obs;
   }
 
-  save(accountMedia : AccountMedia): void {
+  save(accountMedia : AccountMedia): Observable<AccountMedia> {
     if(accountMedia.id) {
-      this.http.put<AccountMedia>(this.apiAccountMediaUrl + accountMedia.id, accountMedia).subscribe(resp => {
-        this.load();
-      });
+      return this.http.put<AccountMedia>(this.apiAccountMediaUrl + accountMedia.id, accountMedia);
     }
     else {
-      this.http.post<AccountMedia>(this.apiAccountMediaUrl, accountMedia).subscribe(resp => {
-        this.load();
-      });
+      return this.http.post<AccountMedia>(this.apiAccountMediaUrl, accountMedia);
     }
   }
 
-  deleteById(id: number): void {
-    this.http.delete<void>(this.apiAccountMediaUrl +id).subscribe( resp => {
-      this.load();
-    });
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(this.apiAccountMediaUrl +id);
   }
 }

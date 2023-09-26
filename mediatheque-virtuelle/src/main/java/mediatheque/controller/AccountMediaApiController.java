@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
@@ -21,9 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.validation.Valid;
-import mediatheque.controller.response.AccountMediaResponse;
 import mediatheque.dao.IDAOAccountMedia;
-import mediatheque.exception.AccountMediaNotFoundException;
 import mediatheque.model.AccountMedia;
 
 @RestController

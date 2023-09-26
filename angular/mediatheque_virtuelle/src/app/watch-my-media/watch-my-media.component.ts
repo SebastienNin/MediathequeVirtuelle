@@ -36,6 +36,7 @@ export class WatchMyMediaComponent implements OnInit{
   
   ngOnInit(): void {
     this.media$ = this.watchMediaHttpSevice.findAll();
+    this.media$.subscribe(resp=> console.log(resp));
   }
 
   getTypeMediaLabel(typeMedia: TypeMedia): string {

@@ -24,11 +24,7 @@ export class WatchMediaHttpService {
   //   });
   // }
 
-  findAll() : Observable<Media[]> {
-    return this.http.get<Media[]>(this.apiMediaUrl)
-  }
-
-  findAllForAsync(): Observable<Media[]> {
+  findAll() :  Observable<Media[]> {
     return this.http.get<Media[]>(this.apiMediaUrl);
   }
 

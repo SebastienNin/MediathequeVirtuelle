@@ -33,7 +33,7 @@ public class AccountMediaApiController {
 		this.daoAccountMedia = daoAccountMedia;
 	}
 
-	@GetMapping("")
+	@GetMapping("/")
 	public List<AccountMedia> findAll() {
 		return daoAccountMedia.findAll();
 	}
@@ -43,7 +43,7 @@ public class AccountMediaApiController {
 		return daoAccountMedia.findById(id).get();
 	}
 
-	@PostMapping("")
+	@PostMapping("/")
 	public AccountMedia create(@Valid @RequestBody AccountMedia accountmedia, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "AccountMedia invalide");

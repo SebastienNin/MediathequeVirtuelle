@@ -22,8 +22,11 @@
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" [routerLink]="['/personnalizedList']" routerLinkActive="active">Listes personnalisées admin</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" [routerLink]="['/watchMedia']" routerLinkActive="active">Listes des Médias</a>
+            </li>
+            <li class="nav-item" *ngIf="authService.isAuthenticated()">
+                <a class="nav-link" [routerLink]="['/watchMyMedia']" routerLinkActive="active">Listes de mes Médias</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/search']" routerLinkActive="active">Rechercher un média</a>

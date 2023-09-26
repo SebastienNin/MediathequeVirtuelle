@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { WatchMediaHttpService } from '../watch-media/watch-media-http.service';
 import { Router } from '@angular/router';
-import { Media } from '../modele/media';
-import { WatchMediaHttpService } from './watch-media-http.service';
 import { Observable } from 'rxjs';
-import { WatchMyMediaHttpService } from '../watch-my-media/watch-my-media-http.service';
-import { AccountMedia } from '../modele/accountMedia';
-import { Account } from '../modele/account';
+import { WatchMyMediaHttpService } from './watch-my-media-http.service';
 import { AuthService } from '../auth.service';
+import { Account } from '../modele/account';
+import { AccountMedia } from '../modele/accountMedia';
 
 @Component({
-  selector: 'app-watch-media',
-  templateUrl: './watch-media.component.html',
-  styleUrls: ['./watch-media.component.scss']
+  selector: 'app-watch-my-media',
+  templateUrl: './watch-my-media.component.html',
+  styleUrls: ['./watch-my-media.component.scss']
 })
-export class WatchMediaComponent implements OnInit{
+export class WatchMyMediaComponent implements OnInit{
 
-  media$: Observable<Media[]>;
+  accountMedia$: Observable<AccountMedia[]>;
 
   user: Account;
-  accountMedia: AccountMedia;
 
   //boolean pour l'affichage des différents formulaires
   showAllMediaForm : boolean = true;
@@ -34,26 +32,17 @@ export class WatchMediaComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    this.media$ = this.watchMediaHttpService.findAll();
+    this.accountMedia$ = this.watchMyMediaHttpService.findAll()
   }
-
-  // list(): Array<Media> {
-  //   return this.watchMediaHttpSevice.findAll();
-  // }
 
   remove(id: number) {
     this.watchMediaHttpService.deleteById(id);
   }
 
-  //Ajout d'un média, avec redirection vers la page d'ajout d'un média
-  addMedia() {
-    this.router.navigate(["/media/add"]);
-  }
-
-  addToMyMedia(media: Media) {
-    this.accountMedia = new AccountMedia(null, this.user, media);
-
-    this.watchMyMediaHttpService.save(this.accountMedia).subscribe();
+  deleteToMyMedia(id: number) {
+    this.watchMyMediaHttpService.deleteById(id).subscribe(resp => {
+      this.accountMedia$ = this.watchMyMediaHttpService.findAll();
+    });
   }
 
   //Afficher les listes des Médias correspondant

@@ -41,56 +41,56 @@ public class AccountMediaApiController {
 		return daoAccountMedia.findAll();
 	}
 
-	@GetMapping("/{id}")
-	public AccountMedia findById(@PathVariable Integer id) {
-		return daoAccountMedia.findById(id).get();
-	}
-	
-	@GetMapping("/findAccount/{id}")
-	public List<AccountMedia> findByAccount(@PathVariable Integer idAccount) {
-		return daoAccountMedia.findByAccount(idAccount);
-	}
-
-	@PostMapping("")
-	public AccountMedia create(@Valid @RequestBody AccountMedia accountmedia, BindingResult result) {
-		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "AccountMedia invalide");
-		}
-
-		accountmedia = daoAccountMedia.save(accountmedia);
-
-		return accountmedia;
-	}
-
-	@PutMapping("/{id}")
-	public AccountMedia update(@RequestBody AccountMedia accountmedia, @PathVariable Integer id) {
-		accountmedia = daoAccountMedia.save(accountmedia);
-
-		return accountmedia;
-	}
-
-	@PatchMapping("/{id}")
-	public AccountMedia partialEdit(@RequestBody Map<String, Object> fields, @PathVariable int id) {
-		AccountMedia accountmedia = this.daoAccountMedia.findById(id).get();
-		
-		fields.forEach((key, value) -> {
-			Field field = ReflectionUtils.findField(AccountMedia.class, key);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, accountmedia, value);
-		});
-		
-		AccountMedia accountmediaReturn = daoAccountMedia.save(accountmedia);
-		
-		return accountmediaReturn;
-	}
-
-	@DeleteMapping("/{id}")
-	public void remove(@PathVariable Integer id) {
-		if(!daoAccountMedia.existsById(id)) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
-		
-		daoAccountMedia.deleteById(id);
-	}
+//	@GetMapping("/{id}")
+//	public AccountMedia findById(@PathVariable Integer id) {
+//		return daoAccountMedia.findById(id).get();
+//	}
+//	
+//	@GetMapping("/findAccount/{id}")
+//	public List<AccountMedia> findByAccount(@PathVariable Integer idAccount) {
+//		return daoAccountMedia.findByAccount(idAccount);
+//	}
+//
+//	@PostMapping("")
+//	public AccountMedia create(@Valid @RequestBody AccountMedia accountmedia, BindingResult result) {
+//		if (result.hasErrors()) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "AccountMedia invalide");
+//		}
+//
+//		accountmedia = daoAccountMedia.save(accountmedia);
+//
+//		return accountmedia;
+//	}
+//
+//	@PutMapping("/{id}")
+//	public AccountMedia update(@RequestBody AccountMedia accountmedia, @PathVariable Integer id) {
+//		accountmedia = daoAccountMedia.save(accountmedia);
+//
+//		return accountmedia;
+//	}
+//
+//	@PatchMapping("/{id}")
+//	public AccountMedia partialEdit(@RequestBody Map<String, Object> fields, @PathVariable int id) {
+//		AccountMedia accountmedia = this.daoAccountMedia.findById(id).get();
+//		
+//		fields.forEach((key, value) -> {
+//			Field field = ReflectionUtils.findField(AccountMedia.class, key);
+//			ReflectionUtils.makeAccessible(field);
+//			ReflectionUtils.setField(field, accountmedia, value);
+//		});
+//		
+//		AccountMedia accountmediaReturn = daoAccountMedia.save(accountmedia);
+//		
+//		return accountmediaReturn;
+//	}
+//
+//	@DeleteMapping("/{id}")
+//	public void remove(@PathVariable Integer id) {
+//		if(!daoAccountMedia.existsById(id)) {
+//			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//		}
+//		
+//		daoAccountMedia.deleteById(id);
+//	}
 }
 

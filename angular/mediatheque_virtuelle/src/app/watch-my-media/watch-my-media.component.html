@@ -1,14 +1,14 @@
 <nav class="nav nav-pills m-5">
     <div class="card-header">
-        <h4>
-            <button type="button" class="btn btn-primary" (click)="showAllMedia()">Médias</button>   
-            <button type="button" class="btn btn-primary" (click)="showMovieList()">Films</button>      
-            <button type="button" class="btn btn-primary" (click)="showBoardGameList()">Jeux de Plateau</button>        
-            <button type="button" class="btn btn-primary" (click)="showVideoGameList()">Jeux Vidéos</button>     
-            <button type="button" class="btn btn-primary" (click)="showBookList()">Livres</button>     
-            <button type="button" class="btn btn-primary" (click)="showMagazineList()">Magazines</button>      
+        <!-- <h4>
+            <button type="button" class="btn btn-primary" (click)="showAllMedia()">Médias</button>
+            <button type="button" class="btn btn-primary" (click)="showMovieList()">Films</button>
+            <button type="button" class="btn btn-primary" (click)="showBoardGameList()">Jeux de Plateau</button>
+            <button type="button" class="btn btn-primary" (click)="showVideoGameList()">Jeux Vidéos</button>
+            <button type="button" class="btn btn-primary" (click)="showBookList()">Livres</button>
+            <button type="button" class="btn btn-primary" (click)="showMagazineList()">Magazines</button>
             <button type="button" class="btn btn-primary" (click)="showMusicList()">Musique</button>
-        </h4>
+        </h4> -->
     </div>
 
     <div class="card-body">
@@ -26,20 +26,24 @@
                         <th>Langue d'origine</th>
                         <th>Date de parution</th>
                         <th>Supprimer de mes médias</th>
+                        <th>User</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let med of media$ | async">
                         <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
-                        <td>{{med.typeMedia}}</td>
+                        <td>{{ med.typeMedia }}</td>
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
-                        <td>
+                    <!-- <tr *ngFor="let med of accountMedia$ | async">
+                        <td [routerLink]="['/accountmedia/',med.id]">{{med.}}</td>
+                         <td>
                             <a type="button" (click)="findAccount()">account</a>
                             <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
                                 class="bi bi-trash"></i></a>
-                        </td>
+                        </td> -->
+                    <!-- </tr> -->
                     </tr>
                 </tbody>
             </table>
@@ -71,10 +75,10 @@
                         <td>{{med.duration}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
-                        <td>
+                        <!-- <td>
                             <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
                                 class="bi bi-trash"></i></a>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>
@@ -104,10 +108,10 @@
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
-                        <td>
+                        <!-- <td>
                             <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
                                 class="bi bi-trash"></i></a>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>
@@ -135,10 +139,10 @@
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
-                        <td>
+                        <!-- <td>
                             <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
                                 class="bi bi-trash"></i></a>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>
@@ -170,10 +174,10 @@
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
-                        <td>
+                        <!-- <td>
                             <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
                                 class="bi bi-trash"></i></a>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>
@@ -207,10 +211,10 @@
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
-                        <td>
+                        <!-- <td>
                             <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
                                 class="bi bi-trash"></i></a>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>
@@ -241,10 +245,10 @@
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
-                        <td>
+                        <!-- <td>
                             <a class="btn btn-danger" (click)="deleteToMyMedia()"><i
                                 class="bi bi-trash"></i></a>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>

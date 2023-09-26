@@ -10,7 +10,7 @@ import { AccountMedia } from '../modele/accountMedia';
 export class WatchMyMediaHttpService {
 
   accountMedias: Array<AccountMedia> = new Array <AccountMedia>();
-  apiAccountMediaUrl: string = environment.apiUrl + "/accountmedia/";
+  apiAccountMediaUrl: string = environment.apiUrl + "/accountmedia";
 
   constructor(private http: HttpClient) {
     this.load();
@@ -45,9 +45,9 @@ export class WatchMyMediaHttpService {
     return obs;
   }
 
-  save()
+  // save()
 
-  deleteById(id: number): Observable<void> {
-    return this.http.delete<void>(this.apiAccountMediaUrl + "/"+id);
-  }
+  // deleteById(id: number): Observable<void> {
+  //   return this.http.delete<void>(this.apiAccountMediaUrl + "/"+id);
+  // }
 }

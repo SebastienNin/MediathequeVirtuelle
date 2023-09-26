@@ -19,7 +19,9 @@ export class Media {
     addDate: string;
 
     //Attribut supplémentaire pour distinguer le type de media
-    typeMedia : TypeMedia;
+    // typeMedia : TypeMedia;
+    typeMedia : string;
+
 
     //attributs de BoardGame
     playerNumber: string;
@@ -67,7 +69,9 @@ export class Media {
         parutionDate?: string,
         addDate?: string,
         //attribut supplémentaire
-        typeMedia?: TypeMedia,
+        // typeMedia?: TypeMedia,
+        typeMedia?:string,
+
         //BoarGame
         playerNumber?: string, 
         recommendedAge? : number, 

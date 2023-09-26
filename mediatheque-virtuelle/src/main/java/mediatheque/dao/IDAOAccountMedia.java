@@ -8,6 +8,6 @@ import mediatheque.model.AccountMedia;
 
 public interface IDAOAccountMedia extends JpaRepository<AccountMedia, Integer>{
 	
-	List<AccountMedia> findByAccount(Integer idAccount);
+//	List<AccountMedia> findByAccount(Integer idAccount);
 
 }

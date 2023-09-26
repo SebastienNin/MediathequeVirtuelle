@@ -20,7 +20,7 @@ export class SearchComponent {
         this.results = data;
       });
     // } else if(!this.query && this.selectedMediaType!= ""){
-    //   this.searchHttpService.search(this.selectedMediaType).subscribe((data) => {
+    //   this.searchHttpService.searchByMediaType(this.selectedMediaType).subscribe((data) => {
     //     this.results = data;
     //   });
     } else if(this.query && this.selectedMediaType == ""){

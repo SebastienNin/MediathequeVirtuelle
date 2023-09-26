@@ -128,4 +128,16 @@ export class AddMediaComponent {
     });
   }
 
+  onFileChange(event: any) {
+    const selectedFile = event.target.files[0];
+  
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const fileData = new Uint8Array(reader.result as ArrayBuffer);
+        this.mediaServiceHttp.uploadFile(fileData);
+      };
+      reader.readAsArrayBuffer(selectedFile);
+    }
+  }
 }

@@ -11,6 +11,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { PersoListComponent } from './perso-list/perso-list.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
 import { WatchMediaComponent } from './watch-media/watch-media.component';
+import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component';
 
 const routes: Routes = [
   {path: "", component: AccueilComponent, pathMatch: 'full'},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: "perso-list", component: PersoListComponent, canActivate: [authGuard]},
   {path: "myAccount", component: MyAccountComponent, canActivate: [authGuard]},
   {path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard]},
-  {path: "watchMedia", component: WatchMediaComponent}
+  {path: "watchMedia", component: WatchMediaComponent},
+  {path: "watchMyMedia", component: WatchMyMediaComponent}
 ];
 
 @NgModule({

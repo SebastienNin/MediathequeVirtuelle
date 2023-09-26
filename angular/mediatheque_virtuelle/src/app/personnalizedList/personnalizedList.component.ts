@@ -15,6 +15,7 @@ export class PersonnalizedListComponent implements OnInit {
 
   personnalizedLists$: Observable<PersonnalizedList[]>;
   accounts$: Observable<Account[]>;
+  idAccountForm: number;
   editForm: PersonnalizedList = null;
   addForm: PersonnalizedList = null;
 
@@ -23,7 +24,7 @@ export class PersonnalizedListComponent implements OnInit {
   ngOnInit(): void {
     this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
     this.accounts$ = this.accountHttpService.findAll();
-    this.accountHttpService.findAll().subscribe(resp => console.log(resp));
+    this.personnalizedListHttpService.findAll().subscribe(resp => console.log(resp));
 
   }
   add() {
@@ -32,11 +33,11 @@ export class PersonnalizedListComponent implements OnInit {
 
   }
 
- edit(id: number) {
+  edit(id: number) {
     this.personnalizedListHttpService.findById(id).subscribe(resp => {
       this.editForm = resp;
-   
-      if(!this.editForm.account) {
+
+      if (!this.editForm.account) {
         this.editForm.account = new Account();
       }
     });
@@ -51,7 +52,13 @@ export class PersonnalizedListComponent implements OnInit {
   }
 
   saveAdd() {
-    console.log(this.addForm)
+
+    this.accountHttpService.findById(this.idAccountForm).subscribe(resp => {
+      this.addForm.account = resp; console.log(this.addForm); this.personnalizedListHttpService.save(this.addForm).subscribe;
+    });
+
+
+
     this.personnalizedListHttpService.save(this.addForm).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
       this.cancel();
@@ -64,7 +71,7 @@ export class PersonnalizedListComponent implements OnInit {
 
   }
 
-  
+
   delete(id: number) {
     this.personnalizedListHttpService.deleteById(id).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();

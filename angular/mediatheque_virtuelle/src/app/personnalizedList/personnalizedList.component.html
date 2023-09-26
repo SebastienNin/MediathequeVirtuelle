@@ -15,7 +15,7 @@
                 <tr *ngFor="let personnalizedList of personnalizedLists$ | async">
                     <td>{{ personnalizedList.id }}</td>
                     <td>{{ personnalizedList.name }}</td>
-                    <td>{{ personnalizedList.account?.name }}</td>
+                    <td>{{ personnalizedList.account?.id }} - {{ personnalizedList.account?.name }}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
                             <a class="btn btn-primary" (click)="edit(personnalizedList.id)"><i
@@ -27,33 +27,46 @@
                 </tr>
             </tbody>
         </table>
-        <div><button class="btn btn-success" (click)="add()">Ajouter</button></div>
+    <div><button class="btn btn-success" (click)="add()">Ajouter</button>
+    </div>
     </div>
 </div>
 
-
-<div class="card mt-3">
-    <div class="card-header bg-primary text-white display-6">Édition / Ajout d'une liste personnalisée</div>
+<!-- Formulaire d'édition -->
+<div class="card mt-3" *ngIf="editForm">
+    <div class="card-header bg-primary text-white display-6">Édition d'une liste personnalisée</div>
     <div class="card-body">
-        <form #listForm="ngForm">
-            <div class="form-group">
-                <label for="id">Identifiant:</label>
-                <input type="number" class="form-control" id="id" name="id" readonly [(ngModel)]="editForm.id" />
-            </div>
-            <div class="form-group">
-                <label for="name">Nom:</label>
-                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="editForm.name" required />
-            </div>
-            <div class="form-group">
-                <label for="account">Compte:</label>
-                <select class="form-control" id="account" name="account" [(ngModel)]="editForm.account.id" required>
-                    <option *ngFor="let acc of accounts$ | async" [value]="acc.id">{{ acc.name }}</option>
-                </select>
-            </div>
-            <div class="btn-group btn-group-lg float-right">
-                <button class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i> Enregistrer</button>
-                <button class="btn btn-danger" (click)="cancel()"><i class="bi bi-x-square-fill"></i> Annuler</button>
-            </div>
-        </form>
+        <div class="form-group">
+            <label for="name">Nom:</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="editForm.name" />
+        </div>
+        <div class="form-group">
+            <label for="account">Compte:</label>
+            <select class="form-control" id="account" name="account" [(ngModel)]="editForm.account.id">
+            <option *ngFor="let acc of accounts$ |async" [value]="acc.id">{{acc.name}}</option>
+        </select>
+        </div>
+    </div>
+</div>
+<!-- Formulaire d'ajout -->
+<div class="card mt-3" *ngIf="addForm">
+    <div class="card-header bg-primary text-white display-6">Ajout d'une liste personnalisée</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="name">Nom:</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="addForm.name" />
+        </div>
+        <div class="form-group">
+            <label for="account">Compte:</label>
+            <select class="form-control" id="account" name="account" [(ngModel)]="idAccountForm">
+            <option *ngFor="let acc of accounts$ |async" [value]="acc.id">{{acc.name}}</option>
+        </select>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <a class="btn btn-success" (click)="saveAdd()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-danger" (click)="cancel()"><i class="bi bi-x-square-fill"></i></a>
+        </div>
     </div>
 </div>

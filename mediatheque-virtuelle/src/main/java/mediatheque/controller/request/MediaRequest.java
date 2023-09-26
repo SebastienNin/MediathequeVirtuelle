@@ -8,6 +8,7 @@ import mediatheque.model.BookType;
 import mediatheque.model.MagazinePeriodicity;
 import mediatheque.model.MovieSupport;
 import mediatheque.model.MusicSupport;
+import mediatheque.model.Theme;
 import mediatheque.model.TypeMedia;
 
 public class MediaRequest {
@@ -21,6 +22,9 @@ public class MediaRequest {
 	private boolean dematerialized;
 	private LocalDate parutionDate;
 	private LocalDate addDate;
+	
+	// Attribut pour récupérer les thèmes
+	private List<Theme> themes;
 	
 	//Attribut supplémentaire pour disntinguer le type de média
 	private TypeMedia typeMedia;
@@ -218,6 +222,9 @@ public class MediaRequest {
 	public void setTracksNumber(int tracksNumber) {
 		this.trackNumber = tracksNumber;
 	}
+	public void setTrackNumber(int trackNumber) {
+		this.trackNumber = trackNumber;
+	}
 	public MusicSupport getMusicSupport() {
 		return musicSupport;
 	}
@@ -236,7 +243,12 @@ public class MediaRequest {
 	public void setMultiPlayer(boolean multiPlayer) {
 		this.multiPlayer = multiPlayer;
 	}
-
+	public List<Theme> getThemes() {
+		return themes;
+	}
+	public void setThemes(List<Theme> themes) {
+		this.themes = themes;
+	}
 }
 
 

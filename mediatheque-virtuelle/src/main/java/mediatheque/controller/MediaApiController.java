@@ -2,12 +2,9 @@ package mediatheque.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.nio.file.Path;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,10 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -31,6 +25,8 @@ import mediatheque.controller.request.MediaRequest;
 import mediatheque.controller.response.MediaResponse;
 import mediatheque.dao.IDAOBook;
 import mediatheque.dao.IDAOMedia;
+import mediatheque.dao.IDAOMediaTheme;
+import mediatheque.dao.IDAOTheme;
 import mediatheque.exception.MediaNotFoundException;
 import mediatheque.model.BoardGame;
 import mediatheque.model.Book;
@@ -39,6 +35,8 @@ import mediatheque.model.Media;
 import mediatheque.model.MediaTheme;
 import mediatheque.model.Movie;
 import mediatheque.model.Music;
+import mediatheque.model.Theme;
+import mediatheque.model.TypeMedia;
 import mediatheque.model.VideoGame;
 import mediatheque.model.Views;
 
@@ -50,11 +48,17 @@ public class MediaApiController {
 	private IDAOMedia daoMedia;
 
 	private IDAOBook daoBook;
+	
+	private IDAOTheme daoTheme;
+	
+	private IDAOMediaTheme daoMediaTheme;
 
-	public MediaApiController(IDAOMedia daoMedia, IDAOBook daoBook) {
+	public MediaApiController(IDAOMedia daoMedia, IDAOBook daoBook, IDAOTheme daoTheme, IDAOMediaTheme daoMediaTheme) {
 		super();
 		this.daoMedia = daoMedia;
 		this.daoBook = daoBook;
+		this.daoTheme = daoTheme;
+		this.daoMediaTheme = daoMediaTheme;
 	}
 
 	@GetMapping("/")
@@ -110,6 +114,8 @@ public class MediaApiController {
 	@Transactional
 	public MediaResponse findMediaById(@PathVariable Integer id) {
 		Media media = this.daoMedia.findById(id).orElseThrow(MediaNotFoundException::new);
+		List<MediaTheme> mediaThemes = this.daoMediaTheme.findByMedia(media);
+		List<Theme> themes = new ArrayList<Theme>();
 		MediaResponse response = new MediaResponse();
 
 		BeanUtils.copyProperties(media, response);
@@ -129,8 +135,12 @@ public class MediaApiController {
 		} else {
 			
 		}
+		// Récupération des thèmes du média
+		for(MediaTheme mediaTheme : mediaThemes) {
+			themes.add(mediaTheme.getTheme());
+		}
+		response.setThemes(themes);
 		
-
 		// A changer et adapter
 		// response.setNbProduits(fournisseur.getProduits().size());
 		response.setNbAccountMedia(media.getAccountMediaList().size());
@@ -147,17 +157,19 @@ public class MediaApiController {
 		}
 		// Le mediaRequest récupéré est un type général qui possède un attribut
 		// typeMedia qui permet de faire la distinction sur le type réel du média,
-		// en fonction, on récupre les propriétés spécifiques au type de média concerné
+		// en fonction, on récupère les propriétés spécifiques au type de média concerné
 
 		// Étape 1 : Téléchargez l'image et générez un chemin temporaire
-		String temporaryImagePath = "/temp_media_pictures/" + UUID.randomUUID().toString() + ".jpg";
+//		String temporaryImagePath = "/temp_media_pictures/" + UUID.randomUUID().toString() + ".jpg";
 
+		//Etape 2 : On enregistre le média selon son type
+		
 		Media media;
 		switch (mediaRequest.getTypeMedia()) {
 		case BoardGame: {
 			BoardGame boardGame = new BoardGame();
 			BeanUtils.copyProperties(mediaRequest, boardGame);
-			media = daoMedia.save(boardGame);
+			media = daoMedia.save(boardGame);	
 			break;
 		}
 		case Book: {
@@ -193,20 +205,33 @@ public class MediaApiController {
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + mediaRequest.getTypeMedia());
 		}
+		
+		//Etape 3 : On enregistre les thèmes et le lien média-thème
+		for(Theme theme : mediaRequest.getThemes()) {
+			System.out.println(theme);
+			if (theme.getId()!=null) {
+				MediaTheme mediaTheme = new MediaTheme(media, theme);
+				mediaTheme = daoMediaTheme.save(mediaTheme);
+			} else {
+				theme = daoTheme.save(theme);
+			}
+		}
 
-		// Étape 3 : Maintenant que l'objet Media a été enregistré, obtenez son ID
+		// Étape 4 : Maintenant que l'objet Media a été enregistré, obtenez son ID
 //		Integer mediaId = media.getId();
 		// Créez le chemin final de l'image basé sur l'ID
 //		String baseImagePath = "/assets/media_pictures/";
 //		String imagePath = baseImagePath + mediaId + ".jpg";
 
-		// Étape 4 : Mettez à jour la propriété d'image de l'objet Media avec le chemin
+		// Étape 5 : Mettez à jour la propriété d'image de l'objet Media avec le chemin
 		// final
 //		media.setImage(imagePath);
 		// Enregistrez à nouveau l'objet Media pour mettre à jour la propriété d'image
 		daoMedia.save(media);
+		
+		
 
-		// Étape 5 : Stockage de l'image depuis le chemin temporaire vers le chemin
+		// Étape 6 : Stockage de l'image depuis le chemin temporaire vers le chemin
 		// final
 		// moveImageToFinalPath(imageFile, temporaryImagePath, imagePath);
 

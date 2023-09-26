@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +22,11 @@ import jakarta.validation.Valid;
 import mediatheque.dao.IDAOTheme;
 import mediatheque.model.EnumTheme;
 import mediatheque.model.Media;
-import mediatheque.model.MediaTheme;
 import mediatheque.model.Theme;
 import mediatheque.model.Views;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/theme")
 public class ThemeApiController {
 
@@ -47,11 +48,11 @@ public class ThemeApiController {
 		return daoTheme.findById(id).get();
 	}
 
-	@GetMapping("/type/{type}")
+	@GetMapping("/enumTheme/{enumTheme}")
 	@JsonView(Views.Theme.class)
-	public List<Theme> findThemeByEnumTheme(@PathVariable String type) {
+	public List<Theme> findThemeByEnumTheme(@PathVariable String enumTheme) {
 		try {
-			EnumTheme enumType = EnumTheme.valueOf(type); // Convertir la chaîne en Enum
+			EnumTheme enumType = EnumTheme.valueOf(enumTheme); // Convertir la chaîne en Enum
 			return daoTheme.findByEnumTheme(enumType);
 		} catch (IllegalArgumentException e) {
 			// Gérer le cas où la valeur de type n'est pas valide
@@ -70,12 +71,12 @@ public class ThemeApiController {
 		}
 	}
 
-	// Exemple : localhost:8080/api/theme/labelAndType/Action/VIDEOGAME
-	@GetMapping("/labelAndType/{label}/{type}")
+	// Exemple : http://localhost:8080/mediatheque-virtuelle/api/theme/labelAndEnumTheme/Action-Aventure/VIDEOGAME
+	@GetMapping("/labelAndEnumTheme/{label}/{enumTheme}")
 	@JsonView(Views.Theme.class)
-	public List<Theme> findThemesByLabelAndType(@PathVariable String label, @PathVariable String type) {
+	public Theme findThemesByLabelAndEnumTheme(@PathVariable String label, @PathVariable String enumTheme) {
 		try {
-			EnumTheme enumType = EnumTheme.valueOf(type); // Convertir la chaîne en Enum
+			EnumTheme enumType = EnumTheme.valueOf(enumTheme); // Convertir la chaîne en Enum
 			return daoTheme.findByLabelAndEnumTheme(label, enumType);
 		} catch (IllegalArgumentException e) {
 			// Gérer le cas où la valeur de type n'est pas valide

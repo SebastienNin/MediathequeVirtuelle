@@ -43,7 +43,8 @@ public class AccountApiController {
 	}
 
 	@GetMapping("")
-	@JsonView(Views.Common.class)
+	
+	//@JsonView(Views.Common.class)
 	public List<Account> findAll() {
 		return daoAccount.findAll();
 	}

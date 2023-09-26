@@ -16,7 +16,10 @@ export class PersonnalizedListComponent implements OnInit {
 
   personnalizedLists$: Observable<PersonnalizedList[]>;
   accounts$: Observable<Account[]>;
+  idAccountForm: number;
   editForm: PersonnalizedList = null;
+
+  constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) { }
 
 
   constructor(private personnalizedListHttpService: PersonnalizedListHttpService, private accountHttpService: AccountHttpService) {}
@@ -24,20 +27,23 @@ export class PersonnalizedListComponent implements OnInit {
   ngOnInit(): void {
     this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
     this.accounts$ = this.accountHttpService.findAll();
+    this.personnalizedListHttpService.findAll().subscribe(resp => console.log(resp));
+
   }
 
 
   add() {
-    this.editForm = new PersonnalizedList();
-    this.editForm.account = new Account();
-
+    this.editForm = null;
+    this.addForm = new PersonnalizedList();
+    this.addForm.account = new Account();
   }
 
   edit(id: number) {
+    this.addForm = null;
     this.personnalizedListHttpService.findById(id).subscribe(resp => {
       this.editForm = resp;
-   
-      if(!this.editForm.account) {
+
+      if (!this.editForm.account) {
         this.editForm.account = new Account();
       }
     });
@@ -47,9 +53,9 @@ export class PersonnalizedListComponent implements OnInit {
     this.personnalizedListHttpService.deleteById(id);
   }
 
-  save() {
-
-    this.personnalizedListHttpService.save(this.editForm).subscribe(() => {
+  saveAdd() {
+    console.log(this.addForm)
+    this.personnalizedListHttpService.save(this.addForm).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();
       this.cancel();
     });
@@ -57,9 +63,11 @@ export class PersonnalizedListComponent implements OnInit {
 
   cancel() {
     this.editForm = null;
-  
+    this.addForm = null;
 
   }
+
+  
   delete(id: number) {
     this.personnalizedListHttpService.deleteById(id).subscribe(() => {
       this.personnalizedLists$ = this.personnalizedListHttpService.findAll();

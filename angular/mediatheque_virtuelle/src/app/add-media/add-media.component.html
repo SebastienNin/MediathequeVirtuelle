@@ -69,6 +69,13 @@
         <label for="durationBG">Durée de la partie (en min):</label>
         <input type="number" class="form-control" id="durationBG" name="durationBG" [(ngModel)]="mediaForm.duration"/>
       </div>
+
+      <div class="form-group">
+        <label for="themeBoardGame">Thème:</label>
+       <select class="form-control" id="themeBoardGame" name="themeBoardGame" [(ngModel)]="themeId">
+          <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
+        </select>
+      </div>
     </div>
 
     <div class="card-body" *ngIf="showBookForm">
@@ -94,9 +101,16 @@
 
       <div class="form-group">
         <label for="typeBook">Type de livre:</label>
-        <select class="form-control" id="typeBook" name="typeBook" [(ngModel)]="mediaForm.booktype">
+        <select class="form-control" id="typeBook" name="typeBook" [(ngModel)]="mediaForm.bookType">
           <!-- <option selected>Choisir un type de livre</option> -->
           <option *ngFor="let type of bookTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="themeBook">Thème:</label>
+       <select class="form-control" id="themeBook" name="themeBook" [(ngModel)]="themeId">
+          <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
       </div>
     </div>
@@ -117,6 +131,13 @@
         <select class="form-select" id="periodicity" name="periodicity" [(ngModel)]="mediaForm.magazinePeriodicity">
           <!-- <option selected>Choisir une périodicité</option> -->
           <option *ngFor="let type of magPeriodicities" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="themeMagazin">Thème:</label>
+       <select class="form-control" id="themeMagazine" name="themeMagazine" [(ngModel)]="themeId">
+          <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
       </div>
     </div>
@@ -150,6 +171,13 @@
         <select class="form-select" id="supportMovie" name="supportMovie" [(ngModel)]="mediaForm.movieSupport">
           <!-- <option selected>Choisir un support</option> -->
           <option *ngFor="let type of movieSupports" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="themeMovie">Thème:</label>
+       <select class="form-control" id="themeMovie" name="themeMovie" [(ngModel)]="themeId">
+          <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
       </div>
     </div>
@@ -186,6 +214,13 @@
           <option *ngFor="let type of musicSupports" [value]="type">{{ type }}</option>
         </select>
       </div>
+      
+      <div class="form-group">
+        <label for="themeMusic">Thème:</label>
+       <select class="form-control" id="themeMusic" name="themeMusic" [(ngModel)]="themeId">
+          <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
+        </select>
+      </div>
     </div>
 
     <div class="card-body" *ngIf="showVideoGameForm">
@@ -197,6 +232,13 @@
       <div class="form-group">
         <input type="checkbox" class="form-check-input" id="multiplayer" name="multiplayer" [(ngModel)]="mediaForm.multiPlayer"/>
         <label for="multiplayer"> Multijoueur ?</label>
+      </div>
+
+      <div class="form-group">
+        <label for="themeVideoGame">Thème:</label>
+       <select class="form-control" id="themeVideoGame" name="themeVideoGame" [(ngModel)]="themeId">
+          <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
+        </select>
       </div>
     </div>
 

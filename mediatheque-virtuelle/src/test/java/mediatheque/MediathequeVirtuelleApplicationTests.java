@@ -80,9 +80,9 @@ class MediathequeVirtuelleApplicationTests {
 				"jaquette_truthIsABeautifulThing", "", true, LocalDate.parse("2017-01-01"), LocalDate.now(),
 				"London Grammar", 79, 18, MusicSupport.NOSUPPORT);
 
-		List<String> movieDirectors = new ArrayList();
+		List<String> movieDirectors = new ArrayList<String>();
 		Collections.addAll(movieDirectors, "Greta Gerwig");
-		List<String> movieActors = new ArrayList();
+		List<String> movieActors = new ArrayList<String>();
 		Collections.addAll(movieActors, "Margot Robbie, Ryan Gosling");
 		Movie movie1 = new Movie("Barbie", "Warner Bros. Pictures", "Français", "logo_film_barbie",
 				"A Barbie Land, vous êtes un être parfait dans un monde parfait. Sauf si vous êtes en crise existentielle, ou si vous êtes Ken.",
@@ -116,8 +116,8 @@ class MediathequeVirtuelleApplicationTests {
 		bg1Theme2.getMediaThemeList().add(bg1MediaTheme2);
 		bg1 = daoMedia.save(bg1);
 		// VideoGame
-		Theme vg1Theme1 = new Theme("Action", EnumTheme.VIDEOGAME);
-		Theme vg1Theme2 = new Theme("Aventure", EnumTheme.VIDEOGAME);
+		Theme vg1Theme1 = new Theme("Action-Aventure", EnumTheme.VIDEOGAME);
+		Theme vg1Theme2 = new Theme("Monde ouvert", EnumTheme.VIDEOGAME);
 		vg1Theme1 = daoTheme.save(vg1Theme1);
 		vg1Theme2 = daoTheme.save(vg1Theme2);
 		MediaTheme vg1MediaTheme1 = new MediaTheme(vg1, vg1Theme1);
@@ -130,7 +130,7 @@ class MediathequeVirtuelleApplicationTests {
 		vg1 = daoMedia.save(vg1);
 		// Book
 		Theme book1Theme1 = new Theme("Exploration", EnumTheme.BOOK);
-		Theme book1Theme2 = new Theme("Aventure", EnumTheme.BOOK);
+		Theme book1Theme2 = new Theme("Action-Aventure", EnumTheme.BOOK);
 		book1Theme1 = daoTheme.save(book1Theme1);
 		book1Theme2 = daoTheme.save(book1Theme2);
 		MediaTheme book1MediaTheme1 = new MediaTheme(book1, book1Theme1);
@@ -179,9 +179,6 @@ class MediathequeVirtuelleApplicationTests {
 		am2 = daoAccountMedia.save(am2);
 		AccountMedia am3 = new AccountMedia(user2, bg1);
 		am3 = daoAccountMedia.save(am3);
-		// Add the AccountMedia to the Media bg1
-//		Collections.addAll(bg1.getAccountMediaList(), am1, am3);
-//		vg1.getAccountMediaList().add(am2);
 		// Create some AccountMedia to link Account and Media | Stop
 
 		// Create PersonnalizedList linked to an Account | Start
@@ -204,15 +201,104 @@ class MediathequeVirtuelleApplicationTests {
 		pljm4 = daoPersoListJoinMedia.save(pljm4);
 		pljm5 = daoPersoListJoinMedia.save(pljm5);
 		pljm6 = daoPersoListJoinMedia.save(pljm6);
-//		Collections.addAll(pl2.getMediaList(), pljm4, pljm5, pljm6);
-		// Create PersonnalizedList linked to an Account | Start
 		
-
-//		Collections.addAll(user1.getAccountMediaList(), am1, am2);
-//		Collections.addAll(user2.getAccountMediaList(), am3);
-//
-//		user1.getPersoLists().add(pl1);
-//		user2.getPersoLists().add(pl2);
+		//Create Theme for all Types of Media |Start
+		Theme bookTheme = new Theme("Romance", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		bookTheme = new Theme("Policier-polar", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		bookTheme = new Theme("Thriller", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		bookTheme = new Theme("Fantastique", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		bookTheme = new Theme("Historique", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		bookTheme = new Theme("Science-fiction", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		bookTheme = new Theme("Fantasy", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		bookTheme = new Theme("Contemporain", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		bookTheme = new Theme("Classique", EnumTheme.BOOK);
+		bookTheme = daoTheme.save(bookTheme);
+		
+		Theme movieTheme = new Theme("Comédie Romantique", EnumTheme.MOVIE);
+		movieTheme = daoTheme.save(movieTheme);
+		movieTheme = new Theme("Action-Aventure", EnumTheme.MOVIE);
+		movieTheme = daoTheme.save(movieTheme);
+		movieTheme = new Theme("Drame", EnumTheme.MOVIE);
+		movieTheme = daoTheme.save(movieTheme);
+		movieTheme = new Theme("Comédie", EnumTheme.MOVIE);
+		movieTheme = daoTheme.save(movieTheme);
+		movieTheme = new Theme("Science-fiction", EnumTheme.MOVIE);
+		movieTheme = daoTheme.save(movieTheme);
+		movieTheme = new Theme("Thriller", EnumTheme.MOVIE);
+		movieTheme = daoTheme.save(movieTheme);
+		movieTheme = new Theme("Horreur", EnumTheme.MOVIE);
+		movieTheme = daoTheme.save(movieTheme);
+		movieTheme = new Theme("Film d'animation", EnumTheme.MOVIE);
+		movieTheme = daoTheme.save(movieTheme);
+		
+		Theme musicTheme = new Theme("Classique", EnumTheme.MUSIC);
+		musicTheme = daoTheme.save(musicTheme);
+		musicTheme = new Theme("Variété française et internationale", EnumTheme.MUSIC);
+		musicTheme = daoTheme.save(musicTheme);
+		musicTheme = new Theme("Rap-Hip-hop", EnumTheme.MUSIC);
+		musicTheme = daoTheme.save(musicTheme);
+		musicTheme = new Theme("Jazz", EnumTheme.MUSIC);
+		musicTheme = daoTheme.save(musicTheme);
+		musicTheme = new Theme("Rock-punk-métal", EnumTheme.MUSIC);
+		musicTheme = daoTheme.save(musicTheme);
+		musicTheme = new Theme("Rock-punk-métal", EnumTheme.MUSIC);
+		musicTheme = daoTheme.save(musicTheme);
+		musicTheme = new Theme("Bande originale film et animation", EnumTheme.MUSIC);
+		musicTheme = daoTheme.save(musicTheme);
+		
+		Theme jvTheme = new Theme("Plateforme", EnumTheme.VIDEOGAME);
+		jvTheme = daoTheme.save(jvTheme);
+		jvTheme = new Theme("Simulation", EnumTheme.VIDEOGAME);
+		jvTheme = daoTheme.save(jvTheme);
+		jvTheme = new Theme("Gestion", EnumTheme.VIDEOGAME);
+		jvTheme = daoTheme.save(jvTheme);
+		jvTheme = new Theme("Sport", EnumTheme.VIDEOGAME);
+		jvTheme = daoTheme.save(jvTheme);
+		jvTheme = new Theme("RPG", EnumTheme.VIDEOGAME);
+		jvTheme = daoTheme.save(jvTheme);
+		jvTheme = new Theme("Exploration", EnumTheme.VIDEOGAME);
+		jvTheme = daoTheme.save(jvTheme);
+		jvTheme = new Theme("Sandbox", EnumTheme.VIDEOGAME);
+		jvTheme = daoTheme.save(jvTheme);
+		
+		Theme bgTheme = new Theme("Plateau", EnumTheme.BOARDGAME);
+		bgTheme = daoTheme.save(bgTheme);
+		bgTheme = new Theme("Cartes", EnumTheme.BOARDGAME);
+		bgTheme = daoTheme.save(bgTheme);
+		bgTheme = new Theme("Ambiance", EnumTheme.BOARDGAME);
+		bgTheme = daoTheme.save(bgTheme);
+		bgTheme = new Theme("Culture générale", EnumTheme.BOARDGAME);
+		bgTheme = daoTheme.save(bgTheme);
+		bgTheme = new Theme("RPG", EnumTheme.BOARDGAME);
+		bgTheme = daoTheme.save(bgTheme);
+		bgTheme = new Theme("Exploration", EnumTheme.BOARDGAME);
+		bgTheme = daoTheme.save(bgTheme);
+		bgTheme = new Theme("Coopération", EnumTheme.BOARDGAME);
+		bgTheme = daoTheme.save(bgTheme);
+		
+		Theme magTheme = new Theme("High-tech", EnumTheme.MAGAZINE);
+		magTheme = daoTheme.save(magTheme);
+		magTheme = new Theme("Voitures", EnumTheme.MAGAZINE);
+		magTheme = daoTheme.save(magTheme);
+		magTheme = new Theme("Actualités-politique", EnumTheme.MAGAZINE);
+		magTheme = daoTheme.save(magTheme);
+		magTheme = new Theme("Sciences", EnumTheme.MAGAZINE);
+		magTheme = daoTheme.save(magTheme);
+		magTheme = new Theme("Voyage-nature", EnumTheme.MAGAZINE);
+		magTheme = daoTheme.save(magTheme);
+		magTheme = new Theme("Jeux", EnumTheme.MAGAZINE);
+		magTheme = daoTheme.save(magTheme);
+		magTheme = new Theme("Enfants", EnumTheme.MAGAZINE);
+		magTheme = daoTheme.save(magTheme);
+		
 	}
 
 }

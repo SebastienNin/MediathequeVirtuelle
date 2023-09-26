@@ -53,6 +53,7 @@ public class PersonnalizedListApiController {
 		BeanUtils.copyProperties(personnalizedList, response);
 
 		response.setAccount(personnalizedList.getAccount());
+		System.out.println(response);
 
 		return response;
 	}

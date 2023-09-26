@@ -20,7 +20,7 @@
                 <a class="nav-link" [routerLink]="['/media/add']" routerLinkActive="active">Ajouter un media</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
-                <a class="nav-link" [routerLink]="['/personnalizedList']" routerLinkActive="active">Listes personnalisées</a>
+                <a class="nav-link" [routerLink]="['/personnalizedList']" routerLinkActive="active">Listes personnalisées admin</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" [routerLink]="['/watchMedia']" routerLinkActive="active">Listes des Médias</a>

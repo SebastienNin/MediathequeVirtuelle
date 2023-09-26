@@ -15,7 +15,7 @@
                 <tr *ngFor="let personnalizedList of personnalizedLists$ | async">
                     <td>{{ personnalizedList.id }}</td>
                     <td>{{ personnalizedList.name }}</td>
-                    <td>{{ personnalizedList.account?.name }}</td>
+                    <td>{{ personnalizedList.account?.id }} - {{ personnalizedList.account?.name }}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
                             <a class="btn btn-primary" (click)="edit(personnalizedList.id)"><i
@@ -27,13 +27,13 @@
                 </tr>
             </tbody>
         </table>
-        <div><button class="btn btn-success" (click)="add()">Ajouter</button></div>
+    <div><button class="btn btn-success" (click)="add()">Ajouter</button>
+    </div>
     </div>
 </div>
 
-
 <!-- Formulaire d'édition -->
-<div class="card mt-3" *ngIf="editForm ">
+<div class="card mt-3" *ngIf="editForm">
     <div class="card-header bg-primary text-white display-6">Édition d'une liste personnalisée</div>
     <div class="card-body">
         <div class="form-group">
@@ -79,7 +79,7 @@
     </div>
     <div class="card-footer">
         <div class="btn-group btn-group-lg float-right">
-            <a class="btn btn-success" (click)="saveEdit()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-success" (click)="saveAdd()"><i class="bi bi-check-square-fill"></i></a>
             <a class="btn btn-danger" (click)="cancel()"><i class="bi bi-x-square-fill"></i></a>
         </div>
     </div>

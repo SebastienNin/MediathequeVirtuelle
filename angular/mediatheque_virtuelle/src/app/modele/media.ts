@@ -4,6 +4,7 @@ import { MagazinePeriodicity } from "./magazinePeriodicity";
 import { MovieSupport } from "./movieSupport";
 import { MusicSupport } from "./musicSupport";
 import { TypeMedia } from "./typeMedia";
+import { Theme } from "./theme";
 
 export class Media {
 
@@ -19,12 +20,15 @@ export class Media {
     addDate: string;
 
     //Attribut supplémentaire pour distinguer le type de media
-    typeMedia : TypeMedia;
+    typeMedia: TypeMedia;
+
+    //Liste de thèmes
+    themes: Array<Theme> = new Array<Theme>;
 
     //attributs de BoardGame
     playerNumber: string;
     recommendedAge: number;
-    duration : number;
+    duration: number;
 
     //attributs de Book
     author: string;
@@ -39,13 +43,13 @@ export class Media {
     magazinePeriodicity: MagazinePeriodicity;
 
     //attributs de Movie
-    directors: string[] =new Array<string>;
-    actors: string[] =new Array<string>;
+    directors: string[] = new Array<string>;
+    actors: string[] = new Array<string>;
     //duration -> voir BoardGame
     movieSupport: MovieSupport;
 
     //attribut de Music
-    tracks: string[] =new Array<string>;
+    tracks: string[] = new Array<string>;
     artist: string;
     //duration -> voir BoardGame
     trackNumber: number;
@@ -69,33 +73,33 @@ export class Media {
         //attribut supplémentaire
         typeMedia?: TypeMedia,
         //BoarGame
-        playerNumber?: string, 
-        recommendedAge? : number, 
+        playerNumber?: string,
+        recommendedAge?: number,
         duration?: number,
         //Book
-        author?: string, 
-        ISBN?: string, 
-        pagesNb?: number, 
-        chaptersNb?: number, 
+        author?: string,
+        ISBN?: string,
+        pagesNb?: number,
+        chaptersNb?: number,
         booktype?: BookType,
         //Magazine
-        ISSN?: string, 
-        number?: number, 
+        ISSN?: string,
+        number?: number,
         magazinePeriodicity?: MagazinePeriodicity,
         //Movie
         movieSupport?: MovieSupport,
         //Music
         artist?: string,
-        trackNumber?: number, 
+        trackNumber?: number,
         musicSupport?: MusicSupport,
         //VideoGame
-        multiPlayer? : boolean, 
+        multiPlayer?: boolean,
         pegi?: number
-    ){
+    ) {
         //Media
         this.id = id
         this.name = name
-        this.publishingHouse= publishingHouse
+        this.publishingHouse = publishingHouse
         this.language = language
         this.image = image
         this.description = description
@@ -103,7 +107,7 @@ export class Media {
         this.parutionDate = parutionDate
         this.addDate = addDate
         //attribut supplémentaire
-        this.typeMedia=typeMedia;
+        this.typeMedia = typeMedia;
         //BoardGame
         this.playerNumber = playerNumber;
         this.recommendedAge = recommendedAge;
@@ -127,7 +131,7 @@ export class Media {
         //VideoGame
         this.multiPlayer = multiPlayer;
         this.pegi = pegi;
-        
+
     }
 
 

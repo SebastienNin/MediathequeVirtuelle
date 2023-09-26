@@ -46,11 +46,11 @@ public class ThemeApiController {
 		return daoTheme.findById(id).get();
 	}
 
-	@GetMapping("/type/{type}")
+	@GetMapping("/enumTheme/{enumTheme}")
 	@JsonView(Views.Theme.class)
-	public List<Theme> findThemeByEnumTheme(@PathVariable String type) {
+	public List<Theme> findThemeByEnumTheme(@PathVariable String enumTheme) {
 		try {
-			EnumTheme enumType = EnumTheme.valueOf(type); // Convertir la chaîne en Enum
+			EnumTheme enumType = EnumTheme.valueOf(enumTheme); // Convertir la chaîne en Enum
 			return daoTheme.findByEnumTheme(enumType);
 		} catch (IllegalArgumentException e) {
 			// Gérer le cas où la valeur de type n'est pas valide
@@ -70,11 +70,11 @@ public class ThemeApiController {
 	}
 
 	// Exemple : localhost:8080/api/theme/labelAndType/Action/VIDEOGAME
-	@GetMapping("/labelAndType/{label}/{type}")
+	@GetMapping("/labelAndEnumTheme/{label}/{enumTheme}")
 	@JsonView(Views.Theme.class)
-	public List<Theme> findThemesByLabelAndType(@PathVariable String label, @PathVariable String type) {
+	public List<Theme> findThemesByLabelAndEnumTheme(@PathVariable String label, @PathVariable String enumTheme) {
 		try {
-			EnumTheme enumType = EnumTheme.valueOf(type); // Convertir la chaîne en Enum
+			EnumTheme enumType = EnumTheme.valueOf(enumTheme); // Convertir la chaîne en Enum
 			return daoTheme.findByLabelAndEnumTheme(label, enumType);
 		} catch (IllegalArgumentException e) {
 			// Gérer le cas où la valeur de type n'est pas valide

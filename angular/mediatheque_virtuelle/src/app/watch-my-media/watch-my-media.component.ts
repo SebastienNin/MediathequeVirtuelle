@@ -33,11 +33,7 @@ export class WatchMyMediaComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    this.accountMedia$ = this.watchMyMediaHttpService.findAllForAsyn()
-  }
-
-  list(): Array<AccountMedia> {
-    return this.watchMyMediaHttpService.findAll();
+    this.accountMedia$ = this.watchMyMediaHttpService.findAll()
   }
 
   remove(id: number) {

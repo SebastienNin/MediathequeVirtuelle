@@ -31,11 +31,7 @@ export class WatchMyMediaHttpService {
   //   return obs;
   // }
 
-  findAll(): Array<AccountMedia> {
-    return this.accountMedias;
-  }
-
-  findAllForAsyn() : Observable<AccountMedia[]> {
+  findAll(): Observable<AccountMedia[]> {
     return this.http.get<AccountMedia[]>(this.apiAccountMediaUrl);
   }
 
@@ -56,9 +52,11 @@ export class WatchMyMediaHttpService {
         this.load();
       });
     }
-}
+  }
 
-  deleteById(id: number): Observable<void> {
-    return this.http.delete<void>(this.apiAccountMediaUrl +id);
+  deleteById(id: number): void {
+    this.http.delete<void>(this.apiAccountMediaUrl +id).subscribe( resp => {
+      this.load();
+    });
   }
 }

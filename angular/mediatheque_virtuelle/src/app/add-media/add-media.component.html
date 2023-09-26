@@ -69,6 +69,14 @@
         <label for="durationBG">Durée de la partie (en min):</label>
         <input type="number" class="form-control" id="durationBG" name="durationBG" [(ngModel)]="mediaForm.duration"/>
       </div>
+
+      <div class="form-group">
+        <label for="theme">Thème:</label>
+       <select class="form-control" id="theme" name="theme" [(ngModel)]="mediaForm.themes">
+          <!-- <option selected>Choisir un type de livre</option> -->
+          <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
+        </select>
+      </div>
     </div>
 
     <div class="card-body" *ngIf="showBookForm">

@@ -7,6 +7,9 @@ import { MagazinePeriodicity } from '../modele/magazinePeriodicity';
 import { MovieSupport } from '../modele/movieSupport';
 import { MusicSupport } from '../modele/musicSupport';
 import { HttpMediaService } from '../http-media.service';
+import { ThemeService } from '../theme.service';
+import { Theme } from '../modele/theme';
+import { EnumTheme } from '../modele/enumTheme';
 
 @Component({
   selector: 'app-add-media',
@@ -36,8 +39,11 @@ export class AddMediaComponent {
   movieSupports: MovieSupport[] = Object.values(MovieSupport);
   musicSupports: MusicSupport[] = Object.values(MusicSupport);
 
+  //liste des thèmes disponibles
+  listTheme: Theme[] = new Array<Theme>;
 
-  constructor(private mediaServiceHttp: HttpMediaService) {
+
+  constructor(private mediaServiceHttp: HttpMediaService, private themeService: ThemeService) {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
@@ -52,6 +58,7 @@ export class AddMediaComponent {
     switch (this.mediaForm.typeMedia) {
       case (TypeMedia.BoardGame):
         this.showBoardGameForm = true;
+        this.themeService.findByEnumTheme(EnumTheme.BOARDGAME).subscribe(resp => this.listTheme = resp);
         break;
       case (TypeMedia.Book):
         this.showBookForm = true;

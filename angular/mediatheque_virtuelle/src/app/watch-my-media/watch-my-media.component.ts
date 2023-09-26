@@ -6,6 +6,7 @@ import { Media } from '../modele/media';
 import { WatchMyMediaHttpService } from './watch-my-media-http.service';
 import { AuthService } from '../auth.service';
 import { Account } from '../modele/account';
+import { AccountMedia } from '../modele/accountMedia';
 
 @Component({
   selector: 'app-watch-my-media',
@@ -14,7 +15,7 @@ import { Account } from '../modele/account';
 })
 export class WatchMyMediaComponent implements OnInit{
 
-  media$: Observable<Media[]>;
+  accountMedia$: Observable<AccountMedia[]>;
 
   user: Account;
 
@@ -27,27 +28,29 @@ export class WatchMyMediaComponent implements OnInit{
   showMusicForm: boolean = false;
   showVideoGameForm: boolean = false;
 
-  constructor(private authService: AuthService, private watchMyMediaHttpService: WatchMyMediaHttpService, private watchMediaHttpSevice: WatchMediaHttpService, private router: Router) {
+  constructor(private authService: AuthService, private watchMyMediaHttpService: WatchMyMediaHttpService, private watchMediaHttpService: WatchMediaHttpService, private router: Router) {
     this.user = this.authService.getUser();
   }
   
   ngOnInit(): void {
-    this.media$ = this.watchMediaHttpSevice.findAll();
+    this.accountMedia$ = this.watchMyMediaHttpService.findAllForAsyn()
   }
 
-  // list(): Array<Media> {
-  //   return this.watchMediaHttpSevice.findAll();
-  // }
+  list(): Array<AccountMedia> {
+    return this.watchMyMediaHttpService.findAll();
+  }
 
   remove(id: number) {
-    this.watchMediaHttpSevice.deleteById(id);
+    this.watchMediaHttpService.deleteById(id);
   }
 
   findAccount() {
     console.log(this.user.id);
     // this.watchMyMediaHttpService.findByAccount(this.user.id);
   }
-  deleteToMyMedia() {}
+  deleteToMyMedia(id: number) {
+    this.watchMyMediaHttpService.deleteById(id);
+  }
 
   //Afficher les listes des Médias correspondant
   showAllMedia() {

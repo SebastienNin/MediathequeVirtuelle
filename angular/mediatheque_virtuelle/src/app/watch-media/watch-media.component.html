@@ -28,15 +28,15 @@
                         <th>Ajouter à mes médias</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let med of media$ | async">
+                <tbody *ngFor="let med of media$ | async">
+                    <tr>
                         <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.typeMedia}}</td>
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
-                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
                                 class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
@@ -77,7 +77,7 @@
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
-                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
                                 class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
@@ -110,7 +110,7 @@
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
-                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
                                 class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
@@ -141,7 +141,7 @@
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
-                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
                                 class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
@@ -176,7 +176,7 @@
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
-                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
                                 class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
@@ -213,7 +213,7 @@
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
-                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
                                 class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
@@ -247,7 +247,7 @@
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
-                            <a class="btn btn-success btn-lg" (click)="addToMyMedia()"><i
+                            <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
                                 class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>

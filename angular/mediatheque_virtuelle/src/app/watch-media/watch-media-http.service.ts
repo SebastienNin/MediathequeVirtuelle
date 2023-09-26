@@ -28,17 +28,13 @@ export class WatchMediaHttpService {
     return this.http.get<Media[]>(this.apiMediaUrl)
   }
 
-  findAllForAsync(): Observable<Media[]> {
-    return this.http.get<Media[]>(this.apiMediaUrl);
-  }
-
   findById(id: number): Observable<Media> {
-    let obs: Observable<Media> = this.http.get<Media>(this.apiMediaUrl + "/"+id);
+    let obs: Observable<Media> = this.http.get<Media>(this.apiMediaUrl +id);
 
     return obs; 
   }
 
   deleteById(id: number): Observable<void> {
-    return this.http.delete<void>(this.apiMediaUrl + "/"+id);
+    return this.http.delete<void>(this.apiMediaUrl +id);
   }
 }

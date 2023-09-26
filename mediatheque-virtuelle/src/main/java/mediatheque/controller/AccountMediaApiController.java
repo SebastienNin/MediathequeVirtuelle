@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,6 +27,7 @@ import mediatheque.exception.AccountMediaNotFoundException;
 import mediatheque.model.AccountMedia;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200") 
 @RequestMapping("/api/accountmedia")
 public class AccountMediaApiController {
 
@@ -36,7 +38,7 @@ public class AccountMediaApiController {
 		this.daoAccountMedia = daoAccountMedia;
 	}
 
-	@GetMapping("")
+	@GetMapping("/")
 	public List<AccountMedia> findAll() {
 		return daoAccountMedia.findAll();
 	}
@@ -45,13 +47,8 @@ public class AccountMediaApiController {
 	public AccountMedia findById(@PathVariable Integer id) {
 		return daoAccountMedia.findById(id).get();
 	}
-	
-	@GetMapping("/findAccount/{id}")
-	public List<AccountMedia> findByAccount(@PathVariable Integer idAccount) {
-		return daoAccountMedia.findByAccount(idAccount);
-	}
 
-	@PostMapping("")
+	@PostMapping("/")
 	public AccountMedia create(@Valid @RequestBody AccountMedia accountmedia, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "AccountMedia invalide");

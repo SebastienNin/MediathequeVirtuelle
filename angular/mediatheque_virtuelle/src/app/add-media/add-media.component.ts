@@ -11,7 +11,6 @@ import { ThemeService } from '../theme.service';
 import { Theme } from '../modele/theme';
 import { EnumTheme } from '../modele/enumTheme';
 import { FileService } from '../file.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-media',
@@ -110,35 +109,6 @@ export class AddMediaComponent {
     this.mediaForm.themes.push(new Theme());
   }
 
-  // addNewMedia() {
-  //   // Récupérer les thèmes et les ajouter au mediaForm
-  //   this.themeService.findById(this.themeId).subscribe(resp => {
-  //     this.mediaForm.themes.push(resp);
-
-  //     // Envoyer le fichier seulement lors de la validation du formulaire
-  //     if (this.imagePath) {
-  //       // Si l'image a été téléchargée, ajoutez le chemin au mediaForm
-  //       this.mediaForm.image = this.imagePath;
-  //     }
-
-  //     this.mediaServiceHttp.save(this.mediaForm);
-
-  //     //Vide les variables pour pouvoir ajouter un nouveau média
-  //     this.mediaForm = new Media();
-  //     this.mediaForm.addDate = this.currentDate;
-  //     this.themeId = null;
-
-  //     //Rétablit le premier formulaire
-  //     this.showFirstForm = true;
-  //     this.showBoardGameForm = false;
-  //     this.showBookForm = false;
-  //     this.showMagazineForm = false;
-  //     this.showMovieForm = false;
-  //     this.showMusicForm = false;
-  //     this.showVideoGameForm = false;
-  //   });
-  // }
-
   addNewMedia() {
     // ... (autres traitements)
 
@@ -182,15 +152,6 @@ export class AddMediaComponent {
     this.showVideoGameForm = false;
   }
 
-  // onFileChange(event: any) {
-  //   const selectedFile: File = event.target.files[0];
-
-  //   if (selectedFile) {
-  //     this.fileService.uploadFile(selectedFile).subscribe(resp => {
-  //       this.imagePath = resp.fileName;
-  //     });
-  //   }
-  // }
   onFileChange(event: any) {
     this.selectedFile = event.target.files[0];
   }

@@ -37,18 +37,4 @@ export class HttpMediaService {
     this.http.delete(environment.apiUrl + "/media/" + id).subscribe();
   }
 
-  uploadFile(fileData: Uint8Array) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/octet-stream' });
-    this.http
-      .post(environment.apiUrl + '/upload', fileData, { headers, responseType: 'text' })
-      .subscribe({
-        next: (response) => {
-          console.log('Fichier téléchargé avec succès :', response);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-  }
-
 }

@@ -4,6 +4,7 @@ import { Media } from '../modele/media';
 import { HttpMediaService } from '../http-media.service';
 import { ActivatedRoute } from '@angular/router';
 import { TypeMedia } from '../modele/typeMedia';
+import { FileService } from '../file.service';
 
 @Component({
   selector: 'app-see-media-details',
@@ -23,8 +24,9 @@ export class SeeMediaDetailsComponent {
   showMusicCard: boolean = false;
   showVideoGameCard: boolean = false;
 
+  imageSrc: any; // Propriété pour stocker l'URL de l'image
 
-  constructor(private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute) {
+  constructor(private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute, private fileService: FileService) {
     this.route.params.subscribe(param => this.id = param['id']);
     this.mediaServiceHttp.findById(this.id).subscribe(resp => {
       this.media = resp;
@@ -33,14 +35,14 @@ export class SeeMediaDetailsComponent {
   }
 
   load() {
-    let i : number = 0;
-    for(let theme of this.media.themes){
-      if(i == this.media.themes.length - 1){
+    let i: number = 0;
+    for (let theme of this.media.themes) {
+      if (i == this.media.themes.length - 1) {
         this.themes = this.themes + theme.label;
-      }else{
+      } else {
         this.themes = this.themes + theme.label + ", ";
       }
-      i ++;
+      i++;
     }
     switch (this.media.typeMedia) {
       case (TypeMedia.BoardGame):
@@ -66,6 +68,18 @@ export class SeeMediaDetailsComponent {
         console.log("Erreur sur typeMedia");
         break;
     }
+    // Chargez l'image au moment du chargement des données
+    this.loadImage();
+  }
+
+  loadImage(): void {
+    const fileName = this.media.image; // Remplacez par le nom de fichier souhaité
+    this.fileService.downloadFile(fileName).subscribe(response => {
+      // Extrayez le corps de la réponse en tant que Blob
+      const blob = response.body;
+      // Créez une URL sûre à partir du Blob de l'image
+      this.imageSrc = window.URL.createObjectURL(blob);
+    });
   }
 
   addToMyMedias() {
@@ -82,6 +96,20 @@ export class SeeMediaDetailsComponent {
 
   deleteFromMyMedias() {
 
+  }
+
+  downloadFile() {
+    const fileName = this.media.image; // Remplacez par le nom de fichier souhaité
+    this.fileService.downloadFile(fileName).subscribe(response => {
+      const blob = new Blob([response.body],  { type: 'image/jpeg' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
   }
 
 }

@@ -19,6 +19,7 @@ import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.
 import { WatchMediaComponent } from './watch-media/watch-media.component';
 import { SearchComponent } from './search/search.component';
 import { MyPersoListComponent } from './my-perso-list/my-perso-list.component';
+import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MyPersoListComponent } from './my-perso-list/my-perso-list.component';
     WatchMediaComponent,
     SearchComponent,
     MyPersoListComponent
+    WatchMyMediaComponent
 
   ],
   imports: [

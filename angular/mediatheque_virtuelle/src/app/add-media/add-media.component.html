@@ -34,8 +34,8 @@
       </div>
 
       <div class="form-group">
-        <label for="image">Image(à changer dans un second temps):</label>
-        <input type="text" class="form-control" id="image" name="image" [(ngModel)]="mediaForm.image"/>
+        <label for="image">Image: (taile max 1Mo)</label>
+        <input type="file" class="form-control" id="image" name="image" (change)="onFileChange($event)" />
       </div>
 
       <div class="form-group">

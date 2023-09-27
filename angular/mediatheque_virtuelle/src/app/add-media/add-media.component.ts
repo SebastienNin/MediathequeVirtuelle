@@ -10,6 +10,7 @@ import { HttpMediaService } from '../http-media.service';
 import { ThemeService } from '../theme.service';
 import { Theme } from '../modele/theme';
 import { EnumTheme } from '../modele/enumTheme';
+import { FileService } from '../file.service';
 
 @Component({
   selector: 'app-add-media',
@@ -23,6 +24,7 @@ export class AddMediaComponent {
   currentDate: string;
   mediaTest: Media;
   themeId: number;
+  imagePath: string;
 
   //boolean pour l'affichage des différents formulaires
   showFirstForm: boolean = true;
@@ -43,8 +45,9 @@ export class AddMediaComponent {
   //liste des thèmes disponibles
   listTheme: Theme[] = new Array<Theme>;
 
+  selectedFile: File | null = null; // Variable pour stocker le fichier sélectionné
 
-  constructor(private mediaServiceHttp: HttpMediaService, private themeService: ThemeService) {
+  constructor(private mediaServiceHttp: HttpMediaService, private themeService: ThemeService, private fileService: FileService) {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
@@ -102,30 +105,54 @@ export class AddMediaComponent {
     this.mediaForm.tracks.push("");
   }
 
-  addTheme(){
+  addTheme() {
     this.mediaForm.themes.push(new Theme());
   }
 
   addNewMedia() {
-    // Récupérer les thèmes et les ajouter au mediaForm
-    this.themeService.findById(this.themeId).subscribe(resp => {
-      this.mediaForm.themes.push(resp);
-      this.mediaServiceHttp.save(this.mediaForm);
+    // ... (autres traitements)
 
-      //Vide les variables pour pouvoir ajouter un nouveau média
-      this.mediaForm = new Media();
-      this.mediaForm.addDate = this.currentDate;
-      this.themeId = null;
+    // Envoyer le fichier seulement lors de la validation du formulaire
+    if (this.selectedFile) {
+      this.fileService.uploadFile(this.selectedFile).subscribe(resp => {
+        this.imagePath = resp.fileName;
 
-      //Rétablit le premier formulaire
-      this.showFirstForm = true;
-      this.showBoardGameForm = false;
-      this.showBookForm = false;
-      this.showMagazineForm = false;
-      this.showMovieForm = false;
-      this.showMusicForm = false;
-      this.showVideoGameForm = false;
-    });
+        // Après avoir reçu la réponse, continuez le traitement du formulaire
+        // Récupérer les thèmes et les ajouter au mediaForm
+        this.themeService.findById(this.themeId).subscribe(resp => {
+          this.mediaForm.themes.push(resp);
+          this.mediaForm.image = this.imagePath; // Ajoutez le chemin de l'image
+          this.mediaServiceHttp.save(this.mediaForm);
+          this.resetForm();
+        });
+      });
+    } else {
+      // Si aucun fichier n'a été sélectionné, continuez sans envoyer de fichier
+      this.themeService.findById(this.themeId).subscribe(resp => {
+        this.mediaForm.themes.push(resp);
+        this.mediaServiceHttp.save(this.mediaForm);
+        this.resetForm();
+      });
+    }
   }
 
+  resetForm() {
+    //Vide les variables pour pouvoir ajouter un nouveau média
+    this.mediaForm = new Media();
+    this.mediaForm.addDate = this.currentDate;
+    this.themeId = null;
+
+    //Rétablit le premier formulaire
+    this.showFirstForm = true;
+    this.showBoardGameForm = false;
+    this.showBookForm = false;
+    this.showMagazineForm = false;
+    this.showMovieForm = false;
+    this.showMusicForm = false;
+    this.showVideoGameForm = false;
+  }
+
+  onFileChange(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
 }

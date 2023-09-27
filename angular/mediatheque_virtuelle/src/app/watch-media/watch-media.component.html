@@ -30,7 +30,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let med of media$ | async">
-                        <td>{{med.name}}</td>
+                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.typeMedia}}</td>
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
@@ -69,7 +69,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='BoardGame'">
-                        <td>{{med.name}}</td>
+                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.playerNumber}}</td>
                         <td>{{med.recommendedAge}}</td>
@@ -103,7 +103,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Book'">
-                        <td>{{med.name}}</td>
+                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.author}}</td>
                         <td>{{med.bookType}}</td>
                         <td>{{med.publishingHouse}}</td>
@@ -135,7 +135,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Magazine'">
-                        <td>{{med.name}}</td>
+                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.magazinePeriodicity}}</td>
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
@@ -168,7 +168,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Movie'">
-                        <td>{{med.name}}</td>
+                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.directors}}</td>
                         <td>{{med.actors}}</td>
                         <td>{{med.duration}}</td>
@@ -204,7 +204,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Music'">
-                        <td>{{med.name}}</td>
+                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.artist}}</td>
                         <td>{{med.trackNumber}}</td>
                         <td>{{med.tracks}}</td>
@@ -239,7 +239,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='VideoGame'">
-                        <td>{{med.name}}</td>
+                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td *ngIf="med.multiPlayer">Oui</td>
                         <td *ngIf="!med.multiPlayer">Non</td>
                         <td>{{med.pegi}}</td>

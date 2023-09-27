@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: "media/details/:id", component: SeeMediaDetailsComponent, canActivate: [authGuard] },
   { path: 'search', component: SearchComponent },
   { path: "myPersoLists", component: MyPersoListComponent, canActivate: [authGuard] },
-  { path: "persoListJoinMedia", component: PersoListJoinMediaComponent, canActivate: [authGuard]}
+  { path: "persoListJoinMedia/:id", component: PersoListJoinMediaComponent, canActivate: [authGuard]}
 ];
 
 @NgModule({

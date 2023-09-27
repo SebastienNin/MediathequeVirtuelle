@@ -4,14 +4,16 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Identifiant</th>
-                    <!-- <th>Nom</th> -->
+
+                    <th>Nom</th>
+                    <th>Liste</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let perso of persoListJoinMedia$ | async">
-                    <td>{{ perso.id }}</td>
-                    <!-- <td>{{ perso.media }}</td>                    -->
+                    <td>{{ perso.media.name }}</td>
+                    <td>{{perso.persoList.name}}</td>
+
                 </tr>
             </tbody>
         </table>   

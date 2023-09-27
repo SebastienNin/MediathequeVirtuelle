@@ -37,7 +37,7 @@ import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component
     SeeMediaDetailsComponent,
     WatchMediaComponent,
     SearchComponent,
-    MyPersoListComponent
+    MyPersoListComponent,
     WatchMyMediaComponent
 
   ],

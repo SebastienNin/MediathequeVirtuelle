@@ -5,6 +5,7 @@ import { HttpMediaService } from '../http-media.service';
 import { ActivatedRoute } from '@angular/router';
 import { TypeMedia } from '../modele/typeMedia';
 import { FileService } from '../file.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-see-media-details',
@@ -17,6 +18,9 @@ export class SeeMediaDetailsComponent {
   media: Media = new Media();
   themes: string = "";
 
+  selectedMenu: string;
+  editInfoMediaFormGroup: FormGroup;
+
   showBoardGameCard: boolean = false;
   showBookCard: boolean = false;
   showMagazineCard: boolean = false;
@@ -26,12 +30,76 @@ export class SeeMediaDetailsComponent {
 
   imageSrc: any; // Propriété pour stocker l'URL de l'image
 
-  constructor(private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute, private fileService: FileService) {
+  constructor(private formBuilder: FormBuilder, private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute, private fileService: FileService) {
     this.route.params.subscribe(param => this.id = param['id']);
     this.mediaServiceHttp.findById(this.id).subscribe(resp => {
       this.media = resp;
       this.load();
     });
+
+    this.selectedMenu = 'info';
+    
+
+    this.editInfoMediaFormGroup = this.formBuilder.group({
+      //Général
+      name: [this.media.name, ],
+      publishingHouse: [this.media.publishingHouse],
+      language: [this.media.language],
+      //Ajouter Modif Image
+      description: [this.media.description],
+      dematerialized: [this.media.dematerialized],
+      parutionDate: [this.media.parutionDate],
+      themes: [this.themes],
+      
+      //Jeu de plateau
+      playerNumber: [this.media.playerNumber],
+      recommendedAge: [this.media.recommendedAge],
+      duration: [this.media.duration],
+      
+      //Livre
+      author: [this.media.author],
+      ISBN: [this.media.ISBN],
+      pagesNb: [this.media.pagesNb],
+      chaptersNb: [this.media.chaptersNb],
+      bookType: [this.media.bookType],
+
+      //Magazine
+      ISSN: [this.media.ISSN],
+      number: [this.media.number],
+      magazinePeriodicity: [this.media.magazinePeriodicity],
+
+      //Film
+      directors: [this.media.directors],
+      actors: [this.media.actors],
+      movieSupport: [this.media.movieSupport],
+
+      //Musique
+      tracks: [this.media.tracks],
+      artist: [this.media.artist],
+      trackNumber: [this.media.trackNumber],
+      musicSupport: [this.media.musicSupport],
+
+      //Jeux Vidéos
+      pegi:[this.media.pegi],
+      multiPlayer:[this.media.multiPlayer]
+
+    })
+  }
+
+  //Choix entre affichage et modification des infos
+  selectMenu(menu: string) {
+    this.selectedMenu = menu;
+    
+  }
+
+  //Modification des infos
+  updateMediaInfo() {
+    const updateInfoMedia = this.editInfoMediaFormGroup.value;
+    let media = { ...this.media, ...updateInfoMedia };
+    this.mediaServiceHttp.saveModif(media).subscribe((resp) => {
+      alert("Informations de " + this.media.name + " mises à jour avec succès.");
+      this.media = resp;
+    })
   }
 
   load() {

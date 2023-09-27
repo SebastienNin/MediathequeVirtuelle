@@ -33,6 +33,14 @@ export class HttpMediaService {
     }
   }
 
+  saveModif(media: Media): Observable<Media> {
+    if (media.id) { // mise à jour
+      return this.http.put<Media>(environment.apiUrl + "/media/" + media.id, media);
+    } else { // création
+      return this.http.post<Media>(environment.apiUrl + "/media/", media);
+    }
+  }
+
   deleteById(id: number) {
     this.http.delete(environment.apiUrl + "/media/" + id).subscribe();
   }

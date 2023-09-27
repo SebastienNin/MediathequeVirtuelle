@@ -158,13 +158,13 @@
                             <span *ngIf="editInfoMediaFormGroup.get('duration').hasError('required')">Ce champ est requis.</span>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="themes" class="labels">Thème(s) : </label>
-                        <input type="text" required formControlName="themes" class="form-control" id="themes" name="themes" placeholder="Thème(s)">
+                        <select required formControlName="themes" class="form-control" id="themes" name="themes"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('themes').invalid && editInfoMediaFormGroup.get('themes').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('themes').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="parutionDate" class="labels">Année de sortie : </label>
                         <input type="date" required formControlName="parutionDate" class="form-control" id="parutionDate" name="parutionDate" placeholder="Année de sortie">
@@ -187,8 +187,8 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <input type="checkbox" formControlName="dematerialized" class="form-check-input" id="dematerialized" name="dematerialized">
                         <label for="dematerialized" class="labels">Dématérialisé ? </label>
-                        <input type="checkbox" required formControlName="dematerialized" class="form-control" id="dematerialized" name="dematerialized" placeholder="Dématérialisé">
                         <div *ngIf="editInfoMediaFormGroup.get('dematerialized').invalid && editInfoMediaFormGroup.get('dematerialized').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('dematerialized').hasError('required')">Ce champ est requis.</span>
                         </div>
@@ -212,20 +212,20 @@
                             <span *ngIf="editInfoMediaFormGroup.get('author').hasError('required')">Ce champ est requis.</span>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="bookType" class="labels">Type : </label>
-                        <input type="text" required formControlName="bookType" class="form-control" id="bookType" name="bookType" placeholder="Type">
+                        <select required formControlName="bookType" class="form-control" id="bookType" name="bookType"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('bookType').invalid && editInfoMediaFormGroup.get('bookType').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('bookType').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
-                    <div class="mb-3">
+                    </div> -->
+                    <!-- <div class="mb-3">
                         <label for="themes" class="labels">Genre : </label>
-                        <input type="text" required formControlName="themes" class="form-control" id="themes" name="themes" placeholder="Genre">
+                        <select required formControlName="themes" class="form-control" id="themes" name="themes"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('themes').invalid && editInfoMediaFormGroup.get('themes').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('themes').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="publishingHouse" class="labels">Maison d'édition : </label>
                         <input type="text" required formControlName="publishingHouse" class="form-control" id="publishingHouse" name="publishingHouse" placeholder="Maison d'édition">
@@ -262,8 +262,8 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <input type="checkbox" formControlName="dematerialized" class="form-check-input" id="dematerialized" name="dematerialized">
                         <label for="dematerialized" class="labels">Dématérialisé ? </label>
-                        <input type="checkbox" required formControlName="dematerialized" class="form-control" id="dematerialized" name="dematerialized" placeholder="Dématérialisé">
                         <div *ngIf="editInfoMediaFormGroup.get('dematerialized').invalid && editInfoMediaFormGroup.get('dematerialized').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('dematerialized').hasError('required')">Ce champ est requis.</span>
                         </div>
@@ -294,13 +294,13 @@
                             <span *ngIf="editInfoMediaFormGroup.get('ISSN').hasError('required')">Ce champ est requis.</span>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="magazinePeriodicity" class="labels">Périodicité : </label>
-                        <input type="text" required formControlName="magazinePeriodicity" class="form-control" id="magazinePeriodicity" name="magazinePeriodicity" placeholder="Périodicité">
+                        <select required formControlName="magazinePeriodicity" class="form-control" id="magazinePeriodicity" name="magazinePeriodicity"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('magazinePeriodicity').invalid && editInfoMediaFormGroup.get('magazinePeriodicity').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('magazinePeriodicity').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="parutionDate" class="labels">Date de publication : </label>
                         <input type="date" required formControlName="parutionDate" class="form-control" id="parutionDate" name="parutionDate" placeholder="Date de publication">
@@ -308,16 +308,16 @@
                             <span *ngIf="editInfoMediaFormGroup.get('parutionDate').hasError('required')">Ce champ est requis.</span>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="themes" class="labels">Thème(s) : </label>
-                        <input type="text" required formControlName="themes" class="form-control" id="themes" name="themes" placeholder="Thème(s)">
+                        <select required formControlName="themes" class="form-control" id="themes" name="themes"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('themes').invalid && editInfoMediaFormGroup.get('themes').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('themes').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
+                        <input type="checkbox" formControlName="dematerialized" class="form-check-input" id="dematerialized" name="dematerialized">
                         <label for="dematerialized" class="labels">Dématérialisé ? </label>
-                        <input type="checkbox" required formControlName="dematerialized" class="form-control" id="dematerialized" name="dematerialized" placeholder="Dématérialisé">
                         <div *ngIf="editInfoMediaFormGroup.get('dematerialized').invalid && editInfoMediaFormGroup.get('dematerialized').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('dematerialized').hasError('required')">Ce champ est requis.</span>
                         </div>
@@ -362,20 +362,20 @@
                             <span *ngIf="editInfoMediaFormGroup.get('duration').hasError('required')">Ce champ est requis.</span>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="themes" class="labels">Genre(s) : </label>
-                        <input type="text" required formControlName="themes" class="form-control" id="themes" name="themes" placeholder="Genre(s)">
+                        <select required formControlName="themes" class="form-control" id="themes" name="themes"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('themes').invalid && editInfoMediaFormGroup.get('themes').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('themes').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
-                    <div class="mb-3">
+                    </div> -->
+                    <!-- <div class="mb-3">
                         <label for="movieSupport" class="labels">Support : </label>
-                        <input type="text" required formControlName="movieSupport" class="form-control" id="movieSupport" name="movieSupport" placeholder="Support">
+                        <select required formControlName="movieSupport" class="form-control" id="movieSupport" name="movieSupport"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('movieSupport').invalid && editInfoMediaFormGroup.get('movieSupport').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('movieSupport').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div> <!--Fin modification Film-->
 
                 <!-- Modification Musique -->
@@ -415,13 +415,13 @@
                             <span *ngIf="editInfoMediaFormGroup.get('duration').hasError('required')">Ce champ est requis.</span>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="themes" class="labels">Genre : </label>
-                        <input type="text" required formControlName="themes" class="form-control" id="themes" name="themes" placeholder="Genre">
+                        <select required formControlName="themes" class="form-control" id="themes" name="themes"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('themes').invalid && editInfoMediaFormGroup.get('themes').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('themes').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <label for="parutionDate" class="labels">Date de sortie : </label>
                         <input type="date" required formControlName="parutionDate" class="form-control" id="parutionDate" name="parutionDate" placeholder="Date de sortie">
@@ -429,13 +429,13 @@
                             <span *ngIf="editInfoMediaFormGroup.get('parutionDate').hasError('required')">Ce champ est requis.</span>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="musicSupport" class="labels">Support : </label>
-                        <input type="text" required formControlName="musicSupport" class="form-control" id="musicSupport" name="musicSupport" placeholder="Support">
+                        <select required formControlName="musicSupport" class="form-control" id="musicSupport" name="musicSupport"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('musicSupport').invalid && editInfoMediaFormGroup.get('musicSupport').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('musicSupport').hasError('required')">Ce champ est requis.</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div> <!--Fin modification Musique -->
 
 
@@ -450,14 +450,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="themes" class="labels">Thèmes(s) : </label>
-                        <input type="text" required formControlName="themes" class="form-control" id="themes" name="themes" placeholder="Thèmes(s)">
+                        <select required formControlName="themes" class="form-control" id="themes" name="themes"></select>
                         <div *ngIf="editInfoMediaFormGroup.get('themes').invalid && editInfoMediaFormGroup.get('themes').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('themes').hasError('required')">Ce champ est requis.</span>
                         </div>
                     </div>
                     <div class="mb-3">
+                        <input type="checkbox" formControlName="multiPlayer" class="form-check-input" id="multiPlayer" name="multiPlayer">
                         <label for="multiPlayer" class="labels">Multi-joueur ? </label>
-                        <input type="checkbox" required formControlName="multiPlayer" class="form-control" id="multiPlayer" name="multiPlayer" placeholder="Multi-joueur">
                         <div *ngIf="editInfoMediaFormGroup.get('multiPlayer').invalid && editInfoMediaFormGroup.get('multiPlayer').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('multiPlayer').hasError('required')">Ce champ est requis.</span>
                         </div>
@@ -470,8 +470,8 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <input type="checkbox" formControlName="dematerialized" class="form-check-input" id="dematerialized" name="dematerialized">
                         <label for="dematerialized" class="labels">Dématérialisé ? </label>
-                        <input type="checkbox" required formControlName="dematerialized" class="form-control" id="dematerialized" name="dematerialized" placeholder="Dématérialisé">
                         <div *ngIf="editInfoMediaFormGroup.get('dematerialized').invalid && editInfoMediaFormGroup.get('dematerialized').touched" class="text-danger">
                             <span *ngIf="editInfoMediaFormGroup.get('dematerialized').hasError('required')">Ce champ est requis.</span>
                         </div>

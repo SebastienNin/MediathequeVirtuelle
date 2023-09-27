@@ -1,0 +1,21 @@
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Médias dans la liste</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th>Nom</th>
+                    <th>Liste</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let perso of persoListJoinMedia$ | async">
+                    <td>{{ perso.media.name }}</td>
+                    <td>{{perso.persoList.name}}</td>
+
+                </tr>
+            </tbody>
+        </table>   
+    </div> 
+</div>

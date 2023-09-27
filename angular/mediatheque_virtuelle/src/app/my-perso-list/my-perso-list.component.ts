@@ -5,6 +5,7 @@ import { Account } from '../modele/account';
 import { PersonnalizedListHttpService } from '../personnalizedList-http.service';
 import { AccountHttpService } from '../account-http.service';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-perso-list',
@@ -17,12 +18,16 @@ export class MyPersoListComponent implements OnInit {
   myPersoLists$: Observable<PersonnalizedList[]>;
   persoListForm: PersonnalizedList;
 
-  constructor(private persoListService: PersonnalizedListHttpService, private authService: AuthService) {
+  constructor(private router: Router, private persoListService: PersonnalizedListHttpService, private authService: AuthService) {
 
   }
   ngOnInit(): void {
     this.account = this.authService.getUser();
     this.myPersoLists$ = this.persoListService.findByAccount(this.account);
+  }
+
+  redirectToMediaList(id: number): void {
+    this.router.navigate([`/persoListJoinMedia/${id}`]);
   }
 
   add() {

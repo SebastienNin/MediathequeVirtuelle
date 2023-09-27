@@ -20,9 +20,9 @@ import { WatchMediaComponent } from './watch-media/watch-media.component';
 import { SearchComponent } from './search/search.component';
 import { MyPersoListComponent } from './my-perso-list/my-perso-list.component';
 import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component';
-
 import { PersoListJoinMediaComponent } from './perso-list-join-media/perso-list-join-media.component';
 import { PersoListJoinMediaHttpService } from './perso-list-join-media/perso-list-join-media-http.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +40,7 @@ import { PersoListJoinMediaHttpService } from './perso-list-join-media/perso-lis
     WatchMediaComponent,
     SearchComponent,
     MyPersoListComponent,
-    WatchMyMediaComponent
-    MyPersoListComponent,
+    WatchMyMediaComponent,
     PersoListJoinMediaComponent
 
   ],

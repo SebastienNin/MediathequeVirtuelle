@@ -29,10 +29,8 @@ export class PersoListJoinMediaComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.persoListId = +params['id']; // Obtenez l'ID depuis la route
-      // Utilisez this.persoListId pour récupérer les médias associés depuis votre service HTTP
+      this.persoListId = +params['id'];
       this.persoListJoinMedia$ = this.persoListJoinMediaHttpService.findByPersoList(this.persoListId);
-      console.log(this.persoListJoinMedia$);
     });
   }
 }

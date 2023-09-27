@@ -63,7 +63,6 @@ public class AccountMediaApiController {
 	public List<AccountMediaResponse> findAllMedia() {
         List<AccountMedia> accountMedias =daoAccountMedia.findAll();
         List<AccountMediaResponse> accountMediaResponses = new ArrayList<AccountMediaResponse>();
-//        List<Theme> themes = new ArrayList<Theme>();
 
         for (AccountMedia accountMedia : accountMedias) {
             AccountMediaResponse response = new AccountMediaResponse();
@@ -85,32 +84,12 @@ public class AccountMediaApiController {
             } else {
 
             }
-            // Récupération des thèmes du média
-//            for(MediaTheme mediaTheme : mediaThemes) {
-//                themes.add(mediaTheme.getTheme());
-//            }
-//            response.setThemes(themes);
+
             accountMediaResponses.add(response);
 
         }
         return accountMediaResponses;
     }
-	
-//	@GetMapping("/account/{accountId}")
-//	public List<AccountMediaResponse> findByAccount(@PathVariable Integer accountId) {
-//		Account account = daoAccount.findById(accountId).get();
-//		List<AccountMedia> accountMedias = daoAccountMedia.findByAccount(account);
-//		List<AccountMediaResponse> listResponse = new ArrayList<AccountMediaResponse>();
-//		
-//		for (AccountMedia accountMedia : accountMedias) {
-//			AccountMediaResponse response = new AccountMediaResponse();
-//			BeanUtils.copyProperties(accountMedia, response);
-//			
-//			response.setMedia(this.mediaApiController.findMediaById(accountMedia.getMedia().getId()));
-//
-//		}
-//		return listResponse;
-//	}
 
 	@GetMapping("/{id}")
 	public AccountMedia findById(@PathVariable Integer id) {

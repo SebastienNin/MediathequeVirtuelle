@@ -481,10 +481,16 @@
                 <!--Modification Résumé -->
                 <div class="mb-3">
                     <label for="description" class="labels">Résumé : </label>
-                    <input type="button" required formControlName="description" class="form-control" id="description" name="description" placeholder="Résumé">
+                    <input type="text" required formControlName="description" class="form-control" id="description" name="description" placeholder="Résumé">
                     <div *ngIf="editInfoMediaFormGroup.get('description').invalid && editInfoMediaFormGroup.get('description').touched" class="text-danger">
                         <span *ngIf="editInfoMediaFormGroup.get('description').hasError('required')">Ce champ est requis.</span>
                     </div>
+                </div>
+
+                <!--Bouton d'enregistrement-->
+                <div class="text-center">
+                    <button class="btn btn-primary" type="submit"
+                        [disabled]="editInfoMediaFormGroup.invalid">Enregistrer les modifications</button>
                 </div>
 
             </form>

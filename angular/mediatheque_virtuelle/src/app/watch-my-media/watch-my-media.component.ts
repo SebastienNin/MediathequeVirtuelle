@@ -12,17 +12,17 @@ import { AccountMedia } from '../modele/accountMedia';
   templateUrl: './watch-my-media.component.html',
   styleUrls: ['./watch-my-media.component.scss']
 })
-export class WatchMyMediaComponent implements OnInit{
+export class WatchMyMediaComponent implements OnInit {
 
   accountMedia$: Observable<AccountMedia[]>;
 
   user: Account;
 
   //boolean pour l'affichage des différents formulaires
-  showAllMediaForm : boolean = true;
-  showBoardGameForm : boolean = false;
-  showBookForm : boolean = false;
-  showMagazineForm : boolean = false;
+  showAllMediaForm: boolean = true;
+  showBoardGameForm: boolean = false;
+  showBookForm: boolean = false;
+  showMagazineForm: boolean = false;
   showMovieForm: boolean = false;
   showMusicForm: boolean = false;
   showVideoGameForm: boolean = false;
@@ -30,12 +30,14 @@ export class WatchMyMediaComponent implements OnInit{
   constructor(private authService: AuthService, private watchMyMediaHttpService: WatchMyMediaHttpService, private watchMediaHttpService: WatchMediaHttpService, private router: Router) {
     this.user = this.authService.getUser();
   }
-  
+
   ngOnInit(): void {
     this.accountMedia$ = this.watchMyMediaHttpService.findAll()
   }
 
   remove(id: number) {
+    console.log(id);
+
     this.watchMediaHttpService.deleteById(id);
   }
 
@@ -44,6 +46,7 @@ export class WatchMyMediaComponent implements OnInit{
       this.accountMedia$ = this.watchMyMediaHttpService.findAll();
     });
   }
+
 
   //Afficher les listes des Médias correspondant
   showAllMedia() {

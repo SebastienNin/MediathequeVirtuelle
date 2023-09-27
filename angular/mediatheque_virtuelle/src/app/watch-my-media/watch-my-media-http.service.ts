@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 import { AccountMedia } from '../modele/accountMedia';
+import { Account } from '../modele/account';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WatchMyMediaHttpService {
 
-  accountMedias: Array<AccountMedia> = new Array <AccountMedia>();
+  accountMedias: Array<AccountMedia> = new Array<AccountMedia>();
   apiAccountMediaUrl: string = environment.apiUrl + "/accountmedia/";
 
   constructor(private http: HttpClient) {
@@ -28,8 +29,12 @@ export class WatchMyMediaHttpService {
     return this.http.get<AccountMedia[]>(this.apiAccountMediaUrl);
   }
 
-  findById(id: number) : Observable<AccountMedia> {
-    let obs: Observable<AccountMedia> = this.http.get<AccountMedia>(this.apiAccountMediaUrl +id);
+  findByAccount(account: Account): Observable<AccountMedia[]> {
+    return this.http.get<AccountMedia[]>(this.apiAccountMediaUrl + account.id)
+  }
+
+  findById(id: number): Observable<AccountMedia> {
+    let obs: Observable<AccountMedia> = this.http.get<AccountMedia>(this.apiAccountMediaUrl + id);
 
     return obs;
   }
@@ -52,6 +57,7 @@ export class WatchMyMediaHttpService {
   }
 
   deleteById(id: number): Observable<void> {
-    return this.http.delete<void>(this.apiAccountMediaUrl +id);
+
+    return this.http.delete<void>(this.apiAccountMediaUrl + id);
   }
 }

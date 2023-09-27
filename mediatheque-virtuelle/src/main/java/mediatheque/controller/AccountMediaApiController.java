@@ -22,7 +22,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import mediatheque.controller.request.AccountMediaRequest;
 import mediatheque.controller.response.AccountMediaResponse;
-import mediatheque.controller.response.MediaResponse;
 import mediatheque.dao.IDAOAccount;
 import mediatheque.dao.IDAOAccountMedia;
 import mediatheque.dao.IDAOMedia;
@@ -47,18 +46,17 @@ public class AccountMediaApiController {
 	private IDAOAccount daoAccount;
 	
 	private IDAOMedia daoMedia;
+	
+	private MediaApiController mediaApiController;
 
-	public AccountMediaApiController(IDAOAccountMedia daoAccountMedia, IDAOAccount daoAccount, IDAOMedia daoMedia) {
+	public AccountMediaApiController(IDAOAccountMedia daoAccountMedia, IDAOAccount daoAccount, IDAOMedia daoMedia, MediaApiController mediaApiController) {
 		super();
 		this.daoAccountMedia = daoAccountMedia;
 		this.daoAccount = daoAccount;
 		this.daoMedia = daoMedia;
+		this.mediaApiController = mediaApiController;
 	}
 
-//	@GetMapping("/")
-//	public List<AccountMedia> findAll() {
-//		return daoAccountMedia.findAll();
-//	}
 	
 	@GetMapping("/")
 	// @JsonView(Views.Media.class)
@@ -69,10 +67,8 @@ public class AccountMediaApiController {
 
         for (AccountMedia accountMedia : accountMedias) {
             AccountMediaResponse response = new AccountMediaResponse();
+            response.setMedia(this.mediaApiController.findMediaById(accountMedia.getMedia().getId()));
 
-            System.out.println("---------------------------------------------------------");
-            System.out.println(accountMedia);
-            System.out.println("---------------------------------------------------------");
             BeanUtils.copyProperties(accountMedia, response);
             if (accountMedia.getMedia() instanceof BoardGame) {
                 response.getMedia().setTypeMedia(TypeMedia.BoardGame);
@@ -99,22 +95,27 @@ public class AccountMediaApiController {
         }
         return accountMediaResponses;
     }
+	
+//	@GetMapping("/account/{accountId}")
+//	public List<AccountMediaResponse> findByAccount(@PathVariable Integer accountId) {
+//		Account account = daoAccount.findById(accountId).get();
+//		List<AccountMedia> accountMedias = daoAccountMedia.findByAccount(account);
+//		List<AccountMediaResponse> listResponse = new ArrayList<AccountMediaResponse>();
+//		
+//		for (AccountMedia accountMedia : accountMedias) {
+//			AccountMediaResponse response = new AccountMediaResponse();
+//			BeanUtils.copyProperties(accountMedia, response);
+//			
+//			response.setMedia(this.mediaApiController.findMediaById(accountMedia.getMedia().getId()));
+//
+//		}
+//		return listResponse;
+//	}
 
 	@GetMapping("/{id}")
 	public AccountMedia findById(@PathVariable Integer id) {
 		return daoAccountMedia.findById(id).get();
 	}
-
-//	@PostMapping("/")
-//	public AccountMedia create(@Valid @RequestBody AccountMedia accountmedia, BindingResult result) {
-//		if (result.hasErrors()) {
-//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "AccountMedia invalide");
-//		}
-//
-//		accountmedia = daoAccountMedia.save(accountmedia);
-//
-//		return accountmedia;
-//	}
 	
 	
 	@PostMapping("/")

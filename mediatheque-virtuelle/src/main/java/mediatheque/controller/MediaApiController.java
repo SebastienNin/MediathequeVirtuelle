@@ -110,6 +110,13 @@ public class MediaApiController {
 		// return daoMedia.findMediaByMediaType();
 		return daoMedia.findMediaByMediaType(type);
 	}
+	
+	@GetMapping("/type/{type}/nameContaining/{name}")
+	// @JsonView(Views.Media.class)
+	public List<Media> findMediaByType(@PathVariable String type, @PathVariable String name) {
+		// return daoMedia.findMediaByMediaType();
+		return daoMedia.findMediaByMediaTypeAndNameContaining(type, name);
+	}
 
 	@GetMapping("/{id}")
 	@Transactional
@@ -254,67 +261,4 @@ public class MediaApiController {
 		}
 		daoMedia.deleteById(id);
 	}
-
-	// @PostMapping("/upload-image")
-	// public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile
-	// file) {
-	// try {
-	// // Générez un nom de fichier unique basé sur l'UUID
-	// String uniqueFileName = UUID.randomUUID().toString() + ".jpg";
-
-	// // Chemin complet du fichier image
-	// Path filePath = Path.of("/assets/media_pictures/" + uniqueFileName);
-
-	// // Assurez-vous que le répertoire d'upload existe, sinon créez-le
-	// Path uploadPath = filePath.getParent();
-	// if (!Files.exists(uploadPath)) {
-	// Files.createDirectories(uploadPath);
-	// }
-
-	// // Copiez le fichier image vers le chemin spécifié
-	// Files.copy(file.getInputStream(), filePath,
-	// StandardCopyOption.REPLACE_EXISTING);
-
-	// // Retournez le chemin de stockage de l'image
-	// return ResponseEntity.ok(uniqueFileName);
-	// } catch (IOException e) {
-	// // Gérez les erreurs d'E/S ici, par exemple, en renvoyant une ResponseEntity
-	// // avec un code d'erreur
-	// return ResponseEntity.status(500).body("Erreur lors de l'enregistrement de
-	// l'image.");
-	// }
-	// }
-
-	// private void moveImageToFinalPath(MultipartFile imageFile, String
-	// temporaryImagePath, String finalImagePath) {
-	// try {
-	// // Chemin complet du fichier image temporaire
-	// Path temporaryImageFilePath = Path.of(temporaryImagePath);
-
-	// // Chemin complet du fichier image final
-	// Path finalImageFilePath = Path.of(finalImagePath);
-
-	// // Assurez-vous que le répertoire final existe, sinon créez-le
-	// Path finalImageDirectory = finalImageFilePath.getParent();
-	// if (!Files.exists(finalImageDirectory)) {
-	// Files.createDirectories(finalImageDirectory);
-	// }
-
-	// // Copiez le fichier image depuis l'emplacement temporaire vers l'emplacement
-	// // final
-	// Files.copy(imageFile.getInputStream(), finalImageFilePath,
-	// StandardCopyOption.REPLACE_EXISTING);
-
-	// // Supprimez le fichier image temporaire s'il est nécessaire
-	// if (Files.exists(temporaryImageFilePath)) {
-	// Files.delete(temporaryImageFilePath);
-	// }
-	// } catch (IOException e) {
-	// // Gérez les erreurs d'E/S ici, par exemple, en lançant une exception
-	// // personnalisée
-	// throw new RuntimeException("Erreur lors du déplacement de l'image vers
-	// l'emplacement final", e);
-	// }
-	// }
-
 }

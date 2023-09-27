@@ -19,11 +19,15 @@ export class SearchComponent {
       this.searchHttpService.listAll().subscribe((data) => {
         this.results = data;
       });
-    // } else if(!this.query && this.selectedMediaType!= ""){
-    //   this.searchHttpService.searchByMediaType(this.selectedMediaType).subscribe((data) => {
-    //     this.results = data;
-    //   });
-    } else if(this.query && this.selectedMediaType == ""){
+    } else if (!this.query && this.selectedMediaType != "") {
+      this.searchHttpService.searchByMediaType(this.selectedMediaType).subscribe((data) => {
+        this.results = data;
+      });
+    } else if (this.query && this.selectedMediaType != "") {
+      this.searchHttpService.searchByMediaTypeAndTitleContaining(this.selectedMediaType, this.query).subscribe((data) => {
+        this.results = data;
+      });
+    } else if (this.query && this.selectedMediaType == "") {
       this.searchHttpService.searchByTitle(this.query).subscribe((data) => {
         this.results = data;
       });

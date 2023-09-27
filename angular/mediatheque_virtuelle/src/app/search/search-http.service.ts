@@ -23,6 +23,12 @@ export class SearchHttpService {
     return this.http.get<any[]>(environment.apiUrl + "/media/type/" + query);
   }
 
+  searchByMediaTypeAndTitleContaining(query: string, name: string): Observable<any> {
+    // Envoyez la requête de recherche au backend
+    return this.http.get<any[]>(environment.apiUrl + "/media/type/" + query + "/nameContaining/" + name);
+  }
+
+
   searchByTitle(query: string): Observable<any> {
     // return this.http.get<any[]>(environment.apiUrl + "/media/nameContaining/" + query + "/mediaType/" + mediaType);
     return this.http.get<any[]>(environment.apiUrl + "/media/nameContaining/" + query);

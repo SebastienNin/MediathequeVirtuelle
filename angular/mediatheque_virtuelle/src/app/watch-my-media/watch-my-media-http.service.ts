@@ -34,13 +34,21 @@ export class WatchMyMediaHttpService {
     return obs;
   }
 
-  save(accountMedia : AccountMedia): Observable<AccountMedia> {
-    if(accountMedia.id) {
-      return this.http.put<AccountMedia>(this.apiAccountMediaUrl + accountMedia.id, accountMedia);
-    }
-    else {
-      return this.http.post<AccountMedia>(this.apiAccountMediaUrl, accountMedia);
-    }
+  // save(accountMedia : AccountMedia): Observable<AccountMedia> {
+  //   if(accountMedia.id) {
+  //     return this.http.put<AccountMedia>(this.apiAccountMediaUrl + accountMedia.id, accountMedia);
+  //   }
+  //   else {
+  //     return this.http.post<AccountMedia>(this.apiAccountMediaUrl, accountMedia);
+  //   }
+  // }
+
+  save(accountId: number, mediaId: number): Observable<AccountMedia> {
+    // return this.http.post<AccountMedia>(this.apiAccountMediaUrl + accountId + "/" + mediaId);
+    return this.http.post<AccountMedia>(this.apiAccountMediaUrl, {
+      "mediaId": mediaId,
+      "accountId": accountId
+    });
   }
 
   deleteById(id: number): Observable<void> {

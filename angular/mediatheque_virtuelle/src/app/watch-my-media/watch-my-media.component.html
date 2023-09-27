@@ -62,7 +62,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let med of accountMedia$ | async">
-                    <tr *ngIf="med.media.typeMedia=='BoardGame' || med.account.id == user.id">
+                    <tr *ngIf="med.media.typeMedia=='BoardGame' && med.account.id == user.id">
                         <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
                         <td>{{med.media.publishingHouse}}</td>
                         <td>{{med.media.playerNumber}}</td>
@@ -96,7 +96,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let med of accountMedia$ | async">
-                    <tr *ngIf="med.media.typeMedia=='Book' || med.account.id == user.id">
+                    <tr *ngIf="med.media.typeMedia=='Book' && med.account.id == user.id">
                         <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
                         <td>{{med.media.author}}</td>
                         <td>{{med.media.bookType}}</td>
@@ -128,7 +128,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let med of accountMedia$ | async">
-                    <tr *ngIf="med.media.typeMedia=='Magazine' || med.account.id == user.id">
+                    <tr *ngIf="med.media.typeMedia=='Magazine' && med.account.id == user.id">
                         <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
                         <td>{{med.media.magazinePeriodicity}}</td>
                         <td>{{med.media.publishingHouse}}</td>
@@ -161,7 +161,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let med of accountMedia$ | async">
-                    <tr *ngIf="med.media.typeMedia=='Movie' || med.account.id == user.id">
+                    <tr *ngIf="med.media.typeMedia=='Movie' && med.account.id == user.id">
                         <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
                         <td>{{med.media.directors}}</td>
                         <td>{{med.media.actors}}</td>
@@ -197,7 +197,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let med of accountMedia$ | async">
-                    <tr *ngIf="med.media.typeMedia=='Music' || med.account.id == user.id">
+                    <tr *ngIf="med.media.typeMedia=='Music' && med.account.id == user.id">
                         <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
                         <td>{{med.media.artist}}</td>
                         <td>{{med.media.trackNumber}}</td>
@@ -232,7 +232,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let med of accountMedia$ | async">
-                    <tr *ngIf="med.media.typeMedia=='VideoGame' || med.account.id == user.id">
+                    <tr *ngIf="med.media.typeMedia=='VideoGame' && med.account.id == user.id">
                         <td [routerLink]="['/media/details/', med.media.id]">{{med.media.name}}</td>
                         <td *ngIf="med.media.multiPlayer">Oui</td>
                         <td *ngIf="!med.media.multiPlayer">Non</td>

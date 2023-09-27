@@ -53,7 +53,7 @@ export class WatchMediaComponent implements OnInit{
   addToMyMedia(media: Media) {
     this.accountMedia = new AccountMedia(null, this.user, media);
 
-    this.watchMyMediaHttpService.save(this.accountMedia).subscribe();
+    this.watchMyMediaHttpService.save(this.user.id, media.id).subscribe();
   }
 
   //Afficher les listes des Médias correspondant

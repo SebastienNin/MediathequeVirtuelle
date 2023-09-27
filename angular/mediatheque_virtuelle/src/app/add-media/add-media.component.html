@@ -237,7 +237,7 @@
           <i class="bi bi-trash"></i> Supprimer cet acteur
         </button>
       </div>
-      
+
       <div class="form-group">
         <label for="durationMovie">Durée du film (en min):</label>
         <input type="number" class="form-control" id="durationMovie" name="durationMovie"
@@ -314,6 +314,11 @@
           <!-- <option selected>Choisir un support</option> -->
           <option *ngFor="let type of musicSupports" [value]="type">{{ type }}</option>
         </select>
+        <div *ngIf="addMediaFormGroup.get('musicSupport').invalid && addMediaFormGroup.get('musicSupport').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('musicSupport').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
@@ -321,6 +326,11 @@
         <select class="form-control" id="themeMusic" name="themeMusic" formControlName="themeId">
           <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
+        <div *ngIf="addMediaFormGroup.get('themeId').invalid && addMediaFormGroup.get('themeId').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('themeId').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
     </div>
 
@@ -335,9 +345,14 @@
       </div>
 
       <div class="form-group">
-        <input type="checkbox" class="form-check-input" id="multiplayer" name="multiplayer"
+        <input type="checkbox" class="form-check-input" id="multiPlayer" name="multiPlayer"
           formControlName="multiPlayer" />
-        <label for="multiplayer"> Multijoueur ?</label>
+        <label for="multiPlayer"> Multijoueur ?</label>
+        <div *ngIf="addMediaFormGroup.get('multiPlayer').invalid && addMediaFormGroup.get('multiPlayer').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('multiPlayer').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
@@ -345,6 +360,11 @@
         <select class="form-control" id="themeVideoGame" name="themeVideoGame" formControlName="themeId">
           <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
+        <div *ngIf="addMediaFormGroup.get('themeId').invalid && addMediaFormGroup.get('themeId').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('themeId').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
     </div>
 

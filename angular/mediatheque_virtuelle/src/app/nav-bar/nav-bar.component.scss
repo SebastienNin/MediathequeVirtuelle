@@ -1,0 +1,25 @@
+$lavender: #7e6eff;
+$violet: #800080; // Couleur violet
+
+.navbar {
+    background-color: $lavender;
+    padding: 10px 0;
+    border-radius: 0; 
+
+    .navbar-brand img {
+        height: 70px;
+    }
+
+    .nav-link {
+        font-weight: bold;
+        color: $lavender;
+        &:hover {
+            color: lighten($lavender, 10%); // Légèrement plus clair au survol
+        }
+    }
+    .nav-link.active {
+        background-color: $lavender; // Couleur de fond violet pour l'élément actif
+        color: white; // Texte en blanc pour l'élément actif
+    }
+}
+

@@ -83,6 +83,18 @@ public class ThemeApiController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Type de thème invalide");
 		}
 	}
+	
+	@GetMapping("/labelByEnumTheme/{enumTheme}")
+	@JsonView(Views.Theme.class)
+	public List<Theme> findThemesByEnumTheme(@PathVariable String enumTheme) {
+		try {
+			EnumTheme enumType = EnumTheme.valueOf(enumTheme); // Convertir la chaîne en Enum
+			return daoTheme.findLabelByEnumTheme(enumType);
+		} catch (IllegalArgumentException e) {
+			// Gérer le cas où la valeur de type n'est pas valide
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Type de thème invalide");
+		}
+	}
 
 	@GetMapping("/mediaByLabel/{label}")
 	public ResponseEntity<List<Media>> findMediaByLabel(@PathVariable String label) {

@@ -24,4 +24,6 @@ public interface IDAOMedia extends JpaRepository<Media,Integer> {
 	List<Media> findByNameContaining(String name);
 
 	List<Media> findMediaByMediaType(@Param("type") String type);
+
+	List<Media> findMediaByMediaTypeAndNameContaining(String type, String name);
 }

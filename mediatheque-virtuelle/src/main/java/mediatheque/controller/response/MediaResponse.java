@@ -15,6 +15,7 @@ public class MediaResponse {
 	
 	//Récupération des données communes à tous les médias
 	private Integer id;
+	private Integer version;
 	private String name;
 	private String publishingHouse;
 	private String language;
@@ -70,6 +71,12 @@ public class MediaResponse {
 	//Get et SET 
 	public Integer getId() {
 		return id;
+	}
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 	public void setId(Integer id) {
 		this.id = id;
@@ -143,8 +150,8 @@ public class MediaResponse {
 	public int getRecommendedAge() {
 		return recommendedAge;
 	}
-	public void setRecommendedAge(int recommendendAge) {
-		this.recommendedAge = recommendendAge;
+	public void setRecommendedAge(int recommendedAge) {
+		this.recommendedAge = recommendedAge;
 	}
 	public int getDuration() {
 		return duration;

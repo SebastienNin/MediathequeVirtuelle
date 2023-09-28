@@ -11,17 +11,27 @@
                     </div>
                 </div>
                 <div class="form-floating mb-3">
-                    <select id="mediaType" name="mediaType" [(ngModel)]="selectedMediaType" class="form-control half-width-select">
-                      <option selected value="">Tous</option>
-                      <option value="VIDEO_GAME">Jeu Vidéo</option>
-                      <option value="BOARD_GAME">Jeu de société</option>
-                      <option value="MOVIE">Film</option>
-                      <option value="BOOK">Livre</option>
-                      <option value="MUSIC">Musique</option>
-                      <option value="MAGAZINE">Journal</option>
+                    <select id="mediaType" name="mediaType" [(ngModel)]="selectedMediaType"
+                        class="form-control half-width-select" (change)="getThemesByMediaType(selectedMediaType)">
+                        <option selected value="">Tous</option>
+                        <option value="VIDEO_GAME">Jeu Vidéo</option>
+                        <option value="BOARD_GAME">Jeu de société</option>
+                        <option value="MOVIE">Film</option>
+                        <option value="BOOK">Livre</option>
+                        <option value="MUSIC">Musique</option>
+                        <option value="MAGAZINE">Journal</option>
                     </select>
                     <label for="floatingSelect">Type de Média :</label>
-                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <select id="mediaTheme" name="mediaTheme" [(ngModel)]="selectedMediaTheme"
+                        class="form-control half-width-select">
+                        <option [ngValue]="theme" *ngFor="let theme of mediaThemeListFromBack">{{ theme.label }}
+                        </option>
+                    </select>
+
+                    <label for="floatingSelect">Thème :</label>
+                </div>
             </form>
 
             <div *ngIf="results">

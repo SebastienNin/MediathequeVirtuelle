@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environments';
   providedIn: 'root'
 })
 export class SearchHttpService {
+ 
   constructor(private http: HttpClient) { }
 
   listAll(): Observable<any> {
@@ -23,14 +24,22 @@ export class SearchHttpService {
     return this.http.get<any[]>(environment.apiUrl + "/media/type/" + query);
   }
 
+  findAllTheme(query: string): Observable<any> {
+    return this.http.get<any[]>(environment.apiUrl + "/theme/labelByEnumTheme/" + query);
+  }
+
+  searchByTheme(query: string): Observable<any> {
+    return this.http.get<any[]>(environment.apiUrl + "/media/mediaByLabel/" + query);
+  }
+
   searchByMediaTypeAndTitleContaining(query: string, name: string): Observable<any> {
     // Envoyez la requête de recherche au backend
     return this.http.get<any[]>(environment.apiUrl + "/media/type/" + query + "/nameContaining/" + name);
   }
 
-
   searchByTitle(query: string): Observable<any> {
     // return this.http.get<any[]>(environment.apiUrl + "/media/nameContaining/" + query + "/mediaType/" + mediaType);
     return this.http.get<any[]>(environment.apiUrl + "/media/nameContaining/" + query);
   }
+  
 }

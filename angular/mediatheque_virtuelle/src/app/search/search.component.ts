@@ -10,6 +10,9 @@ export class SearchComponent {
   query: string;
   results: any[]; // Vous devrez définir la structure des résultats en fonction de votre backend
   selectedMediaType: string = "";
+  mediaThemeListFromBack: any[] = [];
+  mediaThemeList: string[] = [];
+  selectedMediaTheme: string = "";
 
   constructor(private searchHttpService: SearchHttpService) { }
 
@@ -21,6 +24,10 @@ export class SearchComponent {
       });
     } else if (!this.query && this.selectedMediaType != "") {
       this.searchHttpService.searchByMediaType(this.selectedMediaType).subscribe((data) => {
+        this.results = data;
+      });
+    } else if (!this.query && this.selectedMediaTheme != "") {
+      this.searchHttpService.searchByTheme(this.selectedMediaTheme).subscribe((data) => {
         this.results = data;
       });
     } else if (this.query && this.selectedMediaType != "") {
@@ -42,4 +49,13 @@ export class SearchComponent {
   //   });
   // }
 
+  getThemesByMediaType(selectedMediaType: string): void {
+    if (selectedMediaType) {
+      this.searchHttpService.findAllTheme(selectedMediaType)
+        .subscribe(themes => {
+          this.mediaThemeListFromBack = themes;
+        });
+    }
+  }
+  
 }

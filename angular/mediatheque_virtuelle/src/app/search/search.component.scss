@@ -1,69 +1,42 @@
-.half-width-select {
-  width: 40%;
-  /* Vous pouvez ajuster la largeur en pourcentage selon vos besoins */
-}
-
+// Définition de vos variables de couleur
 $lavender: #7e6eff;
 $lilac: #a087ff;
-$lilacdoux: #b3a0ff;
 
+// Style pour la section de navigation (en-tête)
 .card-header {
-  border-radius: 10px;
+    
   background-color: $lavender;
   color: white;
   text-align: center;
-  padding: 10px; // Ajoutez un espacement intérieur pour les boutons.
+  padding: 10px;
+  border-radius: 10px;
   width: 100%;
 
-  h3 {
-    font-size: 1.2rem;
-
+  h4 {
+    font-size: 1.3rem;
     font-weight: lighter;
   }
 
-}
+  .btn {
+    background-color: $lavender;
+    border-color: $lavender;
+    color: white;
+    border-radius: 10px;
+    margin: 5px;
 
-table {
-  padding: 10px;
-  width: 100%;
-  border-radius: 10px;
-
-  thead {
-
-    th {
-
-      border-radius: 10px;
-      background-color: $lavender;
-      border-color: $lavender;
-      background-color: $lilac;
-      color: white;
-      padding: 10px;
-
+    &:hover {
+      background-color: darken($lavender, 5%);
+      background-color: darken($lavender, 5%);
     }
   }
-
-  h3 {
-    font-size: 1.1rem; // Réduit la taille du texte à 1 rem (ajustez selon vos besoins)
-  }
 }
 
-.btn-success {
-  background-color: $lilac;
-  border-color: $lilac;
-
-}
-
-
-
-
-.btn-primary {
+.btn {
   background-color: $lavender;
   border-color: $lavender;
-
-  &:hover {
-    background-color: $lilac;
-    border-color: $lilac;
-  }
+  color: white;
+  border-radius: 10px;
+  margin: 5px;
 }
 
 .nameInTable{
@@ -76,21 +49,50 @@ table {
   text-decoration: underline; 
 }
 
-.card-footer {
-  background-color: $lavender;
-  border-radius: 10px;
-  padding: 10px;
-  width: 100%;
-  text-align: center;
+.card-body{
+    text-align: center;
+    h2{
+        margin-top: 10px;
+        color: $lilac;
 
-
-  .btn-success {
-    background-color: $lavender;
-    border-color: $lavender;
-
-    &:hover {
-      background-color: $lilac;
-      border-color: $lilac;
     }
-  }
+
+    table{
+        width: 100%;
+        border-collapse: separate; // Utilisation de "separate" au lieu de "collapse"
+        border-spacing: 10px; // Espace entre les colonnes du tableau
+        
+        th,
+        td {
+          padding: 10px;
+          vertical-align: middle;
+        }
+    
+        thead {
+          th {
+            background-color: $lilac;
+            color: white;
+            border-radius: 10px;
+          }
+        }
+    
+        tbody {
+          tr {
+            
+    
+            td {
+              
+                text-decoration: none;
+                color: $lavender;
+                transition: color 0.3s ease;
+    
+                &:hover {
+                  color: darken($lilac, 40%);
+                }
+                
+            }
+
+          }
+        }
+    }
 }

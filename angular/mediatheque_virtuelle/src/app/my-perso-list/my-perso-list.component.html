@@ -1,12 +1,13 @@
-<!-- Tableau des listes personnalisées -->
-<div class="card mt-3">
-    <div class="card-header bg-primary text-white display-6">Mes Listes personnalisées</div>
-    <div class="card-body">
-        <table class="table table-striped">
+<div class="card-header">
+          <h2>Mes Listes personnalisées</h2>
+        </div>
+<div class="card-body">
+
+        <table class="table">
             <thead>
                 <tr>
                     <th>Nom</th>
-                    <th></th>
+                    <th>Modifier/supprimer</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,14 +23,16 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
-    <div><button class="btn btn-success" (click)="add()">Ajouter</button>
-    </div>
-    </div>
+        </table> 
 </div>
+<div class="card-footer">
+    <button class="btn btn-success" (click)="add()"><h4>Ajouter</h4></button>
+</div>
+   
+
 
 <!-- Formulaire -->
-<div class="card mt-3" *ngIf="persoListForm">
+<div class="card md3" *ngIf="persoListForm">
     <div class="card-header bg-primary text-white display-6">Édition d'une liste personnalisée</div>
     <div class="card-body">
         <div class="form-group">

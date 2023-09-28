@@ -12,6 +12,7 @@ import { WatchMyMediaHttpService } from '../watch-my-media/watch-my-media-http.s
 import { PersonnalizedListHttpService } from '../personnalizedList-http.service';
 import { PersonnalizedList } from '../modele/personnalizedList';
 import { AuthService } from '../auth.service';
+import { PersoListJoinMediaHttpService } from '../perso-list-join-media/perso-list-join-media-http.service';
 
 @Component({
   selector: 'app-see-media-details',
@@ -24,6 +25,7 @@ export class SeeMediaDetailsComponent {
   media: Media = new Media();
   themes: string = "";
   myPersoLists: PersonnalizedList[] = [];
+  myPersoListId: number;
 
   selectedMenu: string;
   editInfoMediaFormGroup: FormGroup;
@@ -46,7 +48,8 @@ export class SeeMediaDetailsComponent {
 
   constructor(private formBuilder: FormBuilder, private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute,
     private fileService: FileService, private themeService: ThemeService, private watchMyMediaHttpService: WatchMyMediaHttpService,
-    private persoListService: PersonnalizedListHttpService, private authService: AuthService) {
+    private persoListService: PersonnalizedListHttpService, private authService: AuthService,
+    private persoListJoinMediaService: PersoListJoinMediaHttpService) {
     this.route.params.subscribe(param => this.id = param['id']);
     this.mediaServiceHttp.findById(this.id).subscribe(resp => {
       this.media = resp;
@@ -184,7 +187,7 @@ export class SeeMediaDetailsComponent {
   }
 
   addToPersoList() {
-
+    this.persoListJoinMediaService.save(this.media.id, this.myPersoListId).subscribe();
   }
 
   deleteFromMyMedias() {

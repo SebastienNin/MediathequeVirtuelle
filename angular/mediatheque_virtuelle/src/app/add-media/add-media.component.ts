@@ -12,6 +12,7 @@ import { Theme } from '../modele/theme';
 import { EnumTheme } from '../modele/enumTheme';
 import { FileService } from '../file.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-media',
@@ -74,7 +75,7 @@ export class AddMediaComponent {
   tracksString: string[] = [];
 
   constructor(private mediaServiceHttp: HttpMediaService, private themeService: ThemeService,
-    private fileService: FileService, private formBuilder: FormBuilder) {
+    private fileService: FileService, private formBuilder: FormBuilder, private router: Router) {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
@@ -303,6 +304,14 @@ export class AddMediaComponent {
     this.showMovieForm = false;
     this.showMusicForm = false;
     this.showVideoGameForm = false;
+
+    this.returnToWatchMedia();
+    
+  }
+
+  //redirige vers la liste des médias
+  returnToWatchMedia() {
+    this.router.navigate(['/watchMedia']);
   }
 
   onFileChange(event: any) {

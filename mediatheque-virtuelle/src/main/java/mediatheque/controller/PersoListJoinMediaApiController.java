@@ -1,7 +1,9 @@
 package mediatheque.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,27 +18,38 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.transaction.Transactional;
-import mediatheque.dao.IDAOAccount;
+import mediatheque.controller.response.AccountMediaResponse;
+import mediatheque.controller.response.PersoListJoinMediaResponse;
 import mediatheque.dao.IDAOPersoListJoinMedia;
 import mediatheque.dao.IDAOPersonnalizedList;
-import mediatheque.model.Account;
+import mediatheque.model.AccountMedia;
+import mediatheque.model.BoardGame;
+import mediatheque.model.Book;
+import mediatheque.model.Magazine;
+import mediatheque.model.Movie;
+import mediatheque.model.Music;
 import mediatheque.model.PersoListJoinMedia;
 import mediatheque.model.PersonnalizedList;
+import mediatheque.model.TypeMedia;
+import mediatheque.model.VideoGame;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/persoListJoinMedia")
 public class PersoListJoinMediaApiController {
-	@Autowired
-	private IDAOPersoListJoinMedia daoPersoListJoinMedia;
-	@Autowired
-	private IDAOPersonnalizedList daoPersonnalizedList;
-	@Autowired
-	private IDAOAccount daoAccount;
 	
-	public PersoListJoinMediaApiController(IDAOPersoListJoinMedia daoPersoListJoinMedia) {
-		super();
+	private IDAOPersoListJoinMedia daoPersoListJoinMedia;
+	
+	private IDAOPersonnalizedList daoPersonnalizedList;
+	
+	private MediaApiController mediaApiController;
+
+
+	
+	public PersoListJoinMediaApiController(IDAOPersoListJoinMedia daoPersoListJoinMedia, IDAOPersonnalizedList daoPersonnalizedList, MediaApiController mediaApiController) {
 		this.daoPersoListJoinMedia = daoPersoListJoinMedia;
+		this.daoPersonnalizedList = daoPersonnalizedList;
+		this.mediaApiController = mediaApiController;
 	}
 	
 
@@ -53,9 +66,36 @@ public class PersoListJoinMediaApiController {
     
     @GetMapping("/persoList/{persoListId}")
 	@Transactional 
-	public List<PersoListJoinMedia> findByPersoListId(@PathVariable Integer persoListId) {
+	public List<PersoListJoinMediaResponse> findByPersoListId(@PathVariable Integer persoListId) {
 		PersonnalizedList persoList = this.daoPersonnalizedList.findById(persoListId).get();
-		return this.daoPersoListJoinMedia.findByPersoList(persoList);
+		List<PersoListJoinMedia> persoLists = this.daoPersoListJoinMedia.findByPersoList(persoList);
+        List<PersoListJoinMediaResponse> persoListJoinMediaResponses = new ArrayList<PersoListJoinMediaResponse>();
+
+		for (PersoListJoinMedia persoJoin : persoLists) {
+            PersoListJoinMediaResponse response = new PersoListJoinMediaResponse();
+            response.setMedia(this.mediaApiController.findMediaById(persoJoin.getMedia().getId()));
+
+            BeanUtils.copyProperties(persoJoin, response);
+            if (persoJoin.getMedia() instanceof BoardGame) {
+                response.getMedia().setTypeMedia(TypeMedia.BoardGame);
+            } else if (persoJoin.getMedia() instanceof Book) {
+                response.getMedia().setTypeMedia(TypeMedia.Book);
+            } else if (persoJoin.getMedia() instanceof Magazine) {
+                response.getMedia().setTypeMedia(TypeMedia.Magazine);
+            } else if (persoJoin.getMedia() instanceof Movie) {
+                response.getMedia().setTypeMedia(TypeMedia.Movie);
+            } else if (persoJoin.getMedia() instanceof Music) {
+                response.getMedia().setTypeMedia(TypeMedia.Music);
+            }else if (persoJoin.getMedia() instanceof VideoGame) {
+                response.getMedia().setTypeMedia(TypeMedia.VideoGame);
+            } else {
+
+            }
+
+            persoListJoinMediaResponses.add(response);
+
+        }
+        return persoListJoinMediaResponses;
 	}
     
     @PostMapping("")

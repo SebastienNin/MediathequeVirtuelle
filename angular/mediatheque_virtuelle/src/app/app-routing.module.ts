@@ -10,9 +10,11 @@ import { forceToDisconnectGuard } from './force-to-disconnect.guard';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PersonnalizedListComponent } from './personnalizedList/personnalizedList.component';
 import { WatchMediaComponent } from './watch-media/watch-media.component';
+import { WatchMyMediaComponent } from './watch-my-media/watch-my-media.component';
 import { SeeMediaDetailsComponent } from './see-media-details/see-media-details.component';
 import { SearchComponent } from './search/search.component';
 import { MyPersoListComponent } from './my-perso-list/my-perso-list.component';
+import { PersoListJoinMediaComponent } from './perso-list-join-media/perso-list-join-media.component';
 
 const routes: Routes = [
   { path: "", component: AccueilComponent, pathMatch: 'full' },
@@ -22,10 +24,12 @@ const routes: Routes = [
   { path: "media/add", component: AddMediaComponent, canActivate: [authGuard] },
   { path: "myAccount", component: MyAccountComponent, canActivate: [authGuard] },
   { path: "personnalizedList", component: PersonnalizedListComponent, canActivate: [authGuard] },
-  { path: "watchMedia", component: WatchMediaComponent },
+  { path: "watchMedia", component: WatchMediaComponent, canActivate: [authGuard]  },
+  { path: "watchMyMedia", component: WatchMyMediaComponent, canActivate: [authGuard]  },
   { path: "media/details/:id", component: SeeMediaDetailsComponent, canActivate: [authGuard] },
   { path: 'search', component: SearchComponent },
-  { path: "myPersoLists", component: MyPersoListComponent, canActivate: [authGuard] }
+  { path: "myPersoLists", component: MyPersoListComponent, canActivate: [authGuard] },
+  { path: "persoListJoinMedia/:id", component: PersoListJoinMediaComponent, canActivate: [authGuard]}
 ];
 
 @NgModule({

@@ -11,7 +11,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let persoList of myPersoLists$ | async">
-                    <td>{{ persoList.name }}</td>
+                    <td *ngFor="let persoList of myPersoLists$ | async" (click)="redirectToMediaList(persoList.id)">{{ persoList.name }}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
                             <a class="btn btn-primary" (click)="edit(persoList.id)"><i

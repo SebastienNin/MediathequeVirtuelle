@@ -11,6 +11,7 @@ import { ThemeService } from '../theme.service';
 import { Theme } from '../modele/theme';
 import { EnumTheme } from '../modele/enumTheme';
 import { FileService } from '../file.service';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-media',
@@ -45,9 +46,35 @@ export class AddMediaComponent {
   //liste des thèmes disponibles
   listTheme: Theme[] = new Array<Theme>;
 
-  selectedFile: File | null = null; // Variable pour stocker le fichier sélectionné
+  // Variable pour stocker le fichier sélectionné
+  selectedFile: File | null = null;
 
-  constructor(private mediaServiceHttp: HttpMediaService, private themeService: ThemeService, private fileService: FileService) {
+  //Passage en reacForm
+  addMediaFormGroup: FormGroup;
+  hasFormErrors: boolean = false;
+
+  // List to speed up validator addition process
+  bookFields = ['author', 'ISBN', 'pagesNb', 'chaptersNb', 'bookType', 'themeId'];
+  boardGameFields = ['playerNumber', 'recommendedAge', 'duration', 'themeId'];
+  magazineFields = ['ISSN', 'number', 'magazinePeriodicity', 'themeId'];
+  movieFields = ['durationMovie', 'movieSupport', 'themeId'];
+  musicFields = ['artist', 'durationMusic', 'trackNumber', 'musicSupport', 'themeId'];
+  videoGameFields = ['pegi', 'themeId'];
+  allOptionnalFields = ['author', 'ISBN', 'pagesNb', 'chaptersNb', 'bookType',
+    'playerNumber', 'recommendedAge', 'duration', 'ISSN', 'number', 'magazinePeriodicity',
+    'durationMovie', 'movieSupport', 'artist', 'durationMusic', 'trackNumber', 'musicSupport',
+    'pegi', 'themeId'];
+
+  media: Media = new Media();
+  directorsFormArray: FormControl[] = [];
+  directorsString: string[] = [];
+  actorsFormArray: FormControl[] = [];
+  actorsString: string[] = [];
+  tracksFormArray: FormControl[] = [];
+  tracksString: string[] = [];
+
+  constructor(private mediaServiceHttp: HttpMediaService, private themeService: ThemeService,
+    private fileService: FileService, private formBuilder: FormBuilder) {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
@@ -55,54 +82,165 @@ export class AddMediaComponent {
     this.currentDate = `${year}-${month}-${day}`;
     this.mediaForm.addDate = this.currentDate;
 
+    this.addMediaFormGroup = this.formBuilder.group({
+      name: ['', Validators.required],
+      typeMedia: ['', Validators.required],
+      publishingHouse: ['', Validators.required],
+      language: ['', Validators.required],
+      description: ['', Validators.required],
+      dematerialized: [''],
+      parutionDate: ['', Validators.required],
+      themeId: [''],
+      addDate: [this.currentDate],
+      //Section Boardgame
+      playerNumber: [''],
+      recommendedAge: [''],
+      durationBG: [''],
+      themeBoardGame: [null],
+      //Section Book
+      author: [''],
+      ISBN: [''],
+      pagesNb: [''],
+      chaptersNb: [''],
+      bookType: [null],
+      //Section Magazine
+      ISSN: [''],
+      number: [''],
+      magazinePeriodicity: [null],
+      //Section Movie
+      durationMovie: [''],
+      movieSupport: [null],
+      actors: this.formBuilder.array([]),
+      directors: this.formBuilder.array([]),
+      //Section Music
+      artist: [''],
+      durationMusic: [''],
+      trackNumber: [''],
+      musicSupport: [null],
+      tracks: this.formBuilder.array([]),
+      //Section VideoGame
+      multiPlayer: [''],
+      pegi: ['']
+    })
+
+    // Create the FormArray for directors
+    // this.directorsFormArray = this.formBuilder.array([]);
+    // this.addMediaFormGroup.addControl('directors', this.directorsFormArray);
   }
 
   showSecondPartOfForm() {
-    this.showFirstForm = false;
-    switch (this.mediaForm.typeMedia) {
-      case (TypeMedia.BoardGame):
-        this.themeService.findByEnumTheme(EnumTheme.BOARDGAME).subscribe(resp => this.listTheme = resp);
-        this.showBoardGameForm = true;
-        break;
-      case (TypeMedia.Book):
-        this.themeService.findByEnumTheme(EnumTheme.BOOK).subscribe(resp => this.listTheme = resp);
-        this.showBookForm = true;
-        break;
-      case (TypeMedia.Magazine):
-        this.themeService.findByEnumTheme(EnumTheme.MAGAZINE).subscribe(resp => this.listTheme = resp);
-        this.showMagazineForm = true;
-        break;
-      case (TypeMedia.Movie):
-        this.mediaForm.directors.push("");
-        this.mediaForm.actors.push("");
-        this.themeService.findByEnumTheme(EnumTheme.MOVIE).subscribe(resp => this.listTheme = resp);
-        this.showMovieForm = true;
-        break;
-      case (TypeMedia.Music):
-        this.mediaForm.tracks.push("");
-        this.themeService.findByEnumTheme(EnumTheme.MUSIC).subscribe(resp => this.listTheme = resp);
-        this.showMusicForm = true;
-        break;
-      case (TypeMedia.VideoGame):
-        this.themeService.findByEnumTheme(EnumTheme.VIDEOGAME).subscribe(resp => this.listTheme = resp);
-        this.showVideoGameForm = true;
-        break;
-      case (null):
-        console.log("Erreur sur typeMedia");
-        break;
+    if (this.addMediaFormGroup.valid) {
+      this.showFirstForm = false;
+      switch (this.addMediaFormGroup.get("typeMedia").value) {
+        case (TypeMedia.BoardGame):
+          this.themeService.findByEnumTheme(EnumTheme.BOARDGAME).subscribe(resp => this.listTheme = resp);
+          for (var field of this.boardGameFields) {
+            this.addRequiredValidators(field);
+          }
+          this.showBoardGameForm = true;
+          break;
+        case (TypeMedia.Book):
+          this.themeService.findByEnumTheme(EnumTheme.BOOK).subscribe(resp => this.listTheme = resp);
+          for (var field of this.bookFields) {
+            this.addRequiredValidators(field);
+          }
+          this.showBookForm = true;
+          break;
+        case (TypeMedia.Magazine):
+          this.themeService.findByEnumTheme(EnumTheme.MAGAZINE).subscribe(resp => this.listTheme = resp);
+          for (var field of this.magazineFields) {
+            this.addRequiredValidators(field);
+          }
+          this.showMagazineForm = true;
+          break;
+        case (TypeMedia.Movie):
+          this.addDirector();
+          this.addActor();
+          this.themeService.findByEnumTheme(EnumTheme.MOVIE).subscribe(resp => this.listTheme = resp);
+          for (var field of this.movieFields) {
+            this.addRequiredValidators(field);
+          }
+          this.showMovieForm = true;
+          break;
+        case (TypeMedia.Music):
+          this.addTrack();
+          this.themeService.findByEnumTheme(EnumTheme.MUSIC).subscribe(resp => this.listTheme = resp);
+          for (var field of this.musicFields) {
+            this.addRequiredValidators(field);
+          }
+          this.showMusicForm = true;
+          break;
+        case (TypeMedia.VideoGame):
+          this.themeService.findByEnumTheme(EnumTheme.VIDEOGAME).subscribe(resp => this.listTheme = resp);
+          for (var field of this.videoGameFields) {
+            this.addRequiredValidators(field);
+          }
+          this.showVideoGameForm = true;
+          break;
+        case (null):
+          console.log("Erreur sur typeMedia");
+          break;
+      }
+      this.hasFormErrors = false;
+    } else {
+      this.hasFormErrors = true;
+    }
+  }
+
+  addRequiredValidators(fieldName: string) {
+    // Vérifiez d'abord si le champ existe dans le formulaire
+    if (this.addMediaFormGroup.contains(fieldName)) {
+      // Récupérez le contrôle du champ
+      const fieldControl = this.addMediaFormGroup.get(fieldName);
+
+      // Ajoutez le validateur requis s'il n'est pas déjà présent
+      if (!fieldControl.hasValidator(Validators.required)) {
+        fieldControl.setValidators([Validators.required]);
+        fieldControl.updateValueAndValidity();
+      }
+    }
+  }
+
+  removeAllRequiredValidators() {
+    for (var field of this.allOptionnalFields) {
+      // Vérifiez d'abord si le champ existe dans le formulaire
+      if (this.addMediaFormGroup.contains(field)) {
+        // Récupérez le contrôle du champ
+        const fieldControl = this.addMediaFormGroup.get(field);
+        // Ajoutez le validateur requis s'il n'est pas déjà présent
+        if (fieldControl.hasValidator(Validators.required)) {
+          fieldControl.clearAsyncValidators();
+          fieldControl.updateValueAndValidity();
+        }
+      }
     }
   }
 
   addDirector() {
-    this.mediaForm.directors.push("");
+    const directorControl = new FormControl('', Validators.required);
+    this.directorsFormArray.push(directorControl);
+  }
+
+  removeDirector(index: number) {
+    this.directorsFormArray.splice(index, 1);
   }
 
   addActor() {
-    this.mediaForm.actors.push("");
+    const actorControl = new FormControl('', Validators.required);
+    this.actorsFormArray.push(actorControl);
+  }
+
+  removeActor(index: number) {
+    this.actorsFormArray.splice(index, 1);
   }
 
   addTrack() {
-    this.mediaForm.tracks.push("");
+    const trackControl = new FormControl('', Validators.required);
+    this.tracksFormArray.push(trackControl);
+  }
+
+  removeTrack(index: number) {
+    this.tracksFormArray.splice(index, 1);
   }
 
   addTheme() {
@@ -110,8 +248,8 @@ export class AddMediaComponent {
   }
 
   addNewMedia() {
-    // ... (autres traitements)
-
+    const addMediaInfo = this.addMediaFormGroup.value;
+    let media = { ...this.media, ...addMediaInfo };
     // Envoyer le fichier seulement lors de la validation du formulaire
     if (this.selectedFile) {
       this.fileService.uploadFile(this.selectedFile).subscribe(resp => {
@@ -119,18 +257,31 @@ export class AddMediaComponent {
 
         // Après avoir reçu la réponse, continuez le traitement du formulaire
         // Récupérer les thèmes et les ajouter au mediaForm
-        this.themeService.findById(this.themeId).subscribe(resp => {
-          this.mediaForm.themes.push(resp);
-          this.mediaForm.image = this.imagePath; // Ajoutez le chemin de l'image
-          this.mediaServiceHttp.save(this.mediaForm);
+        this.themeService.findById(this.addMediaFormGroup.get("themeId").value).subscribe(resp => {
+          media.themes.push(resp);
+          media.image = this.imagePath; // Ajoutez le chemin de l'image
+          this.mediaServiceHttp.save(media);
+          this.removeAllRequiredValidators();
           this.resetForm();
         });
       });
     } else {
       // Si aucun fichier n'a été sélectionné, continuez sans envoyer de fichier
-      this.themeService.findById(this.themeId).subscribe(resp => {
-        this.mediaForm.themes.push(resp);
-        this.mediaServiceHttp.save(this.mediaForm);
+      this.themeService.findById(this.addMediaFormGroup.get("themeId").value).subscribe(resp => {
+        media.themes.push(resp);
+        // Utilisez this.directorsFormArray.value pour obtenir les noms des réalisateurs
+        // Créer un array de string ici et enlevver director forarray
+        this.directorsFormArray.forEach((ctrl, index) => {
+          media.directors.push(ctrl.value);
+        })
+        this.actorsFormArray.forEach((ctrl, index) => {
+          media.actors.push(ctrl.value);
+        })
+        this.tracksFormArray.forEach((ctrl, index) => {
+          media.tracks.push(ctrl.value);
+        })
+        this.mediaServiceHttp.save(media);
+        this.removeAllRequiredValidators();
         this.resetForm();
       });
     }
@@ -138,7 +289,9 @@ export class AddMediaComponent {
 
   resetForm() {
     //Vide les variables pour pouvoir ajouter un nouveau média
+    this.addMediaFormGroup.reset();
     this.mediaForm = new Media();
+    this.media = new Media();
     this.mediaForm.addDate = this.currentDate;
     this.themeId = null;
 

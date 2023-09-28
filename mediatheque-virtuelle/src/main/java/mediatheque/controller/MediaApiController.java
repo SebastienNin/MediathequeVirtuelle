@@ -63,9 +63,40 @@ public class MediaApiController {
 
 	@GetMapping("/")
 	// @JsonView(Views.Media.class)
-	public List<Media> findAllMedia() {
-		return daoMedia.findAll();
-	}
+	public List<MediaResponse> findAllMedia() {
+        List<Media> medias =daoMedia.findAll();
+        List<MediaResponse> mediaResponses = new ArrayList<MediaResponse>();
+//        List<Theme> themes = new ArrayList<Theme>();
+
+        for (Media media : medias) {
+            MediaResponse response = new MediaResponse();
+
+            BeanUtils.copyProperties(media, response);
+            if (media instanceof BoardGame) {
+                response.setTypeMedia(TypeMedia.BoardGame);
+            } else if (media instanceof Book) {
+                response.setTypeMedia(TypeMedia.Book);
+            } else if (media instanceof Magazine) {
+                response.setTypeMedia(TypeMedia.Magazine);
+            } else if (media instanceof Movie) {
+                response.setTypeMedia(TypeMedia.Movie);
+            } else if (media instanceof Music) {
+                response.setTypeMedia(TypeMedia.Music);
+            }else if (media instanceof VideoGame) {
+                response.setTypeMedia(TypeMedia.VideoGame);
+            } else {
+
+            }
+            // Récupération des thèmes du média
+//            for(MediaTheme mediaTheme : mediaThemes) {
+//                themes.add(mediaTheme.getTheme());
+//            }
+//            response.setThemes(themes);
+            mediaResponses.add(response);
+
+        }
+        return mediaResponses;
+    }
 
 	@GetMapping("/book")
 	@JsonView(Views.Media.class)

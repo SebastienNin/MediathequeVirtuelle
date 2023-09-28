@@ -1,26 +1,111 @@
+<header class="text-white text-center py-5">
+    <h1>Bienvenue sur Média Hub</h1>
+    <p>Découvrez et gérez votre collection de médias.</p>
+</header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barre de Recherche</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
+<section class="container-fluid mt-5">
+    <h2 class="text-center mb-4">Que pouvez-vous faire ici ?</h2>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
                 <div class="card-body">
-                        <h2 class="text-center">Recherchez un document dans Media Hub</h2>
-                        <br>
-                        <form action="#" method="get">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Entrez votre recherche..." name="q">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Rechercher</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <h3 class="card-title">Créer un compte</h3>
+                    <p class="card-text">Rejoignez notre communauté en créant un compte personnel.</p>
+                    <a [routerLink]="['/signin']" class="btn btn-primary">Inscription</a>
                 </div>
+            </div>
         </div>
-</body>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Se connecter</h3>
+                    <p class="card-text">Connectez-vous à votre compte pour accéder à vos médias.</p>
+                    <a [routerLink]="['/connection']" class="btn btn-primary">Connexion</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="card-title">Consulter la liste des médias</h3>
+                    <p class="card-text">Notre communauté a déjà contribué à remplir Média Hub, vous pouvez consulter
+                        l'ensemble des médias disponibles ici.</p>
+                    <a [routerLink]="['/watchMedia']" class="btn btn-primary">Liste des médias</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Ajouter un média</h3>
+                    <p class="card-text">Contribuez à la médiathèque en ajoutant de nouveaux médias. Vous pourrez
+                        ensuite décider de l'ajouter à votre compte.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Créer des listes personnalisées</h3>
+                    <p class="card-text">Créez vos propres listes de média!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container mt-5">
+    <h2 class="text-center mb-4">Technologies Utilisées</h2>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="assets/angular_logo.png" alt="Logo Angular" height="70">
+                    <h3 class="card-title">Angular</h3>
+                    <p class="card-text">Framework JavaScript pour la construction d'applications web modernes.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="assets/html_logo.png" alt="Logo HTML" height="70">
+                    <h3 class="card-title">HTML</h3>
+                    <p class="card-text">Langage de balisage pour la création de pages web.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="assets/css_logo.png" alt="Logo SCSS" height="70">
+                    <h3 class="card-title">SCSS</h3>
+                    <p class="card-text">Préprocesseur CSS pour la création de styles avancés.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="assets/java_logo.png" alt="Logo Java" height="70">
+                    <h3 class="card-title">Java</h3>
+                    <p class="card-text">Langage de programmation utilisé pour le développement backend.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="assets/spring_logo.png" alt="Logo Spring" height="70">
+                    <h3 class="card-title">Spring</h3>
+                    <p class="card-text">Framework Java pour le développement d'applications d'entreprise.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

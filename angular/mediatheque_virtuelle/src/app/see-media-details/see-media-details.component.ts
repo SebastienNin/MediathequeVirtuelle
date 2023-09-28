@@ -13,6 +13,7 @@ import { PersonnalizedListHttpService } from '../personnalizedList-http.service'
 import { PersonnalizedList } from '../modele/personnalizedList';
 import { AuthService } from '../auth.service';
 import { PersoListJoinMediaHttpService } from '../perso-list-join-media/perso-list-join-media-http.service';
+import { AccountMedia } from '../modele/accountMedia';
 
 @Component({
   selector: 'app-see-media-details',
@@ -26,16 +27,11 @@ export class SeeMediaDetailsComponent {
   themes: string = "";
   myPersoLists: PersonnalizedList[] = [];
   myPersoListId: number;
+  myAccountMedias: AccountMedia[] = [];
+  isThisMediaInMyAccount: boolean;
 
   selectedMenu: string;
   editInfoMediaFormGroup: FormGroup;
-  // editGlobalMediaFormGroup: FormGroup;
-  // boardGameFormGroup: FormGroup;
-  // bookFormGroup: FormGroup;
-  // magazineFormGroup: FormGroup;
-  // movieFormGroup: FormGroup;
-  // musicFormGroup: FormGroup;
-  // videoGameFormGroup: FormGroup;
 
   showBoardGameCard: boolean = false;
   showBookCard: boolean = false;
@@ -56,6 +52,7 @@ export class SeeMediaDetailsComponent {
       this.load();
       this.loadThemes();
       this.findMyPersoLists();
+      this.findMyMedias();
 
       this.editInfoMediaFormGroup = this.formBuilder.group({
         //Général
@@ -176,8 +173,21 @@ export class SeeMediaDetailsComponent {
     });
   }
 
-  addToMyMedias() {
+  findMyMedias() {
+    this.watchMyMediaHttpService.findMediaByAccount(this.authService.getUser()).subscribe(resp => {
+      this.myAccountMedias = resp;
+      this.myAccountMedias.forEach(media => {
+        if (media.id == this.media.id) {
+          this.isThisMediaInMyAccount = true;
+        }
+      })
+    });
+  }
 
+  addToMyMedias() {
+    this.watchMyMediaHttpService.save(this.authService.getUser().id, this.media.id).subscribe(resp => {
+      this.isThisMediaInMyAccount = true
+    });
   }
 
   findMyPersoLists() {
@@ -191,7 +201,9 @@ export class SeeMediaDetailsComponent {
   }
 
   deleteFromMyMedias() {
-
+    this.watchMyMediaHttpService.deleteByMediaId(this.media.id).subscribe(resp => {
+      this.isThisMediaInMyAccount = false
+    });
   }
 
   downloadFile() {

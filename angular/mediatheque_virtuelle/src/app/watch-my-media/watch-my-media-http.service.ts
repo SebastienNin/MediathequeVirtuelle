@@ -33,6 +33,10 @@ export class WatchMyMediaHttpService {
     return this.http.get<AccountMedia[]>(this.apiAccountMediaUrl + account.id)
   }
 
+  findMediaByAccount(account: Account): Observable<AccountMedia[]> {
+    return this.http.get<AccountMedia[]>(this.apiAccountMediaUrl + "findMediaByAccountMediaId/" + account.id)
+  }
+
   findById(id: number): Observable<AccountMedia> {
     let obs: Observable<AccountMedia> = this.http.get<AccountMedia>(this.apiAccountMediaUrl + id);
 
@@ -56,8 +60,11 @@ export class WatchMyMediaHttpService {
     });
   }
 
-  deleteById(id: number): Observable<void> {
+  deleteByMediaId(id: number): Observable<void> {
+    return this.http.delete<void>(this.apiAccountMediaUrl + "deleteByMediaId/" + id);
+  }
 
+  deleteById(id: number): Observable<void> {
     return this.http.delete<void>(this.apiAccountMediaUrl + id);
   }
 }

@@ -480,15 +480,20 @@
             </form>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="card">
             <div class="card-body">
-                <select class="form-control" [(ngModel)]="myPersoListId">
+                <h4>Ajouter à une liste personnalisée</h4>
+                <select class="form-control mb-3" [(ngModel)]="myPersoListId">
                     <option selected="true" disabled="disabled" value="">Sélectionnez une de vos listes</option>
                     <option *ngFor="let myPersoList of myPersoLists" [value]="myPersoList.id" >{{myPersoList.name}}
                     </option>"
                 </select>
-                <button class="btn btn-primary" (click)="addToPersoList()">Ajouter à ma liste</button>
+                <button type="button" class="btn btn-primary md-2 col-md-2" (click)="addToPersoList()" [disabled]="!myPersoListId">Ajouter à ma liste</button>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-success md-2 col-md-3" (click)="addToMyMedias()" *ngIf="!isThisMediaInMyAccount">Ajouter à mes médias</button>
+                <button type="button" class="btn btn-danger md-2 col-md-3" (click)="deleteFromMyMedias()" *ngIf="isThisMediaInMyAccount">Retirer de mes médias</button>
             </div>
         </div>
     </div>

@@ -28,7 +28,7 @@
                 <a class="nav-link" [routerLink]="['/watchMedia']" routerLinkActive="active">Listes des Médias</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
-                <a class="nav-link" [routerLink]="['/watchMyMedia']" routerLinkActive="active">Listes de mes Médias</a>
+                <a class="nav-link" [routerLink]="['/watchMyMedia']" routerLinkActive="active">Mes Médias</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link" [routerLink]="['/myPersoLists']" routerLinkActive="active">Mes Listes Perso</a>
@@ -37,7 +37,7 @@
                 <a class="nav-link" [routerLink]="['/myAccount']" routerLinkActive="active">Mon compte</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated()">
-                <a class="nav-link" (click)="disconnection()" routerLinkActive="active">Deconnexion</a>
+                <a class="nav-link" (click)="disconnection()" routerLinkActive="active">Déconnexion</a>
             </li>
         </ul>
 

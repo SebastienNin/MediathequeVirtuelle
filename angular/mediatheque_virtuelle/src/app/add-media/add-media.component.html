@@ -1,78 +1,123 @@
 <div class="card mt-3">
-  <form #inscriptionForm="ngForm" (ngSubmit)="addNewMedia()">
+  <form [formGroup]="addMediaFormGroup" (ngSubmit)="addNewMedia()" novalidate autocomplete="off">
     <div class="card-header bg-primary text-white display-6">
       Ajout d'un nouveau média
     </div>
     <div class="card-body" *ngIf="showFirstForm">
       <div class="form-group">
         <label for="name">Nom:</label>
-        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="mediaForm.name"/>
+        <input type="text" class="form-control" id="name" name="name" formControlName="name" required />
+        <div *ngIf="addMediaFormGroup.get('name').invalid && addMediaFormGroup.get('name').touched" class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('name').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="typeMedia">Type de média:</label>
-        <select class="form-select" id="typeMedia" name="typeMedia" [(ngModel)]="mediaForm.typeMedia">
+        <select class="form-select" id="typeMedia" name="typeMedia" formControlName="typeMedia" required>
           <!-- <option selected>Choisir un type de média</option> NE FONCTIONNE PAS POUR LE MOMENT A CAUSE DU NGMODEL, A VOIR SI ON PEUT FAIRE MARCHER CA-->
           <option *ngFor="let type of typesMedia" [value]="type">{{ type }}</option>
         </select>
+        <div *ngIf="addMediaFormGroup.get('typeMedia').invalid && addMediaFormGroup.get('typeMedia').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('typeMedia').hasError('required')">Veuillez sélectionner un type de
+            média.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="pHouse">Editeur:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="pHouse"
-          name="pHouse"
-          [(ngModel)]="mediaForm.publishingHouse"
-        />
+        <input type="text" class="form-control" id="pHouse" name="pHouse" formControlName="publishingHouse" required />
+        <div
+          *ngIf="addMediaFormGroup.get('publishingHouse').invalid && addMediaFormGroup.get('publishingHouse').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('publishingHouse').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="language">Langue:</label>
-        <input type="text" class="form-control" id="language" name="language" [(ngModel)]="mediaForm.language"/>
+        <input type="text" class="form-control" id="language" name="language" formControlName="language" required />
+        <div *ngIf="addMediaFormGroup.get('language').invalid && addMediaFormGroup.get('language').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('language').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="image">Image: (taile max 1Mo)</label>
+        <label for="image">Image: (format PNG/JPEG, taille max 10Mo)</label>
         <input type="file" class="form-control" id="image" name="image" (change)="onFileChange($event)" />
       </div>
 
       <div class="form-group">
         <label for="description">Résumé (ou description):</label>
-        <input type="text" class="form-control" id="description" name="description" [(ngModel)]="mediaForm.description"/>
+        <input type="text" class="form-control" id="description" name="description" formControlName="description"
+          required />
+        <div *ngIf="addMediaFormGroup.get('description').invalid && addMediaFormGroup.get('description').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('description').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
-        <input type="checkbox" class="form-check-input" id="dematerialized" name="dematerialized" [(ngModel)]="mediaForm.dematerialized"/>
+        <input type="checkbox" class="form-check-input" id="dematerialized" name="dematerialized"
+          formControlName="dematerialized" />
         <label for="dematerialized"> Dématérialisé ?</label>
       </div>
 
       <div class="form-group">
         <label for="parutionDate">Date de parution:</label>
-        <input type="date" class="form-control" id="parutionDate" name="parutionDate" [(ngModel)]="mediaForm.parutionDate"/>
+        <input type="date" class="form-control" id="parutionDate" name="parutionDate" formControlName="parutionDate"
+          required />
+        <div *ngIf="addMediaFormGroup.get('parutionDate').invalid && addMediaFormGroup.get('parutionDate').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('parutionDate').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
     </div>
 
     <div class="card-body" *ngIf="showBoardGameForm">
       <div class="form-group">
         <label for="playerNumber">Nombre de joueurs:</label>
-        <input type="text" class="form-control" id="playerNumber" name="playerNumber" [(ngModel)]="mediaForm.playerNumber"/>
+        <input type="text" class="form-control" id="playerNumber" name="playerNumber" formControlName="playerNumber"
+          required />
+        <div *ngIf="addMediaFormGroup.get('playerNumber').invalid && addMediaFormGroup.get('playerNumber').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('playerNumber').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="recoAge">Age recommandé:</label>
-        <input type="number" class="form-control" id="recoAge" name="recoAge" [(ngModel)]="mediaForm.recommendedAge"/>
+        <input type="number" class="form-control" id="recoAge" name="recoAge" formControlName="recommendedAge"
+          required />
+        <div *ngIf="addMediaFormGroup.get('recommendedAge').invalid && addMediaFormGroup.get('recommendedAge').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('recommendedAge').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="durationBG">Durée de la partie (en min):</label>
-        <input type="number" class="form-control" id="durationBG" name="durationBG" [(ngModel)]="mediaForm.duration"/>
+        <input type="number" class="form-control" id="durationBG" name="durationBG" formControlName="durationBG"
+          required />
+        <div *ngIf="addMediaFormGroup.get('durationBG').invalid && addMediaFormGroup.get('durationBG').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('durationBG').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="themeBoardGame">Thème:</label>
-       <select class="form-control" id="themeBoardGame" name="themeBoardGame" [(ngModel)]="themeId">
+        <select class="form-control" id="themeBoardGame" name="themeBoardGame" formControlName="themeId">
           <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
       </div>
@@ -81,27 +126,47 @@
     <div class="card-body" *ngIf="showBookForm">
       <div class="form-group">
         <label for="author">Auteur:</label>
-        <input type="text" class="form-control" id="author" name="author" [(ngModel)]="mediaForm.author"/>
+        <input type="text" class="form-control" id="author" name="author" formControlName="author" required />
+        <div *ngIf="addMediaFormGroup.get('author').invalid && addMediaFormGroup.get('author').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('author').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="isbn">ISBN:</label>
-        <input type="text" class="form-control" id="isbn" name="isbn" [(ngModel)]="mediaForm.isbn"/>
+        <input type="text" class="form-control" id="isbn" name="isbn" formControlName="ISBN" required />
+        <div *ngIf="addMediaFormGroup.get('ISBN').invalid && addMediaFormGroup.get('ISBN').touched" class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('ISBN').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="pagesNb">Nombre de pages:</label>
-        <input type="number" class="form-control" id="pagesNb" name="pagesNb" [(ngModel)]="mediaForm.pageNb"/>
+        <input type="number" class="form-control" id="pagesNb" name="pagesNb" formControlName="pagesNb" required />
+        <div *ngIf="addMediaFormGroup.get('pagesNb').invalid && addMediaFormGroup.get('pagesNb').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('pagesNb').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="chaptersNb">Nombre de chapitres:</label>
-        <input type="number" class="form-control" id="chaptersNb" name="chaptersNb" [(ngModel)]="mediaForm.chapterNb"/>
+        <input type="number" class="form-control" id="chaptersNb" name="chaptersNb" formControlName="chaptersNb"
+          required />
+        <div *ngIf="addMediaFormGroup.get('chaptersNb').invalid && addMediaFormGroup.get('chaptersNb').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('chaptersNb').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="typeBook">Type de livre:</label>
-        <select class="form-control" id="typeBook" name="typeBook" [(ngModel)]="mediaForm.bookType">
+        <select class="form-control" id="typeBook" name="typeBook" formControlName="bookType">
           <!-- <option selected>Choisir un type de livre</option> -->
           <option *ngFor="let type of bookTypes" [value]="type">{{ type }}</option>
         </select>
@@ -109,7 +174,7 @@
 
       <div class="form-group">
         <label for="themeBook">Thème:</label>
-       <select class="form-control" id="themeBook" name="themeBook" [(ngModel)]="themeId">
+        <select class="form-control" id="themeBook" name="themeBook" formControlName="themeId">
           <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
       </div>
@@ -118,17 +183,26 @@
     <div class="card-body" *ngIf="showMagazineForm">
       <div class="form-group">
         <label for="issn">ISSN:</label>
-        <input type="text" class="form-control" id="issn" name="issn" [(ngModel)]="mediaForm.issn"/>
+        <input type="text" class="form-control" id="issn" name="issn" formControlName="ISSN" required />
+        <div *ngIf="addMediaFormGroup.get('ISSN').invalid && addMediaFormGroup.get('ISSN').touched" class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('ISSN').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="numberMag">Numéro:</label>
-        <input type="number" class="form-control" id="numberMag" name="numberMag" [(ngModel)]="mediaForm.number"/>
+        <input type="number" class="form-control" id="numberMag" name="numberMag" formControlName="number" required />
+        <div *ngIf="addMediaFormGroup.get('number').invalid && addMediaFormGroup.get('number').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('number').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="periodicity">Périodicité:</label>
-        <select class="form-select" id="periodicity" name="periodicity" [(ngModel)]="mediaForm.magazinePeriodicity">
+        <select class="form-select" id="periodicity" name="periodicity" formControlName="magazinePeriodicity">
           <!-- <option selected>Choisir une périodicité</option> -->
           <option *ngFor="let type of magPeriodicities" [value]="type">{{ type }}</option>
         </select>
@@ -136,39 +210,48 @@
 
       <div class="form-group">
         <label for="themeMagazin">Thème:</label>
-       <select class="form-control" id="themeMagazine" name="themeMagazine" [(ngModel)]="themeId">
+        <select class="form-control" id="themeMagazine" name="themeMagazine" formControlName="themeId">
           <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
       </div>
     </div>
 
     <div class="card-body" *ngIf="showMovieForm">
-      <div class="form-group">
-        <label for="director">Réalisateur(s):</label>
-        <input *ngFor="let e of [].constructor(mediaForm.directors.length); index as idx"
-          type="text" class="form-control" id="director{{ idx }}" name="director{{ idx }}" [(ngModel)]="mediaForm.directors[idx]"/>
+
+      <div class="form-group" *ngFor="let directorControl of directorsFormArray; let i = index">
+        <input [formControl]="directorControl" placeholder="Nom du réalisateur">
         <button type="button" class="btn btn-primary" (click)="addDirector()">
-          <i class="bi bi-plus-square"></i>
+          <i class="bi bi-plus-square"></i> Ajouter un réalisateur
+        </button>
+        <button type="button" class="btn btn-danger" (click)="removeDirector(i)">
+          <i class="bi bi-trash"></i> Supprimer ce réalisateur
         </button>
       </div>
 
-      <div class="form-group">
-        <label for="actors">Acteur(s):</label>
-        <input *ngFor="let e of [].constructor(mediaForm.actors.length); index as idx"
-          type="text" class="form-control" id="actors{{ idx }}" name="actors{{ idx }}"[(ngModel)]="mediaForm.actors[idx]"/>
+      <div class="form-group" *ngFor="let actorControl of actorsFormArray; let i = index">
+        <input [formControl]="actorControl" placeholder="Nom des acteur">
         <button type="button" class="btn btn-primary" (click)="addActor()">
-          <i class="bi bi-plus-square"></i>
+          <i class="bi bi-plus-square"></i> Ajouter un acteur
+        </button>
+        <button type="button" class="btn btn-danger" (click)="removeActor(i)">
+          <i class="bi bi-trash"></i> Supprimer cet acteur
         </button>
       </div>
 
       <div class="form-group">
         <label for="durationMovie">Durée du film (en min):</label>
-        <input type="number" class="form-control" id="durationMovie" name="durationMovie" [(ngModel)]="mediaForm.duration"/>
+        <input type="number" class="form-control" id="durationMovie" name="durationMovie"
+          formControlName="durationMovie" required />
+        <div *ngIf="addMediaFormGroup.get('durationMovie').invalid && addMediaFormGroup.get('durationMovie').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('durationMovie').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="supportMovie">Support du film:</label>
-        <select class="form-select" id="supportMovie" name="supportMovie" [(ngModel)]="mediaForm.movieSupport">
+        <select class="form-select" id="supportMovie" name="supportMovie" formControlName="movieSupport">
           <!-- <option selected>Choisir un support</option> -->
           <option *ngFor="let type of movieSupports" [value]="type">{{ type }}</option>
         </select>
@@ -176,69 +259,112 @@
 
       <div class="form-group">
         <label for="themeMovie">Thème:</label>
-       <select class="form-control" id="themeMovie" name="themeMovie" [(ngModel)]="themeId">
+        <select class="form-control" id="themeMovie" name="themeMovie" formControlName="themeId">
           <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
       </div>
     </div>
 
     <div class="card-body" *ngIf="showMusicForm">
-      <div class="form-group">
-        <label for="tracks">Piste(s):</label>
-        <input *ngFor=" let e of [].constructor(mediaForm.tracks.length); index as idx" 
-        type="text" class="form-control" id="tracks{{ idx }}" name="tracks{{ idx }}" [(ngModel)]="mediaForm.tracks[idx]"/>
+      <div class="form-group" *ngFor="let trackControl of tracksFormArray; let i = index">
+        <input [formControl]="trackControl" placeholder="Nom de la piste">
         <button type="button" class="btn btn-primary" (click)="addTrack()">
-          <i class="bi bi-plus-square"></i>
+          <i class="bi bi-plus-square"></i> Ajouter une piste
+        </button>
+        <button type="button" class="btn btn-danger" (click)="removeTrack(i)">
+          <i class="bi bi-trash"></i> Supprimer cette piste
         </button>
       </div>
 
       <div class="form-group">
         <label for="artist">Artiste:</label>
-        <input type="text" class="form-control" id="artist" name="artist" [(ngModel)]="mediaForm.artist"/>
+        <input type="text" class="form-control" id="artist" name="artist" formControlName="artist" required />
+        <div *ngIf="addMediaFormGroup.get('artist').invalid && addMediaFormGroup.get('artist').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('artist').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="durationMusic">Durée (en min):</label>
-        <input type="number" class="form-control" id="durationMusic" name="durationMusic" [(ngModel)]="mediaForm.duration"/>
+        <input type="number" class="form-control" id="durationMusic" name="durationMusic"
+          formControlName="durationMusic" required />
+        <div *ngIf="addMediaFormGroup.get('durationMusic').invalid && addMediaFormGroup.get('durationMusic').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('durationMusic').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="trackNumber">Nombre de pistes:</label>
-        <input type="number" class="form-control" id="trackNumber" name="trackNumber" [(ngModel)]="mediaForm.trackNumber"/>
+        <input type="number" class="form-control" id="trackNumber" name="trackNumber" formControlName="trackNumber"
+          required />
+        <div *ngIf="addMediaFormGroup.get('trackNumber').invalid && addMediaFormGroup.get('trackNumber').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('trackNumber').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="supportMusic">Support :</label>
-        <select class="form-select" id="supportMusic" name="supportMusic" [(ngModel)]="mediaForm.musicSupport">
+        <select class="form-select" id="supportMusic" name="supportMusic" formControlName="musicSupport">
           <!-- <option selected>Choisir un support</option> -->
           <option *ngFor="let type of musicSupports" [value]="type">{{ type }}</option>
         </select>
+        <div *ngIf="addMediaFormGroup.get('musicSupport').invalid && addMediaFormGroup.get('musicSupport').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('musicSupport').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
-      
+
       <div class="form-group">
         <label for="themeMusic">Thème:</label>
-       <select class="form-control" id="themeMusic" name="themeMusic" [(ngModel)]="themeId">
+        <select class="form-control" id="themeMusic" name="themeMusic" formControlName="themeId">
           <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
+        <div *ngIf="addMediaFormGroup.get('themeId').invalid && addMediaFormGroup.get('themeId').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('themeId').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
     </div>
 
     <div class="card-body" *ngIf="showVideoGameForm">
       <div class="form-group">
         <label for="pegi">PEGI:</label>
-        <input type="number" class="form-control" id="pegi" name="pegi" [(ngModel)]="mediaForm.pegi"/>
+        <input type="number" class="form-control" id="pegi" name="pegi" formControlName="pegi" required />
+        <div *ngIf="addMediaFormGroup.get('pegi').invalid && addMediaFormGroup.get('pegi').touched" class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('pegi').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
-        <input type="checkbox" class="form-check-input" id="multiplayer" name="multiplayer" [(ngModel)]="mediaForm.multiPlayer"/>
-        <label for="multiplayer"> Multijoueur ?</label>
+        <input type="checkbox" class="form-check-input" id="multiPlayer" name="multiPlayer"
+          formControlName="multiPlayer" />
+        <label for="multiPlayer"> Multijoueur ?</label>
+        <div *ngIf="addMediaFormGroup.get('multiPlayer').invalid && addMediaFormGroup.get('multiPlayer').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('multiPlayer').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="themeVideoGame">Thème:</label>
-       <select class="form-control" id="themeVideoGame" name="themeVideoGame" [(ngModel)]="themeId">
+        <select class="form-control" id="themeVideoGame" name="themeVideoGame" formControlName="themeId">
           <option *ngFor="let theme of listTheme" [value]="theme.id">{{ theme.label }}</option>
         </select>
+        <div *ngIf="addMediaFormGroup.get('themeId').invalid && addMediaFormGroup.get('themeId').touched"
+          class="text-danger">
+          <span *ngIf="addMediaFormGroup.get('themeId').hasError('required')">Ce champ est
+            requis.</span>
+        </div>
       </div>
     </div>
 
@@ -250,6 +376,9 @@
         <button type="submit" class="btn btn-success" *ngIf="!showFirstForm">
           <i class="bi bi-check-square-fill"></i>
         </button>
+      </div>
+      <div *ngIf="hasFormErrors" class="text-danger">
+        Formulaire invalide, veuillez vérifier que vous avez rempli les champs obligatoires
       </div>
     </div>
   </form>

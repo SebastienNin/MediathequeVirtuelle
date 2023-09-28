@@ -28,7 +28,6 @@ export class HttpMediaService {
     if (media.id) { // Mise à jour
       this.http.put<Media>(environment.apiUrl + "/media/" + media.id, media).subscribe();
     } else { //Création
-      console.log(media);
       this.http.post<Media>(environment.apiUrl + "/media/", media).subscribe();
     }
   }

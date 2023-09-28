@@ -1,0 +1,78 @@
+// Définition de vos variables de couleur
+$lavender: #7e6eff;
+$violet: #800080;
+
+// Style pour la section de navigation (colonne de gauche)
+.container {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+
+  .row {
+    .col-md-3 {
+      border-right: 1px solid $lavender; // Change la couleur de la ligne de séparation
+      padding-right: 2rem;
+
+      ul.nav {
+        flex-direction: column;
+        li.nav-item {
+          a.nav-link {
+            border-radius: 10px;
+            color: $lavender;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: $lavender;
+              color: white;
+            }
+
+            &.active {
+              background-color: $lavender;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Style pour la section de contenu (colonne de droite)
+.col-md-9 {
+  padding: 1rem;
+
+
+  h4 {
+    color: $lavender;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+
+  }
+
+  label.labels {
+    font-weight: bold;
+    color: lighten($lavender, 5%)  
+}
+
+  .form-control {
+    margin-bottom: 1rem;
+  }
+
+  .text-danger {
+    color: red;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .btn-primary {
+    background-color: $lavender;
+    border-color: $lavender;
+
+    &:hover {
+      background-color: $violet;
+      border-color: $violet;
+    }
+  }
+}

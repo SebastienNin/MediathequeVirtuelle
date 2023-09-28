@@ -1,13 +1,27 @@
 <nav class="nav nav-pills m-5">
     <div class="card-header">
 
-            <button type="button" class="btn btn-primary" (click)="showAllMedia()"><h3>Médias</h3></button>   
-            <button type="button" class="btn btn-primary" (click)="showMovieList()"><h3>Films</h3></button>      
-            <button type="button" class="btn btn-primary" (click)="showBoardGameList()"><h3>Jeux de Plateau</h3></button>        
-            <button type="button" class="btn btn-primary" (click)="showVideoGameList()"><h3>Jeux Vidéos</h3></button>     
-            <button type="button" class="btn btn-primary" (click)="showBookList()"><h3>Livres</h3></button>     
-            <button type="button" class="btn btn-primary" (click)="showMagazineList()"><h3>Magazines</h3></button>      
-            <button type="button" class="btn btn-primary" (click)="showMusicList()"><h3>Musique</h3></button>
+        <button type="button" class="btn btn-primary" (click)="showAllMedia()">
+            <h3>Médias</h3>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="showMovieList()">
+            <h3>Films</h3>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="showBoardGameList()">
+            <h3>Jeux de Plateau</h3>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="showVideoGameList()">
+            <h3>Jeux Vidéos</h3>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="showBookList()">
+            <h3>Livres</h3>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="showMagazineList()">
+            <h3>Magazines</h3>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="showMusicList()">
+            <h3>Musique</h3>
+        </button>
 
     </div>
 
@@ -20,29 +34,30 @@
                         <th colspan="6">Liste de tous les Médias</th>
                     </tr>
                     <tr>
-                        <td><h3>Nom</h3></td>
-                        <td><h3>Type de Média</h3></td>
-                        <td><h3>Maison d'edition</h3></td>
-                        <td><h3>Langue d'origine</h3></td>
-                        <td><h3>Date de parution</h3></td>
-                        <td></td>
+                        <th>Nom</th>
+                        <th>Type de Média</th>
+                        <th>Maison d'edition</th>
+                        <th>Langue d'origine</th>
+                        <th>Date de parution</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let med of media$ | async">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.typeMedia}}</td>
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
                             <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
-                                class="bi bi-plus-square"></i></a>
+                                    class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <td colspan="9" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
+                    <td colspan="6" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter
+                            un Média</a></td>
                 </tfoot>
             </table>
         </div>
@@ -66,7 +81,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='BoardGame'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.playerNumber}}</td>
                         <td>{{med.recommendedAge}}</td>
@@ -75,12 +90,13 @@
                         <td>{{med.parutionDate}}</td>
                         <td>
                             <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
-                                class="bi bi-plus-square"></i></a>
+                                    class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <td colspan="9" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
+                    <td colspan="8" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter
+                            un Média</a></td>
                 </tfoot>
             </table>
         </div>
@@ -103,7 +119,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Book'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.author}}</td>
                         <td>{{med.bookType}}</td>
                         <td>{{med.publishingHouse}}</td>
@@ -111,12 +127,13 @@
                         <td>{{med.parutionDate}}</td>
                         <td>
                             <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
-                                class="bi bi-plus-square"></i></a>
+                                    class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <td colspan="9" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
+                    <td colspan="7" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter
+                            un Média</a></td>
                 </tfoot>
             </table>
         </div>
@@ -138,19 +155,20 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Magazine'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.magazinePeriodicity}}</td>
                         <td>{{med.publishingHouse}}</td>
                         <td>{{med.language}}</td>
                         <td>{{med.parutionDate}}</td>
                         <td>
                             <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
-                                class="bi bi-plus-square"></i></a>
+                                    class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <td colspan="9" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
+                    <td colspan="6" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter
+                            un Média</a></td>
                 </tfoot>
             </table>
         </div>
@@ -174,7 +192,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Movie'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.directors}}</td>
                         <td>{{med.actors}}</td>
                         <td>{{med.duration}}</td>
@@ -183,12 +201,13 @@
                         <td>{{med.parutionDate}}</td>
                         <td>
                             <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
-                                class="bi bi-plus-square"></i></a>
+                                    class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <td colspan="9" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
+                    <td colspan="8" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter
+                            un Média</a></td>
                 </tfoot>
             </table>
         </div>
@@ -213,7 +232,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='Music'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td>{{med.artist}}</td>
                         <td>{{med.trackNumber}}</td>
                         <td>{{med.tracks}}</td>
@@ -223,12 +242,13 @@
                         <td>{{med.parutionDate}}</td>
                         <td>
                             <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
-                                class="bi bi-plus-square"></i></a>
+                                    class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <td colspan="9" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
+                    <td colspan="9" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter
+                            un Média</a></td>
                 </tfoot>
             </table>
         </div>
@@ -237,7 +257,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="5">Liste des Jeux Vidéos</th>
+                        <th colspan="7">Liste des Jeux Vidéos</th>
                     </tr>
                     <tr>
                         <th>Nom</th>
@@ -251,7 +271,7 @@
                 </thead>
                 <tbody *ngFor="let med of media$ | async">
                     <tr *ngIf="med.typeMedia=='VideoGame'">
-                        <td [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', med.id]">{{med.name}}</td>
                         <td *ngIf="med.multiPlayer">Oui</td>
                         <td *ngIf="!med.multiPlayer">Non</td>
                         <td>{{med.pegi}}</td>
@@ -260,12 +280,13 @@
                         <td>{{med.parutionDate}}</td>
                         <td>
                             <a class="btn btn-success btn-lg" (click)="addToMyMedia(med)"><i
-                                class="bi bi-plus-square"></i></a>
+                                    class="bi bi-plus-square"></i></a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <td colspan="9" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
+                    <td colspan="7" class="text-center"><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter
+                            un Média</a></td>
                 </tfoot>
             </table>
         </div>

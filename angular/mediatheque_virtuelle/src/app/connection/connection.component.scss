@@ -1,0 +1,25 @@
+/* Définition des couleurs personnalisées */
+$lavender: #7e6eff;
+$lilac: #a087ff;
+
+.card-header {
+    background-color: $lavender;
+    color: white;
+    align-content: center;
+
+    .card-title {
+        font-size: xx-large;
+        font-weight: lighter;
+    }
+
+}
+
+.btn-primary {
+    background-color: $lavender;
+    border-color: $lavender;
+
+    &:hover {
+        background-color: $lilac;
+        border-color: $lilac;
+    }
+}

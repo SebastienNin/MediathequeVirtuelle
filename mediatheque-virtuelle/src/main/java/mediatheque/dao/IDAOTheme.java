@@ -18,6 +18,8 @@ public interface IDAOTheme extends JpaRepository<Theme, Integer>{
 	
 	Theme findByLabelAndEnumTheme(String label, EnumTheme type);
 
+	List<Theme> findLabelByEnumTheme(EnumTheme type);
+	
 //	List<MediaTheme> findByMediaThemeList(String label);
 	@Query("SELECT mt.media FROM MediaTheme mt WHERE mt.theme.label = :label")
 	List<Media> findMediaByThemeLabel(@Param("label") String label);

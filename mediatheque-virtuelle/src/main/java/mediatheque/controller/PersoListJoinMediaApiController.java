@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.transaction.Transactional;
-import mediatheque.controller.response.AccountMediaResponse;
+import mediatheque.controller.request.PersoListJoinMediaRequest;
 import mediatheque.controller.response.PersoListJoinMediaResponse;
+import mediatheque.dao.IDAOMedia;
 import mediatheque.dao.IDAOPersoListJoinMedia;
 import mediatheque.dao.IDAOPersonnalizedList;
-import mediatheque.model.AccountMedia;
 import mediatheque.model.BoardGame;
 import mediatheque.model.Book;
 import mediatheque.model.Magazine;
@@ -42,12 +41,15 @@ public class PersoListJoinMediaApiController {
 	
 	private IDAOPersonnalizedList daoPersonnalizedList;
 	
+	private IDAOMedia daoMedia;
+	
 	private MediaApiController mediaApiController;
 
 
 	
-	public PersoListJoinMediaApiController(IDAOPersoListJoinMedia daoPersoListJoinMedia, IDAOPersonnalizedList daoPersonnalizedList, MediaApiController mediaApiController) {
+	public PersoListJoinMediaApiController(IDAOPersoListJoinMedia daoPersoListJoinMedia, IDAOMedia daoMedia, IDAOPersonnalizedList daoPersonnalizedList, MediaApiController mediaApiController) {
 		this.daoPersoListJoinMedia = daoPersoListJoinMedia;
+		this.daoMedia = daoMedia;
 		this.daoPersonnalizedList = daoPersonnalizedList;
 		this.mediaApiController = mediaApiController;
 	}
@@ -99,9 +101,13 @@ public class PersoListJoinMediaApiController {
 	}
     
     @PostMapping("")
-    public PersoListJoinMedia create(@RequestBody PersoListJoinMedia persoListJoinMedia) {
-    	persoListJoinMedia = daoPersoListJoinMedia.save(persoListJoinMedia);
-        return persoListJoinMedia ;
+    public PersoListJoinMedia create(@RequestBody PersoListJoinMediaRequest persoListJoinMediaRequest) {
+    	PersoListJoinMedia persoListJoinMedia = new PersoListJoinMedia();
+    	
+    	persoListJoinMedia.setMedia(daoMedia.findById(persoListJoinMediaRequest.getMediaId()).get());
+    	persoListJoinMedia.setPersoList(daoPersonnalizedList.findById(persoListJoinMediaRequest.getPersoListId()).get());
+        
+    	return daoPersoListJoinMedia.save(persoListJoinMedia) ;
     }
     
     

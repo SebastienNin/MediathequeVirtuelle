@@ -1,14 +1,14 @@
 <nav class="nav nav-pills m-5">
     <div class="card-header">
-        <h4>
-            <button type="button" class="btn btn-primary" (click)="showAllMedia()">Médias</button>   
-            <button type="button" class="btn btn-primary" (click)="showMovieList()">Films</button>      
-            <button type="button" class="btn btn-primary" (click)="showBoardGameList()">Jeux de Plateau</button>        
-            <button type="button" class="btn btn-primary" (click)="showVideoGameList()">Jeux Vidéos</button>     
-            <button type="button" class="btn btn-primary" (click)="showBookList()">Livres</button>     
-            <button type="button" class="btn btn-primary" (click)="showMagazineList()">Magazines</button>      
-            <button type="button" class="btn btn-primary" (click)="showMusicList()">Musique</button>
-        </h4>
+
+            <button type="button" class="btn btn-primary" (click)="showAllMedia()"><h3>Médias</h3></button>   
+            <button type="button" class="btn btn-primary" (click)="showMovieList()"><h3>Films</h3></button>      
+            <button type="button" class="btn btn-primary" (click)="showBoardGameList()"><h3>Jeux de Plateau</h3></button>        
+            <button type="button" class="btn btn-primary" (click)="showVideoGameList()"><h3>Jeux Vidéos</h3></button>     
+            <button type="button" class="btn btn-primary" (click)="showBookList()"><h3>Livres</h3></button>     
+            <button type="button" class="btn btn-primary" (click)="showMagazineList()"><h3>Magazines</h3></button>      
+            <button type="button" class="btn btn-primary" (click)="showMusicList()"><h3>Musique</h3></button>
+
     </div>
 
     <div class="card-body">
@@ -20,12 +20,12 @@
                         <th colspan="6">Liste de tous les Médias</th>
                     </tr>
                     <tr>
-                        <th>Nom</th>
-                        <th>Type de Média</th>
-                        <th>Maison d'edition</th>
-                        <th>Langue d'origine</th>
-                        <th>Date de parution</th>
-                        <th></th>
+                        <td><h3>Nom</h3></td>
+                        <td><h3>Type de Média</h3></td>
+                        <td><h3>Maison d'edition</h3></td>
+                        <td><h3>Langue d'origine</h3></td>
+                        <td><h3>Date de parution</h3></td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,13 +41,7 @@
                         </td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <td><a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a></td>
-                </tfoot>
             </table>
-            <div class="card-footer">
-                <a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a>
-            </div>
         </div>
 
         <div *ngIf="showBoardGameForm">
@@ -254,6 +248,8 @@
                 </tbody>
             </table>
         </div>
-
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-success btn-lg" (click)="addMedia()">Ajouter un Média</a>
     </div>
 </nav>

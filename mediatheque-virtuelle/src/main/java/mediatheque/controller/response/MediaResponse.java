@@ -34,7 +34,7 @@ public class MediaResponse {
 	
 	//Récupération des données des jeux de plateaux
 	private String playerNumber;
-	private int recommendendAge;
+	private int recommendedAge;
 	private int duration;
 	
 	//Récupération des données des livres
@@ -140,11 +140,11 @@ public class MediaResponse {
 	public void setPlayerNumber(String playerNumber) {
 		this.playerNumber = playerNumber;
 	}
-	public int getRecommendendAge() {
-		return recommendendAge;
+	public int getRecommendedAge() {
+		return recommendedAge;
 	}
-	public void setRecommendendAge(int recommendendAge) {
-		this.recommendendAge = recommendendAge;
+	public void setRecommendedAge(int recommendedAge) {
+		this.recommendedAge = recommendedAge;
 	}
 	public int getDuration() {
 		return duration;

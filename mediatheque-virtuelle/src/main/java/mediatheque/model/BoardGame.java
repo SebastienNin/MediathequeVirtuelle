@@ -19,7 +19,7 @@ public class BoardGame extends Media {
 	private String playerNumber;
 
 	@Column(name = "recommend_age")
-	private int recommendendAge;
+	private int recommendedAge;
 	private int duration;
 
 	public BoardGame() {
@@ -28,19 +28,19 @@ public class BoardGame extends Media {
 
 	public BoardGame(Integer id, Integer version, String name, String publishingHouse, String language, String image,
 			String description, boolean dematerialized, LocalDate parutionDate, LocalDate addDate, 
-			String playerNumber, int recommendendAge, int duration) {
+			String playerNumber, int recommendedAge, int duration) {
 		super(id, version, name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.playerNumber = playerNumber;
-		this.recommendendAge = recommendendAge;
+		this.recommendedAge = recommendedAge;
 		this.duration = duration;
 	}
 
 	public BoardGame(String name, String publishingHouse, String language, String image, String description,
 			boolean dematerialized, LocalDate parutionDate, LocalDate addDate, 
-			String playerNumber, int recommendendAge, int duration) {
+			String playerNumber, int recommendedAge, int duration) {
 		super(name, publishingHouse, language, image, description, dematerialized, parutionDate, addDate);
 		this.playerNumber = playerNumber;
-		this.recommendendAge = recommendendAge;
+		this.recommendedAge = recommendedAge;
 		this.duration = duration;
 	}
 
@@ -49,8 +49,8 @@ public class BoardGame extends Media {
 	}
 
 
-	public int getRecommendendAge() {
-		return recommendendAge;
+	public int getRecommendedAge() {
+		return recommendedAge;
 	}
 
 	public int getDuration() {
@@ -61,8 +61,8 @@ public class BoardGame extends Media {
 		this.playerNumber = playerNumber;
 	}
 
-	public void setRecommendendAge(int recommendendAge) {
-		this.recommendendAge = recommendendAge;
+	public void setRecommendedAge(int recommendendAge) {
+		this.recommendedAge = recommendendAge;
 	}
 
 	public void setDuration(int duration) {
@@ -71,7 +71,7 @@ public class BoardGame extends Media {
 
 	@Override
 	public String toString() {
-		return "BoardGame [playerNumber=" + playerNumber + ", recommendendAge=" + recommendendAge + ", duration="
+		return "BoardGame [playerNumber=" + playerNumber + ", recommendendAge=" + recommendedAge + ", duration="
 				+ duration + "]";
 	}
 

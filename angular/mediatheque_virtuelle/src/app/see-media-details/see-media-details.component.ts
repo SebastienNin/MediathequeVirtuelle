@@ -35,61 +35,64 @@ export class SeeMediaDetailsComponent {
     this.mediaServiceHttp.findById(this.id).subscribe(resp => {
       this.media = resp;
       this.load();
+      
+      this.editInfoMediaFormGroup = this.formBuilder.group({
+        //Général
+        name: [this.media.name,],
+        publishingHouse: [this.media.publishingHouse],
+        language: [this.media.language],
+        //Ajouter Modif Image
+        description: [this.media.description],
+        dematerialized: [this.media.dematerialized],
+        parutionDate: [this.media.parutionDate],
+        themes: [this.themes],
+
+        //Jeu de plateau
+        playerNumber: [this.media.playerNumber],
+        recommendedAge: [this.media.recommendedAge],
+        duration: [this.media.duration],
+
+        //Livre
+        author: [this.media.author],
+        ISBN: [this.media.ISBN],
+        pagesNb: [this.media.pagesNb],
+        chaptersNb: [this.media.chaptersNb],
+        bookType: [this.media.bookType],
+
+        //Magazine
+        ISSN: [this.media.ISSN],
+        number: [this.media.number],
+        magazinePeriodicity: [this.media.magazinePeriodicity],
+
+        //Film
+        directors: [this.media.directors],
+        actors: [this.media.actors],
+        movieSupport: [this.media.movieSupport],
+
+        //Musique
+        tracks: [this.media.tracks],
+        artist: [this.media.artist],
+        trackNumber: [this.media.trackNumber],
+        musicSupport: [this.media.musicSupport],
+
+        //Jeux Vidéos
+        pegi: [this.media.pegi],
+        multiPlayer: [this.media.multiPlayer]
+
+      })
+
     });
 
     this.selectedMenu = 'info';
-    
 
-    this.editInfoMediaFormGroup = this.formBuilder.group({
-      //Général
-      name: [this.media.name, ],
-      publishingHouse: [this.media.publishingHouse],
-      language: [this.media.language],
-      //Ajouter Modif Image
-      description: [this.media.description],
-      dematerialized: [this.media.dematerialized],
-      parutionDate: [this.media.parutionDate],
-      themes: [this.themes],
-      
-      //Jeu de plateau
-      playerNumber: [this.media.playerNumber],
-      recommendedAge: [this.media.recommendedAge],
-      duration: [this.media.duration],
-      
-      //Livre
-      author: [this.media.author],
-      ISBN: [this.media.ISBN],
-      pagesNb: [this.media.pagesNb],
-      chaptersNb: [this.media.chaptersNb],
-      bookType: [this.media.bookType],
 
-      //Magazine
-      ISSN: [this.media.ISSN],
-      number: [this.media.number],
-      magazinePeriodicity: [this.media.magazinePeriodicity],
 
-      //Film
-      directors: [this.media.directors],
-      actors: [this.media.actors],
-      movieSupport: [this.media.movieSupport],
-
-      //Musique
-      tracks: [this.media.tracks],
-      artist: [this.media.artist],
-      trackNumber: [this.media.trackNumber],
-      musicSupport: [this.media.musicSupport],
-
-      //Jeux Vidéos
-      pegi:[this.media.pegi],
-      multiPlayer:[this.media.multiPlayer]
-
-    })
   }
 
   //Choix entre affichage et modification des infos
   selectMenu(menu: string) {
     this.selectedMenu = menu;
-    
+
   }
 
   //Modification des infos
@@ -169,7 +172,7 @@ export class SeeMediaDetailsComponent {
   downloadFile() {
     const fileName = this.media.image; // Remplacez par le nom de fichier souhaité
     this.fileService.downloadFile(fileName).subscribe(response => {
-      const blob = new Blob([response.body],  { type: 'image/jpeg' });
+      const blob = new Blob([response.body], { type: 'image/jpeg' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

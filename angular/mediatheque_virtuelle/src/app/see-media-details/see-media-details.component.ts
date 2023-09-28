@@ -6,6 +6,12 @@ import { ActivatedRoute } from '@angular/router';
 import { TypeMedia } from '../modele/typeMedia';
 import { FileService } from '../file.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ThemeService } from '../theme.service';
+import { AccountHttpService } from '../account-http.service';
+import { WatchMyMediaHttpService } from '../watch-my-media/watch-my-media-http.service';
+import { PersonnalizedListHttpService } from '../personnalizedList-http.service';
+import { PersonnalizedList } from '../modele/personnalizedList';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-see-media-details',
@@ -17,6 +23,7 @@ export class SeeMediaDetailsComponent {
   id: number;
   media: Media = new Media();
   themes: string = "";
+  myPersoLists: PersonnalizedList[] = [];
 
   selectedMenu: string;
   editInfoMediaFormGroup: FormGroup;
@@ -37,13 +44,15 @@ export class SeeMediaDetailsComponent {
 
   imageSrc: any; // Propriété pour stocker l'URL de l'image
 
-  constructor(private formBuilder: FormBuilder, private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute, private fileService: FileService) {
+  constructor(private formBuilder: FormBuilder, private mediaServiceHttp: HttpMediaService, private route: ActivatedRoute,
+    private fileService: FileService, private themeService: ThemeService, private watchMyMediaHttpService: WatchMyMediaHttpService,
+    private persoListService: PersonnalizedListHttpService, private authService: AuthService) {
     this.route.params.subscribe(param => this.id = param['id']);
     this.mediaServiceHttp.findById(this.id).subscribe(resp => {
       this.media = resp;
       this.load();
-
-      console.log(this.media);
+      this.loadThemes();
+      this.findMyPersoLists();
 
       this.editInfoMediaFormGroup = this.formBuilder.group({
         //Général
@@ -54,7 +63,7 @@ export class SeeMediaDetailsComponent {
         description: [this.media.description],
         dematerialized: [this.media.dematerialized],
         parutionDate: [this.media.parutionDate],
-        themes: [this.themes],
+        themes: [this.media.themes],
 
         //Jeu de plateau
         playerNumber: [this.media.playerNumber],
@@ -63,13 +72,13 @@ export class SeeMediaDetailsComponent {
 
         //Livre
         author: [this.media.author],
-        ISBN: [this.media.isbn],
-        pagesNb: [this.media.pageNb],
-        chaptersNb: [this.media.chapterNb],
+        isbn: [this.media.isbn],
+        pageNb: [this.media.pageNb],
+        chapterNb: [this.media.chapterNb],
         bookType: [this.media.bookType],
 
         //Magazine
-        ISSN: [this.media.issn],
+        issn: [this.media.issn],
         number: [this.media.number],
         magazinePeriodicity: [this.media.magazinePeriodicity],
 
@@ -89,57 +98,6 @@ export class SeeMediaDetailsComponent {
         multiPlayer: [this.media.multiPlayer]
 
       })
-
-      // this.editGlobalMediaFormGroup = this.formBuilder.group({
-      //   //Général
-      //   name: [this.media.name,],
-      //   publishingHouse: [this.media.publishingHouse],
-      //   language: [this.media.language],
-      //   //Ajouter Modif Image
-      //   description: [this.media.description],
-      //   dematerialized: [this.media.dematerialized],
-      //   parutionDate: [this.media.parutionDate],
-      //   themes: [this.themes],
-      // })
-      // this.boardGameFormGroup = this.formBuilder.group({
-      //   //Jeu de plateau
-      //   playerNumber: [this.media.playerNumber],
-      //   recommendedAge: [this.media.recommendedAge],
-      //   duration: [this.media.duration],
-      // })
-      // this.bookFormGroup = this.formBuilder.group({
-      //   //Livre
-      //   author: [this.media.author],
-      //   ISBN: [this.media.ISBN],
-      //   pagesNb: [this.media.pagesNb],
-      //   chaptersNb: [this.media.chaptersNb],
-      //   bookType: [this.media.bookType],
-      // })
-      // this.magazineFormGroup = this.formBuilder.group({
-      //   //Magazine
-      //   ISSN: [this.media.ISSN],
-      //   number: [this.media.number],
-      //   magazinePeriodicity: [this.media.magazinePeriodicity],
-      // })
-      // this.movieFormGroup = this.formBuilder.group({
-      //   //Film
-      //   directors: [this.media.directors],
-      //   actors: [this.media.actors],
-      //   movieSupport: [this.media.movieSupport],
-      // })
-      // this.musicFormGroup = this.formBuilder.group({
-      //   //Musique
-      //   tracks: [this.media.tracks],
-      //   artist: [this.media.artist],
-      //   trackNumber: [this.media.trackNumber],
-      //   musicSupport: [this.media.musicSupport],
-      // })
-      // this.videoGameFormGroup = this.formBuilder.group({
-      //   //Jeux Vidéos
-      //   pegi: [this.media.pegi],
-      //   multiPlayer: [this.media.multiPlayer]
-      // })
-
     });
     this.selectedMenu = 'info';
   }
@@ -151,15 +109,18 @@ export class SeeMediaDetailsComponent {
 
   //Modification des infos
   updateMediaInfo() {
-    const updateInfoMedia = this.editInfoMediaFormGroup.value;
-    let media = { ...this.media, ...updateInfoMedia };
-    this.mediaServiceHttp.saveModif(media).subscribe((resp) => {
-      alert("Informations de " + this.media.name + " mises à jour avec succès.");
-      this.media = resp;
-    })
+    // Si aucun fichier n'a été sélectionné, continuez sans envoyer de fichier
+    this.themeService.findById(this.editInfoMediaFormGroup.get("themes").value[0].id).subscribe(resp => {
+      const updateInfoMedia = this.editInfoMediaFormGroup.value;
+      let media = { ...this.media, ...updateInfoMedia };
+      // media.themes.push(resp);
+      this.mediaServiceHttp.save(media);
+      this.load();
+      this.selectMenu("info");
+    });
   }
 
-  load() {
+  loadThemes() {
     let i: number = 0;
     for (let theme of this.media.themes) {
       if (i == this.media.themes.length - 1) {
@@ -169,6 +130,9 @@ export class SeeMediaDetailsComponent {
       }
       i++;
     }
+  }
+
+  load() {
     switch (this.media.typeMedia) {
       case (TypeMedia.BoardGame):
         this.showBoardGameCard = true;
@@ -194,6 +158,9 @@ export class SeeMediaDetailsComponent {
     }
     // Chargez l'image au moment du chargement des données
     this.loadImage();
+    this.mediaServiceHttp.findById(this.media.id).subscribe(resp => {
+      this.media = resp;
+    });
   }
 
   loadImage(): void {
@@ -210,8 +177,10 @@ export class SeeMediaDetailsComponent {
 
   }
 
-  addToWishlist() {
-
+  findMyPersoLists() {
+    this.persoListService.findByAccount(this.authService.getUser()).subscribe(resp => {
+      this.myPersoLists = resp;
+    })
   }
 
   addToPersoList() {

@@ -273,8 +273,48 @@ public class MediaApiController {
 
 	@PutMapping("/{id}")
 	@JsonView(Views.Media.class)
-	public Media updateMedia(@RequestBody Media media, @PathVariable Integer id) {
-		media = daoMedia.save(media);
+	public Media updateMedia(@RequestBody MediaRequest mediaRequest, @PathVariable Integer id) {
+		Media media;
+		switch (mediaRequest.getTypeMedia()) {
+		case BoardGame: {
+			BoardGame boardGame = new BoardGame();
+			BeanUtils.copyProperties(mediaRequest, boardGame);
+			media = daoMedia.save(boardGame);	
+			break;
+		}
+		case Book: {
+			Book book = new Book();
+			BeanUtils.copyProperties(mediaRequest, book);
+			media = daoMedia.save(book);
+			break;
+		}
+		case Magazine: {
+			Magazine magazine = new Magazine();
+			BeanUtils.copyProperties(mediaRequest, magazine);
+			media = daoMedia.save(magazine);
+			break;
+		}
+		case Movie: {
+			Movie movie = new Movie();
+			BeanUtils.copyProperties(mediaRequest, movie);
+			media = daoMedia.save(movie);
+			break;
+		}
+		case Music: {
+			Music music = new Music();
+			BeanUtils.copyProperties(mediaRequest, music);
+			media = daoMedia.save(music);
+			break;
+		}
+		case VideoGame: {
+			VideoGame videoGame = new VideoGame();
+			BeanUtils.copyProperties(mediaRequest, videoGame);
+			media = daoMedia.save(videoGame);
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + mediaRequest.getTypeMedia());
+		}
 		return media;
 	}
 

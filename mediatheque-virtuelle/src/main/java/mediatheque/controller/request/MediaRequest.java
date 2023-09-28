@@ -14,6 +14,8 @@ import mediatheque.model.TypeMedia;
 public class MediaRequest {
 	
 	//Attributs de Media
+	private Integer id;
+	private Integer version;
 	private String name;
 	private String publishingHouse;
 	private String language;
@@ -67,6 +69,18 @@ public class MediaRequest {
 	
 	public String getName() {
 		return name;
+	}
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public void setName(String name) {
 		this.name = name;

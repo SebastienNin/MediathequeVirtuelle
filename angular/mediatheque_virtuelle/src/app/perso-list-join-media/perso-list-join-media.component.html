@@ -1,23 +1,21 @@
 <nav class="nav nav-pills m-5">
-    <div class="card-header">
+    <div class="card-header" id="cardHeader">
         <h4>
-            <button type="button" class="btn btn-primary" (click)="showAllMedia()">Médias</button>   
-            <button type="button" class="btn btn-primary" (click)="showMovieList()">Films</button>      
-            <button type="button" class="btn btn-primary" (click)="showBoardGameList()">Jeux de Plateau</button>        
-            <button type="button" class="btn btn-primary" (click)="showVideoGameList()">Jeux Vidéos</button>     
-            <button type="button" class="btn btn-primary" (click)="showBookList()">Livres</button>     
-            <button type="button" class="btn btn-primary" (click)="showMagazineList()">Magazines</button>      
-            <button type="button" class="btn btn-primary" (click)="showMusicList()">Musique</button>
+            <button type="button" class="btn btn-primary" (click)="showAllMedia()"><h4>Médias</h4></button>   
+            <button type="button" class="btn btn-primary" (click)="showMovieList()"><h4>Films</h4></button>      
+            <button type="button" class="btn btn-primary" (click)="showBoardGameList()"><h4>Jeux de Plateau</h4></button>        
+            <button type="button" class="btn btn-primary" (click)="showVideoGameList()"><h4>Jeux Vidéos</h4></button>     
+            <button type="button" class="btn btn-primary" (click)="showBookList()"><h4>Livres</h4></button>     
+            <button type="button" class="btn btn-primary" (click)="showMagazineList()"><h4>Magazines</h4></button>      
+            <button type="button" class="btn btn-primary" (click)="showMusicList()"><h4>Musique</h4></button>
         </h4>
     </div>
 
     <div class="card-body">
         <div *ngIf="showAllMediaForm">
-            <table>
+            <h2>Liste de tous les Médias</h2>
+            <table class="table">
                 <thead>
-                    <tr>
-                        <th colspan="6">Liste de tous les Médias</th>
-                    </tr>
                     <tr>
                         <th>Nom</th>
                         <th>Type de Média</th>
@@ -27,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let perso of persoListJoinMedia$ | async">
+                    <tr  *ngFor="let perso of persoListJoinMedia$ | async">
                         <td [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
                         <td>{{perso.media.typeMedia}}</td>
                         <td>{{perso.media.publishingHouse}}</td>
@@ -38,11 +36,12 @@
             </table>
         </div>
         <div *ngIf="showBoardGameForm">
+
+                <h2>Liste des Jeux de plateaux</h2>
+
             <table>
                 <thead>
-                    <tr>
-                        <th colspan="8">Liste des Jeux de plateaux</th>
-                    </tr>
+
                     <tr>
                         <th>Nom</th>
                         <th>Maison d'edition</th>
@@ -51,7 +50,6 @@
                         <th>Durée du jeu (en minutes)</th>
                         <th>Langue d'origine</th>
                         <th>Date de parution</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
@@ -69,11 +67,13 @@
         </div>
 
         <div *ngIf="showBookForm">
+            <h2>
+                Liste des Livres
+              </h2>
             <table>
+
                 <thead>
-                    <tr>
-                        <th colspan="7">Liste des Livres</th>
-                    </tr>
+
                     <tr>
                         <th>Nom</th>
                         <th>Auteur</th>
@@ -81,7 +81,6 @@
                         <th>Maison d'edition</th>
                         <th>Langue d'origine</th>
                         <th>Date de parution</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
@@ -98,18 +97,18 @@
         </div>
 
         <div *ngIf="showMagazineForm">
-            <table>
+                                
+                        <h2>Liste des Magazines</h2>
+             
+                    <table>
                 <thead>
-                    <tr>
-                        <th colspan="6">Liste des Magazines</th>
-                    </tr>
+
                     <tr>
                         <th>Nom</th>
                         <th>Périodicité</th>
                         <th>Maison d'edition</th>
                         <th>Langue d'origine</th>
                         <th>Date de parution</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
@@ -124,12 +123,13 @@
             </table>
         </div>
 
-        <div *ngIf="showMovieForm">
+        <div *ngIf="showMovieForm">                        
+            <h2>Liste des Films</h2>
             <table>
                 <thead>
-                    <tr>
-                        <th colspan="8">Liste des Films</th>
-                    </tr>
+
+
+
                     <tr>
                         <th>Nom</th>
                         <th>Réalisateur(s)</th>
@@ -138,7 +138,6 @@
                         <th>Maison d'edition</th>
                         <th>Langue d'origine</th>
                         <th>Date de parution</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
@@ -156,11 +155,12 @@
         </div>
 
         <div *ngIf="showMusicForm">
+            <h2>Liste des Musiques</h2>
             <table>
                 <thead>
-                    <tr>
-                        <th colspan="9">Liste des Musiques</th>
-                    </tr>
+
+                        
+
                     <tr>
                         <th>Nom</th>
                         <th>Artiste</th>
@@ -170,7 +170,7 @@
                         <th>Maison d'edition</th>
                         <th>Langue d'origine</th>
                         <th>Date de parution</th>
-                        <th></th>
+            
                     </tr>
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
@@ -189,11 +189,12 @@
         </div>
 
         <div *ngIf="showVideoGameForm">
+            <h2 colspan="5">Liste des Jeux Vidéos</h2>
             <table>
                 <thead>
-                    <tr>
-                        <th colspan="5">Liste des Jeux Vidéos</th>
-                    </tr>
+
+                        
+
                     <tr>
                         <th>Nom</th>
                         <th>Multijoueur</th>
@@ -201,7 +202,6 @@
                         <th>Maison d'edition</th>
                         <th>Langue d'origine</th>
                         <th>Date de parution</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">

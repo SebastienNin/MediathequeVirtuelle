@@ -1,0 +1,78 @@
+// Définition de vos variables de couleur
+$lavender: #7e6eff;
+$lilac: #a087ff;
+
+// Style pour la section de navigation (en-tête)
+.card-header {
+    
+  background-color: $lavender;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+
+  h4 {
+    font-size: 1.3rem;
+    font-weight: lighter;
+  }
+
+  .btn {
+    background-color: $lavender;
+    border-color: $lavender;
+    color: white;
+    border-radius: 10px;
+    margin: 5px;
+
+    &:hover {
+      background-color: darken($lavender, 5%);
+      background-color: darken($lavender, 5%);
+    }
+  }
+}
+.card-body{
+    text-align: center;
+    h2{
+        margin-top: 10px;
+        color: $lilac;
+
+    }
+
+    table{
+        width: 100%;
+        border-collapse: separate; // Utilisation de "separate" au lieu de "collapse"
+        border-spacing: 10px; // Espace entre les colonnes du tableau
+    
+        th,
+        td {
+          padding: 10px;
+        }
+    
+        thead {
+          th {
+            background-color: $lilac;
+            color: white;
+            border-radius: 10px;
+          }
+        }
+    
+        tbody {
+          tr {
+            
+    
+            td {
+              
+                text-decoration: none;
+                color: $lavender;
+                transition: color 0.3s ease;
+    
+                &:hover {
+                  color: darken($lilac, 40%);
+                }
+                
+            }
+
+          }
+        }
+    }
+}

@@ -1,6 +1,8 @@
 $lavender: #7e6eff;
 $lilac: #a087ff;
 $pink: #ff59e9;
+$over-pink: #a5008f;
+$light-pink: #e4c4fc;
 
 
 .card-header {
@@ -67,8 +69,8 @@ $pink: #ff59e9;
     border-color: $pink;
 
     &:hover {
-        background-color: $lilac;
-        border-color: $lilac;
+        background-color: $over-pink;
+        border-color: $over-pink;
     }
 }
 

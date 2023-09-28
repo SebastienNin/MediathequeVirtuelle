@@ -28,9 +28,9 @@ export class SearchHttpService {
     return this.http.get<any[]>(environment.apiUrl + "/theme/labelByEnumTheme/" + query);
   }
 
-  searchByTheme(query: string): Observable<any> {
-    return this.http.get<any[]>(environment.apiUrl + "/media/mediaByLabel/" + query);
-  }
+  // searchByTheme(query: string): Observable<any> {
+  //   return this.http.get<any[]>(environment.apiUrl + "/theme/mediaByLabel/" + query);
+  // }
 
   searchByMediaTypeAndTitleContaining(query: string, name: string): Observable<any> {
     // Envoyez la requête de recherche au backend

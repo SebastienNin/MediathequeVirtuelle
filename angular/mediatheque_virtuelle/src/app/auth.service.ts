@@ -17,7 +17,7 @@ export class AuthService {
       {
         next: resp => {
           sessionStorage.setItem("user", JSON.stringify(resp));
-          this.router.navigate(["/"]);
+          this.router.navigate(["/watchMedia"]);
           this.showErrorConnection = false;
         },
         error: error => {

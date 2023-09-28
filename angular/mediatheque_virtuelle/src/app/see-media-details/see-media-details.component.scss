@@ -1,0 +1,139 @@
+$lavender: #7e6eff;
+$lilac: #a087ff;
+$pink: #ff59e9;
+$over-pink:#a5008f;
+$light-pink: #e4c4fc;
+
+.navbar {
+    background-color: $light-pink;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    justify-content: center;
+
+    .nav-link {
+        font-weight: bold;
+        color: $lavender;
+
+        &:hover {
+            color: lighten($lavender, 10%); // Légèrement plus clair au survol
+        }
+    }
+
+    .nav-link.active {
+        background-color: $lavender; // Couleur de fond violet pour l'élément actif
+        color: white; // Texte en blanc pour l'élément actif
+    }
+}
+
+.card-header {
+    border-radius: 10px;
+    background-color: $lavender;
+    color: white;
+    text-align: center;
+    padding: 10px; // Ajoutez un espacement intérieur pour les boutons.
+    width: 100%;
+
+    h3 {
+        font-size: 1.2rem;
+
+        font-weight: lighter;
+    }
+
+}
+
+.card-body {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+
+    table {
+        padding: 10px;
+        width: 100%;
+        border-radius: 10px;
+
+        thead {
+
+            th {
+
+                border-radius: 10px;
+                background-color: $lavender;
+                border-color: $lavender;
+                background-color: $lilac;
+                color: white;
+                padding: 10px;
+
+            }
+        }
+
+        h3 {
+            font-size: 1.1rem; // Réduit la taille du texte à 1 rem (ajustez selon vos besoins)
+        }
+    }
+
+    .btn-success {
+        background-color: $lilac;
+        border-color: $lilac;
+
+    }
+
+
+
+
+}
+
+.btn-primary {
+    background-color: $lavender;
+    border-color: $lavender;
+
+    &:hover {
+        background-color: $lilac;
+        border-color: $lilac;
+    }
+}
+
+.btn-danger {
+    background-color: $pink;
+    border-color: $pink;
+
+    &:hover {
+        background-color: $over-pink;
+        border-color: $over-pink;
+    }
+}
+
+
+.card-footer {
+    background-color: $light-pink;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+
+
+    .btn-success {
+        background-color: $lavender;
+        border-color: $lavender;
+
+        &:hover {
+            background-color: $lilac;
+            border-color: $lilac;
+        }
+    }
+}
+
+.nameInTable {
+    cursor: pointer;
+}
+
+.nameInTable:hover {
+    cursor: pointer;
+    color: $lilac;
+    text-decoration: underline;
+}
+
+.card-body {
+    background-color:$lavender;
+    color: white;
+}

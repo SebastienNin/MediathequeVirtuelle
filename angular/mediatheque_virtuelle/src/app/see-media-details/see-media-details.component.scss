@@ -1,8 +1,16 @@
 $lavender: #7e6eff;
 $lilac: #a087ff;
 $pink: #ff59e9;
-$over-pink:#a5008f;
+$over-pink: #a5008f;
 $light-pink: #e4c4fc;
+
+.card {
+    border: 0;
+}
+
+.btn-nav {
+    border-radius: 10px;
+}
 
 .navbar {
     background-color: $light-pink;
@@ -134,6 +142,6 @@ $light-pink: #e4c4fc;
 }
 
 .card-body {
-    background-color:$lavender;
+    background-color: $lavender;
     color: white;
 }

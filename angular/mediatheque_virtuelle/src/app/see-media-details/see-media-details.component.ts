@@ -20,6 +20,13 @@ export class SeeMediaDetailsComponent {
 
   selectedMenu: string;
   editInfoMediaFormGroup: FormGroup;
+  // editGlobalMediaFormGroup: FormGroup;
+  // boardGameFormGroup: FormGroup;
+  // bookFormGroup: FormGroup;
+  // magazineFormGroup: FormGroup;
+  // movieFormGroup: FormGroup;
+  // musicFormGroup: FormGroup;
+  // videoGameFormGroup: FormGroup;
 
   showBoardGameCard: boolean = false;
   showBookCard: boolean = false;
@@ -35,7 +42,9 @@ export class SeeMediaDetailsComponent {
     this.mediaServiceHttp.findById(this.id).subscribe(resp => {
       this.media = resp;
       this.load();
-      
+
+      console.log(this.media);
+
       this.editInfoMediaFormGroup = this.formBuilder.group({
         //Général
         name: [this.media.name,],
@@ -54,13 +63,13 @@ export class SeeMediaDetailsComponent {
 
         //Livre
         author: [this.media.author],
-        ISBN: [this.media.ISBN],
-        pagesNb: [this.media.pagesNb],
-        chaptersNb: [this.media.chaptersNb],
+        ISBN: [this.media.isbn],
+        pagesNb: [this.media.pageNb],
+        chaptersNb: [this.media.chapterNb],
         bookType: [this.media.bookType],
 
         //Magazine
-        ISSN: [this.media.ISSN],
+        ISSN: [this.media.issn],
         number: [this.media.number],
         magazinePeriodicity: [this.media.magazinePeriodicity],
 
@@ -81,18 +90,63 @@ export class SeeMediaDetailsComponent {
 
       })
 
+      // this.editGlobalMediaFormGroup = this.formBuilder.group({
+      //   //Général
+      //   name: [this.media.name,],
+      //   publishingHouse: [this.media.publishingHouse],
+      //   language: [this.media.language],
+      //   //Ajouter Modif Image
+      //   description: [this.media.description],
+      //   dematerialized: [this.media.dematerialized],
+      //   parutionDate: [this.media.parutionDate],
+      //   themes: [this.themes],
+      // })
+      // this.boardGameFormGroup = this.formBuilder.group({
+      //   //Jeu de plateau
+      //   playerNumber: [this.media.playerNumber],
+      //   recommendedAge: [this.media.recommendedAge],
+      //   duration: [this.media.duration],
+      // })
+      // this.bookFormGroup = this.formBuilder.group({
+      //   //Livre
+      //   author: [this.media.author],
+      //   ISBN: [this.media.ISBN],
+      //   pagesNb: [this.media.pagesNb],
+      //   chaptersNb: [this.media.chaptersNb],
+      //   bookType: [this.media.bookType],
+      // })
+      // this.magazineFormGroup = this.formBuilder.group({
+      //   //Magazine
+      //   ISSN: [this.media.ISSN],
+      //   number: [this.media.number],
+      //   magazinePeriodicity: [this.media.magazinePeriodicity],
+      // })
+      // this.movieFormGroup = this.formBuilder.group({
+      //   //Film
+      //   directors: [this.media.directors],
+      //   actors: [this.media.actors],
+      //   movieSupport: [this.media.movieSupport],
+      // })
+      // this.musicFormGroup = this.formBuilder.group({
+      //   //Musique
+      //   tracks: [this.media.tracks],
+      //   artist: [this.media.artist],
+      //   trackNumber: [this.media.trackNumber],
+      //   musicSupport: [this.media.musicSupport],
+      // })
+      // this.videoGameFormGroup = this.formBuilder.group({
+      //   //Jeux Vidéos
+      //   pegi: [this.media.pegi],
+      //   multiPlayer: [this.media.multiPlayer]
+      // })
+
     });
-
     this.selectedMenu = 'info';
-
-
-
   }
 
   //Choix entre affichage et modification des infos
   selectMenu(menu: string) {
     this.selectedMenu = menu;
-
   }
 
   //Modification des infos
@@ -121,7 +175,6 @@ export class SeeMediaDetailsComponent {
         break;
       case (TypeMedia.Book):
         this.showBookCard = true;
-        console.log(this.media);
         break;
       case (TypeMedia.Magazine):
         this.showMagazineCard = true;

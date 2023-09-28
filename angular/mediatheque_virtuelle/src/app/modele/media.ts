@@ -32,13 +32,13 @@ export class Media {
 
     //attributs de Book
     author: string;
-    ISBN: string;
-    pagesNb: number;
-    chaptersNb: number;
+    isbn: string;
+    pageNb: number;
+    chapterNb: number;
     bookType: BookType;
 
     //attributs de Magazine
-    ISSN: string;
+    issn: string;
     number: number;
     magazinePeriodicity: MagazinePeriodicity;
 
@@ -78,12 +78,12 @@ export class Media {
         duration?: number,
         //Book
         author?: string,
-        ISBN?: string,
-        pagesNb?: number,
-        chaptersNb?: number,
+        isbn?: string,
+        pageNb?: number,
+        chapterNb?: number,
         bookType?: BookType,
         //Magazine
-        ISSN?: string,
+        issn?: string,
         number?: number,
         magazinePeriodicity?: MagazinePeriodicity,
         //Movie
@@ -114,12 +114,12 @@ export class Media {
         this.duration = duration;
         //Book
         this.author = author;
-        this.ISBN = ISBN;
-        this.pagesNb = pagesNb;
-        this.chaptersNb = chaptersNb;
+        this.isbn = isbn;
+        this.pageNb = pageNb;
+        this.chapterNb = chapterNb;
         this.bookType = bookType;
         //Magazine
-        this.ISSN = ISSN;
+        this.issn = issn;
         this.number = number;
         this.magazinePeriodicity = magazinePeriodicity;
         //Movie;

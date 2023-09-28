@@ -24,54 +24,51 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <!-- Carte pour les informations sur le jeu de plateau -->
-                    <div class="card" *ngIf="showBoardGameCard">
+                    <div class="card">
                         <div class="card-body">
+                            <!-- Carte pour les informations générales -->
                             <h1 class="card-title">{{media.name}}</h1>
+                            <p class="card-text"
+                                *ngIf="!showBookCard && !showMagazineCard && !showMovieCard && !showMusicCard">Thème(s)
+                                : {{themes}}</p>
+                            <p class="card-text"
+                                *ngIf="!showBookCard && !showMagazineCard && !showMovieCard && !showMusicCard">Année de
+                                sortie :
+                                {{media.parutionDate}}</p>
+                            <p class="card-text" *ngIf="!showBookCard">Editeur : {{media.publishingHouse}}</p>
+                            <p class="card-text">Langue : {{media.language}}</p>
+                        </div>
+
+                        <!-- Carte pour les informations sur le jeu de plateau -->
+                        <div class="card-body" *ngIf="showBoardGameCard">
                             <p class="card-text">Nombre de joueur : {{media.playerNumber}}</p>
                             <p class="card-text">Age recommandé : {{media.recommendedAge}}</p>
                             <p class="card-text">Durée de la partie : {{media.duration}} minutes</p>
-                            <p class="card-text">Thème(s) : {{themes}}</p>
-                            <p class="card-text">Année de sortie : {{media.parutionDate}}</p>
-                            <p class="card-text">Editeur : {{media.publishingHouse}}</p>
-                            <p class="card-text">Langue : {{media.language}}</p>
-                            <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>
                         </div>
-                    </div>
 
-                    <!-- Carte pour les informations sur le livre -->
-                    <div class="card" *ngIf="showBookCard">
-                        <div class="card-body">
-                            <h1 class="card-title">{{media.name}}</h1>
+                        <!-- Carte pour les informations sur le livre -->
+                        <div class="card-body" *ngIf="showBookCard">
                             <p class="card-text">Auteur : {{media.author}}</p>
                             <p class="card-text">Type : {{media.bookType}}</p>
                             <p class="card-text">Genre(s) : {{themes}}</p>
                             <p class="card-text">Maison d'édition : {{media.publishingHouse}} </p>
                             <p class="card-text">Année de publication : {{media.parutionDate}}</p>
-                            <p class="card-text">ISBN : {{media.ISBN}}</p>
-                            <p class="card-text">Nombre de pages : {{media.pagesNb}}</p>
-                            <p class="card-text">Nombre de chapitres : {{media.chaptersNb}}</p>
-                            <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>
+                            <p class="card-text">ISBN : {{media.isbn}}</p>
+                            <p class="card-text">Nombre de pages : {{media.pageNb}}</p>
+                            <p class="card-text">Nombre de chapitres : {{media.chapterNb}}</p>
                         </div>
-                    </div>
 
-                    <!-- Carte pour les informations sur le magazine -->
-                    <div class="card" *ngIf="showMagazineCard">
-                        <div class="card-body">
-                            <h1 class="card-title">{{media.name}}</h1>
+                        <!-- Carte pour les informations sur le magazine -->
+                        <div class="card-body" *ngIf="showMagazineCard">
                             <p class="card-text">Numéro : {{media.number}}</p>
-                            <p class="card-text">ISSN : {{media.ISSN}}</p>
+                            <p class="card-text">ISSN : {{media.issn}}</p>
                             <p class="card-text">Périodicité : {{media.magazinePeriodicity}}</p>
                             <p class="card-text">Date de publication : {{media.parutionDate}}</p>
                             <p class="card-text">Thème(s) : {{themes}}</p>
-                            <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>
                         </div>
-                    </div>
 
-                    <!-- Carte pour les informations sur le film -->
-                    <div class="card" *ngIf="showMovieCard">
-                        <div class="card-body">
-                            <h1 class="card-title">{{media.name}}</h1>
+                        <!-- Carte pour les informations sur le film -->
+                        <div class="card-body" *ngIf="showMovieCard">
                             <p class="card-text">Réalisateur(s) : {{media.directors}}</p>
                             <p class="card-text">Acteur(s) : {{media.actors}}</p>
                             <p class="card-text">Année de sortie : {{media.parutionDate}}</p>
@@ -79,12 +76,9 @@
                             <p class="card-text">Genre(s) : {{themes}}</p>
                             <p class="card-text">Support : {{media.movieSupport}}</p>
                         </div>
-                    </div>
 
-                    <!-- Carte pour les informations sur la musique -->
-                    <div class="card" *ngIf="showMusicCard">
-                        <div class="card-body">
-                            <h1 class="card-title">{{media.name}}</h1>
+                        <!-- Carte pour les informations sur la musique -->
+                        <div class="card-body" *ngIf="showMusicCard">
                             <p class="card-text">Artiste : {{media.artist}}</p>
                             <p class="card-text">Nombre de piste(s) : {{media.trackNumber}}</p>
                             <p class="card-text">Piste(s) : {{media.tracks}}</p>
@@ -93,15 +87,14 @@
                             <p class="card-text">Date de sortie : {{media.parutionDate}}</p>
                             <p class="card-text">Support : {{media.musicSupport}}</p>
                         </div>
-                    </div>
 
-                    <!-- Carte pour les informations sur le jeu vidéo -->
-                    <div class="card" *ngIf="showVideoGameCard">
-                        <div class="card-body">
-                            <h1 class="card-title">{{media.name}}</h1>
-                            <p class="card-text">Thème(s) : {{themes}}</p>
+                        <!-- Carte pour les informations sur le jeu vidéo -->
+                        <div class="card-body" *ngIf="showVideoGameCard">
                             <p class="card-text">Multi-joueur ? : {{media.multiPlayer}}</p>
                             <p class="card-text">PEGI : {{media.pegi}}</p>
+                        </div>
+
+                        <div class="card-body">
                             <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>
                         </div>
                     </div>
@@ -110,12 +103,10 @@
             </div>
             <!-- Carte pour le résumé-->
             <div class="row mt-3">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h2 class="card-title">Résumé</h2>
-                            <p class="card-text">{{media.description}}</p>
-                        </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Résumé</h2>
+                        <p class="card-text">{{media.description}}</p>
                     </div>
                 </div>
             </div>

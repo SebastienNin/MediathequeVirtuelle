@@ -1,12 +1,13 @@
 $lavender: #7e6eff;
 $lilac: #a087ff;
 $pink: #ff59e9;
-$over-pink:#a5008f;
+$over-pink: #a5008f;
 $light-pink: #e4c4fc;
+$bright-pink: #fcdefa;
 
 .navbar {
     background-color: $light-pink;
-    padding: 10px;
+    padding: 10px 10px;
     border-radius: 10px;
     width: 100%;
     justify-content: center;
@@ -14,6 +15,7 @@ $light-pink: #e4c4fc;
     .nav-link {
         font-weight: bold;
         color: $lavender;
+        border-radius: 10px;
 
         &:hover {
             color: lighten($lavender, 10%); // Légèrement plus clair au survol
@@ -24,6 +26,10 @@ $light-pink: #e4c4fc;
         background-color: $lavender; // Couleur de fond violet pour l'élément actif
         color: white; // Texte en blanc pour l'élément actif
     }
+}
+
+.card {
+    border-color: white;
 }
 
 .card-header {
@@ -47,39 +53,20 @@ $light-pink: #e4c4fc;
     margin-top: 20px;
     margin-bottom: 30px;
     border-radius: 10px;
+    background-color: $light-pink;
+    color: $lavender;
 
-    table {
-        padding: 10px;
-        width: 100%;
-        border-radius: 10px;
 
-        thead {
-
-            th {
-
-                border-radius: 10px;
-                background-color: $lavender;
-                border-color: $lavender;
-                background-color: $lilac;
-                color: white;
-                padding: 10px;
-
-            }
-        }
-
-        h3 {
-            font-size: 1.1rem; // Réduit la taille du texte à 1 rem (ajustez selon vos besoins)
-        }
+    h3 {
+        font-size: 1.1rem; // Réduit la taille du texte à 1 rem (ajustez selon vos besoins)
     }
+
 
     .btn-success {
         background-color: $lilac;
         border-color: $lilac;
 
     }
-
-
-
 
 }
 
@@ -133,7 +120,17 @@ $light-pink: #e4c4fc;
     text-decoration: underline;
 }
 
-.card-body {
-    background-color:$lavender;
-    color: white;
+.mb-3 {
+    background-color: $light-pink;
+    color: $lavender;
+}
+
+input {
+    background-color: $bright-pink;
+    color: $lavender;
+}
+
+textarea {
+    background-color: $bright-pink;
+    color: $lavender;
 }

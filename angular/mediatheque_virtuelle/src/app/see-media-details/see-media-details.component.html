@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="card-body">
-                            <p class="card-text">Dématérialisé ? {{media.dematerialized}}</p>
+                            <p class="card-text">Dématérialisé ? <span *ngIf="media.dematerialized">Oui</span><span *ngIf="!media.dematerialized">Non</span> </p>
                         </div>
                     </div>
 

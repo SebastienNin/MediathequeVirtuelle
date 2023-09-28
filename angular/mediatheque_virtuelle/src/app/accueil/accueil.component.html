@@ -1,11 +1,9 @@
-
-<div class="container my-body-container">
-
-<section class="container-fluid mt-5">
+<body>
+    <section class="container-fluid col-md-10 mt-2">
     <div class="row">
         <div class="card" id="header">
             <div class="card-body">
-                <h1>Bienvenue sur Média Hub</h1>
+                <h1>Bienvenue sur Media Hub</h1>
                 <p>Avec Média Hub, découvrez et gérez votre collection de médias. Ajoutez facilement des livres, films, jeux et bien plus et créer vos propres listes personnalisées.</p>
                 <a [routerLink]="['/signin']" class="btn btn-secondary">Commencer maintenant</a>
             </div>
@@ -14,7 +12,60 @@
 </section>
 
 
-<section class="container-fluid mt-5">
+<div class="container col-md-10 mt-2">
+    <hr>
+    <div class="card">
+            <h2 class="card-title" id = "whatToDoCardTitle">Que faire avec Media Hub ?</h2>
+        <div class="card-body my-cards">
+            <div class="d-flex align-items-center">
+                <div class="col-md-4 d-flex align-items-center" >
+                    <div class="card" id="card1">
+                        <div class="card-body">
+                            <h6 class="card-title">Ajout de média</h6>
+                            <p class="card-text" style="font-size: small;">Ajoutez des médias parmi tous les médias créés par la communauté ou créez vos propres médias : livres, films, jeux ou encore albums de musique, le choix est large.</p>
+                        </div>   
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex flex-column ">
+                    <div class="card my-margin" id="card2">
+                        <div class="card-body">
+                            <h6 class="card-title">Listes personnalisées</h6>
+                            <p class="card-text" style="font-size: small;">Créez des listes personnalisées selon vos besoins. Liste d'envie, de lecture, top10 ou playlist, à vous de choisir !</p>
+                        </div>
+                    </div>
+                    <div class="card my-margin" id="card3">
+                        <div class="card-body">
+                            <h6 class="card-title">Partage (en construction)</h6>
+                            <p class="card-text" style="font-size: small;">Notez ce film, consulter les avis sur ce jeu ou demander un emprunt pour ce livre !</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center">
+                    <div class="card" id="card4">
+                        <div class="card-body">
+                            <h6 class="card-title">Recherche</h6>
+                            <p class="card-text" style="font-size: small;">Ne perdez plus de temps et profitez des fonctions de recherche avancée pour trouver exactement le média que vous recherchez</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p style="color: lightgray; text-align: center;">Media Hub ©</p>
+</div>
+
+
+
+</body>
+
+
+
+
+
+
+<!-- <section class="container-fluid mt-5">
     <h2 class="text-center mb-4">Que pouvez-vous faire ici ?</h2>
     <div class="row">
         <div class="col-md-6 mb-4">
@@ -118,5 +169,5 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 

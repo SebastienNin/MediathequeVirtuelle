@@ -2,12 +2,14 @@
 $lavender: #7e6eff;
 $lilac: #a087ff;
 
+
+
 /* Style de l'en-tête */
 #header {
   background-color: $lavender;
   color: white;
   text-align: center;
-  padding: 5rem 0;
+  padding: 2rem 0;
   border-radius: 5px;
 
   h1 {
@@ -35,6 +37,47 @@ section {
     margin-bottom: 4rem;
     font-size: 2rem;
   }
+}
+
+.card {
+  border: 0;
+}
+
+/* Style de la card Que faire */
+#whatToDoCardTitle {
+  align-self: center;
+  margin-top: 10px;
+}
+
+.my-margin {
+  margin: 15px;
+}
+
+.my-cards {
+  font-size: small;
+}
+
+#card1 {
+  background-color: #4f325e;
+  color: white;
+  border: 0px;
+}
+
+#card2 {
+  background-color: #ba6083;
+  color: white;
+  border: 0px;
+}
+
+#card3 {
+  background-color: #34386d;
+  color: white;
+  border: 0px;
+}
+
+#card4 {
+  background-color: #b79cd3;
+  border: 0px;
 }
 
 /* Style des cartes */

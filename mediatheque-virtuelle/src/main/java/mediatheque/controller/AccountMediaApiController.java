@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import jakarta.transaction.Transactional;
 import mediatheque.controller.request.AccountMediaRequest;
 import mediatheque.controller.response.AccountMediaResponse;
 import mediatheque.dao.IDAOAccount;
@@ -96,6 +97,11 @@ public class AccountMediaApiController {
 		return daoAccountMedia.findById(id).get();
 	}
 	
+	@GetMapping("/findMediaByAccountMediaId/{id}")
+	public List<Media> findMediaIdByAccountId(@PathVariable Integer id) {
+		return daoAccountMedia.findMediaByAccountId(id);
+	}
+	
 	
 	@PostMapping("/")
 	public AccountMedia create(@RequestBody AccountMediaRequest accountMediaRequest) {
@@ -137,8 +143,16 @@ public class AccountMediaApiController {
 		if(!daoAccountMedia.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		
 		daoAccountMedia.deleteById(id);
+	}
+	
+	@Transactional
+	@DeleteMapping("/deleteByMediaId/{id}")
+	public void removeByMediaId(@PathVariable Integer id) {
+		if(!daoMedia.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		daoAccountMedia.deleteByMediaId(id);
 	}
 }
 

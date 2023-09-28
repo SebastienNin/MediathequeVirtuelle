@@ -26,14 +26,14 @@ export class PersoListJoinMediaHttpService {
   findByPersoList(persoListId: number): Observable<PersoListJoinMedia[]> {
     return this.http.get<PersoListJoinMedia[]>(environment.apiUrl + "/persoListJoinMedia/persoList/" + persoListId);
   }
-  
 
-  save(persoListJoinMedia: PersoListJoinMedia): Observable<PersoListJoinMedia> {
-    if (persoListJoinMedia.id) {
-      return this.http.put<PersoListJoinMedia>(environment.apiUrl + "/persoListJoinMedia/" + persoListJoinMedia.id, persoListJoinMedia);
-    } else {
-      return this.http.post<PersoListJoinMedia>(environment.apiUrl + "/persoListJoinMedia", persoListJoinMedia);
-    }
+
+  save(mediaId: number, persoListId: number): Observable<PersoListJoinMedia> {
+
+    return this.http.post<PersoListJoinMedia>(environment.apiUrl + "/persoListJoinMedia", {
+      "mediaId": mediaId,
+      "persoListId": persoListId
+    });
   }
 
   deleteById(id: number): Observable<void> {

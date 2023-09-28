@@ -14,6 +14,8 @@ import mediatheque.model.TypeMedia;
 public class MediaRequest {
 	
 	//Attributs de Media
+	private Integer id;
+	private Integer version;
 	private String name;
 	private String publishingHouse;
 	private String language;
@@ -31,7 +33,7 @@ public class MediaRequest {
 	
 	//Attributs de BoardGame
 	private String playerNumber;
-	private int recommendendAge;
+	private int recommendedAge;
 	private int duration; //mutualisé avec Movie et Music
 	
 	//Attributs de Book
@@ -67,6 +69,18 @@ public class MediaRequest {
 	
 	public String getName() {
 		return name;
+	}
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -125,11 +139,11 @@ public class MediaRequest {
 	public void setPlayerNumber(String playerNumber) {
 		this.playerNumber = playerNumber;
 	}
-	public int getRecommendendAge() {
-		return recommendendAge;
+	public int getRecommendedAge() {
+		return recommendedAge;
 	}
-	public void setRecommendendAge(int recommendendAge) {
-		this.recommendendAge = recommendendAge;
+	public void setRecommendedAge(int recommendedAge) {
+		this.recommendedAge = recommendedAge;
 	}
 	public int getDuration() {
 		return duration;

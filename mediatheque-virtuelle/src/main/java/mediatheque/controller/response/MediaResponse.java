@@ -15,6 +15,7 @@ public class MediaResponse {
 	
 	//Récupération des données communes à tous les médias
 	private Integer id;
+	private Integer version;
 	private String name;
 	private String publishingHouse;
 	private String language;
@@ -34,7 +35,7 @@ public class MediaResponse {
 	
 	//Récupération des données des jeux de plateaux
 	private String playerNumber;
-	private int recommendendAge;
+	private int recommendedAge;
 	private int duration;
 	
 	//Récupération des données des livres
@@ -70,6 +71,12 @@ public class MediaResponse {
 	//Get et SET 
 	public Integer getId() {
 		return id;
+	}
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 	public void setId(Integer id) {
 		this.id = id;
@@ -140,11 +147,11 @@ public class MediaResponse {
 	public void setPlayerNumber(String playerNumber) {
 		this.playerNumber = playerNumber;
 	}
-	public int getRecommendendAge() {
-		return recommendendAge;
+	public int getRecommendedAge() {
+		return recommendedAge;
 	}
-	public void setRecommendendAge(int recommendendAge) {
-		this.recommendendAge = recommendendAge;
+	public void setRecommendedAge(int recommendedAge) {
+		this.recommendedAge = recommendedAge;
 	}
 	public int getDuration() {
 		return duration;

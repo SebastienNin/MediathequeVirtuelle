@@ -114,7 +114,7 @@ class MediathequeVirtuelleApplicationTests {
 		List<String> movieActors2 = new ArrayList<String>();
 		Collections.addAll(movieActors2, "Elijah Wood, Viggo Mortensen");
 		Movie movie2 = new Movie("Le Seigneur des Anneaux - Le retour du Roi", "New Line Cinema", "Français", "90f79325-5e95-4e4a-83d7-eb521d40bf53.jpg",
-				"A Barbie Land, vous êtes un être parfait dans un monde parfait. Sauf si vous êtes en crise existentielle, ou si vous êtes Ken.",
+				"La première scène du film montre les Hobbits Sméagol et Déagol qui pêchent sur le fleuve, quand Déagol, qui a fait une prise, est entrainé dans l'eau par le poisson. Sous l'eau, Déagol est attiré par l'Anneau unique qui gît au fond, le ramasse et revient à la surface. Sméagol le rejoint, voit l'Anneau que son ami a récupéré et lui demande de le lui donner. Mais devant le refus de Déagol, les deux amis se battent et Sméagol étrangle mortellement son ami. Il est désormais lié à l'anneau, mais cela aura pour conséquence son bannissement par sa tribu. Devenant Gollum, il se réfugie dans les Monts Brumeux, vivant seul à l'état sauvage pendant près de cinq cents ans. ",
 				false, LocalDate.parse("2023-07-19"), LocalDate.now(), 115, MovieSupport.NOSUPPORT);
 		movie2.setActors(movieActors2);
 		movie2.setDirectors(movieDirectors2);
@@ -124,7 +124,7 @@ class MediathequeVirtuelleApplicationTests {
 		List<String> movieActors = new ArrayList<String>();
 		Collections.addAll(movieActors, "Margot Robbie, Ryan Gosling");
 		Movie movie1 = new Movie("Barbie", "Warner Bros. Pictures", "Français", "a6fb0a41-4299-47a4-bb39-3b20b9ccfd80.png",
-				"La première scène du film montre les Hobbits Sméagol et Déagol qui pêchent sur le fleuve, quand Déagol, qui a fait une prise, est entrainé dans l'eau par le poisson. Sous l'eau, Déagol est attiré par l'Anneau unique qui gît au fond, le ramasse et revient à la surface. Sméagol le rejoint, voit l'Anneau que son ami a récupéré et lui demande de le lui donner. Mais devant le refus de Déagol, les deux amis se battent et Sméagol étrangle mortellement son ami. Il est désormais lié à l'anneau, mais cela aura pour conséquence son bannissement par sa tribu. Devenant Gollum, il se réfugie dans les Monts Brumeux, vivant seul à l'état sauvage pendant près de cinq cents ans. ",
+				"A Barbie Land, vous êtes un être parfait dans un monde parfait. Sauf si vous êtes en crise existentielle, ou si vous êtes Ken.",
 				false, LocalDate.parse("2003-07-19"), LocalDate.now(), 263, MovieSupport.NOSUPPORT);
 		movie1.setActors(movieActors);
 		movie1.setDirectors(movieDirectors);

@@ -64,19 +64,39 @@ class MediathequeVirtuelleApplicationTests {
 		BoardGame bg1 = new BoardGame("Terraforming Mars", "Fryxgames", "Français", "c4e78e19-5d0b-4594-a751-35473505fad8.jpg",
 				"L'ère de la domestication de Mars a commencé. Dans Terraforming Mars, de puissantes corporations travaillent pour rendre la Planète Rouge habitable. La température, l'oxygène et les océans sont les trois axes de développement principaux. Mais pour triompher, il faudra aussi construire des infrastructures pour les générations futures.",
 				false, LocalDate.parse("2016-01-01"), LocalDate.now(), "1-5", 12, 60);
+		BoardGame bg2 = new BoardGame("Les Colons de Catane", "Jeux Descartes", "Français", "",
+				"Les Colons de Catane est un jeu de société qui se compose d’un certain nombre de composants. Ces composants comprennent des cartes de développement, des pièces de bois, des cartes et des dés. Ces composants sont essentiels à l’expérience de jeu et permettent aux joueurs de développer une stratégie et des tactiques complexes.",
+				false, LocalDate.parse("1995-01-01"), LocalDate.now(), "3-4", 10, 75);
+		BoardGame bg3 = new BoardGame("Carcasonne", "Hans im Glück", "Allemand", "",
+				"Carcassonne est un jeu de pose de tuiles, où l'on construit le plateau de jeu au cours de la partie. Des points sont attribués en fonction de la taille des combinaisons créées — villes, champs, routes, abbayes.",
+				false, LocalDate.parse("2000-01-01"), LocalDate.now(), "2-5", 8, 60);
 
 		VideoGame vg1 = new VideoGame("Zelda : Tears of the Kingdom", "Nintendo", "Français", "42ab4900-2227-4b5a-9b47-3f6ff630436b.jpg",
 				"Link fait joujou avec des armes et oublie zelda encore une fois", false, LocalDate.parse("2023-05-12"),
 				LocalDate.now(), 12, false);
+		VideoGame vg2 = new VideoGame("Assassin's Creed Unity", "Ubisoft", "Français", "",
+				"La confrérie des Assassins se trouve à Paris avec Arno Dorian",
+				false, LocalDate.parse("2014-11-13"), LocalDate.now(), 18, false);
+		VideoGame vg3 = new VideoGame("Fifa 23", "Electronic Arts", "Anglais", "",
+				"FIFA 23 est un jeu vidéo de simulation de football développé par EA Vancouver et édité par Electronic Arts. Il s'agit du 30e volet de la série FIFA. Il est sorti sur Microsoft Windows, Nintendo Switch, PlayStation 4, PlayStation 5, Xbox One, Xbox Series et Google Stadia le 30 septembre 2022.",
+				true, LocalDate.parse("2022-09-22"), LocalDate.now(), 3, false);
 
-		Book book1 = new Book("Tintin en Amérique", "Casterman", "français", "7ba05483-2ef8-4f7f-8b13-eb55c639ea82.png", "Tintin va en amérique",
+		Book book1 = new Book("Tintin en Amérique", "Casterman", "Français", "7ba05483-2ef8-4f7f-8b13-eb55c639ea82.png", "Tintin va en amérique",
 				false, LocalDate.parse("1946-07-01"), LocalDate.now(), "Hergé", "2-203-00102-X", 62, 0, BookType.BD);
-
-		Magazine magazine1 = new Magazine("Elle", "Défense de la France", "français", "dfcad18d-dc61-47e3-b4da-c3c44bfec3f3.jpg", "Magazine féminin",
+		Book book2 = new Book("One Piece : Romance Dawn", "Shūeisha", "Japonais", "",
+				"L'histoire de One Piece se déroule dans un monde fictif dominé par les océans, où certains pirates aspirent à une ère de liberté et d'aventure connue comme « l'âge d'or de la piraterie ». Cette époque fut inaugurée à la suite des derniers mots prononcés par le roi des pirates, Gol D. Roger, surnommé Gold Roger avant son exécution. Roger annonce au monde que ses habitants étaient libres de chercher toutes les richesses qu'il avait accumulées durant sa vie entière, le « One Piece. »",
+				false, LocalDate.parse("1997-07-22"), LocalDate.now(), "Eiichirō Oda", "978-4-08-872509-3", 208, 8, BookType.MANGA);
+		Book book3 = new Book("Les Misérables", "Albert Lacroix et Compagnie", "Français", "",
+				"Les Misérables est un roman de Victor Hugo publié en 1862, l’un des plus vastes et des plus notables de la littérature du xixe siècle.\r\n"
+				+ "\r\n"
+				+ "Il décrit la vie de pauvres gens dans Paris et la France provinciale du premier tiers du xixe siècle, l’auteur s'attachant plus particulièrement au destin du bagnard Jean Valjean ; il a donné lieu à de nombreuses adaptations, au cinéma et sur d’autres supports.",
+				false, LocalDate.parse("1862-01-01"), LocalDate.now(), "Victor Hugo", "978-2-401-07846-8", 2598, 48, BookType.ROMAN);
+				
+		Magazine magazine1 = new Magazine("Elle", "Défense de la France", "Français", "dfcad18d-dc61-47e3-b4da-c3c44bfec3f3.jpg", "Magazine féminin",
 				false, LocalDate.parse("2023-04-20"), LocalDate.now(), "0013-6298", 4035,
 				MagazinePeriodicity.HEBDOMADAIRE);
 
-		Music music1 = new Music("Truth is a beautiful thing", "Ministry of Sound Recordings", "français",
+		Music music1 = new Music("Truth is a beautiful thing", "Ministry of Sound Recordings", "Français",
 				"eef8cc53-a35f-4e25-b760-b6a62a030b4a.jpg", "", true, LocalDate.parse("2017-01-01"), LocalDate.now(),
 				"London Grammar", 79, 18, MusicSupport.NOSUPPORT);
 
@@ -95,8 +115,14 @@ class MediathequeVirtuelleApplicationTests {
 		user1 = daoAccount.save(user1);
 		user2 = daoAccount.save(user2);
 		bg1 = daoMedia.save(bg1);
+		bg2 = daoMedia.save(bg2);
+		bg3 = daoMedia.save(bg3);
 		vg1 = daoMedia.save(vg1);
+		vg2 = daoMedia.save(vg2);
+		vg3 = daoMedia.save(vg3);
 		book1 = daoMedia.save(book1);
+		book2 = daoMedia.save(book2);
+		book3 = daoMedia.save(book3);
 		magazine1 = daoMedia.save(magazine1);
 		movie1 = daoMedia.save(movie1);
 		music1 = daoMedia.save(music1);

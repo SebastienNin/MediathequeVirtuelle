@@ -440,7 +440,7 @@ class MediathequeVirtuelleApplicationTests {
 		bg3MediaTheme3 = daoMediaTheme.save(bg3MediaTheme3);
 		MediaTheme bg3MediaTheme4 = new MediaTheme(bg3, bg1Theme1);
 		bg3MediaTheme4 = daoMediaTheme.save(bg3MediaTheme4);
-		Collections.addAll(bg2.getMediaThemeList(), bg3MediaTheme1, bg3MediaTheme2, bg3MediaTheme3, bg3MediaTheme4);
+		Collections.addAll(bg3.getMediaThemeList(), bg3MediaTheme1, bg3MediaTheme2, bg3MediaTheme3, bg3MediaTheme4);
 		bgTheme1.getMediaThemeList().add(bg3MediaTheme1);
 		bgTheme2.getMediaThemeList().add(bg3MediaTheme2);
 		bgTheme1.getMediaThemeList().add(bg3MediaTheme3);

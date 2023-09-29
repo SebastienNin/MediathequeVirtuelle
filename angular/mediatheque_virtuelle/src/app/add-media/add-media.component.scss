@@ -2,6 +2,7 @@
  $lavender: #7e6eff;
  $lilac: #a087ff;
 
+
  .card-header {
      background-color: $lavender;
      color: white;
@@ -21,6 +22,16 @@
      &:hover {
          background-color: $lilac;
          border-color: $lilac;
+     }
+ }
+
+ .btn-danger {
+     background-color: $lilac;
+     border-color: $lilac;
+
+     &:hover {
+         background-color: #b8a6fe;
+         border-color: #b8a6fe;
      }
  }
 

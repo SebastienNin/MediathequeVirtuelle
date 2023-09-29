@@ -1,6 +1,7 @@
 // Définition de vos variables de couleur
 $lavender: #7e6eff;
 $violet: #800080;
+$lilac: #a087ff;
 
 // Style pour la section de navigation (colonne de gauche)
 .container {
@@ -35,6 +36,16 @@ $violet: #800080;
       }
     }
   }
+}
+
+.nameInTable {
+  cursor: pointer;
+}
+
+.nameInTable:hover {
+  cursor: pointer;
+  color: $lilac;
+  text-decoration: underline;
 }
 
 // Style pour la section de contenu (colonne de droite)

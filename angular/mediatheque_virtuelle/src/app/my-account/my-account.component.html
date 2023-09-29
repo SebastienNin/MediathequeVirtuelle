@@ -3,15 +3,15 @@
         <div class="col-md-3 border-end">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" [class.active]="selectedMenu === 'info'" (click)="selectMenu('info')">Mes
+                    <a class="nav-link nameInTable" [class.active]="selectedMenu === 'info'" (click)="selectMenu('info')">Mes
                         informations</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item nameInTable">
                     <a class="nav-link" [class.active]="selectedMenu === 'editInfo'"
                         (click)="selectMenu('editInfo')">Modifier mes informations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [class.active]="selectedMenu === 'changePassword'"
+                    <a class="nav-link nameInTable" [class.active]="selectedMenu === 'changePassword'"
                         (click)="selectMenu('changePassword')">Modifier mon mot de passe</a>
                 </li>
             </ul>

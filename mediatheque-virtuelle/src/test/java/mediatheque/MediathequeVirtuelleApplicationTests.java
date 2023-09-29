@@ -222,7 +222,7 @@ class MediathequeVirtuelleApplicationTests {
 		movie1Theme3 = daoTheme.save(movie1Theme3);
 		MediaTheme movie1MediaTheme3 = new MediaTheme(movie2, movie1Theme3);
 		movie1MediaTheme3 = daoMediaTheme.save(movie1MediaTheme3);
-		Collections.addAll(movie1.getMediaThemeList(), movie1MediaTheme3);
+		Collections.addAll(movie2.getMediaThemeList(), movie1MediaTheme3);
 		movie1Theme3.getMediaThemeList().add(movie1MediaTheme3);
 		movie2 = daoMedia.save(movie2);
 		// Music

@@ -1,5 +1,5 @@
 $lavender: #7e6eff;
-$lilac: #a087ff;
+$lilac: #784196;
 $pink: #ff59e9;
 $over-pink: #a5008f;
 $light-pink: #e4c4fc;
@@ -13,7 +13,6 @@ $light-pink: #e4c4fc;
 }
 
 .navbar {
-    background-color: $light-pink;
     padding: 10px;
     border-radius: 10px;
     width: 100%;
@@ -55,6 +54,7 @@ $light-pink: #e4c4fc;
     margin-top: 20px;
     margin-bottom: 30px;
     border-radius: 10px;
+    border-color: $lavender;
 
     table {
         padding: 10px;
@@ -102,8 +102,8 @@ $light-pink: #e4c4fc;
 }
 
 .btn-danger {
-    background-color: $pink;
-    border-color: $pink;
+    background-color: $lilac;
+    border-color: $lilac;
 
     &:hover {
         background-color: $over-pink;
@@ -113,7 +113,7 @@ $light-pink: #e4c4fc;
 
 
 .card-footer {
-    background-color: $light-pink;
+
     border-radius: 10px;
     padding: 10px;
     width: 100%;

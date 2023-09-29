@@ -98,6 +98,10 @@ class MediathequeVirtuelleApplicationTests {
 		Magazine magazine2 = new Magazine("Rolling Stone", "", "Français", "c66d9514-0553-436e-ba94-d70b4c0419f7.jpg", "Magazine musique",
 				false, LocalDate.parse("2023-01-20"), LocalDate.now(), "0035-791X", 400,
 				MagazinePeriodicity.MENSUEL);
+		Magazine magazine3 = new Magazine("Le Canard ench", "SAS Les Éditions Maréchal - Le Canard enchaîné ", "Français", 
+				"d72aa274-5f83-4c9e-b5a5-5afea986449c.jpg", "Magazine politique",
+				false, LocalDate.parse("2023-09-22"), LocalDate.now(), "0008-5405", 5367,
+				MagazinePeriodicity.QUOTIDIEN);
 
 		Music music1 = new Music("Truth is a beautiful thing", "Ministry of Sound Recordings", "Français",
 				"eef8cc53-a35f-4e25-b760-b6a62a030b4a.jpg", "", true, LocalDate.parse("2017-01-01"), LocalDate.now(),
@@ -149,6 +153,7 @@ class MediathequeVirtuelleApplicationTests {
 		music1 = daoMedia.save(music1);
 		music2 = daoMedia.save(music2);
 		music3 = daoMedia.save(music3);
+		magazine3 = daoMedia.save(magazine3);
 
 		// Create some Themes for each kind of Media | Start
 		// BoardGame
@@ -205,6 +210,9 @@ class MediathequeVirtuelleApplicationTests {
 		Collections.addAll(magazine2.getMediaThemeList(), magazine1MediaTheme2);
 		magazine1Theme2.getMediaThemeList().add(magazine1MediaTheme2);
 		magazine2 = daoMedia.save(magazine2);
+		Collections.addAll(magazine3.getMediaThemeList(), magazine1MediaTheme2);
+		magazine1Theme2.getMediaThemeList().add(magazine1MediaTheme2);
+		magazine3 = daoMedia.save(magazine3);
 		// Movie
 		Theme movie1Theme1 = new Theme("Comédie", EnumTheme.MOVIE);
 		Theme movie1Theme2 = new Theme("Famille", EnumTheme.MOVIE);

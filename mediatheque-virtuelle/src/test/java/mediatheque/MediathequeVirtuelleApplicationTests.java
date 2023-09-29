@@ -95,7 +95,7 @@ class MediathequeVirtuelleApplicationTests {
 		Magazine magazine1 = new Magazine("Elle", "Défense de la France", "Français", "dfcad18d-dc61-47e3-b4da-c3c44bfec3f3.jpg", "Magazine féminin",
 				false, LocalDate.parse("2023-04-20"), LocalDate.now(), "0013-6298", 4035,
 				MagazinePeriodicity.HEBDOMADAIRE);
-		Magazine magazine2 = new Magazine("Rolling Stone", "", "Français", ".jpg", "Magazine musique",
+		Magazine magazine2 = new Magazine("Rolling Stone", "", "Français", "c66d9514-0553-436e-ba94-d70b4c0419f7.jpg", "Magazine musique",
 				false, LocalDate.parse("2023-01-20"), LocalDate.now(), "0035-791X", 400,
 				MagazinePeriodicity.MENSUEL);
 
@@ -103,17 +103,17 @@ class MediathequeVirtuelleApplicationTests {
 				"eef8cc53-a35f-4e25-b760-b6a62a030b4a.jpg", "", true, LocalDate.parse("2017-01-01"), LocalDate.now(),
 				"London Grammar", 79, 18, MusicSupport.NOSUPPORT);
 		Music music2 = new Music("Tea for the Tillerman", "Island", "Anglais",
-				".jpg", "", true, LocalDate.parse("1970-11-23"), LocalDate.now(),
+				"3ab05e07-b00b-441c-9b3e-8c4b5b2e5383.jpg", "", true, LocalDate.parse("1970-11-23"), LocalDate.now(),
 				"Cat Stevens", 37, 11, MusicSupport.NOSUPPORT);
 		Music music3 = new Music("Hot Space", "EMI Elektra", "Anglais",
-				".jpg", "", true, LocalDate.parse("1981-01-01"), LocalDate.now(),
+				"9f0ab4c3-e08e-49fc-8c67-9bba8a5698b4.png", "", true, LocalDate.parse("1981-01-01"), LocalDate.now(),
 				"Queen", 43, 6, MusicSupport.NOSUPPORT);
 		
 		List<String> movieDirectors2 = new ArrayList<String>();
 		Collections.addAll(movieDirectors2, "Peter Jackson");
 		List<String> movieActors2 = new ArrayList<String>();
 		Collections.addAll(movieActors2, "Elijah Wood, Viggo Mortensen");
-		Movie movie2 = new Movie("Le Seigneur des Anneaux - Le retour du Roi", "New Line Cinema", "Français", ".png",
+		Movie movie2 = new Movie("Le Seigneur des Anneaux - Le retour du Roi", "New Line Cinema", "Français", "90f79325-5e95-4e4a-83d7-eb521d40bf53.jpg",
 				"A Barbie Land, vous êtes un être parfait dans un monde parfait. Sauf si vous êtes en crise existentielle, ou si vous êtes Ken.",
 				false, LocalDate.parse("2023-07-19"), LocalDate.now(), 115, MovieSupport.NOSUPPORT);
 		movie2.setActors(movieActors2);
@@ -198,6 +198,13 @@ class MediathequeVirtuelleApplicationTests {
 		Collections.addAll(magazine1.getMediaThemeList(), magazine1MediaTheme1);
 		magazine1Theme1.getMediaThemeList().add(magazine1MediaTheme1);
 		magazine1 = daoMedia.save(magazine1);
+		Theme magazine1Theme2 = new Theme("Actualités-politique", EnumTheme.MAGAZINE);
+		magazine1Theme2 = daoTheme.save(magazine1Theme2);
+		MediaTheme magazine1MediaTheme2 = new MediaTheme(magazine2, magazine1Theme2);
+		magazine1MediaTheme2 = daoMediaTheme.save(magazine1MediaTheme2);
+		Collections.addAll(magazine2.getMediaThemeList(), magazine1MediaTheme2);
+		magazine1Theme2.getMediaThemeList().add(magazine1MediaTheme2);
+		magazine2 = daoMedia.save(magazine2);
 		// Movie
 		Theme movie1Theme1 = new Theme("Comédie", EnumTheme.MOVIE);
 		Theme movie1Theme2 = new Theme("Famille", EnumTheme.MOVIE);
@@ -211,6 +218,13 @@ class MediathequeVirtuelleApplicationTests {
 		movie1Theme1.getMediaThemeList().add(movie1MediaTheme1);
 		movie1Theme2.getMediaThemeList().add(movie1MediaTheme2);
 		movie1 = daoMedia.save(movie1);
+		Theme movie1Theme3 = new Theme("Science-fiction", EnumTheme.MOVIE);
+		movie1Theme3 = daoTheme.save(movie1Theme3);
+		MediaTheme movie1MediaTheme3 = new MediaTheme(movie2, movie1Theme3);
+		movie1MediaTheme3 = daoMediaTheme.save(movie1MediaTheme3);
+		Collections.addAll(movie1.getMediaThemeList(), movie1MediaTheme3);
+		movie1Theme3.getMediaThemeList().add(movie1MediaTheme3);
+		movie2 = daoMedia.save(movie2);
 		// Music
 		Theme music1Theme1 = new Theme("Pop", EnumTheme.MUSIC);
 		music1Theme1 = daoTheme.save(music1Theme1);
@@ -219,6 +233,22 @@ class MediathequeVirtuelleApplicationTests {
 		Collections.addAll(music1.getMediaThemeList(), music1MediaTheme1);
 		music1Theme1.getMediaThemeList().add(music1MediaTheme1);
 		music1 = daoMedia.save(music1);
+		
+		Theme music1Theme2 = new Theme("Rock-punk-métal", EnumTheme.MUSIC);
+		music1Theme2 = daoTheme.save(music1Theme2);
+		MediaTheme music1MediaTheme2 = new MediaTheme(music2, music1Theme2);
+		music1MediaTheme2 = daoMediaTheme.save(music1MediaTheme2);
+		Collections.addAll(music2.getMediaThemeList(), music1MediaTheme2);
+		music1Theme2.getMediaThemeList().add(music1MediaTheme2);
+		music1 = daoMedia.save(music2);
+		
+		Theme music1Theme3 = new Theme("Rock-punk-métal", EnumTheme.MUSIC);
+		music1Theme3 = daoTheme.save(music1Theme3);
+		MediaTheme music1MediaTheme3 = new MediaTheme(music3, music1Theme3);
+		music1MediaTheme3 = daoMediaTheme.save(music1MediaTheme3);
+		Collections.addAll(music3.getMediaThemeList(), music1MediaTheme3);
+		music1Theme3.getMediaThemeList().add(music1MediaTheme3);
+		music3 = daoMedia.save(music3);
 		// Create some Themes for each kind of Media | End
 
 		// Create some AccountMedia to link Account and Media | Start

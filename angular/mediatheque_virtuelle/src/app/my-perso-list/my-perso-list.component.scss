@@ -118,7 +118,13 @@ $lilac: #a087ff;
       }
     }
   }
-
+.form-group{
+  label{
+    color: $lavender;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}
   .container {
     text-align: center;
 }

@@ -11,9 +11,10 @@ $lilac: #a087ff;
   width: 100%;
 
   h4 {
-    font-size: 1.3rem;
-    font-weight: lighter;
+    font-size: 1.1rem;
+    font-weight: bold;
   }
+  
   h2{
     margin-top: 10px;
 
@@ -117,3 +118,28 @@ $lilac: #a087ff;
       }
     }
   }
+
+  .container {
+    text-align: center;
+}
+
+.btn-group {
+    display: inline-block;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-danger {
+    background-color: $lilac; /* Remplacez $lilac par la couleur souhaitée */
+    border-color: $lilac; /* Remplacez $lilac par la couleur souhaitée */
+}
+
+.btn-success {
+    background-color: $lavender; /* Remplacez $lavender par la couleur souhaitée */
+    border-color: $lavender; /* Remplacez $lavender par la couleur souhaitée */
+}

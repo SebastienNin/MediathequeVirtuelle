@@ -1,32 +1,33 @@
+
 $lavender: #7e6eff;
 $lilac: #a087ff;
 
 .card-header {
     
-  background-color: $lavender;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  border-radius: 10px;
-  width: 100%;
-
-  h4 {
-    font-size: 1.3rem;
-    font-weight: lighter;
-  }
-
-  .btn {
     background-color: $lavender;
-    border-color: $lavender;
     color: white;
+    text-align: center;
+    padding: 10px;
     border-radius: 10px;
-    margin: 5px;
-
-    &:hover {
-      background-color: darken($lavender, 5%);
-      background-color: darken($lavender, 5%);
+    width: 100%;
+  
+    h4 {
+      font-size: 1.1rem;
+      font-weight: bold;
     }
-  }
+  
+    .btn {
+      background-color: $lavender;
+      border-color: $lavender;
+      color: white;
+      border-radius: 10px;
+      margin: 5px;
+  
+      &:hover {
+        background-color: darken($lavender, 5%);
+        background-color: darken($lavender, 5%);
+      }
+    }
 }
 .card-body{
     text-align: center;
@@ -34,6 +35,10 @@ $lilac: #a087ff;
         margin-top: 10px;
         color: $lilac;
 
+    }
+    .btn{
+        background-color: $lilac;
+        border-color: $lilac;
     }
 
     table{
@@ -72,10 +77,33 @@ $lilac: #a087ff;
 
           }
         }
+ 
+        tfoot {
+            align-content: center;
+         
+           
+             h4 {
+               font-size: 1.1rem;
+               font-weight: bold;
+             }
+           
+             .btn {
+               background-color: $lavender;
+               border-color: $lavender;
+               color: white;
+               border-radius: 10px;
+               margin: 5px;
+               width: 100%;
+         
+           
+               &:hover {
+                 background-color: darken($lavender, 5%);
+                 background-color: darken($lavender, 5%);
+               }
+             }
+           }
     }
 }
-// $lavender: #7e6eff;
-// $lilac: #a087ff;
 
 // .card-header {
 //     border-radius: 10px;

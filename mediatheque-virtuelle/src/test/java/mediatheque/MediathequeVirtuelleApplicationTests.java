@@ -95,18 +95,37 @@ class MediathequeVirtuelleApplicationTests {
 		Magazine magazine1 = new Magazine("Elle", "Défense de la France", "Français", "dfcad18d-dc61-47e3-b4da-c3c44bfec3f3.jpg", "Magazine féminin",
 				false, LocalDate.parse("2023-04-20"), LocalDate.now(), "0013-6298", 4035,
 				MagazinePeriodicity.HEBDOMADAIRE);
+		Magazine magazine2 = new Magazine("Rolling Stone", "", "Français", ".jpg", "Magazine musique",
+				false, LocalDate.parse("2023-01-20"), LocalDate.now(), "0035-791X", 400,
+				MagazinePeriodicity.MENSUEL);
 
 		Music music1 = new Music("Truth is a beautiful thing", "Ministry of Sound Recordings", "Français",
 				"eef8cc53-a35f-4e25-b760-b6a62a030b4a.jpg", "", true, LocalDate.parse("2017-01-01"), LocalDate.now(),
 				"London Grammar", 79, 18, MusicSupport.NOSUPPORT);
-
+		Music music2 = new Music("Tea for the Tillerman", "Island", "Anglais",
+				".jpg", "", true, LocalDate.parse("1970-11-23"), LocalDate.now(),
+				"Cat Stevens", 37, 11, MusicSupport.NOSUPPORT);
+		Music music3 = new Music("Hot Space", "EMI Elektra", "Anglais",
+				".jpg", "", true, LocalDate.parse("1981-01-01"), LocalDate.now(),
+				"Queen", 43, 6, MusicSupport.NOSUPPORT);
+		
+		List<String> movieDirectors2 = new ArrayList<String>();
+		Collections.addAll(movieDirectors2, "Peter Jackson");
+		List<String> movieActors2 = new ArrayList<String>();
+		Collections.addAll(movieActors2, "Elijah Wood, Viggo Mortensen");
+		Movie movie2 = new Movie("Le Seigneur des Anneaux - Le retour du Roi", "New Line Cinema", "Français", ".png",
+				"A Barbie Land, vous êtes un être parfait dans un monde parfait. Sauf si vous êtes en crise existentielle, ou si vous êtes Ken.",
+				false, LocalDate.parse("2023-07-19"), LocalDate.now(), 115, MovieSupport.NOSUPPORT);
+		movie2.setActors(movieActors2);
+		movie2.setDirectors(movieDirectors2);
+		
 		List<String> movieDirectors = new ArrayList<String>();
 		Collections.addAll(movieDirectors, "Greta Gerwig");
 		List<String> movieActors = new ArrayList<String>();
 		Collections.addAll(movieActors, "Margot Robbie, Ryan Gosling");
 		Movie movie1 = new Movie("Barbie", "Warner Bros. Pictures", "Français", "a6fb0a41-4299-47a4-bb39-3b20b9ccfd80.png",
-				"A Barbie Land, vous êtes un être parfait dans un monde parfait. Sauf si vous êtes en crise existentielle, ou si vous êtes Ken.",
-				false, LocalDate.parse("2023-07-19"), LocalDate.now(), 115, MovieSupport.NOSUPPORT);
+				"La première scène du film montre les Hobbits Sméagol et Déagol qui pêchent sur le fleuve, quand Déagol, qui a fait une prise, est entrainé dans l'eau par le poisson. Sous l'eau, Déagol est attiré par l'Anneau unique qui gît au fond, le ramasse et revient à la surface. Sméagol le rejoint, voit l'Anneau que son ami a récupéré et lui demande de le lui donner. Mais devant le refus de Déagol, les deux amis se battent et Sméagol étrangle mortellement son ami. Il est désormais lié à l'anneau, mais cela aura pour conséquence son bannissement par sa tribu. Devenant Gollum, il se réfugie dans les Monts Brumeux, vivant seul à l'état sauvage pendant près de cinq cents ans. ",
+				false, LocalDate.parse("2003-07-19"), LocalDate.now(), 263, MovieSupport.NOSUPPORT);
 		movie1.setActors(movieActors);
 		movie1.setDirectors(movieDirectors);
 		// Create some objects | Stop
@@ -124,8 +143,12 @@ class MediathequeVirtuelleApplicationTests {
 		book2 = daoMedia.save(book2);
 		book3 = daoMedia.save(book3);
 		magazine1 = daoMedia.save(magazine1);
+		magazine2 = daoMedia.save(magazine2);
 		movie1 = daoMedia.save(movie1);
+		movie2 = daoMedia.save(movie2);
 		music1 = daoMedia.save(music1);
+		music2 = daoMedia.save(music2);
+		music3 = daoMedia.save(music3);
 
 		// Create some Themes for each kind of Media | Start
 		// BoardGame

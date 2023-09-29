@@ -1,6 +1,6 @@
 <div class="card-header">
-          <h2>Mes Listes personnalisées</h2>
-        </div>
+    <h2>Mes Listes personnalisées</h2>
+  </div>
 <div class="card-body">
 
         <table class="table">
@@ -25,25 +25,29 @@
             </tbody>
         </table> 
 </div>
-<div class="card-footer">
+<div class="card-footer" *ngIf="!persoListForm">
     <button class="btn btn-success" (click)="add()"><h4>Ajouter</h4></button>
 </div>
    
 
 
 <!-- Formulaire -->
-<div class="card md3" *ngIf="persoListForm">
-    <div class="card-header bg-primary text-white display-6">Édition d'une liste personnalisée</div>
-    <div class="card-body">
-        <div class="form-group">
-            <label for="name">Nom:</label>
+<div *ngIf="persoListForm">
+    <div class="card-header">
+        <h2>Ajout/Edition d'une liste personnalisée</h2>
+    </div>
+    <br>    
+
+    <div class="form-group">
+            <label for="name">Nom :</label>
             <input type="text" class="form-control" id="name" name="name" [(ngModel)]="persoListForm.name" />
-        </div>
     </div>
-    <div class="card-footer">
-        <div class="btn-group btn-group-lg float-right">
-            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+    <div class="container"> <div class="btn-group">
             <a class="btn btn-danger" (click)="cancel()"><i class="bi bi-x-square-fill"></i></a>
-        </div>
-    </div>
+            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+
+    </div></div>
+       
+        
+
 </div>

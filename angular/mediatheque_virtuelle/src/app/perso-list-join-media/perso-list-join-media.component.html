@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr  *ngFor="let perso of persoListJoinMedia$ | async">
-                        <td [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
                         <td>{{perso.media.typeMedia}}</td>
                         <td>{{perso.media.publishingHouse}}</td>
                         <td>{{perso.media.language}}</td>
@@ -54,7 +54,7 @@
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
                     <tr *ngIf="perso.media.typeMedia=='BoardGame'">
-                        <td [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
                         <td>{{perso.media.publishingHouse}}</td>
                         <td>{{perso.media.playerNumber}}</td>
                         <td>{{perso.media.recommendedAge}}</td>
@@ -85,7 +85,7 @@
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
                     <tr *ngIf="perso.media.typeMedia=='Book'">
-                        <td [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
                         <td>{{perso.media.author}}</td>
                         <td>{{perso.media.bookType}}</td>
                         <td>{{perso.media.publishingHouse}}</td>
@@ -113,7 +113,7 @@
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
                     <tr *ngIf="perso.media.typeMedia=='Magazine'">
-                        <td [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
                         <td>{{perso.media.magazinePeriodicity}}</td>
                         <td>{{perso.media.publishingHouse}}</td>
                         <td>{{perso.media.language}}</td>
@@ -142,7 +142,7 @@
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
                     <tr *ngIf="perso.media.typeMedia=='Movie'">
-                        <td [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
                         <td>{{perso.media.directors}}</td>
                         <td>{{perso.media.actors}}</td>
                         <td>{{perso.media.duration}}</td>
@@ -175,7 +175,7 @@
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
                     <tr *ngIf="perso.media.typeMedia=='Music'">
-                        <td [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
                         <td>{{perso.media.artist}}</td>
                         <td>{{perso.media.trackNumber}}</td>
                         <td>{{perso.media.tracks}}</td>
@@ -206,7 +206,7 @@
                 </thead>
                 <tbody *ngFor="let perso of persoListJoinMedia$ | async">
                     <tr *ngIf="perso.media.typeMedia=='VideoGame'">
-                        <td [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
+                        <td class="nameInTable" [routerLink]="['/media/details/', perso.media.id]">{{perso.media.name}}</td>
                         <td *ngIf="perso.media.multiPlayer">Oui</td>
                         <td *ngIf="!perso.media.multiPlayer">Non</td>
                         <td>{{perso.media.pegi}}</td>

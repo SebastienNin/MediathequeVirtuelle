@@ -1,0 +1,11 @@
+$lilac: #a087ff;
+
+.nameInTable {
+    cursor: pointer;
+  }
+  
+  .nameInTable:hover {
+    cursor: pointer;
+    color: $lilac;
+    text-decoration: underline;
+  }

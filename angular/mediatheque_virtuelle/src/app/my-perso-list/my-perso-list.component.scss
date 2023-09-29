@@ -1,0 +1,151 @@
+$lavender: #7e6eff;
+$lilac: #a087ff;
+
+.card-header {
+    
+  background-color: $lavender;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  h2{
+    margin-top: 10px;
+
+}
+
+  .btn {
+    background-color: $lavender;
+    border-color: $lavender;
+    color: white;
+    border-radius: 10px;
+    margin: 5px;
+    display: inline-block;
+
+    &:hover {
+      background-color: darken($lavender, 5%);
+      background-color: darken($lavender, 5%);
+    }
+  }
+}
+.card-body{
+    text-align: center;
+    .btn {
+        background-color: $lavender;
+        border-color: $lavender;
+        color: white;
+        border-radius: 10px;
+        margin: 5px;
+        display: inline-block;
+
+    }
+    .btn-danger{
+        background-color: $lilac;
+        border-color: $lilac;
+
+    }
+    h2{
+        margin-top: 10px;
+        color: $lilac;
+
+    }
+
+    table{
+        width: 100%;
+        border-collapse: separate; 
+        border-spacing: 10px; 
+    
+        th,
+        td {
+          padding: 10px;
+        }
+    
+        thead {
+          th {
+            font-size: 1.1rem;
+            color: $lilac;
+            border-radius: 10px;
+          }
+        }
+    
+        tbody {
+          tr {
+            
+    
+            td {
+              
+                text-decoration: none;
+                color: $lavender;
+                transition: color 0.3s ease;
+    
+                &:hover {
+                  color: darken($lilac, 40%);
+                }
+                
+            }
+
+          }
+        }
+    }
+}
+.card-footer {
+   align-content: center;
+
+  
+    h4 {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  
+    .btn {
+      background-color: $lavender;
+      border-color: $lavender;
+      color: white;
+      border-radius: 10px;
+      margin: 5px;
+      width: 100%;
+
+  
+      &:hover {
+        background-color: darken($lavender, 5%);
+        background-color: darken($lavender, 5%);
+      }
+    }
+  }
+.form-group{
+  label{
+    color: $lavender;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}
+  .container {
+    text-align: center;
+}
+
+.btn-group {
+    display: inline-block;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-danger {
+    background-color: $lilac; /* Remplacez $lilac par la couleur souhaitée */
+    border-color: $lilac; /* Remplacez $lilac par la couleur souhaitée */
+}
+
+.btn-success {
+    background-color: $lavender; /* Remplacez $lavender par la couleur souhaitée */
+    border-color: $lavender; /* Remplacez $lavender par la couleur souhaitée */
+}

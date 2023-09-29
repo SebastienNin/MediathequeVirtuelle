@@ -1,91 +1,195 @@
+
 $lavender: #7e6eff;
 $lilac: #a087ff;
 
 .card-header {
-    border-radius: 10px;
+    
     background-color: $lavender;
     color: white;
     text-align: center;
-    padding: 10px; // Ajoutez un espacement intérieur pour les boutons.
+    padding: 10px;
+    border-radius: 10px;
     width: 100%;
-    h3 {
-        font-size: 1.2rem;
+  
+    h4 {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  
+    .btn {
+      background-color: $lavender;
+      border-color: $lavender;
+      color: white;
+      border-radius: 10px;
+      margin: 5px;
+  
+      &:hover {
+        background-color: darken($lavender, 5%);
+        background-color: darken($lavender, 5%);
+      }
+    }
+}
+.card-body{
+    text-align: center;
+    h2{
+        margin-top: 10px;
+        color: $lilac;
 
-        font-weight: lighter;
+    }
+    .btn{
+        background-color: $lilac;
+        border-color: $lilac;
     }
 
-}
-.card-body {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    table {
-        padding: 10px;
+    table{
         width: 100%;
-        border-radius: 10px;
-        thead{
-
-            th{
-                
-            border-radius: 10px;                
-            background-color: $lavender;
-            border-color: $lavender;
+        border-collapse: separate; 
+        border-spacing: 10px; 
+    
+        th,
+        td {
+          padding: 10px;
+        }
+    
+        thead {
+          th {
             background-color: $lilac;
             color: white;
-            padding: 10px;
+            border-radius: 10px;
+          }
+        }
+    
+        tbody {
+          tr {
+            
+    
+            td {
+              
+                text-decoration: none;
+                color: $lavender;
+                transition: color 0.3s ease;
+    
+                &:hover {
+                  color: darken($lilac, 40%);
+                }
+                
+            }
 
-        }}
-        h3 {
-            font-size: 1.1rem; // Réduit la taille du texte à 1 rem (ajustez selon vos besoins)
+          }
         }
-        }
-        .btn-success {
-            background-color: $lilac;
-            border-color: $lilac;
+ 
+        tfoot {
+            align-content: center;
+         
+           
+             h4 {
+               font-size: 1.1rem;
+               font-weight: bold;
+             }
+           
+             .btn {
+               background-color: $lavender;
+               border-color: $lavender;
+               color: white;
+               border-radius: 10px;
+               margin: 5px;
+               width: 100%;
+         
+           
+               &:hover {
+                 background-color: darken($lavender, 5%);
+                 background-color: darken($lavender, 5%);
+               }
+             }
+           }
+    }
+}
 
-        }
+// .card-header {
+//     border-radius: 10px;
+//     background-color: $lavender;
+//     color: white;
+//     text-align: center;
+//     padding: 10px; // Ajoutez un espacement intérieur pour les boutons.
+//     width: 100%;
+//     h3 {
+//         font-size: 1.2rem;
+
+//         font-weight: lighter;
+//     }
+
+// }
+// .card-body {
+//     text-align: center;
+//     margin-top: 20px;
+//     margin-bottom: 30px;
+//     border-radius: 10px;
+//     table {
+//         padding: 10px;
+//         width: 100%;
+//         border-radius: 10px;
+//         thead{
+
+//             th{
+                
+//             border-radius: 10px;                
+//             background-color: $lavender;
+//             border-color: $lavender;
+//             background-color: $lilac;
+//             color: white;
+//             padding: 10px;
+
+//         }}
+//         h3 {
+//             font-size: 1.1rem; // Réduit la taille du texte à 1 rem (ajustez selon vos besoins)
+//         }
+//         }
+//         .btn-success {
+//             background-color: $lilac;
+//             border-color: $lilac;
+
+//         }
 
 
 
         
-    }
-.btn-primary {
-    background-color: $lavender;
-    border-color: $lavender;
+//     }
+// .btn-primary {
+//     background-color: $lavender;
+//     border-color: $lavender;
 
-    &:hover {
-        background-color: $lilac;
-        border-color: $lilac;
-    }
-}
-
-
-.card-footer {
-    background-color: $lavender;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
+//     &:hover {
+//         background-color: $lilac;
+//         border-color: $lilac;
+//     }
+// }
 
 
-    .btn-success {
-        background-color: $lavender;
-        border-color: $lavender;
+// .card-footer {
+//     background-color: $lavender;
+//     border-radius: 10px;
+//     padding: 10px;
+//     width: 100%;
+//     text-align: center;
 
-        &:hover {
-            background-color: $lilac;
-            border-color: $lilac;
-        }
-    }
-}
 
-.nameInTable{
-    cursor: pointer;
-  }
+//     .btn-success {
+//         background-color: $lavender;
+//         border-color: $lavender;
 
-.nameInTable:hover {
-    cursor: pointer;
-    color: $lilac;
-    text-decoration: underline; 
-  }
+//         &:hover {
+//             background-color: $lilac;
+//             border-color: $lilac;
+//         }
+//     }
+// }
+
+// .nameInTable{
+//     cursor: pointer;
+//   }
+
+// .nameInTable:hover {
+//     cursor: pointer;
+//     color: $lilac;
+//     text-decoration: underline; 
+//   }

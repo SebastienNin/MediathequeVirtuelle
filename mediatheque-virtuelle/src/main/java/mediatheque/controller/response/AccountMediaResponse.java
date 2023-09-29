@@ -27,9 +27,4 @@ public class AccountMediaResponse {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
-	
-	
-
 }

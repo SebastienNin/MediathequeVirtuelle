@@ -67,7 +67,7 @@ class MediathequeVirtuelleApplicationTests {
 		BoardGame bg2 = new BoardGame("Les Colons de Catane", "Jeux Descartes", "Français", "9bffeddb-e7e7-4457-9dd9-6faaaa46656e.jpg",
 				"Les Colons de Catane est un jeu de société qui se compose d’un certain nombre de composants. Ces composants comprennent des cartes de développement, des pièces de bois, des cartes et des dés. Ces composants sont essentiels à l’expérience de jeu et permettent aux joueurs de développer une stratégie et des tactiques complexes.",
 				false, LocalDate.parse("1995-01-01"), LocalDate.now(), "3-4", 10, 75);
-		BoardGame bg3 = new BoardGame("Carcasonne", "Hans im Glück", "Allemand", "5a2e793c-48ff-4a23-b7cb-f679f9a260d2.jpg",
+		BoardGame bg3 = new BoardGame("Carcassonne", "Hans im Glück", "Allemand", "5a2e793c-48ff-4a23-b7cb-f679f9a260d2.jpg",
 				"Carcassonne est un jeu de pose de tuiles, où l'on construit le plateau de jeu au cours de la partie. Des points sont attribués en fonction de la taille des combinaisons créées — villes, champs, routes, abbayes.",
 				false, LocalDate.parse("2000-01-01"), LocalDate.now(), "2-5", 8, 60);
 
@@ -282,24 +282,54 @@ class MediathequeVirtuelleApplicationTests {
 		pljm6 = daoPersoListJoinMedia.save(pljm6);
 		
 		//Create Theme for all Types of Media |Start
-		Theme bookTheme = new Theme("Romance", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
-		bookTheme = new Theme("Policier-polar", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
-		bookTheme = new Theme("Thriller", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
-		bookTheme = new Theme("Fantastique", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
-		bookTheme = new Theme("Historique", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
-		bookTheme = new Theme("Science-fiction", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
-		bookTheme = new Theme("Fantasy", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
-		bookTheme = new Theme("Contemporain", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
-		bookTheme = new Theme("Classique", EnumTheme.BOOK);
-		bookTheme = daoTheme.save(bookTheme);
+		Theme bookTheme1 = new Theme("Romance", EnumTheme.BOOK);
+		bookTheme1 = daoTheme.save(bookTheme1);
+		Theme bookTheme2 = new Theme("Policier-polar", EnumTheme.BOOK);
+		bookTheme2 = daoTheme.save(bookTheme2);
+		Theme bookTheme3 = new Theme("Thriller", EnumTheme.BOOK);
+		bookTheme3 = daoTheme.save(bookTheme3);
+		Theme bookTheme4 = new Theme("Fantastique", EnumTheme.BOOK);
+		bookTheme4 = daoTheme.save(bookTheme4);
+		Theme bookTheme5 = new Theme("Historique", EnumTheme.BOOK);
+		bookTheme5 = daoTheme.save(bookTheme5);
+		Theme bookTheme6 = new Theme("Science-fiction", EnumTheme.BOOK);
+		bookTheme6 = daoTheme.save(bookTheme6);
+		Theme bookTheme7 = new Theme("Fantasy", EnumTheme.BOOK);
+		bookTheme7 = daoTheme.save(bookTheme7);
+		Theme bookTheme8 = new Theme("Contemporain", EnumTheme.BOOK);
+		bookTheme8 = daoTheme.save(bookTheme8);
+		Theme bookTheme9 = new Theme("Classique", EnumTheme.BOOK);
+		bookTheme9 = daoTheme.save(bookTheme9);
+		
+		MediaTheme book2MediaTheme1 = new MediaTheme(book2, book1Theme1);
+		MediaTheme book2MediaTheme2 = new MediaTheme(book2, book1Theme2);
+		MediaTheme book2MediaTheme3 = new MediaTheme(book2, bookTheme4);
+		MediaTheme book2MediaTheme4 = new MediaTheme(book2, bookTheme7);
+		book2MediaTheme1 = daoMediaTheme.save(book2MediaTheme1);
+		book2MediaTheme2 = daoMediaTheme.save(book2MediaTheme2);
+		book2MediaTheme3 = daoMediaTheme.save(book2MediaTheme3);
+		book2MediaTheme4 = daoMediaTheme.save(book2MediaTheme4);
+		Collections.addAll(book2.getMediaThemeList(), book2MediaTheme1, book2MediaTheme2, book2MediaTheme3, book2MediaTheme4);
+		book1Theme1.getMediaThemeList().add(book2MediaTheme1);
+		book1Theme2.getMediaThemeList().add(book2MediaTheme2);
+		bookTheme4.getMediaThemeList().add(book2MediaTheme3);
+		bookTheme7.getMediaThemeList().add(book2MediaTheme4);
+		book2 = daoMedia.save(book2);
+		
+		MediaTheme book3MediaTheme1 = new MediaTheme(book3, bookTheme1);
+		MediaTheme book3MediaTheme2 = new MediaTheme(book3, bookTheme2);
+		MediaTheme book3MediaTheme3 = new MediaTheme(book3, bookTheme5);
+		MediaTheme book3MediaTheme4 = new MediaTheme(book3, bookTheme9);
+		book3MediaTheme1 = daoMediaTheme.save(book3MediaTheme1);
+		book3MediaTheme2 = daoMediaTheme.save(book3MediaTheme2);
+		book3MediaTheme3 = daoMediaTheme.save(book3MediaTheme3);
+		book3MediaTheme4 = daoMediaTheme.save(book3MediaTheme4);
+		Collections.addAll(book3.getMediaThemeList(), book3MediaTheme1, book3MediaTheme2, book3MediaTheme3, book3MediaTheme4);
+		bookTheme1.getMediaThemeList().add(book3MediaTheme1);
+		bookTheme2.getMediaThemeList().add(book3MediaTheme2);
+		bookTheme5.getMediaThemeList().add(book3MediaTheme3);
+		bookTheme9.getMediaThemeList().add(book3MediaTheme4);
+		book3 = daoMedia.save(book3);
 		
 		Theme movieTheme = new Theme("Comédie Romantique", EnumTheme.MOVIE);
 		movieTheme = daoTheme.save(movieTheme);
@@ -333,35 +363,89 @@ class MediathequeVirtuelleApplicationTests {
 		musicTheme = new Theme("Bande originale film et animation", EnumTheme.MUSIC);
 		musicTheme = daoTheme.save(musicTheme);
 		
-		Theme jvTheme = new Theme("Plateforme", EnumTheme.VIDEOGAME);
-		jvTheme = daoTheme.save(jvTheme);
-		jvTheme = new Theme("Simulation", EnumTheme.VIDEOGAME);
-		jvTheme = daoTheme.save(jvTheme);
-		jvTheme = new Theme("Gestion", EnumTheme.VIDEOGAME);
-		jvTheme = daoTheme.save(jvTheme);
-		jvTheme = new Theme("Sport", EnumTheme.VIDEOGAME);
-		jvTheme = daoTheme.save(jvTheme);
-		jvTheme = new Theme("RPG", EnumTheme.VIDEOGAME);
-		jvTheme = daoTheme.save(jvTheme);
-		jvTheme = new Theme("Exploration", EnumTheme.VIDEOGAME);
-		jvTheme = daoTheme.save(jvTheme);
-		jvTheme = new Theme("Sandbox", EnumTheme.VIDEOGAME);
-		jvTheme = daoTheme.save(jvTheme);
+		Theme jvTheme1 = new Theme("Plateforme", EnumTheme.VIDEOGAME);
+		jvTheme1 = daoTheme.save(jvTheme1);
+		Theme jvTheme2 = new Theme("Simulation", EnumTheme.VIDEOGAME);
+		jvTheme2 = daoTheme.save(jvTheme2);
+		Theme jvTheme3 = new Theme("Gestion", EnumTheme.VIDEOGAME);
+		jvTheme3 = daoTheme.save(jvTheme3);
+		Theme jvTheme4 = new Theme("Sport", EnumTheme.VIDEOGAME);
+		jvTheme4 = daoTheme.save(jvTheme4);
+		Theme jvTheme5 = new Theme("RPG", EnumTheme.VIDEOGAME);
+		jvTheme5 = daoTheme.save(jvTheme5);
+		Theme jvTheme6 = new Theme("Exploration", EnumTheme.VIDEOGAME);
+		jvTheme6 = daoTheme.save(jvTheme6);
+		Theme jvTheme7 = new Theme("Sandbox", EnumTheme.VIDEOGAME);
+		jvTheme7 = daoTheme.save(jvTheme7);
 		
-		Theme bgTheme = new Theme("Plateau", EnumTheme.BOARDGAME);
-		bgTheme = daoTheme.save(bgTheme);
-		bgTheme = new Theme("Cartes", EnumTheme.BOARDGAME);
-		bgTheme = daoTheme.save(bgTheme);
-		bgTheme = new Theme("Ambiance", EnumTheme.BOARDGAME);
-		bgTheme = daoTheme.save(bgTheme);
-		bgTheme = new Theme("Culture générale", EnumTheme.BOARDGAME);
-		bgTheme = daoTheme.save(bgTheme);
-		bgTheme = new Theme("RPG", EnumTheme.BOARDGAME);
-		bgTheme = daoTheme.save(bgTheme);
-		bgTheme = new Theme("Exploration", EnumTheme.BOARDGAME);
-		bgTheme = daoTheme.save(bgTheme);
-		bgTheme = new Theme("Coopération", EnumTheme.BOARDGAME);
-		bgTheme = daoTheme.save(bgTheme);
+		MediaTheme vg2MediaTheme1 = new MediaTheme(vg2, vg1Theme1);
+		MediaTheme vg2MediaTheme2 = new MediaTheme(vg2, vg1Theme2);
+		MediaTheme vg2MediaTheme3 = new MediaTheme(vg2, jvTheme6);
+		vg2MediaTheme1 = daoMediaTheme.save(vg2MediaTheme1);
+		vg2MediaTheme2 = daoMediaTheme.save(vg2MediaTheme2);
+		vg2MediaTheme3 = daoMediaTheme.save(vg2MediaTheme3);
+		Collections.addAll(vg2.getMediaThemeList(), vg2MediaTheme1, vg2MediaTheme2, vg2MediaTheme3);
+		vg1Theme1.getMediaThemeList().add(vg2MediaTheme1);
+		vg1Theme2.getMediaThemeList().add(vg2MediaTheme2);
+		jvTheme6.getMediaThemeList().add(vg2MediaTheme3);
+		vg2 = daoMedia.save(vg2);
+		
+		MediaTheme vg3MediaTheme1 = new MediaTheme(vg3, jvTheme2);
+		MediaTheme vg3MediaTheme2 = new MediaTheme(vg3, jvTheme3);
+		vg3MediaTheme1 = daoMediaTheme.save(vg3MediaTheme1);
+		vg3MediaTheme2 = daoMediaTheme.save(vg3MediaTheme2);
+		Collections.addAll(vg3.getMediaThemeList(), vg3MediaTheme1, vg3MediaTheme2);
+		jvTheme2.getMediaThemeList().add(vg3MediaTheme1);
+		jvTheme3.getMediaThemeList().add(vg3MediaTheme2);
+		vg3 = daoMedia.save(vg3);
+		
+		Theme bgTheme1 = new Theme("Plateau", EnumTheme.BOARDGAME);
+		bgTheme1 = daoTheme.save(bgTheme1);
+		Theme bgTheme2 = new Theme("Cartes", EnumTheme.BOARDGAME);
+		bgTheme2 = daoTheme.save(bgTheme2);
+		Theme bgTheme3 = new Theme("Ambiance", EnumTheme.BOARDGAME);
+		bgTheme3 = daoTheme.save(bgTheme3);
+		Theme bgTheme4 = new Theme("Culture générale", EnumTheme.BOARDGAME);
+		bgTheme4 = daoTheme.save(bgTheme4);
+		Theme bgTheme5 = new Theme("RPG", EnumTheme.BOARDGAME);
+		bgTheme5 = daoTheme.save(bgTheme5);
+		Theme bgTheme6 = new Theme("Exploration", EnumTheme.BOARDGAME);
+		bgTheme6 = daoTheme.save(bgTheme6);
+		Theme bgTheme7 = new Theme("Coopération", EnumTheme.BOARDGAME);
+		bgTheme7 = daoTheme.save(bgTheme7);
+		
+		MediaTheme bg2MediaTheme1 = new MediaTheme(bg2, bgTheme1);
+		bg2MediaTheme1 = daoMediaTheme.save(bg2MediaTheme1);
+		MediaTheme bg2MediaTheme2 = new MediaTheme(bg2, bgTheme2);
+		bg2MediaTheme2 = daoMediaTheme.save(bg2MediaTheme2);
+		MediaTheme bg2MediaTheme3 = new MediaTheme(bg2, bgTheme7);
+		bg2MediaTheme3 = daoMediaTheme.save(bg2MediaTheme3);
+		MediaTheme bg2MediaTheme4 = new MediaTheme(bg2, bg1Theme1);
+		bg2MediaTheme4 = daoMediaTheme.save(bg2MediaTheme4);
+		MediaTheme bg2MediaTheme5 = new MediaTheme(bg2, bg1Theme1);
+		bg2MediaTheme5 = daoMediaTheme.save(bg2MediaTheme5);
+		Collections.addAll(bg2.getMediaThemeList(), bg2MediaTheme1, bg2MediaTheme2, bg2MediaTheme3, bg2MediaTheme4, bg2MediaTheme5);
+		bgTheme1.getMediaThemeList().add(bg2MediaTheme1);
+		bgTheme2.getMediaThemeList().add(bg2MediaTheme2);
+		bgTheme7.getMediaThemeList().add(bg2MediaTheme3);
+		bg1Theme1.getMediaThemeList().add(bg2MediaTheme4);
+		bg1Theme2.getMediaThemeList().add(bg2MediaTheme5);
+		bg2 = daoMedia.save(bg2);
+		
+		MediaTheme bg3MediaTheme1 = new MediaTheme(bg3, bgTheme1);
+		bg3MediaTheme1 = daoMediaTheme.save(bg3MediaTheme1);
+		MediaTheme bg3MediaTheme2 = new MediaTheme(bg3, bgTheme3);
+		bg3MediaTheme2 = daoMediaTheme.save(bg3MediaTheme2);
+		MediaTheme bg3MediaTheme3 = new MediaTheme(bg3, bg1Theme1);
+		bg3MediaTheme3 = daoMediaTheme.save(bg3MediaTheme3);
+		MediaTheme bg3MediaTheme4 = new MediaTheme(bg3, bg1Theme1);
+		bg3MediaTheme4 = daoMediaTheme.save(bg3MediaTheme4);
+		Collections.addAll(bg2.getMediaThemeList(), bg3MediaTheme1, bg3MediaTheme2, bg3MediaTheme3, bg3MediaTheme4);
+		bgTheme1.getMediaThemeList().add(bg3MediaTheme1);
+		bgTheme2.getMediaThemeList().add(bg3MediaTheme2);
+		bgTheme1.getMediaThemeList().add(bg3MediaTheme3);
+		bgTheme2.getMediaThemeList().add(bg3MediaTheme4);
+		bg3 = daoMedia.save(bg3);
 		
 		Theme magTheme = new Theme("High-tech", EnumTheme.MAGAZINE);
 		magTheme = daoTheme.save(magTheme);

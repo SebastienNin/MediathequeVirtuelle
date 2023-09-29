@@ -264,6 +264,7 @@ export class AddMediaComponent {
           this.mediaServiceHttp.save(media);
           this.removeAllRequiredValidators();
           this.resetForm();
+          this.router.navigate(['/watchMedia']);
         });
       });
     } else {
@@ -284,6 +285,7 @@ export class AddMediaComponent {
         this.mediaServiceHttp.save(media);
         this.removeAllRequiredValidators();
         this.resetForm();
+        this.router.navigate(['/watchMedia']);
       });
     }
   }
@@ -305,7 +307,7 @@ export class AddMediaComponent {
     this.showMusicForm = false;
     this.showVideoGameForm = false;
 
-    this.returnToWatchMedia();
+    // this.returnToWatchMedia();
     
   }
 
